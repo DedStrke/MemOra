@@ -1,0 +1,365 @@
+@import 'tailwindcss';
+
+/*
+  ADAPTLEARN DESIGN SYSTEM
+  ========================
+  This file powers the whole accessibility engine. There are two layers:
+
+  1. RUNTIME TOKENS (`:root` + `[data-theme=...]` blocks below)
+     Concrete colors that swap live when the learner changes theme.
+     Never hard-code a color in a component - read these via the utilities.
+
+  2. SEMANTIC UTILITIES (`@theme inline`)
+     Maps each runtime token to a Tailwind utility, e.g.
+     `--color-page` -> `bg-page`, `--color-fg` -> `text-fg`,
+     `--color-brand` -> `bg-brand` / `text-brand`.
+
+  The engine (src/context/AccessibilityProvider.jsx) sets these on <html>:
+    data-theme   -> light | dark | cream | high-contrast
+    data-font    -> default | dyslexic | hyperlegible
+    data-spacing -> normal | relaxed | loose      (line height)
+    data-letter  -> normal | wide                 (letter/word spacing)
+    --text-scale -> 1 | 1.15 | 1.3 | 1.5          (global zoom)
+    data-reduce-motion / data-focus -> "true"
+*/
+
+/* ---------------------------------------------------------------- THEMES */
+
+:root {
+  /* Light (default) - calm, warm neutral, low glare */
+  --page: #f6f7fb;
+  --surface: #ffffff;
+  --raised: #eef0f8;
+  --line: #e1e4f0;
+  --fg: #1b2036;
+  --muted: #5a6180;
+  --brand: #5b57f2;
+  --brand-strong: #4842d6;
+  --brand-soft: #ecebfe;
+  --on-brand: #ffffff;
+  --ring: #5b57f2;
+  --success: #128a5a;
+  --warning: #b45309;
+  --danger: #d13b3b;
+  --flash: #6d5bf0;
+  --flash-soft: #ece9fe;
+  --quiz: #0e9f6e;
+  --quiz-soft: #d7f5e9;
+  --paper: #dd8109;
+  --paper-soft: #fdeecf;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --page: #0e1220;
+  --surface: #171c2e;
+  --raised: #1f2540;
+  --line: #2d3452;
+  --fg: #edeffb;
+  --muted: #a5abc9;
+  --brand: #6d68f5;
+  --brand-strong: #b7b4ff;
+  --brand-soft: #23264a;
+  --on-brand: #ffffff;
+  --ring: #8f8bff;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --flash: #8b7bf5;
+  --flash-soft: #262149;
+  --quiz: #2dd4a0;
+  --quiz-soft: #0f3a2e;
+  --paper: #f0a93a;
+  --paper-soft: #3c2c0d;
+  color-scheme: dark;
+}
+
+/* Cream - dyslexia-friendly: sepia page, soft dark-brown text (never pure
+   black on pure white), lowers visual stress. */
+[data-theme='cream'] {
+  --page: #faf3e2;
+  --surface: #fffaef;
+  --raised: #f2e9d2;
+  --line: #e3d6b6;
+  --fg: #3b3427;
+  --muted: #6d634d;
+  --brand: #6a53d8;
+  --brand-strong: #58439a;
+  --brand-soft: #ebe6fb;
+  --on-brand: #ffffff;
+  --ring: #6a53d8;
+  --success: #1a7a4f;
+  --warning: #9a5b09;
+  --danger: #b4402f;
+  --flash: #6a53d8;
+  --flash-soft: #eae4fb;
+  --quiz: #1a7a4f;
+  --quiz-soft: #dcf0e2;
+  --paper: #b7770c;
+  --paper-soft: #f6e8c9;
+  color-scheme: light;
+}
+
+/* High contrast - low vision: pure black, white text, high-vis accents. */
+[data-theme='high-contrast'] {
+  --page: #000000;
+  --surface: #000000;
+  --raised: #101010;
+  --line: #ffffff;
+  --fg: #ffffff;
+  --muted: #f2f2f2;
+  --brand: #ffe500;
+  --brand-strong: #ffe500;
+  --brand-soft: #1c1c00;
+  --on-brand: #000000;
+  --ring: #ffe500;
+  --success: #54ff9f;
+  --warning: #ffd24d;
+  --danger: #ff7a7a;
+  --flash: #5cd6ff;
+  --flash-soft: #001b25;
+  --quiz: #54ff9f;
+  --quiz-soft: #002914;
+  --paper: #ffd24d;
+  --paper-soft: #241c00;
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------- SEMANTIC TOKENS */
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-on-brand: var(--on-brand);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-flash: var(--flash);
+  --color-flash-soft: var(--flash-soft);
+  --color-quiz: var(--quiz);
+  --color-quiz-soft: var(--quiz-soft);
+  --color-paper: var(--paper);
+  --color-paper-soft: var(--paper-soft);
+
+  --font-sans: 'Lexend', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Lexend', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ----------------------------------------------------------- FONT SWITCH */
+
+:root {
+  --app-font: 'Lexend', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+[data-font='dyslexic'] {
+  --app-font: 'OpenDyslexic', 'Lexend', ui-sans-serif, system-ui, sans-serif;
+}
+[data-font='hyperlegible'] {
+  --app-font: 'Atkinson Hyperlegible', 'Lexend', ui-sans-serif, system-ui,
+    sans-serif;
+}
+
+/* --------------------------------------------------- READING ADJUSTMENTS */
+
+:root {
+  --text-scale: 1;
+  --lh: 1.6; /* line height for reading blocks */
+  --ls: 0em; /* letter spacing */
+  --ws: normal; /* word spacing */
+}
+[data-spacing='relaxed'] {
+  --lh: 1.9;
+}
+[data-spacing='loose'] {
+  --lh: 2.25;
+}
+[data-letter='wide'] {
+  --ls: 0.055em;
+  --ws: 0.18em;
+}
+
+/* Apply reading comfort to any text-heavy block via `.readable`. */
+.readable {
+  line-height: var(--lh);
+  letter-spacing: var(--ls);
+  word-spacing: var(--ws);
+}
+
+/* Bionic reading: the engine wraps word-starts in <b class="bionic">. */
+.bionic {
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------ BASE STYLE */
+
+html {
+  scroll-behavior: smooth;
+  /* Global zoom for low-vision - scales rem-based text AND spacing. */
+  font-size: calc(100% * var(--text-scale));
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--page);
+  color: var(--fg);
+  font-family: var(--app-font);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--app-font);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+/* Strong, always-visible keyboard focus - critical for blind/low-vision
+   and motor users navigating by keyboard. */
+:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+/* Skip-to-content link: hidden until focused. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+  background: var(--brand);
+  color: var(--on-brand);
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Focus mode (ADHD): fade non-essential chrome so one task stands out. */
+[data-focus='true'] .focus-dim {
+  opacity: 0.35;
+  filter: saturate(0.6);
+  transition: opacity 0.3s ease;
+}
+[data-focus='true'] .focus-hide {
+  display: none !important;
+}
+
+/* Respect reduced-motion for all functional motion (page transitions, hovers,
+   timers). The two AMBIENT brand animations, the marquee ticker and the slowly
+   turning hero wheel, are gentle, continuous and central to the brand, so they
+   are intentionally exempt and keep a calm, low-speed motion for everyone. */
+@media (prefers-reduced-motion: reduce) {
+  *:not(.marquee-track):not(.wheel-idle):not(.breathe-active) {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Comfortable custom scrollbar that follows the theme. */
+* {
+  scrollbar-color: var(--line) transparent;
+}
+
+/* ------------------------------------------------------- MARQUEE (ticker) */
+/* A single row of items that loops seamlessly across the page. The content is
+   duplicated and the track slides by exactly one copy (-50%), so there is no
+   jump. Transform-only (GPU), pauses on hover/focus, and edges fade out. */
+@keyframes marquee-x {
+  to {
+    transform: translateX(var(--marquee-shift, -50%));
+  }
+}
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x var(--marquee-duration, 30s) linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-right: 0.6rem; /* trailing gap keeps spacing even across the seam */
+}
+
+/* ------------------------------------------------ WHEEL (idle brand spin) */
+/* A slow, continuous rotation for the brand mark. Driven by CSS (not the
+   framer MotionConfig) and exempt from the reduced-motion freeze above, so the
+   wheel keeps turning gently even when the OS requests reduced motion. */
+@keyframes wheel-idle-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.wheel-idle {
+  transform-origin: center;
+  animation: wheel-idle-spin var(--wheel-dur, 44s) linear infinite;
+}
+
+/* ------------------------------------------------ BREATHING (wellbeing) */
+/* One calm cycle: inhale (grow), hold, exhale (settle). Kept out of the
+   reduced-motion freeze because a slow guided breath is the point of it. */
+@keyframes breathe {
+  0% {
+    transform: scale(0.62);
+  }
+  28.5% {
+    transform: scale(1);
+  }
+  57% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.62);
+  }
+}
+.breathe-active {
+  transform-origin: center;
+  animation: breathe 14s ease-in-out infinite;
+}
