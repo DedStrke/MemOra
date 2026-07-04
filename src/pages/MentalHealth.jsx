@@ -121,7 +121,7 @@ export default function MentalHealth() {
           <motion.div
             key={item.title}
             variants={fadeInUp}
-            className="flex items-start gap-4 rounded-2xl border border-line bg-surface p-6"
+            className="flex items-start gap-4 card p-6"
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand-strong">
               <Icon name={item.icon} className="h-6 w-6" />

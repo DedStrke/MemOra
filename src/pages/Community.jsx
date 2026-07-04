@@ -16,7 +16,7 @@ function PostCard({ post }) {
   return (
     <motion.article
       variants={fadeInUp}
-      className="rounded-2xl border border-line bg-surface p-6"
+      className="card p-6"
     >
       <div className="flex items-center gap-3">
         <span
@@ -100,7 +100,7 @@ export default function Community() {
       {/* Composer */}
       <motion.div
         variants={fadeInUp}
-        className="mt-8 rounded-2xl border border-line bg-surface p-6"
+        className="mt-8 card p-6"
       >
         <label htmlFor="composer" className="font-semibold text-fg">
           What is on your mind, {user.name}?

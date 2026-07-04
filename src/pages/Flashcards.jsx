@@ -10,6 +10,7 @@ import FlipCard from '@/components/ui/FlipCard'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { REVISION } from '@/constants/library'
+import { generateFlashcards } from '@/lib/chat'
 
 /*
   Flashcard maker (route /flashcards). Three internal views:
@@ -43,7 +44,7 @@ function StudyView({ deck, onExit }) {
     return (
       <motion.div
         variants={fadeInUp}
-        className="rounded-2xl border border-line bg-surface p-8 text-center"
+        className="card p-8 text-center"
       >
         <Mascot expression="happy" className="mx-auto h-20 w-20" />
         <p className="mt-3 text-lg font-semibold text-fg">This deck has no cards yet.</p>
@@ -138,7 +139,7 @@ function CreateView({ onSave, onCancel }) {
         </Button>
       </div>
 
-      <div className="rounded-2xl border border-line bg-surface p-6">
+      <div className="card p-6">
         <label htmlFor="deck-title" className="mb-1.5 block text-sm font-semibold text-fg">
           Deck title
         </label>
@@ -154,7 +155,7 @@ function CreateView({ onSave, onCancel }) {
 
       <div className="mt-4 space-y-3">
         {cards.map((c, index) => (
-          <div key={index} className="rounded-2xl border border-line bg-surface p-4 sm:p-5">
+          <div key={index} className="card p-4 sm:p-5">
             <div className="mb-2 flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-widest text-muted">
                 Card {index + 1}
@@ -223,7 +224,7 @@ function DeckCard({ title, subtitle, accent, onOpen, onDelete }) {
   return (
     <motion.div
       variants={fadeInUp}
-      className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-brand"
+      className="flex h-full flex-col card card-lift p-6"
     >
       <div className="flex items-start justify-between gap-3">
         <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${accent}`}>
@@ -248,6 +249,139 @@ function DeckCard({ title, subtitle, accent, onOpen, onDelete }) {
           Study
         </Button>
       </div>
+    </motion.div>
+  )
+}
+
+function AiView({ onSave, onCancel }) {
+  const [topic, setTopic] = useState('')
+  const [count, setCount] = useState(8)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  const [cards, setCards] = useState(null)
+  const [title, setTitle] = useState('')
+
+  const errorText = (code) =>
+    code === 'quota'
+      ? 'The AI has hit its usage limit for now. Try again later, or build the deck yourself.'
+      : code === 'no-key'
+        ? 'No AI key is set up yet. Add VITE_GEMINI_API_KEY to .env.local to use AI generation.'
+        : 'Could not generate cards just now. Please try again in a moment.'
+
+  const generate = async () => {
+    const t = topic.trim()
+    if (!t || busy) return
+    setBusy(true)
+    setError('')
+    try {
+      const result = await generateFlashcards(t, count)
+      setCards(result)
+      setTitle(t)
+    } catch (e) {
+      setError(errorText(e.message))
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const save = () => {
+    if (!cards?.length) return
+    onSave({ id: 'd' + Date.now(), title: title.trim() || topic.trim(), cards })
+  }
+
+  const inputClass =
+    'w-full rounded-xl border border-line bg-page px-3.5 py-2.5 text-sm text-fg placeholder:text-muted transition-colors focus:border-brand focus:outline-none'
+
+  return (
+    <motion.div variants={fadeInUp}>
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <div>
+          <h2 className="text-xl font-bold text-fg sm:text-2xl">Generate with AI</h2>
+          <p className="text-sm text-muted">Give a topic and Sparky writes the cards for you.</p>
+        </div>
+        <Button variant="ghost" size="sm" onClick={onCancel}>
+          <Icon name="x" className="h-4 w-4" />
+          Cancel
+        </Button>
+      </div>
+
+      {!cards ? (
+        <div className="card p-6">
+          <label htmlFor="ai-topic" className="mb-1.5 block text-sm font-semibold text-fg">
+            What should the cards cover?
+          </label>
+          <input
+            id="ai-topic"
+            type="text"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && generate()}
+            placeholder="e.g. GCSE photosynthesis, or A-level supply and demand"
+            className={inputClass}
+            disabled={busy}
+          />
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <span className="text-sm text-muted">How many cards?</span>
+            {[6, 8, 12].map((n) => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setCount(n)}
+                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+                  count === n
+                    ? 'border-brand bg-brand-soft text-brand-strong'
+                    : 'border-line bg-surface text-fg hover:border-brand'
+                }`}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+          {error && <p className="mt-4 text-sm font-medium text-danger">{error}</p>}
+          <div className="mt-5">
+            <Button onClick={generate} disabled={!topic.trim() || busy}>
+              <Icon name="sparkles" className="h-4 w-4" />
+              {busy ? 'Generating...' : 'Generate flashcards'}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="card p-6">
+            <label htmlFor="ai-title" className="mb-1.5 block text-sm font-semibold text-fg">
+              Deck title
+            </label>
+            <input
+              id="ai-title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className={inputClass}
+            />
+          </div>
+          <div className="mt-4 space-y-3">
+            {cards.map((c, i) => (
+              <div key={i} className="card p-4">
+                <p className="font-semibold text-fg">{c.front}</p>
+                <p className="readable mt-1 text-sm text-muted">{c.back}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <Button variant="secondary" size="md" onClick={() => setCards(null)}>
+              <Icon name="refresh" className="h-4 w-4" />
+              Start over
+            </Button>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted">{cards.length} cards</span>
+              <Button onClick={save}>
+                <Icon name="check" className="h-4 w-4" />
+                Save deck
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.div>
   )
 }
@@ -290,10 +424,16 @@ export default function Flashcards() {
                 </p>
               </div>
             </div>
-            <Button size="lg" className="shrink-0" onClick={() => setView('create')}>
-              <Icon name="plus" className="h-5 w-5" />
-              New deck
-            </Button>
+            <div className="flex shrink-0 flex-wrap gap-2">
+              <Button size="lg" onClick={() => setView('ai')}>
+                <Icon name="sparkles" className="h-5 w-5" />
+                Generate with AI
+              </Button>
+              <Button size="lg" variant="secondary" onClick={() => setView('create')}>
+                <Icon name="plus" className="h-5 w-5" />
+                New deck
+              </Button>
+            </div>
           </motion.div>
 
           {/* AI decks */}
@@ -376,6 +516,18 @@ export default function Flashcards() {
       {view === 'create' && (
         <div className="mt-6">
           <CreateView
+            onCancel={goHome}
+            onSave={(deck) => {
+              saveDeck(deck)
+              goHome()
+            }}
+          />
+        </div>
+      )}
+
+      {view === 'ai' && (
+        <div className="mt-6">
+          <AiView
             onCancel={goHome}
             onSave={(deck) => {
               saveDeck(deck)

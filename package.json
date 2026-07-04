@@ -11,6 +11,7 @@
     "deploy": "vite build && firebase deploy --only hosting"
   },
   "dependencies": {
+    "@fontsource-variable/fraunces": "^5.2.9",
     "@fontsource/atkinson-hyperlegible": "^5.2.8",
     "@fontsource/lexend": "^5.2.11",
     "@fontsource/opendyslexic": "^5.2.5",

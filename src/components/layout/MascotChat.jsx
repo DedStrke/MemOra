@@ -87,7 +87,7 @@ export default function MascotChat() {
             initial={{ opacity: 0, y: 20, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.96 }}
-            className="fixed bottom-24 right-5 z-50 flex h-[min(70vh,520px)] w-[min(92vw,360px)] flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl"
+            className="fixed bottom-24 right-5 z-50 flex h-[min(70vh,520px)] w-[min(92vw,360px)] flex-col overflow-hidden card shadow-2xl"
           >
             <div className="flex items-center gap-3 border-b border-line bg-brand-soft px-4 py-3">
               <Mascot expression="wave" className="h-10 w-10" />

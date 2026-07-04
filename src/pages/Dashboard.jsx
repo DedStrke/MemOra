@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
@@ -30,6 +31,16 @@ export default function Dashboard() {
     (user.goal?.choice === 'custom' ? user.goal.text : GOAL_LINE[user.goal?.choice]) ||
     'Good to see you. Let’s make today count.'
 
+  // What can they study, and which one is selected in the technique picker.
+  const subjectNames =
+    user.courseType === 'University' && user.courseName
+      ? [user.courseName]
+      : (user.subjects || []).map((s) => s.name)
+  const defaultSubject =
+    user.subjects?.find((s) => s.priority)?.name || subjectNames[0] || 'Revision'
+  const [studySubject, setStudySubject] = useState(defaultSubject)
+  const activeSubject = subjectNames.includes(studySubject) ? studySubject : defaultSubject
+
   return (
     <Section width="wide" animateOnMount className="pt-8 pb-28">
       {/* Greeting + start session */}
@@ -57,10 +68,13 @@ export default function Dashboard() {
       {/* Subjects */}
       <motion.div
         variants={fadeInUp}
-        className="mt-10 mb-4 flex items-center justify-between"
+        className="mt-14 mb-5 flex items-end justify-between gap-4"
       >
-        <h2 className="text-xl font-bold text-fg">Your subjects</h2>
-        <Button as={Link} to="/courses" variant="secondary" size="sm">
+        <div>
+          <span className="kicker">On your plate</span>
+          <h2 className="mt-2 text-2xl font-bold text-fg">Your subjects</h2>
+        </div>
+        <Button as={Link} to="/courses" variant="secondary" size="sm" className="shrink-0">
           <Icon name="plus" className="h-4 w-4" />
           Add course
         </Button>
@@ -68,9 +82,10 @@ export default function Dashboard() {
       <SubjectPillars user={user} />
 
       {/* Tools / feature cards */}
-      <motion.h2 variants={fadeInUp} className="mt-10 mb-4 text-xl font-bold text-fg">
-        Tools
-      </motion.h2>
+      <motion.div variants={fadeInUp} className="mt-14 mb-5">
+        <span className="kicker">Your toolkit</span>
+        <h2 className="mt-2 text-2xl font-bold text-fg">Tools</h2>
+      </motion.div>
       <motion.div
         variants={staggerContainer}
         className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
@@ -79,7 +94,7 @@ export default function Dashboard() {
           <motion.div key={f.id} variants={fadeInUp}>
             <Link
               to={f.to}
-              className="flex h-full flex-col rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-brand"
+              className="flex h-full flex-col card card-lift p-5"
             >
               <span
                 className={`flex h-11 w-11 items-center justify-center rounded-xl ${FEATURE_ACCENT[f.accent]}`}
@@ -97,7 +112,7 @@ export default function Dashboard() {
       <div className="mt-8 grid gap-4 lg:grid-cols-2">
         <motion.div
           variants={fadeInUp}
-          className="rounded-2xl border border-line bg-surface p-6"
+          className="card p-6"
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-muted">
             Most recent topic
@@ -115,15 +130,36 @@ export default function Dashboard() {
 
         <motion.div
           variants={fadeInUp}
-          className="rounded-2xl border border-line bg-surface p-6"
+          className="card p-6"
         >
-          <h2 className="mb-1 text-lg font-bold text-fg">Study techniques</h2>
-          <p className="mb-3 text-sm text-muted">Pick how you want to revise.</p>
+          <h2 className="mb-1 text-lg font-bold text-fg">Study a subject</h2>
+          <p className="mb-3 text-sm text-muted">
+            Pick a subject, then choose how to revise it.
+          </p>
+          {subjectNames.length > 1 && (
+            <div className="mb-4 flex flex-wrap gap-2">
+              {subjectNames.map((name) => (
+                <button
+                  key={name}
+                  type="button"
+                  onClick={() => setStudySubject(name)}
+                  aria-pressed={activeSubject === name}
+                  className={`rounded-full border px-3 py-1.5 text-sm font-medium transition-colors ${
+                    activeSubject === name
+                      ? 'border-brand bg-brand text-on-brand'
+                      : 'border-line bg-surface text-fg hover:border-brand'
+                  }`}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
+          )}
           <div className="flex flex-wrap gap-2">
             {STUDY_TECHNIQUES.map((t) => (
               <Link
                 key={t.id}
-                to={`/study?technique=${t.id}`}
+                to={`/study?subject=${encodeURIComponent(activeSubject)}&technique=${t.id}`}
                 title={t.desc}
                 className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
               >

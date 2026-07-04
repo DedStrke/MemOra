@@ -21,7 +21,7 @@ function Pillar({ subject, index, big }) {
     <motion.div variants={fadeInUp}>
       <Link
         to={studyLink(subject.name)}
-        className={`group flex h-full flex-col rounded-2xl border border-line bg-surface transition-colors hover:border-brand ${
+        className={`group flex h-full flex-col card card-lift ${
           big ? 'p-6' : 'p-4'
         }`}
       >
@@ -68,7 +68,7 @@ export default function SubjectPillars({ user }) {
       <motion.div variants={fadeInUp}>
         <Link
           to={studyLink(courseName)}
-          className="group flex flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-brand"
+          className="group flex flex-col card card-lift p-6"
         >
           <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-brand-strong">
             <Icon name="cap" className="h-6 w-6" />

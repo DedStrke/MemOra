@@ -94,3 +94,69 @@ export async function sendChat(messages, ctx = {}) {
     return fallbackReply(messages)
   }
 }
+
+/*
+  Structured generation. Asks Gemini for JSON that matches a schema and returns
+  the parsed value. Unlike sendChat this THROWS on failure, so callers can show
+  a proper error (for example "the AI is out of quota"). Error messages are
+  short codes: 'no-key' | 'quota' | 'http-###' | 'empty' | 'bad-response'.
+*/
+async function generateJson(prompt, responseSchema) {
+  if (!KEY) throw new Error('no-key')
+  const res = await fetch(ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.7,
+        responseMimeType: 'application/json',
+        responseSchema,
+      },
+    }),
+  })
+  if (!res.ok) throw new Error(res.status === 429 ? 'quota' : `http-${res.status}`)
+  const data = await res.json()
+  const text = data?.candidates?.[0]?.content?.parts
+    ?.map((p) => p.text || '')
+    .join('')
+    .trim()
+  if (!text) throw new Error('empty')
+  try {
+    return JSON.parse(text)
+  } catch {
+    throw new Error('bad-response')
+  }
+}
+
+const CARD_SCHEMA = {
+  type: 'object',
+  properties: {
+    cards: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: { front: { type: 'string' }, back: { type: 'string' } },
+        required: ['front', 'back'],
+      },
+    },
+  },
+  required: ['cards'],
+}
+
+// Generate a set of flashcards about a topic. Returns [{front, back}]. Throws.
+export async function generateFlashcards(topic, count = 8) {
+  const clean = String(topic || '').trim()
+  if (!clean) throw new Error('no-topic')
+  const out = await generateJson(
+    `Create ${count} concise, exam-accurate revision flashcards about "${clean}". Each card has a clear question or key term on the front and a correct, self-contained answer on the back (one to three sentences). Cover the most important things a student revising this should know. Do not use em dashes.`,
+    CARD_SCHEMA,
+  )
+  const cards = Array.isArray(out?.cards) ? out.cards : []
+  const cleaned = cards
+    .filter((c) => c && c.front && c.back)
+    .map((c) => ({ front: String(c.front).trim(), back: String(c.back).trim() }))
+    .slice(0, count)
+  if (!cleaned.length) throw new Error('empty')
+  return cleaned
+}

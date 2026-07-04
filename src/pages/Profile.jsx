@@ -16,9 +16,34 @@ function Row({ label, value }) {
   )
 }
 
+function Choice({ label, options, value, onChange }) {
+  return (
+    <div>
+      <p className="mb-2 text-sm font-semibold text-muted">{label}</p>
+      <div className="flex flex-wrap gap-2">
+        {options.map((o) => (
+          <button
+            key={String(o.value)}
+            type="button"
+            onClick={() => onChange(o.value)}
+            aria-pressed={value === o.value}
+            className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+              value === o.value
+                ? 'border-brand bg-brand text-on-brand'
+                : 'border-line bg-surface text-fg hover:border-brand'
+            }`}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Profile() {
   const navigate = useNavigate()
-  const { user, logout } = useApp()
+  const { user, logout, a11y, setA11y } = useApp()
 
   const goalLabel =
     user.goal?.choice === 'custom'
@@ -48,7 +73,7 @@ export default function Profile() {
 
       <motion.div
         variants={fadeInUp}
-        className="mt-6 rounded-2xl border border-line bg-surface p-6"
+        className="mt-6 card p-6"
       >
         <dl className="space-y-4">
           <Row label="Year group" value={user.yearGroup} />
@@ -89,6 +114,58 @@ export default function Profile() {
             Sign out
           </Button>
         </div>
+      </motion.div>
+
+      {/* Display & reading adaptations */}
+      <motion.div
+        variants={fadeInUp}
+        className="mt-6 card p-6"
+      >
+        <div className="mb-1 flex items-center gap-2">
+          <Icon name="access" className="h-5 w-5 text-brand-strong" />
+          <h2 className="text-lg font-bold text-fg">Display and reading</h2>
+        </div>
+        <p className="readable mb-5 text-sm text-muted">
+          Tune how AdaptHub looks and reads. Changes apply instantly and save on this
+          device.
+        </p>
+        <div className="space-y-5">
+          <Choice
+            label="Text size"
+            value={a11y.textScale}
+            onChange={(v) => setA11y({ textScale: v })}
+            options={[
+              { value: 1, label: 'Normal' },
+              { value: 1.15, label: 'Large' },
+              { value: 1.3, label: 'Larger' },
+            ]}
+          />
+          <Choice
+            label="Font"
+            value={a11y.font}
+            onChange={(v) => setA11y({ font: v })}
+            options={[
+              { value: 'default', label: 'Default' },
+              { value: 'dyslexic', label: 'Dyslexia-friendly' },
+              { value: 'hyperlegible', label: 'Hyperlegible' },
+            ]}
+          />
+          <Choice
+            label="Reading comfort"
+            value={a11y.spacing}
+            onChange={(v) =>
+              setA11y({ spacing: v, letter: v === 'normal' ? 'normal' : 'wide' })
+            }
+            options={[
+              { value: 'normal', label: 'Standard' },
+              { value: 'relaxed', label: 'Relaxed' },
+              { value: 'loose', label: 'Loose' },
+            ]}
+          />
+        </div>
+        <p className="readable mt-5 text-xs text-muted">
+          Theme (light, dark, high contrast) lives in the top bar.
+        </p>
       </motion.div>
     </Section>
   )

@@ -15,11 +15,13 @@ const linkClass = ({ isActive }) =>
 export default function AppBar() {
   const { user, logout } = useApp()
   const navigate = useNavigate()
-  const [menu, setMenu] = useState(false)
+  const [menu, setMenu] = useState(false) // profile dropdown (desktop)
+  const [mobile, setMobile] = useState(false) // hamburger menu (mobile)
   const initial = (user?.name?.[0] || '?').toUpperCase()
 
   const signOut = () => {
     setMenu(false)
+    setMobile(false)
     logout()
     navigate('/')
   }
@@ -34,12 +36,13 @@ export default function AppBar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
         <div className="flex items-center gap-6">
           {/* Logo goes to the first page (landing). */}
-          <Link to="/" className="flex items-center gap-2 text-lg font-bold text-fg">
+          <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold text-fg">
             <WheelLogo hoverSpin className="h-9 w-9 text-brand" />
             <span className="hidden sm:inline">{SITE.name}</span>
           </Link>
 
-          <nav className="flex items-center gap-4 sm:gap-5">
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-4 sm:flex sm:gap-5">
             {NAV_LINKS.map((l) => (
               <NavLink key={l.to} to={l.to} className={linkClass}>
                 {l.label}
@@ -51,7 +54,8 @@ export default function AppBar() {
         <div className="flex items-center gap-3">
           <ThemeSwitcher />
 
-          <div className="relative">
+          {/* Desktop profile dropdown */}
+          <div className="relative hidden sm:block">
             <button
               type="button"
               onClick={() => setMenu((m) => !m)}
@@ -108,8 +112,84 @@ export default function AppBar() {
               )}
             </AnimatePresence>
           </div>
+
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            onClick={() => setMobile((m) => !m)}
+            aria-expanded={mobile}
+            aria-controls="app-mobile-menu"
+            aria-label={mobile ? 'Close menu' : 'Open menu'}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-surface text-fg transition-colors hover:border-brand sm:hidden"
+          >
+            <Icon name={mobile ? 'x' : 'menu'} className="h-5 w-5" />
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu panel */}
+      <AnimatePresence>
+        {mobile && (
+          <>
+            <button
+              type="button"
+              aria-hidden="true"
+              tabIndex={-1}
+              onClick={() => setMobile(false)}
+              className="fixed inset-0 z-30 cursor-default sm:hidden"
+            />
+            <motion.div
+              id="app-mobile-menu"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18 }}
+              className="relative z-40 border-t border-line bg-surface sm:hidden"
+            >
+              <div className="mx-auto max-w-6xl px-5 py-3">
+                <div className="mb-2 flex items-center gap-3 border-b border-line pb-3">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-sm font-bold text-on-brand">
+                    {initial}
+                  </span>
+                  <span className="truncate text-sm font-semibold text-fg">{user?.name}</span>
+                </div>
+                <nav className="flex flex-col gap-0.5">
+                  {NAV_LINKS.map((l) => (
+                    <NavLink
+                      key={l.to}
+                      to={l.to}
+                      onClick={() => setMobile(false)}
+                      className={({ isActive }) =>
+                        `rounded-lg px-3 py-2.5 text-base font-semibold transition-colors ${
+                          isActive ? 'bg-brand-soft text-brand-strong' : 'text-fg hover:bg-raised'
+                        }`
+                      }
+                    >
+                      {l.label}
+                    </NavLink>
+                  ))}
+                  <Link
+                    to="/profile"
+                    onClick={() => setMobile(false)}
+                    className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-base font-medium text-fg hover:bg-raised"
+                  >
+                    <Icon name="user" className="h-5 w-5 text-muted" />
+                    Profile
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={signOut}
+                    className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-base font-medium text-fg hover:bg-raised"
+                  >
+                    <Icon name="logout" className="h-5 w-5 text-muted" />
+                    Sign out
+                  </button>
+                </nav>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }

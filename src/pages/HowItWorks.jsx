@@ -16,6 +16,7 @@ function Stars({ rating }) {
         <Icon
           key={i}
           name="star"
+          filled={i < rating}
           className={`h-4 w-4 ${i < rating ? 'text-paper' : 'text-muted opacity-40'}`}
         />
       ))}
@@ -31,7 +32,7 @@ export default function HowItWorks() {
     <div className="relative min-h-screen overflow-hidden">
       {/* Top bar */}
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link to="/" className="flex items-center gap-2 text-lg font-bold text-fg">
+        <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold text-fg">
           <WheelLogo idle idleDuration={34} className="h-8 w-8 text-brand" />
           {SITE.name}
         </Link>
@@ -104,20 +105,21 @@ export default function HowItWorks() {
       <motion.section
         {...inViewProps}
         variants={staggerContainer}
-        className="mx-auto max-w-6xl px-5 py-16"
+        className="mx-auto max-w-6xl px-5 py-20 sm:py-28"
       >
-        <motion.div variants={fadeInUp} className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-extrabold text-fg sm:text-4xl">
+        <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <span className="kicker mb-4">What it does</span>
+          <h2 className="text-3xl font-extrabold text-fg sm:text-5xl">
             {MARKETING.whatItDoes.heading}
           </h2>
-          <p className="readable mt-3 text-muted">{MARKETING.whatItDoes.intro}</p>
+          <p className="readable mt-4 text-lg text-muted">{MARKETING.whatItDoes.intro}</p>
         </motion.div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {MARKETING.whatItDoes.items.map((item) => (
             <motion.div
               key={item.title}
               variants={fadeInUp}
-              className="rounded-2xl border border-line bg-surface p-6"
+              className="card card-lift p-6"
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-brand-strong">
                 <Icon name={item.icon} className="h-6 w-6" />
@@ -134,20 +136,21 @@ export default function HowItWorks() {
         <motion.section
           {...inViewProps}
           variants={staggerContainer}
-          className="mx-auto max-w-6xl px-5 py-16"
+          className="mx-auto max-w-6xl px-5 py-20 sm:py-28"
         >
-          <motion.div variants={fadeInUp} className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-extrabold text-fg sm:text-4xl">
+          <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
+            <span className="kicker mb-4">How it works</span>
+            <h2 className="text-3xl font-extrabold text-fg sm:text-5xl">
               {MARKETING.howItWorks.heading}
             </h2>
-            <p className="readable mt-3 text-muted">{MARKETING.howItWorks.intro}</p>
+            <p className="readable mt-4 text-lg text-muted">{MARKETING.howItWorks.intro}</p>
           </motion.div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {MARKETING.howItWorks.steps.map((step, i) => (
               <motion.div
                 key={step.title}
                 variants={fadeInUp}
-                className="relative rounded-2xl border border-line bg-surface p-6"
+                className="relative card p-6"
               >
                 <div className="flex items-center justify-between">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-soft text-brand-strong">
@@ -169,18 +172,19 @@ export default function HowItWorks() {
       <motion.section
         {...inViewProps}
         variants={staggerContainer}
-        className="mx-auto max-w-6xl px-5 py-16"
+        className="mx-auto max-w-6xl px-5 py-20 sm:py-28"
       >
-        <motion.div variants={fadeInUp} className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-extrabold text-fg sm:text-4xl">{REVIEWS.heading}</h2>
-          <p className="readable mt-3 text-muted">{REVIEWS.intro}</p>
+        <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <span className="kicker mb-4">Loved by students</span>
+          <h2 className="text-3xl font-extrabold text-fg sm:text-5xl">{REVIEWS.heading}</h2>
+          <p className="readable mt-4 text-lg text-muted">{REVIEWS.intro}</p>
         </motion.div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {REVIEWS.items.map((r) => (
             <motion.figure
               key={r.id}
               variants={fadeInUp}
-              className="flex flex-col rounded-2xl border border-line bg-surface p-6"
+              className="flex flex-col card p-6"
             >
               <Stars rating={r.rating} />
               <blockquote className="readable mt-3 flex-1 text-sm text-fg">

@@ -29,7 +29,7 @@ function SubjectCard({ subject, index }) {
   return (
     <motion.div
       variants={fadeInUp}
-      className="flex flex-col rounded-2xl border border-line bg-surface p-6"
+      className="flex flex-col card p-6"
     >
       <div className="flex items-start justify-between gap-3">
         <div>

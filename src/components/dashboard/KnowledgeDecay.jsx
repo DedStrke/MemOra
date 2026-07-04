@@ -20,7 +20,7 @@ export default function KnowledgeDecay() {
   return (
     <motion.div
       variants={fadeInUp}
-      className="rounded-2xl border border-line bg-surface p-6"
+      className="card p-6"
     >
       <div className="mb-1 flex items-center gap-2">
         <Icon name="activity" className="h-5 w-5 text-brand-strong" />

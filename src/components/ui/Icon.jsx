@@ -254,6 +254,7 @@ const ICONS = {
   ),
   chevronDown: <path d="m6 9 6 6 6-6" />,
   plus: <path d="M12 5v14M5 12h14" />,
+  menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   play: <path d="M7 4v16l13-8z" />,
   pause: <path d="M8 5v14M16 5v14" />,
   logo: (
@@ -264,7 +265,7 @@ const ICONS = {
   ),
 }
 
-export default function Icon({ name, className = 'h-5 w-5', label }) {
+export default function Icon({ name, className = 'h-5 w-5', label, filled = false }) {
   const glyph = ICONS[name]
   if (!glyph) return null
   const a11y = label
@@ -273,7 +274,7 @@ export default function Icon({ name, className = 'h-5 w-5', label }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="none"
+      fill={filled ? 'currentColor' : 'none'}
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"

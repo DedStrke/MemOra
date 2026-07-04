@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
@@ -6,6 +6,7 @@ import Icon from '@/components/ui/Icon'
 import WheelLogo from '@/components/ui/WheelLogo'
 import OptionCard from '@/components/ui/OptionCard'
 import ProgressBar from '@/components/ui/ProgressBar'
+import SubjectPicker from '@/components/ui/SubjectPicker'
 import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import {
@@ -16,17 +17,17 @@ import {
   YEAR_GROUPS,
   COURSE_TYPES,
   PRIORITISED_COURSES,
+  NEEDS_OPTIONS,
   specsFor,
 } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
 
-const TOTAL = 5 // account, year, goal, course, subjects
+const TOTAL = 6 // account, year, goal, course, subjects, access needs
 const validEmail = (e) => /\S+@\S+\.\S+/.test(e)
 
 export default function Signup() {
   const navigate = useNavigate()
-  const { signUp } = useApp()
-  const nextId = useRef(1)
+  const { signUp, applyNeeds } = useApp()
 
   const [step, setStep] = useState(0)
   const [name, setName] = useState('')
@@ -36,25 +37,22 @@ export default function Signup() {
   const [goal, setGoal] = useState({ choice: '', text: '' })
   const [courseType, setCourseType] = useState('')
   const [courseName, setCourseName] = useState('')
-  const [subjects, setSubjects] = useState([
-    { id: 0, name: '', spec: '', priority: true },
-  ])
+  const [subjects, setSubjects] = useState([])
+  const [needs, setNeeds] = useState([])
+
+  // Toggle an access need and apply the adaptation live, so the rest of the
+  // wizard (and this very step) immediately reflects it.
+  const toggleNeed = (id) => {
+    setNeeds((prev) => {
+      const nextNeeds = prev.includes(id) ? prev.filter((n) => n !== id) : [...prev, id]
+      applyNeeds(nextNeeds)
+      return nextNeeds
+    })
+  }
 
   const isUniversity = courseType === 'University'
   const prioritised = PRIORITISED_COURSES.includes(courseType)
   const needsGoalText = goal.choice === 'specific' || goal.choice === 'custom'
-
-  const addSubject = () =>
-    setSubjects((s) => [
-      ...s,
-      { id: nextId.current++, name: '', spec: '', priority: false },
-    ])
-  const updateSubject = (id, patch) =>
-    setSubjects((s) => s.map((x) => (x.id === id ? { ...x, ...patch } : x)))
-  const removeSubject = (id) =>
-    setSubjects((s) => (s.length > 1 ? s.filter((x) => x.id !== id) : s))
-  const starSubject = (id) =>
-    setSubjects((s) => s.map((x) => ({ ...x, priority: x.id === id })))
 
   const canContinue = (() => {
     switch (step) {
@@ -67,9 +65,7 @@ export default function Signup() {
       case 3:
         return courseType !== ''
       case 4:
-        return isUniversity
-          ? courseName.trim() !== ''
-          : subjects.some((s) => s.name.trim() !== '')
+        return isUniversity ? courseName.trim() !== '' : subjects.length > 0
       default:
         return true
     }
@@ -97,6 +93,7 @@ export default function Signup() {
       courseType,
       courseName: courseName.trim(),
       subjects: isUniversity ? [] : cleanSubjects,
+      needs,
     })
     navigate('/dashboard')
   }
@@ -106,7 +103,7 @@ export default function Signup() {
       {/* Header */}
       <div className="mb-6">
         <div className="mb-5 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 font-bold text-fg">
+          <Link to="/" className="flex items-center gap-2 font-display text-lg font-semibold text-fg">
             <WheelLogo idle idleDuration={30} className="h-8 w-8 text-brand" />
             {SITE.name}
           </Link>
@@ -135,7 +132,7 @@ export default function Signup() {
               <div>
                 <motion.div variants={fadeInUp} className="mb-4 inline-flex items-center gap-2.5">
                   <WheelLogo idle idleDuration={30} className="h-11 w-11 text-brand" />
-                  <span className="text-2xl font-extrabold tracking-tight text-fg">
+                  <span className="font-display text-3xl font-semibold text-fg">
                     {SITE.name}
                   </span>
                 </motion.div>
@@ -283,70 +280,41 @@ export default function Signup() {
                       title={ONBOARDING.subjectsTitle}
                       hint={ONBOARDING.subjectsHint}
                     />
-                    <div className="mt-6 space-y-3">
-                      {subjects.map((s) => (
-                        <motion.div
-                          key={s.id}
-                          variants={fadeInUp}
-                          className="flex items-center gap-2 rounded-2xl border border-line bg-surface p-2.5"
-                        >
-                          {prioritised && (
-                            <button
-                              type="button"
-                              onClick={() => starSubject(s.id)}
-                              aria-label={s.priority ? 'Top priority subject' : 'Mark as top priority'}
-                              aria-pressed={s.priority}
-                              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
-                                s.priority
-                                  ? 'bg-brand text-on-brand'
-                                  : 'text-muted hover:bg-raised'
-                              }`}
-                            >
-                              <Icon name="star" className="h-5 w-5" />
-                            </button>
-                          )}
-                          <input
-                            type="text"
-                            value={s.name}
-                            onChange={(e) => updateSubject(s.id, { name: e.target.value })}
-                            placeholder="Subject"
-                            className="min-w-0 flex-1 rounded-lg border border-line bg-surface px-3 py-2 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
-                          />
-                          <select
-                            value={s.spec}
-                            onChange={(e) => updateSubject(s.id, { spec: e.target.value })}
-                            aria-label="Exam board"
-                            className="shrink-0 rounded-lg border border-line bg-surface px-2.5 py-2 text-sm text-fg focus:border-brand focus:outline-none"
-                          >
-                            <option value="">Board</option>
-                            {specsFor(courseType).map((b) => (
-                              <option key={b} value={b}>
-                                {b}
-                              </option>
-                            ))}
-                          </select>
-                          <button
-                            type="button"
-                            onClick={() => removeSubject(s.id)}
-                            aria-label="Remove subject"
-                            disabled={subjects.length === 1}
-                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted hover:bg-raised disabled:opacity-30"
-                          >
-                            <Icon name="x" className="h-4 w-4" />
-                          </button>
-                        </motion.div>
-                      ))}
-                    </div>
-                    <button
-                      type="button"
-                      onClick={addSubject}
-                      className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-line py-3 text-sm font-medium text-brand-strong hover:border-brand hover:bg-brand-soft"
-                    >
-                      <Icon name="plus" className="h-4 w-4" />
-                      Add another subject
-                    </button>
+                    <motion.div variants={fadeInUp} className="mt-6">
+                      <SubjectPicker
+                        subjects={subjects}
+                        onChange={setSubjects}
+                        prioritised={prioritised}
+                        boards={specsFor(courseType)}
+                      />
+                    </motion.div>
                   </>
                 )}
+              </div>
+            )}
+
+            {/* Step 5: Access needs (optional) */}
+            {step === 5 && (
+              <div>
+                <StepTitle
+                  title="Do you have any access needs?"
+                  hint="Optional. Tell us and we will adapt the app to suit you. You can change this anytime in your profile."
+                />
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {NEEDS_OPTIONS.map((n) => (
+                    <OptionCard
+                      key={n.id}
+                      icon={n.icon}
+                      label={n.label}
+                      selected={needs.includes(n.id)}
+                      onToggle={() => toggleNeed(n.id)}
+                    />
+                  ))}
+                </div>
+                <p className="readable mt-4 text-sm text-muted">
+                  Pick any that apply, or none at all. We adjust the font, spacing, text
+                  size and contrast to match, right away.
+                </p>
               </div>
             )}
           </motion.div>

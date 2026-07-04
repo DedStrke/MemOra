@@ -45,15 +45,29 @@ const DEFAULTS = {
 function a11yFromNeeds(needs = []) {
   const a11y = { ...A11Y_DEFAULT }
   let theme = null
-  if (needs.includes('dyslexia')) {
+  const has = (n) => needs.includes(n)
+
+  // Dyslexia: dyslexia-friendly font with roomier line and letter spacing.
+  if (has('dyslexia')) {
     a11y.font = 'dyslexic'
     a11y.spacing = 'relaxed'
     a11y.letter = 'wide'
   }
-  if (needs.includes('low-vision')) {
+  // Low vision: bigger text and a high-contrast theme.
+  if (has('low-vision')) {
     a11y.textScale = Math.max(a11y.textScale, 1.3)
     theme = 'high-contrast'
   }
+  // Blind or very low sight: high-contrast theme (helps residual vision and
+  // magnifier use). The app is already screen-reader friendly and fully
+  // keyboard operable, so nothing else is forced.
+  if (has('blind')) {
+    theme = 'high-contrast'
+  }
+  // Deaf, ADHD and motor needs are handled structurally rather than by a display
+  // override: nothing relies on sound, the layout stays calm and uncluttered,
+  // and every control works by keyboard with large targets.
+
   return { a11y, theme }
 }
 

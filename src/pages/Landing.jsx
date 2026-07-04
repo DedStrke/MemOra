@@ -27,7 +27,7 @@ export default function Landing() {
     <div className="relative min-h-screen overflow-hidden">
       {/* Top bar */}
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link to="/" className="flex items-center gap-2 text-lg font-bold text-fg">
+        <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold text-fg">
           <WheelLogo hoverSpin className="h-8 w-8 text-brand" />
           {SITE.name}
         </Link>
@@ -150,20 +150,20 @@ export default function Landing() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
-          className="relative mx-auto max-w-5xl px-5 pb-20"
+          className="relative mx-auto max-w-6xl px-5 pt-6 pb-24"
         >
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-3">
             {LANDING.highlights.map((h) => (
               <motion.div
                 key={h.title}
                 variants={fadeInUp}
-                className="rounded-2xl border border-line bg-surface p-6 text-center"
+                className="card card-lift p-7"
               >
-                <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-brand-strong">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-soft text-brand-strong">
                   <Icon name={h.icon} className="h-6 w-6" />
                 </span>
-                <h3 className="mt-3 font-semibold text-fg">{h.title}</h3>
-                <p className="readable mt-1 text-sm text-muted">{h.body}</p>
+                <h3 className="mt-4 text-lg font-bold text-fg">{h.title}</h3>
+                <p className="readable mt-2 text-sm text-muted">{h.body}</p>
               </motion.div>
             ))}
           </div>

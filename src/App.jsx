@@ -13,7 +13,6 @@ import Courses from '@/pages/Courses'
 import Progress from '@/pages/Progress'
 import MentalHealth from '@/pages/MentalHealth'
 import Community from '@/pages/Community'
-import ComingSoon from '@/pages/ComingSoon'
 import CursorGlow from '@/components/ui/CursorGlow'
 
 /*
@@ -21,7 +20,7 @@ import CursorGlow from '@/components/ui/CursorGlow'
   - "/" is the public landing/hero (front door).
   - /login and /signup are standalone auth screens.
   - Everything under <AppLayout> needs an active session (loggedIn) and gets the
-    top bar + floating study buddy. Placeholder routes render ComingSoon for now.
+    top bar + floating study buddy.
 
   MotionConfig honours the OS "reduce motion" setting app-wide.
 */

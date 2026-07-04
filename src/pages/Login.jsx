@@ -42,7 +42,7 @@ export default function Login() {
         <div className="mb-6 flex flex-col items-center text-center">
           <Link to="/" className="inline-flex items-center gap-2.5">
             <WheelLogo idle idleDuration={30} className="h-11 w-11 text-brand" />
-            <span className="text-3xl font-extrabold tracking-tight text-fg">
+            <span className="font-display text-4xl font-semibold text-fg">
               {SITE.name}
             </span>
           </Link>

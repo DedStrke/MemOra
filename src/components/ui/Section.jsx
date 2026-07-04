@@ -32,7 +32,7 @@ export default function Section({
       id={id}
       variants={staggerContainer}
       {...animationProps}
-      className={`mx-auto w-full ${widths[width]} px-6 py-16 ${className}`}
+      className={`mx-auto w-full ${widths[width]} px-5 py-16 sm:px-8 ${className}`}
     >
       {children}
     </motion.section>

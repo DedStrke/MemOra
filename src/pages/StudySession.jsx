@@ -8,27 +8,13 @@ import Mascot from '@/components/ui/Mascot'
 import RevisionRunner from '@/components/ui/RevisionRunner'
 import { fadeInUp, popIn } from '@/lib/motion'
 import { MOODS, SESSION_MESSAGES, STUDY_TECHNIQUES } from '@/constants/content'
-import { REVISION } from '@/constants/library'
+import { getPackByName } from '@/constants/library'
 import { useApp } from '@/context/AppProvider'
 
 // DEMO: a study block is 2 minutes so the mid-session check-in is quick to show.
 // In production this would be 25 * 60 (a full pomodoro). You can also check in
 // early at any time with the "Check in" button.
 const BLOCK_SECONDS = 120
-
-// Match a free-text subject name to an AI revision pack, if we have one.
-function resolvePack(name) {
-  if (!name) return null
-  const s = name.toLowerCase()
-  return (
-    REVISION.find(
-      (p) =>
-        s.includes(p.id) ||
-        p.name.toLowerCase().includes(s) ||
-        s.includes(p.name.toLowerCase()),
-    ) || null
-  )
-}
 
 function TimerRing({ remaining, duration, label, phase = 'focus' }) {
   const R = 82
@@ -82,7 +68,7 @@ function Stars({ value, onRate, max = 5 }) {
               n <= value ? 'text-paper' : 'text-muted'
             }`}
           >
-            <Icon name="star" className="h-9 w-9" />
+            <Icon name="star" filled={n <= value} className="h-9 w-9" />
           </button>
         )
       })}
@@ -102,7 +88,7 @@ export default function StudySession() {
     user?.courseName ||
     'Revision'
   const technique = params.get('technique') || 'flashcards'
-  const pack = resolvePack(subject)
+  const pack = getPackByName(subject)
   const techniqueLabel =
     STUDY_TECHNIQUES.find((t) => t.id === technique)?.label || 'Focus'
 
@@ -195,7 +181,7 @@ export default function StudySession() {
                     setMood(m.id)
                     setPhase('ready')
                   }}
-                  className="rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-brand hover:bg-brand-soft"
+                  className="card card-lift p-6 hover:border-brand hover:bg-brand-soft"
                 >
                   <span className="text-4xl">{m.emoji}</span>
                   <span className="mt-2 block font-semibold text-fg">{m.label}</span>
@@ -233,7 +219,7 @@ export default function StudySession() {
         {/* RUNNING: compact timer bar + real revision content */}
         {phase === 'running' && (
           <motion.div key="running" variants={fadeInUp} initial="hidden" animate="show" exit={{ opacity: 0 }}>
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-surface p-4">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 card p-4">
               <div className="min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted">
                   Studying · {techniqueLabel}

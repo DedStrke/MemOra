@@ -114,10 +114,38 @@ export const specsFor = (courseType) => SPEC_BY_COURSE[courseType] || SPEC_BOARD
 export const NEEDS_OPTIONS = [
   { id: 'dyslexia', icon: 'book', label: 'Dyslexia' },
   { id: 'low-vision', icon: 'eye', label: 'Low vision' },
-  { id: 'blind', icon: 'volume', label: 'Blind or low sight' },
+  { id: 'blind', icon: 'eyeOff', label: 'Blind' },
   { id: 'deaf', icon: 'ear', label: 'Deaf or hard of hearing' },
   { id: 'adhd', icon: 'brain', label: 'ADHD' },
   { id: 'motor', icon: 'hand', label: 'Motor or mobility' },
+]
+
+// Common GCSE / A-level subjects for the tap-to-pick subject chooser. Subjects
+// with AI content packs come first. Anything not here can still be typed in.
+export const SUBJECT_CATALOG = [
+  'Biology',
+  'Chemistry',
+  'Physics',
+  'Maths',
+  'English Literature',
+  'English Language',
+  'History',
+  'Geography',
+  'Economics',
+  'Business Studies',
+  'Psychology',
+  'Sociology',
+  'Politics',
+  'Computer Science',
+  'Religious Studies',
+  'French',
+  'Further Maths',
+  'Spanish',
+  'German',
+  'Art and Design',
+  'Music',
+  'Physical Education',
+  'Drama',
 ]
 
 export const ONBOARDING = {
@@ -130,7 +158,7 @@ export const ONBOARDING = {
   courseTitle: 'What are you studying for?',
   courseHint: 'Pick the one that fits best.',
   subjectsTitle: 'Add your subjects',
-  subjectsHint: 'Add each subject and its exam board. Star your top priority.',
+  subjectsHint: 'Tap the subjects you take. Add any that are missing, and star your top priority.',
   courseNameTitle: 'What is your course?',
   courseNameHint: 'Your degree or programme name.',
 }
