@@ -10,21 +10,23 @@ import { useApp } from '@/context/AppProvider'
 
 export default function Login() {
   const navigate = useNavigate()
-  const { user, login } = useApp()
-  const [email, setEmail] = useState(user?.email || '')
+  const { login } = useApp()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
+    if (submitting) return
     setError('')
-    if (!user) {
-      navigate('/signup')
-      return
+    setSubmitting(true)
+    const res = await login(email.trim(), password)
+    if (res?.ok) navigate('/dashboard')
+    else {
+      setError(res?.message || 'Could not log in. Please try again.')
+      setSubmitting(false)
     }
-    const res = login(email)
-    if (res.ok) navigate('/dashboard')
-    else if (res.reason === 'no-account') navigate('/signup')
-    else setError(AUTH.wrongEmail)
   }
 
   return (
@@ -47,9 +49,7 @@ export default function Login() {
             </span>
           </Link>
           <h1 className="mt-6 text-2xl font-bold text-fg">{AUTH.loginTitle}</h1>
-          <p className="readable mt-1 text-muted">
-            {user ? `Hi ${user.name}, log in to pick up where you left off.` : AUTH.loginSubtitle}
-          </p>
+          <p className="readable mt-1 text-muted">{AUTH.loginSubtitle}</p>
         </div>
 
         <form
@@ -78,13 +78,21 @@ export default function Login() {
             id="password"
             type="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value)
+              setError('')
+            }}
             placeholder="••••••••"
-            className="mb-2 w-full rounded-xl border border-line bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
+            className="mb-4 w-full rounded-xl border border-line bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
           />
-          {error && <p className="mb-2 text-sm font-medium text-danger">{error}</p>}
-          <p className="mb-5 text-xs text-muted">{AUTH.demoNote}</p>
-          <Button type="submit" size="lg" className="w-full">
-            Log in
+          {error && (
+            <p role="alert" className="mb-3 text-sm font-medium text-danger">
+              {error}
+            </p>
+          )}
+          <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+            {submitting ? 'Logging in...' : 'Log in'}
           </Button>
         </form>
 

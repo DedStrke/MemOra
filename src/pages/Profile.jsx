@@ -162,6 +162,15 @@ export default function Profile() {
               { value: 'loose', label: 'Loose' },
             ]}
           />
+          <Choice
+            label="Focus mode (fewer distractions)"
+            value={a11y.focus ? 'on' : 'off'}
+            onChange={(v) => setA11y({ focus: v === 'on' })}
+            options={[
+              { value: 'off', label: 'Off' },
+              { value: 'on', label: 'On' },
+            ]}
+          />
         </div>
         <p className="readable mt-5 text-xs text-muted">
           Theme (light, dark, high contrast) lives in the top bar.

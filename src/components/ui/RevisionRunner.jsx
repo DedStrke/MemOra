@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import FlipCard from '@/components/ui/FlipCard'
+import SpeakButton from '@/components/ui/SpeakButton'
 import { fadeInUp, popIn } from '@/lib/motion'
 
 /*
@@ -43,11 +44,14 @@ function FlashcardRunner({ cards, recall }) {
   }
   return (
     <div>
-      <p className="mb-3 text-center text-sm text-muted">
-        {recall
-          ? 'Read the prompt, answer out loud from memory, then flip to check.'
-          : 'Flip each card and test yourself.'}
-      </p>
+      <div className="mb-3 flex items-center justify-center gap-3">
+        <p className="text-center text-sm text-muted">
+          {recall
+            ? 'Read the prompt, answer out loud from memory, then flip to check.'
+            : 'Flip each card and test yourself.'}
+        </p>
+        <SpeakButton text={flipped ? cards[i].back : cards[i].front} label="Read this card aloud" />
+      </div>
       <FlipCard
         front={cards[i].front}
         back={cards[i].back}
@@ -70,10 +74,19 @@ function McqRunner({ items }) {
   }
   return (
     <div className="mx-auto max-w-2xl">
-      <p className="text-xs font-semibold uppercase tracking-widest text-muted">
-        Question {i + 1} of {total}
-      </p>
-      <h3 className="readable mt-2 text-lg font-bold text-fg">{q.question}</h3>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+            Question {i + 1} of {total}
+          </p>
+          <h3 className="readable mt-2 text-lg font-bold text-fg">{q.question}</h3>
+        </div>
+        <SpeakButton
+          text={`${q.question}. ${q.options.map((o, idx) => `Option ${String.fromCharCode(65 + idx)}: ${o}`).join('. ')}`}
+          label="Read the question and options aloud"
+          className="mt-1"
+        />
+      </div>
       <div className="mt-4 space-y-2.5">
         {q.options.map((opt, idx) => {
           const isAnswer = idx === q.answer
@@ -111,6 +124,7 @@ function McqRunner({ items }) {
           variants={popIn}
           initial="hidden"
           animate="show"
+          aria-live="polite"
           className="mt-4 rounded-xl bg-raised p-4"
         >
           <p className={`text-sm font-bold ${picked === q.answer ? 'text-success' : 'text-danger'}`}>
@@ -148,7 +162,10 @@ function ExamRunner({ items }) {
           {q.marks} marks
         </span>
       </div>
-      <h3 className="readable mt-2 text-lg font-bold text-fg">{q.question}</h3>
+      <div className="mt-2 flex items-start justify-between gap-3">
+        <h3 className="readable text-lg font-bold text-fg">{q.question}</h3>
+        <SpeakButton text={q.question} label="Read the question aloud" className="mt-0.5" />
+      </div>
       <textarea
         rows={5}
         placeholder="Plan or write your answer, then reveal the mark scheme..."

@@ -114,10 +114,62 @@ export const specsFor = (courseType) => SPEC_BY_COURSE[courseType] || SPEC_BOARD
 export const NEEDS_OPTIONS = [
   { id: 'dyslexia', icon: 'book', label: 'Dyslexia' },
   { id: 'low-vision', icon: 'eye', label: 'Low vision' },
-  { id: 'blind', icon: 'eyeOff', label: 'Blind' },
+  { id: 'blind', icon: 'contrast', label: 'Colorblind' },
   { id: 'deaf', icon: 'ear', label: 'Deaf or hard of hearing' },
   { id: 'adhd', icon: 'brain', label: 'ADHD' },
   { id: 'motor', icon: 'hand', label: 'Motor or mobility' },
+]
+
+// A subject "mascot" emoji shown next to each subject (we cannot embed the
+// external dragon artwork, so these are clean, on-theme stand-ins).
+export const SUBJECT_MASCOTS = {
+  biology: '🧬',
+  chemistry: '⚗️',
+  physics: '⚛️',
+  maths: '➗',
+  'further maths': '📐',
+  english: '📖',
+  'english literature': '📖',
+  'english language': '✍️',
+  history: '📜',
+  geography: '🌍',
+  economics: '📈',
+  business: '💼',
+  'business studies': '💼',
+  psychology: '🧠',
+  sociology: '👥',
+  politics: '🏛️',
+  'computer science': '💻',
+  'religious studies': '🕊️',
+  french: '🇫🇷',
+  spanish: '🇪🇸',
+  german: '🇩🇪',
+  art: '🎨',
+  'art and design': '🎨',
+  music: '🎵',
+  'physical education': '🏃',
+  drama: '🎭',
+}
+export const subjectMascot = (name) =>
+  SUBJECT_MASCOTS[String(name || '').toLowerCase().trim()] || '📚'
+
+// Short, warm blurbs shown as sticky notes on the landing page.
+export const STICKY_REVIEWS = [
+  { name: 'Amara, Year 11', text: 'The mood check-in actually gets me to finish my sessions now.', accent: 'flash' },
+  { name: 'Daniel, Year 13', text: 'Exam questions with real mark schemes are what sold me.', accent: 'quiz' },
+  { name: 'Priya, Year 10', text: 'The dyslexia font is the first revision thing that ever stuck for me.', accent: 'paper' },
+  { name: 'Leila, Year 12', text: 'The breathing widget gets me started when I freeze up.', accent: 'brand' },
+  { name: 'Tomas, Year 11', text: 'Works fully on keyboard, and the community keeps me going.', accent: 'flash' },
+  { name: 'Marcus, Uni', text: 'Blurting plus active recall replaced my messy re-reading.', accent: 'quiz' },
+]
+
+// Landing-page FAQ.
+export const FAQ_ITEMS = [
+  { q: 'Is AdaptHub free?', a: 'Yes. Everything here is free to use.' },
+  { q: 'How does it adapt to me?', a: 'You tell us your access needs and goal once, and the whole app reshapes itself: fonts, contrast, spacing, focus mode, and encouragement tuned to how you are doing that day.' },
+  { q: 'What subjects are covered?', a: 'Sixteen subjects with real flashcards, multiple choice, and past-paper questions with mark schemes, and you can build your own decks too.' },
+  { q: 'Does it work with a screen reader?', a: 'Yes. It uses semantic HTML, ARIA labels, a skip-to-content link, and full keyboard control, and nothing relies on colour or sound alone.' },
+  { q: 'Where is my data kept?', a: 'Your profile is tied to your own account, and your reading preferences save on your device so they apply instantly.' },
 ]
 
 // Common GCSE / A-level subjects for the tap-to-pick subject chooser. Subjects
@@ -183,7 +235,7 @@ export const STUDY_TECHNIQUES = [
 
 export const MASCOT = {
   name: 'Sparky',
-  chatPlaceholder: 'Chatbot coming soon! For now I am just here to cheer you on. 💜',
+  chatPlaceholder: 'Ask me anything about your revision, or just tell me how you are feeling. 💜',
 }
 
 /* ------------------------------------------------ STUDY SESSION (Flow 3) */
@@ -271,4 +323,93 @@ export const REVIEWS = {
     { id: 'r5', name: 'Leila H.', role: 'Year 12, A-levels', avatar: '🌿', rating: 5, quote: 'Exams were making me genuinely anxious and I would freeze before opening a book. The breathing widget and the small resets sound tiny but they get me started, and the wellbeing first thing is real, not a gimmick. I feel less stressed sitting down to study than I have in a long time.' },
     { id: 'r6', name: 'Tomas R.', role: 'Year 11, SATs prep', avatar: '⌨️', rating: 4, quote: 'I use a keyboard for everything because a mouse is hard for me, and AdaptHub works top to bottom without one. Nothing relies on sound either, which matters. Posting a small win to the community feed and having people cheer it on keeps me going on the days I would rather quit.' },
   ],
+}
+
+/* --------------------------------------------------------- WELLBEING PAGE */
+
+// The wellbeing page (/mental-health) is where a low pre-session mood check-in
+// (3 stars or fewer) sends a learner. Every line is written to steady, never to
+// diagnose. Keep it warm and unhurried.
+
+// Short affirmations that rotate on the page. Kept brief so they land at a
+// glance and read cleanly when spoken aloud.
+export const AFFIRMATIONS = [
+  'You are allowed to find this hard. That does not mean you are failing.',
+  'One small step still counts as moving forward.',
+  'Your worth is not your grades. You matter either way.',
+  'Rest is part of the work, not time stolen from it.',
+  'You have got through every tough day so far. That is a real streak.',
+  'Progress is not always loud. Quiet effort counts too.',
+  'Be as kind to yourself as you would be to a good friend.',
+]
+
+// A 5-4-3-2-1 grounding exercise: name what you can sense, counting down. It
+// pulls attention out of a spiralling head and back into the room.
+export const GROUNDING = [
+  { count: 5, sense: 'see', icon: 'eye', prompt: 'Name five things you can see around you.' },
+  { count: 4, sense: 'feel', icon: 'hand', prompt: 'Notice four things you can feel touching you.' },
+  { count: 3, sense: 'hear', icon: 'ear', prompt: 'Listen for three sounds, near or far.' },
+  { count: 2, sense: 'smell', icon: 'wind', prompt: 'Find two things you can smell.' },
+  { count: 1, sense: 'taste', icon: 'cookie', prompt: 'Notice one thing you can taste.' },
+]
+
+// Real, free, confidential UK support a student can reach right now. This is a
+// genuine safety net, not filler. Keep the numbers accurate.
+export const SUPPORT_LINES = [
+  {
+    id: 'trusted',
+    icon: 'users',
+    name: 'Someone you trust',
+    detail: 'A parent, teacher, friend or school counsellor. Saying it out loud helps.',
+    action: null,
+    href: null,
+  },
+  {
+    id: 'shout',
+    icon: 'send',
+    name: 'Shout',
+    detail: 'Free, confidential mental health support by text, any time.',
+    action: 'Text SHOUT to 85258',
+    href: 'sms:85258?&body=SHOUT',
+  },
+  {
+    id: 'childline',
+    icon: 'heart',
+    name: 'Childline',
+    detail: 'For anyone under 19. Free to call, day or night.',
+    action: 'Call 0800 1111',
+    href: 'tel:08001111',
+  },
+  {
+    id: 'samaritans',
+    icon: 'shield',
+    name: 'Samaritans',
+    detail: 'Whatever you are going through, they will listen. 24 hours a day.',
+    action: 'Call 116 123',
+    href: 'tel:116123',
+  },
+]
+
+export const WELLBEING_PAGE = {
+  eyebrow: 'A moment for you',
+  title: 'Let us take a breath together',
+  intro:
+    'Studying hard matters, but so do you. A calm mind learns better, so pause, breathe, and be kind to yourself. There is no rush to get back.',
+  affirmTitle: 'A kind reminder',
+  affirmCta: 'Another',
+  breatheTitle: 'Breathe with the circle',
+  groundingTitle: 'Feeling anxious? Try 5-4-3-2-1',
+  groundingIntro:
+    'A quick way to steady a racing mind. Work down the senses, one at a time, at your own pace.',
+  groundingDone: 'Nicely done. Notice how your breath feels now.',
+  groundingRestart: 'Start again',
+  resetsTitle: 'Small resets',
+  supportTitle: 'If today feels heavy, reach out',
+  supportIntro:
+    'You do not have to carry it alone. These are free, confidential, and here for you.',
+  readyTitle: 'Come back when you are ready',
+  readyBody:
+    'No pressure to study right now. When you feel a little steadier, pick up wherever you like.',
+  backToStudy: 'Back to studying',
+  backToDashboard: 'Go to dashboard',
 }

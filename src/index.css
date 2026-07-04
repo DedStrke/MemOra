@@ -339,6 +339,15 @@ h1, h2, h3, h4 {
 [data-focus='true'] .focus-hide {
   display: none !important;
 }
+/* Focus mode also quiets ambient motion and decoration app-wide, so nothing
+   pulls the eye away from the current task. */
+[data-focus='true'] body {
+  background-image: none;
+}
+[data-focus='true'] .marquee-track,
+[data-focus='true'] .wheel-idle {
+  animation: none !important;
+}
 
 /* Respect reduced-motion for all functional motion (page transitions, hovers,
    timers). The two AMBIENT brand animations, the marquee ticker and the slowly

@@ -5,29 +5,28 @@ import { SUBJECT_CATALOG } from '@/constants/content'
 
 /*
   Tap-to-pick subject chooser. Learners select subjects from a list of chips
-  instead of typing each one. Custom subjects can still be added by hand.
+  instead of typing each one. Custom subjects can still be added by hand. Every
+  chosen subject then gets its own exam-board dropdown, so a learner can study,
+  say, AQA Biology and Edexcel Maths at the same time.
 
   Props:
     - subjects: [{ id, name, spec, priority }]
     - onChange(next): called with the new subjects array
     - prioritised: show a "which is your top priority?" picker
-    - boards: exam-board options (applies to all chosen subjects)
+    - boards: exam-board options offered per subject
 */
 export default function SubjectPicker({ subjects, onChange, prioritised = false, boards = [] }) {
-  const [board, setBoard] = useState(subjects[0]?.spec || '')
   const [custom, setCustom] = useState('')
 
   const has = (name) => subjects.some((s) => s.name.toLowerCase() === name.toLowerCase())
 
-  const applyBoard = (b) => {
-    setBoard(b)
-    onChange(subjects.map((s) => ({ ...s, spec: b })))
-  }
+  const setSpec = (name, spec) =>
+    onChange(subjects.map((s) => (s.name === name ? { ...s, spec } : s)))
   const toggle = (name) => {
     if (has(name)) {
       onChange(subjects.filter((s) => s.name.toLowerCase() !== name.toLowerCase()))
     } else {
-      onChange([...subjects, { id: name, name, spec: board, priority: subjects.length === 0 }])
+      onChange([...subjects, { id: name, name, spec: '', priority: subjects.length === 0 }])
     }
   }
   const star = (name) => onChange(subjects.map((s) => ({ ...s, priority: s.name === name })))
@@ -35,7 +34,7 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
     const n = custom.trim()
     setCustom('')
     if (!n || has(n)) return
-    onChange([...subjects, { id: n, name: n, spec: board, priority: subjects.length === 0 }])
+    onChange([...subjects, { id: n, name: n, spec: '', priority: subjects.length === 0 }])
   }
 
   // Chosen subjects that are not in the catalog (typed by hand).
@@ -50,26 +49,6 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
 
   return (
     <div>
-      {boards.length > 0 && (
-        <div className="mb-4">
-          <label className="mb-1.5 block text-sm font-medium text-fg">
-            Exam board (optional)
-          </label>
-          <select
-            value={board}
-            onChange={(e) => applyBoard(e.target.value)}
-            className="w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-fg focus:border-brand focus:outline-none sm:w-64"
-          >
-            <option value="">Not sure yet</option>
-            {boards.map((b) => (
-              <option key={b} value={b}>
-                {b}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
       <p className="mb-2 text-sm font-medium text-fg">Tap the subjects you study</p>
       <div className="flex flex-wrap gap-2">
         {SUBJECT_CATALOG.map((name) => {
@@ -114,6 +93,40 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
           Add
         </Button>
       </div>
+
+      {boards.length > 0 && subjects.length > 0 && (
+        <div className="mt-5">
+          <p className="mb-2 text-sm font-medium text-fg">
+            Pick an exam board for each subject
+          </p>
+          <div className="space-y-2">
+            {subjects.map((s) => (
+              <div
+                key={s.id ?? s.name}
+                className="flex flex-col gap-2 rounded-xl border border-line bg-surface px-3.5 py-3 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <span className="text-sm font-medium text-fg">{s.name}</span>
+                <label className="flex items-center gap-2">
+                  <span className="sr-only">{`Exam board for ${s.name}`}</span>
+                  <select
+                    value={s.spec || ''}
+                    onChange={(e) => setSpec(s.name, e.target.value)}
+                    aria-label={`Exam board for ${s.name}`}
+                    className="w-full rounded-lg border border-line bg-page px-3 py-2 text-sm text-fg focus:border-brand focus:outline-none sm:w-56"
+                  >
+                    <option value="">Not sure yet</option>
+                    {boards.map((b) => (
+                      <option key={b} value={b}>
+                        {b}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {prioritised && subjects.length > 1 && (
         <div className="mt-5">

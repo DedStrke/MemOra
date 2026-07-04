@@ -3,8 +3,9 @@ import { motion } from 'framer-motion'
 import Icon from '@/components/ui/Icon'
 import Sparkline from '@/components/ui/Sparkline'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
-import { PRIORITISED_COURSES } from '@/constants/content'
-import { progressFor } from '@/constants/mock'
+import { PRIORITISED_COURSES, subjectMascot } from '@/constants/content'
+import { useApp } from '@/context/AppProvider'
+import { subjectStats, subjectAnalytics } from '@/lib/sessions'
 
 const ACCENTS = [
   { chip: 'bg-flash-soft text-flash', spark: 'text-flash' },
@@ -13,71 +14,145 @@ const ACCENTS = [
   { chip: 'bg-brand-soft text-brand-strong', spark: 'text-brand-strong' },
 ]
 
-const studyLink = (subject) => `/study?subject=${encodeURIComponent(subject)}`
+// Deep-link straight into a study session, optionally on a specific technique.
+// No technique means the session lands on its flashcards default.
+const studyLink = (subject, technique) =>
+  `/study?subject=${encodeURIComponent(subject)}${
+    technique ? `&technique=${technique}` : ''
+  }`
 
-function Pillar({ subject, index, big }) {
-  const a = ACCENTS[index % ACCENTS.length]
+function InnerLinks({ subject }) {
+  const cls =
+    'relative z-10 inline-flex min-h-[36px] flex-1 items-center justify-center gap-1.5 rounded-lg bg-raised px-3 py-1.5 text-xs font-semibold text-fg transition-colors hover:bg-brand-soft hover:text-brand-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current'
   return (
-    <motion.div variants={fadeInUp}>
+    <div className="relative z-10 mt-auto flex gap-2 pt-3">
       <Link
-        to={studyLink(subject.name)}
-        className={`group flex h-full flex-col card card-lift ${
-          big ? 'p-6' : 'p-4'
-        }`}
+        to={studyLink(subject, 'flashcards')}
+        className={cls}
+        aria-label={`Flashcards for ${subject}`}
       >
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <h3 className={`font-bold text-fg ${big ? 'text-2xl' : 'text-base'}`}>
-              {subject.name}
+        <Icon name="cards" className="h-3.5 w-3.5" />
+        Flashcards
+      </Link>
+      <Link
+        to={studyLink(subject, 'exam-questions')}
+        className={cls}
+        aria-label={`Past papers for ${subject}`}
+      >
+        <Icon name="scroll" className="h-3.5 w-3.5" />
+        Past papers
+      </Link>
+    </div>
+  )
+}
+
+function Pillar({ subject, index, big = false, stats }) {
+  const a = ACCENTS[index % ACCENTS.length]
+  const name = subject.name
+  const mascot = subjectMascot(name)
+  const { cards, hours, delta, series } = subjectAnalytics(name, { big, stats })
+  const up = delta >= 0
+
+  return (
+    <motion.div variants={fadeInUp} className={big ? 'flex' : 'flex h-full'}>
+      <div
+        className={`group relative flex w-full flex-col card card-lift ${big ? 'p-6' : 'p-5'}`}
+      >
+        {/* Whole-card click target -> start a study session. It sits behind the
+            content as a stretched overlay, so the Notes/Past-papers links can be
+            siblings (never anchors nested inside an anchor) and each reliably
+            navigates to its own technique. */}
+        <Link
+          to={studyLink(name)}
+          aria-label={`Study ${name}`}
+          className="absolute inset-0 z-0 rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+        />
+
+        {subject.priority && big && (
+          <span className="pointer-events-none absolute right-4 top-4 z-10 flex items-center gap-1 rounded-full bg-brand-soft px-2.5 py-1 text-xs font-semibold text-brand-strong">
+            <Icon name="star" className="h-3.5 w-3.5" filled />
+            Priority
+          </span>
+        )}
+
+        {/* (a) Name + mascot tile */}
+        <div className="flex items-center gap-3 pr-16">
+          <span
+            className={`flex shrink-0 items-center justify-center rounded-xl ${a.chip} ${
+              big ? 'h-12 w-12 text-2xl' : 'h-10 w-10 text-xl'
+            }`}
+            aria-hidden="true"
+          >
+            {mascot}
+          </span>
+          <div className="min-w-0">
+            <h3 className={`truncate font-bold text-fg ${big ? 'text-2xl' : 'text-lg'}`}>
+              {name}
             </h3>
             {subject.spec && (
-              <span className={`mt-1 inline-block rounded-full px-2.5 py-0.5 text-xs font-medium ${a.chip}`}>
-                {subject.spec}
-              </span>
+              <span className="text-xs font-medium text-muted">{subject.spec}</span>
             )}
           </div>
-          {subject.priority && big && (
-            <span className="flex items-center gap-1 rounded-full bg-brand-soft px-2.5 py-1 text-xs font-semibold text-brand-strong">
-              <Icon name="star" className="h-3.5 w-3.5" />
-              Priority
-            </span>
-          )}
         </div>
 
-        <div className={`${big ? 'mt-6' : 'mt-4'} ${a.spark}`}>
-          <Sparkline data={progressFor(index)} className={big ? 'h-14 w-full' : 'h-8 w-full'} />
+        {/* (b) Flashcards + (c) Hours spent */}
+        <div className={`grid grid-cols-2 gap-3 ${big ? 'mt-6' : 'mt-5'}`}>
+          <div className="rounded-xl bg-raised px-3 py-2.5">
+            <p className="text-xs font-medium text-muted">Flashcards</p>
+            <p className="mt-0.5 text-lg font-bold text-fg">
+              {cards} <span className="text-sm font-medium text-muted">/ 100</span>
+            </p>
+          </div>
+          <div className="rounded-xl bg-raised px-3 py-2.5">
+            <p className="text-xs font-medium text-muted">Hours spent</p>
+            <div className="mt-0.5 flex items-baseline gap-1.5">
+              <span className="text-lg font-bold text-fg">{hours}h</span>
+              <span
+                className={`flex items-center gap-0.5 text-xs font-semibold ${
+                  up ? 'text-success' : 'text-danger'
+                }`}
+              >
+                <Icon
+                  name="chevronDown"
+                  className={`h-3 w-3 ${up ? 'rotate-180' : ''}`}
+                />
+                {Math.abs(delta)}
+                <span className="sr-only">
+                  {up ? 'up' : 'down'} vs last week
+                </span>
+              </span>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-3 flex items-center justify-between text-sm text-muted">
-          <span>Recent activity</span>
-          <span className="flex items-center gap-1 font-medium text-brand-strong opacity-0 transition-opacity group-hover:opacity-100">
-            Study <Icon name="arrowRight" className="h-4 w-4" />
-          </span>
+        {/* (d) Hours vs day mini graph */}
+        <div className={`${big ? 'mt-6' : 'mt-4'}`}>
+          <div className="mb-1 flex items-center justify-between">
+            <span className="text-xs font-medium text-muted">Hours vs day</span>
+            <span className="text-xs text-muted">last 7</span>
+          </div>
+          <div className={a.spark}>
+            <Sparkline data={series} className={big ? 'h-16 w-full' : 'h-12 w-full'} />
+          </div>
         </div>
-      </Link>
+
+        {/* (e) Flashcards + Past papers */}
+        <InnerLinks subject={name} />
+      </div>
     </motion.div>
   )
 }
 
 export default function SubjectPillars({ user }) {
+  const { sessions } = useApp()
   const { courseType, subjects = [], courseName } = user
 
   // University: a single course card.
   if (courseType === 'University') {
+    const stats = subjectStats(sessions, courseName)
     return (
-      <motion.div variants={fadeInUp}>
-        <Link
-          to={studyLink(courseName)}
-          className="group flex flex-col card card-lift p-6"
-        >
-          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-brand-strong">
-            <Icon name="cap" className="h-6 w-6" />
-          </span>
-          <h3 className="mt-4 text-2xl font-bold text-fg">{courseName}</h3>
-          <div className="mt-5 text-brand-strong">
-            <Sparkline data={progressFor(0)} className="h-14 w-full" />
-          </div>
-        </Link>
+      <motion.div variants={staggerContainer} className="max-w-xl">
+        <Pillar subject={{ name: courseName }} index={3} big stats={stats} />
       </motion.div>
     )
   }
@@ -86,15 +161,27 @@ export default function SubjectPillars({ user }) {
 
   if (prioritised) {
     const top = subjects.find((s) => s.priority) || subjects[0]
-    const rest = subjects.filter((s) => s !== top)
+    const rest = subjects.filter((s) => s !== top).slice(0, 2)
+    const [left, right] = rest
+
     return (
-      <motion.div variants={staggerContainer} className="space-y-4">
-        <Pillar subject={top} index={0} big />
-        {rest.length > 0 && (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map((s, i) => (
-              <Pillar key={s.id ?? s.name} subject={s} index={i + 1} />
-            ))}
+      <motion.div
+        variants={staggerContainer}
+        className="grid items-center gap-4 lg:grid-cols-3"
+      >
+        {left && (
+          <div className="lg:pt-8">
+            <Pillar subject={left} index={0} stats={subjectStats(sessions, left.name)} />
+          </div>
+        )}
+        {top && (
+          <div className="order-first lg:order-none lg:-mt-4">
+            <Pillar subject={top} index={3} big stats={subjectStats(sessions, top.name)} />
+          </div>
+        )}
+        {right && (
+          <div className="lg:pt-8">
+            <Pillar subject={right} index={1} stats={subjectStats(sessions, right.name)} />
           </div>
         )}
       </motion.div>
@@ -108,7 +195,7 @@ export default function SubjectPillars({ user }) {
       className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
     >
       {subjects.map((s, i) => (
-        <Pillar key={s.id ?? s.name} subject={s} index={i} />
+        <Pillar key={s.id ?? s.name} subject={s} index={i} stats={subjectStats(sessions, s.name)} />
       ))}
     </motion.div>
   )

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
@@ -9,6 +9,7 @@ import RevisionRunner from '@/components/ui/RevisionRunner'
 import { fadeInUp, popIn } from '@/lib/motion'
 import { MOODS, SESSION_MESSAGES, STUDY_TECHNIQUES } from '@/constants/content'
 import { getPackByName } from '@/constants/library'
+import { lastSessionForSubject, isTough } from '@/lib/sessions'
 import { useApp } from '@/context/AppProvider'
 
 // DEMO: a study block is 2 minutes so the mid-session check-in is quick to show.
@@ -77,9 +78,8 @@ function Stars({ value, onRate, max = 5 }) {
 }
 
 export default function StudySession() {
-  const navigate = useNavigate()
   const [params] = useSearchParams()
-  const { user, setRecentTopic } = useApp()
+  const { user, setRecentTopic, logSession, sessions } = useApp()
 
   const subject =
     params.get('subject') ||
@@ -92,9 +92,21 @@ export default function StudySession() {
   const techniqueLabel =
     STUDY_TECHNIQUES.find((t) => t.id === technique)?.label || 'Focus'
 
+  // Real adaptation: read how this subject went last time and adjust the tone.
+  const lastForSubject = lastSessionForSubject(sessions, subject)
+  const adaptiveNote = (() => {
+    if (!lastForSubject) return null
+    if (isTough(lastForSubject))
+      return `Last time ${subject} felt tough, so we will ease in. No pressure today.`
+    if (lastForSubject.difficulty <= 2)
+      return `You breezed through ${subject} last time. Want to push a little further?`
+    return null
+  })()
+
   // mood | ready | running | checkin | breakSetup | break | done
   const [phase, setPhase] = useState('mood')
   const [mood, setMood] = useState(null)
+  const [moodStars, setMoodStars] = useState(0)
   const [duration, setDuration] = useState(BLOCK_SECONDS)
   const [remaining, setRemaining] = useState(BLOCK_SECONDS)
   const [running, setRunning] = useState(false)
@@ -149,6 +161,7 @@ export default function StudySession() {
     'Let us make this session count.'
 
   const rateDifficulty = (n) => {
+    logSession({ subject, technique, mood, moodStars, difficulty: n })
     setRecentTopic(`${subject} · ${techniqueLabel}`)
     setPhase(`done-${n}`)
   }
@@ -163,30 +176,59 @@ export default function StudySession() {
       </motion.div>
 
       <AnimatePresence mode="wait">
-        {/* MOOD */}
+        {/* MOOD: rate 1 to 5 before every session */}
         {phase === 'mood' && (
           <motion.div key="mood" variants={fadeInUp} initial="hidden" animate="show" exit={{ opacity: 0 }} className="text-center">
             <Mascot expression="happy" className="mx-auto h-20 w-20" />
             <h1 className="mt-3 text-3xl font-bold text-fg">How are you feeling?</h1>
-            <p className="readable mt-2 text-muted">
-              We will shape this session around it. About to study{' '}
-              <span className="font-semibold text-fg">{subject}</span>.
+            <p className="readable mx-auto mt-2 max-w-md text-muted">
+              Rate it from 1 to 5 before we start{' '}
+              <span className="font-semibold text-fg">{subject}</span>. No wrong answers.
             </p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {MOODS.map((m) => (
-                <button
-                  key={m.id}
-                  type="button"
-                  onClick={() => {
-                    setMood(m.id)
+            <div className="mt-8">
+              <Stars
+                value={moodStars}
+                onRate={(n) => {
+                  setMoodStars(n)
+                  if (n <= 3) {
+                    setMood('struggling')
+                    setPhase('lowmood')
+                  } else {
+                    setMood(n === 5 ? 'great' : 'okay')
                     setPhase('ready')
-                  }}
-                  className="card card-lift p-6 hover:border-brand hover:bg-brand-soft"
-                >
-                  <span className="text-4xl">{m.emoji}</span>
-                  <span className="mt-2 block font-semibold text-fg">{m.label}</span>
-                </button>
-              ))}
+                  }
+                }}
+              />
+            </div>
+            <p className="mt-4 text-sm text-muted">1 = really struggling, 5 = great</p>
+          </motion.div>
+        )}
+
+        {/* LOW MOOD: a 3 or below routes to wellbeing first */}
+        {phase === 'lowmood' && (
+          <motion.div key="lowmood" variants={fadeInUp} initial="hidden" animate="show" exit={{ opacity: 0 }} className="text-center">
+            <Mascot expression="happy" className="mx-auto h-20 w-20" />
+            <h1 className="mt-3 text-2xl font-bold text-fg sm:text-3xl">
+              Let us take a moment first
+            </h1>
+            <p className="readable mx-auto mt-2 max-w-md text-muted">
+              It sounds like today is a bit heavy. Revision will still be here in a few
+              minutes. Let us look after you first.
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button as={Link} to="/mental-health" size="lg">
+                <Icon name="heart" className="h-5 w-5" />
+                Go to wellbeing
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setMood('struggling')
+                  setPhase('ready')
+                }}
+              >
+                I am okay, keep studying
+              </Button>
             </div>
           </motion.div>
         )}
@@ -203,6 +245,12 @@ export default function StudySession() {
             <h1 className="readable mx-auto mt-2 max-w-md text-2xl font-bold text-fg">
               {moodMsg}
             </h1>
+            {adaptiveNote && (
+              <p className="readable mx-auto mt-4 flex max-w-md items-center gap-2 rounded-xl bg-brand-soft px-4 py-2.5 text-sm font-medium text-brand-strong">
+                <Icon name="sparkles" className="h-4 w-4 shrink-0" />
+                {adaptiveNote}
+              </p>
+            )}
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button onClick={startBlock} size="lg">
                 <Icon name="play" className="h-5 w-5" />

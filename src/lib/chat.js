@@ -1,16 +1,22 @@
 /*
-  Sparky's brain. Talks to the Google Gemini REST API directly from the browser.
+  Sparky's brain. Talks to the Mistral API directly from the browser (Mistral
+  allows CORS, and its chat API is OpenAI-compatible).
 
-  The key comes from import.meta.env.VITE_GEMINI_API_KEY (.env.local, git-ignored).
+  The key comes from import.meta.env.VITE_MISTRAL_API_KEY (.env.local, git-ignored).
   Because this is a client-side call, the key ships in the bundle: fine for a
-  demo, but for production you would proxy this through a small backend so the
-  key stays server-side. If the key is missing or the request fails, sendChat
-  falls back to a warm canned reply so the chat never feels broken.
+  demo, but for production you would proxy this through a small backend. If the
+  key is missing or a request fails, sendChat falls back to a warm canned reply
+  so the chat never feels broken.
 */
 
-const KEY = import.meta.env.VITE_GEMINI_API_KEY
-const MODEL = import.meta.env.VITE_GEMINI_MODEL || 'gemini-2.0-flash'
-const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${KEY}`
+const KEY = import.meta.env.VITE_MISTRAL_API_KEY
+const MODEL = import.meta.env.VITE_MISTRAL_MODEL || 'mistral-large-latest'
+const ENDPOINT = 'https://api.mistral.ai/v1/chat/completions'
+
+const headers = () => ({
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${KEY}`,
+})
 
 export const chatConfigured = () => Boolean(KEY)
 
@@ -49,7 +55,6 @@ const FALLBACKS = [
 ]
 
 function fallbackReply(messages) {
-  // Vary the message a little by conversation length so it does not feel canned.
   const i = (messages?.length || 0) % FALLBACKS.length
   return FALLBACKS[i]
 }
@@ -62,96 +67,80 @@ function fallbackReply(messages) {
 export async function sendChat(messages, ctx = {}) {
   if (!KEY) return fallbackReply(messages)
 
-  // Gemini wants the history to start with a user turn, so drop any leading
-  // model messages (for example Sparky's opening greeting).
+  // Drop any leading assistant/greeting turns so the conversation starts with
+  // the student.
   const history = [...(messages || [])]
   while (history.length && history[0].role !== 'user') history.shift()
   if (!history.length) return fallbackReply(messages)
 
   const body = {
-    system_instruction: { parts: [{ text: SYSTEM + personalise(ctx) }] },
-    contents: history.map((m) => ({
-      role: m.role === 'user' ? 'user' : 'model',
-      parts: [{ text: m.text }],
-    })),
-    generationConfig: { temperature: 0.85, topP: 0.95, maxOutputTokens: 500 },
+    model: MODEL,
+    messages: [
+      { role: 'system', content: SYSTEM + personalise(ctx) },
+      ...history.map((m) => ({
+        role: m.role === 'user' ? 'user' : 'assistant',
+        content: m.text,
+      })),
+    ],
+    temperature: 0.8,
+    max_tokens: 500,
   }
 
   try {
     const res = await fetch(ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: headers(),
       body: JSON.stringify(body),
     })
     if (!res.ok) return fallbackReply(messages)
     const data = await res.json()
-    const text = data?.candidates?.[0]?.content?.parts
-      ?.map((p) => p.text || '')
-      .join('')
-      .trim()
+    const text = data?.choices?.[0]?.message?.content?.trim()
     return text || fallbackReply(messages)
   } catch {
     return fallbackReply(messages)
   }
 }
 
-/*
-  Structured generation. Asks Gemini for JSON that matches a schema and returns
-  the parsed value. Unlike sendChat this THROWS on failure, so callers can show
-  a proper error (for example "the AI is out of quota"). Error messages are
-  short codes: 'no-key' | 'quota' | 'http-###' | 'empty' | 'bad-response'.
-*/
-async function generateJson(prompt, responseSchema) {
-  if (!KEY) throw new Error('no-key')
-  const res = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.7,
-        responseMimeType: 'application/json',
-        responseSchema,
-      },
-    }),
-  })
-  if (!res.ok) throw new Error(res.status === 429 ? 'quota' : `http-${res.status}`)
-  const data = await res.json()
-  const text = data?.candidates?.[0]?.content?.parts
-    ?.map((p) => p.text || '')
-    .join('')
-    .trim()
-  if (!text) throw new Error('empty')
-  try {
-    return JSON.parse(text)
-  } catch {
-    throw new Error('bad-response')
-  }
-}
-
-const CARD_SCHEMA = {
-  type: 'object',
-  properties: {
-    cards: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: { front: { type: 'string' }, back: { type: 'string' } },
-        required: ['front', 'back'],
-      },
-    },
-  },
-  required: ['cards'],
-}
-
-// Generate a set of flashcards about a topic. Returns [{front, back}]. Throws.
+// Generate a set of flashcards about a topic. Returns [{front, back}]. Throws
+// with short error codes: 'no-key' | 'no-topic' | 'quota' | 'http-###' |
+// 'bad-response' | 'empty'.
 export async function generateFlashcards(topic, count = 8) {
   const clean = String(topic || '').trim()
   if (!clean) throw new Error('no-topic')
-  const out = await generateJson(
-    `Create ${count} concise, exam-accurate revision flashcards about "${clean}". Each card has a clear question or key term on the front and a correct, self-contained answer on the back (one to three sentences). Cover the most important things a student revising this should know. Do not use em dashes.`,
-    CARD_SCHEMA,
-  )
+  if (!KEY) throw new Error('no-key')
+
+  const body = {
+    model: MODEL,
+    messages: [
+      {
+        role: 'system',
+        content:
+          'You are a precise revision assistant. Reply with valid JSON only, no prose.',
+      },
+      {
+        role: 'user',
+        content: `Create ${count} concise, exam-accurate revision flashcards about "${clean}". Each card has a clear question or key term and a correct, self-contained answer (one to three sentences). Return a JSON object of exactly this shape: {"cards": [{"front": "...", "back": "..."}]}. Do not use em dashes.`,
+      },
+    ],
+    response_format: { type: 'json_object' },
+    temperature: 0.6,
+    max_tokens: 1600,
+  }
+
+  const res = await fetch(ENDPOINT, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) throw new Error(res.status === 429 ? 'quota' : `http-${res.status}`)
+  const data = await res.json()
+  const text = data?.choices?.[0]?.message?.content
+  let out
+  try {
+    out = JSON.parse(text)
+  } catch {
+    throw new Error('bad-response')
+  }
   const cards = Array.isArray(out?.cards) ? out.cards : []
   const cleaned = cards
     .filter((c) => c && c.front && c.back)

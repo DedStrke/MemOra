@@ -51,7 +51,7 @@ export default function CursorGlow() {
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[60]"
+      className="focus-hide pointer-events-none fixed left-0 top-0 z-[60]"
       style={{ x: sx, y: sy }}
     >
       <div className="-translate-x-1/2 -translate-y-1/2">

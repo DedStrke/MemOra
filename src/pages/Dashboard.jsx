@@ -6,7 +6,6 @@ import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import CountdownCard from '@/components/dashboard/CountdownCard'
 import SubjectPillars from '@/components/dashboard/SubjectPillars'
-import KnowledgeDecay from '@/components/dashboard/KnowledgeDecay'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { FEATURES, STUDY_TECHNIQUES } from '@/constants/content'
@@ -49,10 +48,10 @@ export default function Dashboard() {
         className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center"
       >
         <div>
-          <h1 className="text-3xl font-extrabold text-fg sm:text-4xl">
+          <h1 className="text-4xl font-extrabold text-fg sm:text-5xl">
             Hi {user.name}, welcome back!
           </h1>
-          <p className="readable mt-1 text-muted">{goalLine}</p>
+          <p className="readable mt-4 text-lg leading-relaxed text-muted">{goalLine}</p>
         </div>
         <Button as={Link} to="/study" size="lg" className="shrink-0">
           <Icon name="play" className="h-5 w-5" />
@@ -82,27 +81,27 @@ export default function Dashboard() {
       <SubjectPillars user={user} />
 
       {/* Tools / feature cards */}
-      <motion.div variants={fadeInUp} className="mt-14 mb-5">
+      <motion.div variants={fadeInUp} className="mt-20 mb-6">
         <span className="kicker">Your toolkit</span>
         <h2 className="mt-2 text-2xl font-bold text-fg">Tools</h2>
       </motion.div>
       <motion.div
         variants={staggerContainer}
-        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
       >
         {FEATURES.map((f) => (
           <motion.div key={f.id} variants={fadeInUp}>
             <Link
               to={f.to}
-              className="flex h-full flex-col card card-lift p-5"
+              className="flex h-full flex-col card card-lift p-7"
             >
               <span
-                className={`flex h-11 w-11 items-center justify-center rounded-xl ${FEATURE_ACCENT[f.accent]}`}
+                className={`flex h-14 w-14 items-center justify-center rounded-2xl ${FEATURE_ACCENT[f.accent]}`}
               >
-                <Icon name={f.icon} className="h-6 w-6" />
+                <Icon name={f.icon} className="h-7 w-7" />
               </span>
-              <h3 className="mt-3 font-semibold text-fg">{f.label}</h3>
-              <p className="text-sm text-muted">{f.desc}</p>
+              <h3 className="mt-5 text-lg font-semibold text-fg">{f.label}</h3>
+              <p className="mt-1 text-base text-muted">{f.desc}</p>
             </Link>
           </motion.div>
         ))}
@@ -136,7 +135,7 @@ export default function Dashboard() {
           <p className="mb-3 text-sm text-muted">
             Pick a subject, then choose how to revise it.
           </p>
-          {subjectNames.length > 1 && (
+          {subjectNames.length > 0 && (
             <div className="mb-4 flex flex-wrap gap-2">
               {subjectNames.map((name) => (
                 <button
@@ -169,11 +168,6 @@ export default function Dashboard() {
             ))}
           </div>
         </motion.div>
-      </div>
-
-      {/* Knowledge decay */}
-      <div className="mt-8">
-        <KnowledgeDecay />
       </div>
     </Section>
   )

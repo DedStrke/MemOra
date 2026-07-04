@@ -33,12 +33,16 @@ export default function Signup() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [yearGroup, setYearGroup] = useState('')
+  const [otherLevel, setOtherLevel] = useState('')
   const [goal, setGoal] = useState({ choice: '', text: '' })
   const [courseType, setCourseType] = useState('')
   const [courseName, setCourseName] = useState('')
   const [subjects, setSubjects] = useState([])
   const [needs, setNeeds] = useState([])
+  const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
   // Toggle an access need and apply the adaptation live, so the rest of the
   // wizard (and this very step) immediately reflects it.
@@ -54,12 +58,22 @@ export default function Signup() {
   const prioritised = PRIORITISED_COURSES.includes(courseType)
   const needsGoalText = goal.choice === 'specific' || goal.choice === 'custom'
 
+  // Password must be 8 to 12 characters. Show a red state when it is out of range.
+  const pwLen = password.length
+  const pwInvalid = pwLen > 0 && (pwLen < 8 || pwLen > 12)
+  const pwValid = pwLen >= 8 && pwLen <= 12
+
   const canContinue = (() => {
     switch (step) {
       case 0:
-        return name.trim() !== '' && validEmail(email) && password.length > 0
+        return (
+          name.trim() !== '' &&
+          validEmail(email) &&
+          password.length >= 8 &&
+          password.length <= 12
+        )
       case 1:
-        return yearGroup !== ''
+        return yearGroup !== '' && (yearGroup !== 'Other' || otherLevel.trim() !== '')
       case 2:
         return goal.choice !== '' && (!needsGoalText || goal.text.trim() !== '')
       case 3:
@@ -78,24 +92,37 @@ export default function Signup() {
   // where you pick several things (subjects) keep the Continue button.
   const advance = () => setTimeout(next, 240)
 
-  const finish = () => {
+  const finish = async () => {
+    if (submitting) return
+    setError('')
+    setSubmitting(true)
     const cleanSubjects = subjects
       .filter((s) => s.name.trim() !== '')
       .map((s) => ({ ...s, name: s.name.trim(), spec: s.spec.trim() }))
     if (prioritised && cleanSubjects.length && !cleanSubjects.some((s) => s.priority)) {
       cleanSubjects[0].priority = true
     }
-    signUp({
+    const yearGroupValue =
+      yearGroup === 'Other' && otherLevel.trim() !== ''
+        ? `Other: ${otherLevel.trim()}`
+        : yearGroup
+    const res = await signUp({
       name: name.trim(),
       email: email.trim(),
-      yearGroup,
+      password,
+      yearGroup: yearGroupValue,
       goal,
       courseType,
       courseName: courseName.trim(),
       subjects: isUniversity ? [] : cleanSubjects,
       needs,
     })
-    navigate('/dashboard')
+    if (res?.ok) {
+      navigate('/dashboard')
+    } else {
+      setError(res?.message || 'Could not create your account. Please try again.')
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -138,13 +165,13 @@ export default function Signup() {
                 </motion.div>
                 <StepTitle title={AUTH.accountTitle} hint={AUTH.accountHint} />
                 <div className="mt-6 space-y-3">
-                  <Field label="First name">
+                  <Field label="Username">
                     <input
                       autoFocus
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Your first name"
+                      placeholder="Username"
                       className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
                     />
                   </Field>
@@ -159,14 +186,49 @@ export default function Signup() {
                     />
                   </Field>
                   <Field label="Password">
-                    <input
-                      type="password"
-                      autoComplete="new-password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Choose a password"
-                      className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
-                    />
+                    <div className="relative">
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        autoComplete="new-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        maxLength={12}
+                        aria-invalid={pwInvalid}
+                        placeholder="Choose a password"
+                        className={`w-full rounded-xl border bg-surface px-4 py-3 pr-12 text-fg placeholder:text-muted focus:outline-none ${
+                          pwInvalid
+                            ? 'border-danger focus:border-danger'
+                            : 'border-line focus:border-brand'
+                        }`}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword((v) => !v)}
+                        aria-label={showPassword ? 'Hide password' : 'Show password'}
+                        aria-pressed={showPassword}
+                        className="absolute inset-y-0 right-0 flex h-11 w-11 items-center justify-center self-center rounded-r-xl text-muted hover:text-fg focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
+                      >
+                        <Icon name={showPassword ? 'eyeOff' : 'eye'} className="h-5 w-5" />
+                      </button>
+                    </div>
+                    <p
+                      role={pwInvalid ? 'alert' : undefined}
+                      className={`mt-1.5 flex items-center gap-1.5 text-sm ${
+                        pwInvalid ? 'text-danger' : pwValid ? 'text-success' : 'text-muted'
+                      }`}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`inline-block h-2 w-2 shrink-0 rounded-full ${
+                          pwInvalid ? 'bg-danger' : pwValid ? 'bg-success' : 'bg-line'
+                        }`}
+                      />
+                      {pwInvalid
+                        ? 'Password must be 8 to 12 characters.'
+                        : pwValid
+                          ? 'Looks good.'
+                          : 'Use 8 to 12 characters.'}
+                    </p>
                   </Field>
                 </div>
               </div>
@@ -183,13 +245,37 @@ export default function Signup() {
                       active={yearGroup === y}
                       onClick={() => {
                         setYearGroup(y)
-                        advance()
+                        // "Other" needs a typed level of study, so stay on this
+                        // step and reveal the extra input instead of advancing.
+                        if (y !== 'Other') advance()
                       }}
                     >
                       {y}
                     </Pill>
                   ))}
                 </motion.div>
+                {yearGroup === 'Other' && (
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="show"
+                    className="mt-4"
+                  >
+                    <label className="block">
+                      <span className="mb-1.5 block text-sm font-medium text-fg">
+                        What level are you studying at?
+                      </span>
+                      <input
+                        autoFocus
+                        type="text"
+                        value={otherLevel}
+                        onChange={(e) => setOtherLevel(e.target.value)}
+                        placeholder="e.g. BTEC, foundation year, adult learner"
+                        className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
+                      />
+                    </label>
+                  </motion.div>
+                )}
               </div>
             )}
 
@@ -321,6 +407,12 @@ export default function Signup() {
         </AnimatePresence>
       </div>
 
+      {error && (
+        <p role="alert" className="mt-4 text-sm font-medium text-danger">
+          {error}
+        </p>
+      )}
+
       {/* Footer nav */}
       <div className="mt-8 flex items-center justify-between gap-3">
         {step > 0 ? (
@@ -339,8 +431,8 @@ export default function Signup() {
             <Icon name="arrowRight" className="h-5 w-5" />
           </Button>
         ) : (
-          <Button onClick={finish} disabled={!canContinue} size="lg">
-            Create account
+          <Button onClick={finish} disabled={!canContinue || submitting} size="lg">
+            {submitting ? 'Creating account...' : 'Create account'}
             <Icon name="arrowRight" className="h-5 w-5" />
           </Button>
         )}
