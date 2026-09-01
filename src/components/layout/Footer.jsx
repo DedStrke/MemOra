@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Wordmark from '@/components/ui/Wordmark'
 import { FOOTER_COLUMNS, SITE } from '@/constants/content'
+import { useApp } from '@/context/AppProvider'
 
 /*
   Site footer - same liquid glass material as the header, so the shell reads
@@ -9,7 +10,9 @@ import { FOOTER_COLUMNS, SITE } from '@/constants/content'
   there, not touching this component.
 */
 export default function Footer() {
+  const { account } = useApp()
   const year = new Date().getFullYear()
+  const logoTo = account ? '/dashboard' : '/'
 
   return (
     <footer className="glass-strong !rounded-none !border-x-0 !border-b-0 !border-t !border-t-line relative z-10 mt-16">
@@ -38,7 +41,7 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-center gap-6 border-t border-line pt-8 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
           <div>
-            <Link to="/" className="flex items-center gap-2 text-fg">
+            <Link to={logoTo} className="flex items-center gap-2 text-fg">
               <Wordmark />
             </Link>
             <p className="mt-2 text-sm text-muted">{SITE.tagline}</p>

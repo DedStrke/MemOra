@@ -127,6 +127,17 @@ export const FEATURES = [
   { id: 'courses', icon: 'cap', accent: 'paper', label: 'Your courses', desc: 'Manage subjects and boards', to: '/courses' },
 ]
 
+// Real spec codes for the subjects the content packs are actually built
+// against (see the header comment in constants/library.js) - used to give
+// the mock exam paper a genuine board/paper title instead of a generic one.
+// A subject not listed here falls back to whatever board the user set on
+// their subject in Courses.
+export const EXAM_BOARD_META = {
+  Maths: { board: 'Edexcel', code: '9MA0', paper: 'Paper 1: Pure Mathematics' },
+  Economics: { board: 'Edexcel A', code: '9EC0', paper: 'Paper 1: Markets and Business Behaviour' },
+  'Computer Science': { board: 'OCR', code: 'H446/01', paper: 'Paper 1: Computing Principles' },
+}
+
 export const STUDY_TECHNIQUES = [
   { id: 'notes', icon: 'book', label: 'Notes', desc: 'Read the topic properly' },
   { id: 'flashcards', icon: 'cards', label: 'Flashcards', desc: 'Flip prompts and answers' },

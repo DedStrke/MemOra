@@ -8,8 +8,11 @@ import Icon from '@/components/ui/Icon'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { LEGAL } from '@/constants/content'
+import { useApp } from '@/context/AppProvider'
 
 export default function Contact() {
+  const { account } = useApp()
+  const logoTo = account ? '/dashboard' : '/'
   const { title, intro, githubUrl, githubLabel, githubBody } = LEGAL.contact
 
   return (
@@ -17,7 +20,7 @@ export default function Contact() {
       <AtmosphereBackground />
 
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-6">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to={logoTo} className="flex items-center gap-2">
           <Wordmark />
         </Link>
         <Link to="/" className="text-sm font-semibold text-fg transition-colors hover:text-brand-strong">

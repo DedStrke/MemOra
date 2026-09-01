@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
+import { useApp } from '@/context/AppProvider'
 
 /*
   Shared shell for the legal pages (Privacy, Terms) - same minimal header and
@@ -14,12 +15,15 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
   moving backdrop needs a solid surface under body copy to stay readable.
 */
 export default function LegalLayout({ icon, title, updated, intro, sections }) {
+  const { account } = useApp()
+  const logoTo = account ? '/dashboard' : '/'
+
   return (
     <div className="relative flex min-h-screen flex-col">
       <AtmosphereBackground />
 
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-6">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to={logoTo} className="flex items-center gap-2">
           <Wordmark />
         </Link>
         <Link to="/" className="text-sm font-semibold text-fg transition-colors hover:text-brand-strong">

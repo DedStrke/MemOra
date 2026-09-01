@@ -109,7 +109,7 @@ function CollapsingHeader() {
         style={{ paddingTop: padY, paddingBottom: padY }}
         className="relative mx-auto flex max-w-6xl items-center justify-between px-5"
       >
-        <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-fg">
+        <Link to={account ? '/dashboard' : '/'} className="flex items-center gap-2 text-xl font-semibold text-fg">
           <motion.div style={{ scale: logoScale }} className="origin-left">
             <EyeMark pulseOnHover pulseOnClick className="h-8 w-8 text-brand" />
           </motion.div>

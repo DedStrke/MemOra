@@ -11,6 +11,7 @@ import Footer from '@/components/layout/Footer'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
 import { MARKETING, REVIEWS, FAQ_ITEMS } from '@/constants/content'
+import { useApp } from '@/context/AppProvider'
 
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
@@ -61,7 +62,9 @@ function Stars({ rating }) {
 }
 
 export default function HowItWorks() {
+  const { account } = useApp()
   const startTo = '/dashboard'
+  const logoTo = account ? '/dashboard' : '/'
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -69,7 +72,7 @@ export default function HowItWorks() {
 
       {/* Top bar */}
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-fg">
+        <Link to={logoTo} className="flex items-center gap-2 text-xl font-semibold text-fg">
           <EyeMark idle pulseOnClick className="h-8 w-8 text-brand" />
           <Wordmark />
         </Link>

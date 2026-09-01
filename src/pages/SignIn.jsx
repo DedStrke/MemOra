@@ -40,8 +40,9 @@ function Field({ id, label, type = 'text', value, onChange, error, autoComplete,
 
 export default function SignIn() {
   const navigate = useNavigate()
-  const { signIn, signUp } = useApp()
+  const { signIn, signUp, account } = useApp()
   const [searchParams] = useSearchParams()
+  const logoTo = account ? '/dashboard' : '/'
 
   const [mode, setMode] = useState(searchParams.get('mode') === 'signup' ? 'signup' : 'signin')
   const [name, setName] = useState('')
@@ -91,7 +92,7 @@ export default function SignIn() {
       <AtmosphereBackground />
 
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-6">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to={logoTo} className="flex items-center gap-2">
           <Wordmark />
         </Link>
         <Link to="/" className="text-sm font-semibold text-fg transition-colors hover:text-brand-strong">

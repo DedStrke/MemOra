@@ -73,9 +73,11 @@ export default function AppBar() {
         className="relative mx-auto flex max-w-6xl items-center justify-between px-5"
       >
         <div className="flex items-center gap-7">
-          {/* Logo goes to the first page (landing). */}
+          {/* AppBar only ever renders on in-app pages, so the logo goes back
+              to the dashboard, not the marketing landing page - there's
+              nothing for an already-in-app user to do there. */}
           <Link
-            to="/"
+            to="/dashboard"
             className="flex items-center gap-2 text-xl font-semibold text-fg"
           >
             <motion.div style={{ scale: logoScale }} className="origin-left">
