@@ -125,6 +125,7 @@ export const FEATURES = [
   { id: 'performance', icon: 'target', accent: 'brand', label: 'Performance', desc: 'See exactly what you got wrong', to: '/performance' },
   { id: 'community', icon: 'users', accent: 'success', label: 'Community', desc: 'Your own study board', to: '/community' },
   { id: 'courses', icon: 'cap', accent: 'paper', label: 'Your courses', desc: 'Manage subjects and boards', to: '/courses' },
+  { id: 'mock', icon: 'clock', accent: 'flash', label: 'Mock exams', desc: 'A timed, randomised paper', to: '/mock' },
 ]
 
 // Real spec codes for the subjects the content packs are actually built

@@ -6,6 +6,7 @@ import HowItWorks from '@/pages/HowItWorks'
 import Dashboard from '@/pages/Dashboard'
 import Profile from '@/pages/Profile'
 import StudySession from '@/pages/StudySession'
+import MockExam from '@/pages/MockExam'
 import Flashcards from '@/pages/Flashcards'
 import Courses from '@/pages/Courses'
 import Progress from '@/pages/Progress'
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/study" element={<StudySession />} />
+          <Route path="/mock" element={<MockExam />} />
           <Route path="/flashcards" element={<Flashcards />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/performance" element={<Performance />} />

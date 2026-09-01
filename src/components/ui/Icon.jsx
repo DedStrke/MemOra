@@ -266,6 +266,12 @@ const ICONS = {
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   play: <path d="M7 4v16l13-8z" />,
   pause: <path d="M8 5v14M16 5v14" />,
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3.5 2" />
+    </>
+  ),
   camera: (
     <>
       <path d="M4 8h3l1.6-2h6.8L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />

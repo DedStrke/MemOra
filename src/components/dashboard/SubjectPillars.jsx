@@ -23,9 +23,9 @@ const studyLink = (subject, technique) =>
 
 function InnerLinks({ subject }) {
   const cls =
-    'relative z-10 inline-flex min-h-[36px] flex-1 items-center justify-center gap-1.5 rounded-lg bg-raised px-3 py-1.5 text-xs font-semibold text-fg transition-colors hover:bg-brand-soft hover:text-brand-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current'
+    'relative z-10 inline-flex min-h-[36px] flex-1 basis-[40%] items-center justify-center gap-1.5 rounded-lg bg-raised px-3 py-1.5 text-xs font-semibold text-fg transition-colors hover:bg-brand-soft hover:text-brand-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current'
   return (
-    <div className="relative z-10 mt-auto flex gap-2 pt-3">
+    <div className="relative z-10 mt-auto flex flex-wrap gap-2 pt-3">
       <Link
         to={studyLink(subject, 'flashcards')}
         className={cls}
@@ -41,6 +41,14 @@ function InnerLinks({ subject }) {
       >
         <Icon name="scroll" className="h-3.5 w-3.5" />
         Past papers
+      </Link>
+      <Link
+        to={`/mock?subject=${encodeURIComponent(subject)}`}
+        className={cls}
+        aria-label={`Mock exam for ${subject}`}
+      >
+        <Icon name="clock" className="h-3.5 w-3.5" />
+        Mock exam
       </Link>
     </div>
   )
