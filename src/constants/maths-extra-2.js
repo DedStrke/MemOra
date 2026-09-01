@@ -31,10 +31,20 @@ import { STATS_FLASHCARDS, STATS_MCQ, STATS_EXAM } from './maths-stats-fill'
 import { BATCH_D_FLASHCARDS, BATCH_D_MCQ, BATCH_D_EXAM } from './maths-batch-d'
 import { BATCH_E_FLASHCARDS, BATCH_E_MCQ, BATCH_E_EXAM } from './maths-batch-e'
 
+// maths-stats-fill.js shipped 5 "Conditional Probability" flashcards, not the
+// 7 its own brief called for - combined with the 1 pre-existing flashcard for
+// that topic, the total (6) fell short of the 8-flashcard floor. Topped up
+// here directly rather than editing a file this pass didn't author.
+const CONDITIONAL_PROBABILITY_TOPUP_FLASHCARDS = [
+  { front: 'What does P(A|B) mean in words?', back: 'The probability that event A happens, given that event B has already happened.', topic: 'Conditional Probability' },
+  { front: 'In a two-way table, how do you find P(A|B) directly from the counts?', back: 'Divide the frequency in the cell satisfying both A and B by the total frequency in the row/column for B (the given condition).', topic: 'Conditional Probability' },
+]
+
 export const MATHS_FLASHCARDS_2 = [
   ...BATCH_A_FLASHCARDS,
   ...BATCH_B_FLASHCARDS,
   ...STATS_FLASHCARDS,
+  ...CONDITIONAL_PROBABILITY_TOPUP_FLASHCARDS,
   ...BATCH_D_FLASHCARDS,
   ...BATCH_E_FLASHCARDS,
 ]
