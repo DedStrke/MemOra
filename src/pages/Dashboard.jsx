@@ -248,6 +248,24 @@ export default function Dashboard() {
                 </Link>
               )
             })}
+            {activePack?.examQuestions?.length > 0 ? (
+              <Link
+                to={`/mock?subject=${encodeURIComponent(activeSubject)}`}
+                title="A timed, randomised paper for one section"
+                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
+              >
+                <Icon name="clock" className="h-4 w-4 text-brand-strong" />
+                Mock exam
+              </Link>
+            ) : (
+              <span
+                title={`No exam questions for ${activeSubject} yet`}
+                className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-muted opacity-40"
+              >
+                <Icon name="clock" className="h-4 w-4" />
+                Mock exam
+              </span>
+            )}
           </div>
         </motion.div>
       </div>
