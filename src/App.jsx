@@ -44,7 +44,10 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/study" element={<StudySession />} />
+          <Route path="/study/:subjectSlug" element={<StudySession />} />
+          <Route path="/study/:subjectSlug/:technique" element={<StudySession />} />
           <Route path="/mock" element={<MockExam />} />
+          <Route path="/mock/:subjectSlug" element={<MockExam />} />
           <Route path="/flashcards" element={<Flashcards />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/performance" element={<Performance />} />

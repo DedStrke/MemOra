@@ -4,6 +4,7 @@ import Icon from '@/components/ui/Icon'
 import { fadeInUp } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { lastSessionForSubject, daysAgo } from '@/lib/sessions'
+import { slugify } from '@/lib/slug'
 
 const DECAY_MAX = 21 // days at which a subject reads as fully faded
 const REVIEW_DAYS = 7 // past this, it is due a review
@@ -48,7 +49,7 @@ export default function KnowledgeDecay() {
             <li key={r.name}>
               <div className="mb-1 flex items-center justify-between gap-2 text-sm">
                 <Link
-                  to={`/study?subject=${encodeURIComponent(r.name)}`}
+                  to={`/study/${slugify(r.name)}`}
                   className="font-medium text-fg transition-colors hover:text-brand-strong"
                 >
                   {r.name}

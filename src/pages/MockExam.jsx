@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
@@ -8,6 +8,7 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { getPackByName, topicLevelMap } from '@/constants/library'
 import { EXAM_BOARD_META } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
+import { slugify, resolveSlug } from '@/lib/slug'
 
 // Preset paper lengths - picked, not typed, and timed like real papers
 // rather than a computed-and-rounded number (30/60/90 reads like an actual
@@ -67,7 +68,8 @@ function PaperHeader({ subjectLabel, board, sectionLabel }) {
 }
 
 export default function MockExam() {
-  const [params] = useSearchParams()
+  const { subjectSlug } = useParams()
+  const navigate = useNavigate()
   const { user, sessions, logSession, logAttempt } = useApp()
 
   const subjectNames =
@@ -75,11 +77,8 @@ export default function MockExam() {
       ? [user.courseName]
       : (user.subjects || []).map((s) => s.name)
 
-  const paramSubject = params.get('subject')
-  const [pickedSubject, setPickedSubject] = useState(
-    paramSubject && subjectNames.includes(paramSubject) ? paramSubject : null,
-  )
-  const subject = paramSubject && subjectNames.includes(paramSubject) ? paramSubject : pickedSubject
+  const subject = resolveSlug(subjectSlug, subjectNames)
+  const pickSubject = (name) => navigate(`/mock/${slugify(name)}`)
 
   const pack = subject ? getPackByName(subject) : null
   const board =
@@ -225,7 +224,7 @@ export default function MockExam() {
               key={name}
               variants={fadeInUp}
               type="button"
-              onClick={() => setPickedSubject(name)}
+              onClick={() => pickSubject(name)}
               className="rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
             >
               {name}
@@ -353,7 +352,7 @@ export default function MockExam() {
                   {(hasSections || topicFilter.length > 0) && 'Try a different paper or clear the topic filter.'}
                 </p>
                 <div className="mt-5">
-                  <Button as={Link} to={`/study?subject=${encodeURIComponent(subject)}`} variant="secondary" size="sm">
+                  <Button as={Link} to={`/study/${slugify(subject)}`} variant="secondary" size="sm">
                     Go to study instead
                   </Button>
                 </div>

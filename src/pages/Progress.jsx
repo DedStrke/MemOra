@@ -8,6 +8,7 @@ import Sparkline from '@/components/ui/Sparkline'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { subjectStats, studyStreak, topicStats } from '@/lib/sessions'
+import { slugify } from '@/lib/slug'
 
 const ACCENTS = ['text-flash', 'text-quiz', 'text-paper', 'text-brand-strong']
 const CHIPS = [
@@ -109,7 +110,7 @@ function SubjectCard({ subject, index, stats, topics }) {
           <p className="mt-1 text-xs text-muted">Finish a session to start tracking.</p>
           <Button
             as={Link}
-            to={`/study?subject=${encodeURIComponent(subject.name)}`}
+            to={`/study/${slugify(subject.name)}`}
             variant="subtle"
             size="sm"
             className="mt-3"

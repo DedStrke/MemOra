@@ -11,6 +11,7 @@ import { useApp } from '@/context/AppProvider'
 import { FEATURES, STUDY_TECHNIQUES } from '@/constants/content'
 import { getPackByName } from '@/constants/library'
 import { subjectMetrics, studyStreak } from '@/lib/sessions'
+import { slugify } from '@/lib/slug'
 
 // A technique is offered only if the subject's pack actually has content for
 // it, so nobody lands on an empty "no MCQs yet" dead end.
@@ -241,7 +242,7 @@ export default function Dashboard() {
               return (
                 <Link
                   key={t.id}
-                  to={`/study?subject=${encodeURIComponent(activeSubject)}&technique=${t.id}`}
+                  to={`/study/${slugify(activeSubject)}/${t.id}`}
                   title={t.desc}
                   className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
                 >
@@ -252,7 +253,7 @@ export default function Dashboard() {
             })}
             {activePack?.examQuestions?.length > 0 ? (
               <Link
-                to={`/mock?subject=${encodeURIComponent(activeSubject)}`}
+                to={`/mock/${slugify(activeSubject)}`}
                 title="A timed, randomised paper for one section"
                 className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
               >

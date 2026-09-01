@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
@@ -10,6 +10,7 @@ import { STUDY_TECHNIQUES } from '@/constants/content'
 import { getPackByName } from '@/constants/library'
 import { lastSessionForSubject, isTough } from '@/lib/sessions'
 import { useApp } from '@/context/AppProvider'
+import { slugify, resolveSlug } from '@/lib/slug'
 
 function shuffle(arr) {
   const a = [...arr]
@@ -130,16 +131,21 @@ function ChapterPicker({ pack, onPick }) {
 }
 
 export default function StudySession() {
-  const [params, setParams] = useSearchParams()
+  const { subjectSlug, technique: techniqueParam } = useParams()
+  const navigate = useNavigate()
   const { user, setRecentTopic, logSession, logAttempt, sessions } = useApp()
 
+  const availableSubjects = user?.courseType === 'University' && user?.courseName
+    ? [user.courseName]
+    : (user?.subjects || []).map((s) => s.name)
+
   const subject =
-    params.get('subject') ||
+    resolveSlug(subjectSlug, availableSubjects) ||
     user?.subjects?.find((s) => s.priority)?.name ||
     user?.subjects?.[0]?.name ||
     user?.courseName ||
     'Revision'
-  const technique = params.get('technique') || 'flashcards'
+  const technique = techniqueParam || 'flashcards'
   const pack = getPackByName(subject)
   // `subject` can arrive as a URL slug ("computer-science"), which must never
   // reach the UI - the pack carries the properly-cased display name.
@@ -177,10 +183,7 @@ export default function StudySession() {
   // Jump straight into another technique on the same chapter, from the empty
   // state. Writes the URL so a refresh (or a shared link) keeps the switch.
   const switchTechnique = (nextTechnique) => {
-    const next = new URLSearchParams(params)
-    next.set('subject', subject)
-    next.set('technique', nextTechnique)
-    setParams(next, { replace: true })
+    navigate(`/study/${slugify(subject)}/${nextTechnique}`, { replace: true })
   }
 
   const startStudying = () => {

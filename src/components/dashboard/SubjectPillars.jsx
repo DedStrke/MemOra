@@ -6,6 +6,7 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { PRIORITISED_COURSES, subjectMascot } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
 import { subjectMetrics } from '@/lib/sessions'
+import { slugify } from '@/lib/slug'
 
 const ACCENTS = [
   { chip: 'bg-flash-soft text-flash', spark: 'text-flash' },
@@ -17,9 +18,7 @@ const ACCENTS = [
 // Deep-link straight into a study session, optionally on a specific technique.
 // No technique means the session lands on its flashcards default.
 const studyLink = (subject, technique) =>
-  `/study?subject=${encodeURIComponent(subject)}${
-    technique ? `&technique=${technique}` : ''
-  }`
+  `/study/${slugify(subject)}${technique ? `/${technique}` : ''}`
 
 function InnerLinks({ subject }) {
   const cls =
@@ -43,7 +42,7 @@ function InnerLinks({ subject }) {
         Past papers
       </Link>
       <Link
-        to={`/mock?subject=${encodeURIComponent(subject)}`}
+        to={`/mock/${slugify(subject)}`}
         className={cls}
         aria-label={`Mock exam for ${subject}`}
       >

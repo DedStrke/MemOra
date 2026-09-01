@@ -7,6 +7,7 @@ import Icon from '@/components/ui/Icon'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { attemptStats, mistakes, weakestTopics, daysAgo } from '@/lib/sessions'
+import { slugify } from '@/lib/slug'
 
 const SUBJECT_ACCENT = {
   flash: 'bg-flash-soft text-flash',
@@ -213,7 +214,7 @@ export default function Performance() {
                         </span>
                         <Button
                           as={Link}
-                          to={`/study?subject=${encodeURIComponent(w.subject)}&technique=mcq`}
+                          to={`/study/${slugify(w.subject)}/mcq`}
                           variant="subtle"
                           size="sm"
                         >
