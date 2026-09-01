@@ -21,6 +21,8 @@ function techniqueHasContent(pack, techniqueId) {
       return pack.mcq?.length > 0
     case 'exam-questions':
       return pack.examQuestions?.length > 0
+    case 'notes':
+      return Object.keys(pack.notes || {}).length > 0
     case 'flashcards':
     case 'active-recall':
     case 'blurting':
