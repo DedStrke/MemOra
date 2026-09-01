@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Wordmark from '@/components/ui/Wordmark'
-import { NAV_LINKS } from '@/constants/content'
+import { NAV_LINKS, SITE } from '@/constants/content'
 
 /*
   Site footer - same liquid glass material as the header, so the shell reads
@@ -29,7 +29,7 @@ export default function Footer() {
         </nav>
 
         <p className="text-xs text-muted">
-          &copy; {year} Cortex &middot; runs entirely on this device, no account needed
+          &copy; {year} {SITE.name} &middot; free, no account needed to try it
         </p>
       </div>
     </footer>

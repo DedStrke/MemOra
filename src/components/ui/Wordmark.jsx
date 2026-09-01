@@ -2,7 +2,7 @@ import { SITE } from '@/constants/content'
 
 /*
   The site wordmark. Rendered as one word (no gap) with the back half in the
-  brand accent colour, so "Cortex" reads as a single deliberate two-tone
+  brand accent colour, so the name reads as a single deliberate two-tone
   lockup rather than two separate words.
 
     <Wordmark />              inline, for top bars

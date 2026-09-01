@@ -597,10 +597,10 @@ h1, h2, h3, h4 {
   padding-right: 0.6rem; /* trailing gap keeps spacing even across the seam */
 }
 
-/* ------------------------------------------------ SIGNAL (brain mark idle) */
-/* A slow, gentle breathing pulse on the neural signal line, like it's idling
-   between thoughts. Respects reduced-motion via the general rule above (a
-   small decorative detail, not the core brand animation). */
+/* ------------------------------------------------ SIGNAL (logo mark idle) */
+/* A slow, gentle breathing pulse - used on the eye mark's glowing iris, like
+   it's idling between blinks. Respects reduced-motion via the general rule
+   above (a small decorative detail, not the core brand animation). */
 @keyframes signal-pulse {
   0%,
   100% {

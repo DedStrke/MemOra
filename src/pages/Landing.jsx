@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
-import BrainMark from '@/components/ui/BrainMark'
+import EyeMark from '@/components/ui/EyeMark'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import Footer from '@/components/layout/Footer'
 import Wordmark from '@/components/ui/Wordmark'
 import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
-import { LANDING, LANDING_SUBJECTS } from '@/constants/content'
+import { LANDING, LANDING_SUBJECTS, SITE } from '@/constants/content'
 
 const ROTATE_WINDOW = 4
 const ROTATE_INTERVAL = 2200
@@ -111,7 +111,7 @@ function CollapsingHeader() {
       >
         <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-fg">
           <motion.div style={{ scale: logoScale }} className="origin-left">
-            <BrainMark pulseOnHover pulseOnClick className="h-8 w-8 text-brand" />
+            <EyeMark pulseOnHover pulseOnClick className="h-8 w-8 text-brand" />
           </motion.div>
           <motion.div style={{ scale: logoScale }} className="origin-left">
             <Wordmark />
@@ -210,7 +210,7 @@ export default function Landing() {
           </motion.div>
 
           <motion.p variants={fadeInUp} className="mt-3 text-xs text-muted">
-            Free · no card · works offline on this device
+            Free · no card required
           </motion.p>
 
           <motion.div variants={fadeInUp} className="w-full">
@@ -229,7 +229,7 @@ export default function Landing() {
         style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--page) 70%, transparent)' }}
       >
         <motion.div variants={fadeInUp} className="text-center">
-          <span className="kicker mx-auto justify-center">What Cortex does</span>
+          <span className="kicker mx-auto justify-center">What {SITE.name} does</span>
         </motion.div>
 
         <StoryBlock

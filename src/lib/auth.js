@@ -16,8 +16,8 @@
   of the app consumes, so the swap stays contained.
 */
 
-const ACCOUNTS_KEY = 'cortex:accounts:v1'
-const SESSION_KEY = 'cortex:session:v1'
+const ACCOUNTS_KEY = 'memora:accounts:v1'
+const SESSION_KEY = 'memora:session:v1'
 const ITERATIONS = 210000
 
 function readJson(key, fallback) {

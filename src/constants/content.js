@@ -3,10 +3,10 @@
 */
 
 export const SITE = {
-  name: 'Cortex',
+  name: 'Memora',
   // Wordmark split point: the two halves get styled differently (see
   // Wordmark.jsx). Not every name splits on a space, so this is explicit.
-  wordmarkSplit: ['Cor', 'tex'],
+  wordmarkSplit: ['Mem', 'Ora'],
   tagline: 'Real practice, real mark schemes, one subject at a time.',
 }
 
@@ -115,9 +115,9 @@ export const STICKY_REVIEWS = [
 ]
 
 export const FAQ_ITEMS = [
-  { q: 'Is this free?', a: 'Yes. Everything here runs entirely on this device.' },
+  { q: 'Is this free?', a: 'Yes, completely.' },
   { q: 'What subjects are covered?', a: 'Maths, Economics, and Computer Science, with real flashcards, multiple choice, and past-paper-style questions with mark schemes.' },
-  { q: 'Where is my data kept?', a: 'Entirely on this device, in your browser. Nothing is sent anywhere.' },
+  { q: 'Where is my data kept?', a: "In your browser, on whichever device you're using — it doesn't sync between devices, so switching computers or clearing your browser data means starting fresh there." },
   { q: 'Can I track my progress?', a: 'Yes. Every finished session is logged, and the progress page shows per-subject trends over time.' },
 ]
 

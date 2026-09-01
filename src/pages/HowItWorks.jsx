@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Mascot from '@/components/ui/Mascot'
-import BrainMark from '@/components/ui/BrainMark'
+import EyeMark from '@/components/ui/EyeMark'
 import Wordmark from '@/components/ui/Wordmark'
 import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
@@ -32,7 +32,7 @@ export default function HowItWorks() {
       {/* Top bar */}
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
         <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-fg">
-          <BrainMark idle pulseOnClick className="h-8 w-8 text-brand" />
+          <EyeMark idle pulseOnClick className="h-8 w-8 text-brand" />
           <Wordmark />
         </Link>
         <div className="flex items-center gap-3">

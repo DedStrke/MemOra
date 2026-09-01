@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NAV_LINKS } from '@/constants/content'
 import Icon from '@/components/ui/Icon'
-import BrainMark from '@/components/ui/BrainMark'
+import EyeMark from '@/components/ui/EyeMark'
 import Wordmark from '@/components/ui/Wordmark'
 import ThemeSwitcher from './ThemeSwitcher'
 import { useApp } from '@/context/AppProvider'
@@ -57,7 +57,7 @@ export default function AppBar() {
             to="/"
             className="flex items-center gap-2 text-xl font-semibold text-fg"
           >
-            <BrainMark pulseOnHover pulseOnClick className="h-9 w-9 text-brand" />
+            <EyeMark pulseOnHover pulseOnClick className="h-9 w-9 text-brand" />
             <Wordmark />
           </Link>
 

@@ -42,7 +42,7 @@ const DEFAULT_PROFILE = {
   ],
 }
 
-const STORAGE_KEY = 'revisionhub:v1'
+const STORAGE_KEY = 'memora:v1'
 const DEFAULTS = {
   theme: 'light',
   accent: 'blue',
