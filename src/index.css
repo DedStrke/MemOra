@@ -189,9 +189,12 @@
 /* ----------------------------------------------------------- FONT SWITCH */
 
 :root {
-  --app-font: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  /* Distinctive display face for headings + the wordmark. */
-  --font-head: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --app-font: 'Hanken Grotesk Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* Distinctive display face for headings + the wordmark - a wonky serif,
+     not another grotesque, so headings read as considered rather than
+     generated. font-variation-settings 'opsz' set per-size in a couple of
+     hero spots (Wordmark.jsx) where Fraunces' optical range matters most. */
+  --font-head: 'Fraunces Variable', ui-serif, Georgia, serif;
 }
 [data-font='dyslexic'] {
   --app-font: 'OpenDyslexic', 'Geist Variable', ui-sans-serif, system-ui, sans-serif;

@@ -5,6 +5,11 @@
 
     <Icon name="volume" className="h-5 w-5" />
     <Icon name="check" label="Correct" />
+
+  Signature stroke: bevel joins, not round - every corner cuts flat instead
+  of pooling into a soft pill, which is the one rendering choice that reads
+  as "considered" across all fifty-odd glyphs at once, on top of the paths
+  already being hand-drawn rather than pulled from an icon library.
 */
 
 const ICONS = {
@@ -297,9 +302,9 @@ export default function Icon({ name, className = 'h-5 w-5', label, filled = fals
       viewBox="0 0 24 24"
       fill={filled ? 'currentColor' : 'none'}
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="2.25"
       strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeLinejoin="bevel"
       className={className}
       focusable="false"
       {...a11y}
