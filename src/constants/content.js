@@ -43,7 +43,6 @@ export const LANDING_SUBJECTS = [
   'Government and Politics',
   'History',
   'Maths',
-  'PSHE',
   'Physics',
   'Psychology',
   'Science',
