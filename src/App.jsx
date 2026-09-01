@@ -17,6 +17,7 @@ import Privacy from '@/pages/Privacy'
 import Terms from '@/pages/Terms'
 import Contact from '@/pages/Contact'
 import CursorGlow from '@/components/ui/CursorGlow'
+import ScrollToTop from '@/components/layout/ScrollToTop'
 
 /*
   Routing.
@@ -29,6 +30,7 @@ import CursorGlow from '@/components/ui/CursorGlow'
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
+      <ScrollToTop />
       <CursorGlow />
       <Routes>
         <Route path="/" element={<Landing />} />

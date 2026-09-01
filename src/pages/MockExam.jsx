@@ -52,7 +52,7 @@ function formatClock(seconds) {
   return `${m}:${String(r).padStart(2, '0')}`
 }
 
-function PaperHeader({ subjectLabel, board }) {
+function PaperHeader({ subjectLabel, board, sectionLabel }) {
   return (
     <div className="mb-6 text-center">
       {board && (
@@ -61,7 +61,7 @@ function PaperHeader({ subjectLabel, board }) {
         </p>
       )}
       <h1 className="mt-1 text-2xl font-extrabold text-fg sm:text-3xl">{subjectLabel}</h1>
-      <p className="mt-1 text-sm text-muted">{board?.paper || 'Mixed practice paper'}</p>
+      <p className="mt-1 text-sm text-muted">{sectionLabel || board?.paper || 'Mixed practice paper'}</p>
     </div>
   )
 }
@@ -92,12 +92,36 @@ export default function MockExam() {
   // (Maths, Economics); a subject with no real AS/A2 split (Computer
   // Science) has nothing to filter, so Year 12 still sees everything.
   const isYear12 = user.yearGroup === 'Year 12'
+
+  // A mock is always scoped to one paper/component - Maths' Pure and
+  // Statistics content never appears in the same sitting, same as OCR CS
+  // never mixes Component 1 and 2. `pack.groups` (see library.js) already
+  // encodes exactly this split per subject, so it drives the picker rather
+  // than a second, hand-maintained list. sectionIdx resets to the first
+  // section whenever the subject changes.
+  const [sectionIdx, setSectionIdx] = useState(0)
+  const [topicFilter, setTopicFilter] = useState([]) // empty = every topic in the section
+  const hasSections = Boolean(pack?.groups?.length)
+  const activeSection = hasSections ? pack.groups[Math.min(sectionIdx, pack.groups.length - 1)] : null
+  const sectionTopics = activeSection ? activeSection.subgroups.flatMap((sg) => sg.topics) : null
+  const topicsInPlay = topicFilter.length > 0 ? topicFilter : sectionTopics
+
+  const pickSection = (idx) => {
+    setSectionIdx(idx)
+    setTopicFilter([])
+  }
+  const toggleTopic = (t) =>
+    setTopicFilter((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]))
+
   const availableQuestions = (() => {
     if (!pack) return []
-    const all = pack.examQuestions || []
-    if (!isYear12) return all
-    const levels = topicLevelMap(pack)
-    return all.filter((q) => levels[q.topic] !== 'A2')
+    let all = pack.examQuestions || []
+    if (topicsInPlay) all = all.filter((q) => topicsInPlay.includes(q.topic))
+    if (isYear12) {
+      const levels = topicLevelMap(pack)
+      all = all.filter((q) => levels[q.topic] !== 'A2')
+    }
+    return all
   })()
 
   // paper | running | marking | results
@@ -111,9 +135,11 @@ export default function MockExam() {
   const [startedAt, setStartedAt] = useState(null)
 
   const totalMarks = paper.reduce((sum, q) => sum + q.marks, 0)
+  const topicFilterKey = topicFilter.slice().sort().join('|')
 
-  // Regenerate whenever the subject or preset changes - picking a length is
-  // already a shuffle, no separate manual step needed to get a fresh paper.
+  // Regenerate whenever the subject, section, topic narrowing, or preset
+  // changes - each of those is already a deliberate choice, so it reshuffles
+  // on its own rather than needing a separate manual step.
   useEffect(() => {
     if (!pack) return
     const p = buildPaper(availableQuestions, preset.marks)
@@ -122,7 +148,7 @@ export default function MockExam() {
     setAwarded({})
     setPhase('paper')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pack, presetId])
+  }, [pack, presetId, sectionIdx, topicFilterKey, isYear12])
 
   // Countdown, once the paper is actually running.
   useEffect(() => {
@@ -223,13 +249,80 @@ export default function MockExam() {
         {/* PAPER INFO - before starting */}
         {phase === 'paper' && (
           <motion.div key="paper" variants={fadeInUp} initial="hidden" animate="show" exit={{ opacity: 0 }}>
-            <PaperHeader subjectLabel={pack?.name || subject} board={board} />
+            <PaperHeader subjectLabel={pack?.name || subject} board={board} sectionLabel={activeSection?.label} />
 
             {isYear12 && Object.keys(topicLevelMap(pack || {})).length > 0 && (
               <p className="mx-auto mb-5 max-w-md text-center text-xs font-medium text-muted">
                 <Icon name="access" className="mr-1 inline h-3.5 w-3.5 text-brand-strong" />
                 Year 12: sticking to Year 1 (AS) content for this paper.
               </p>
+            )}
+
+            {/* Section/paper picker - never mixes papers into one mock */}
+            {hasSections && (
+              <div className="mx-auto mb-5 max-w-lg">
+                <p className="mb-1.5 text-center text-xs font-semibold uppercase tracking-wide text-muted">
+                  Paper
+                </p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {pack.groups.map((g, idx) => (
+                    <button
+                      key={g.label}
+                      type="button"
+                      onClick={() => pickSection(idx)}
+                      aria-pressed={sectionIdx === idx}
+                      className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                        sectionIdx === idx
+                          ? 'border-brand bg-brand text-on-brand'
+                          : 'border-line bg-surface text-fg hover:border-brand'
+                      }`}
+                    >
+                      {g.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Optional topic narrowing within the chosen paper - one topic
+                or several, defaulting to the whole paper. */}
+            {sectionTopics && (
+              <details className="mx-auto mb-5 max-w-lg">
+                <summary className="cursor-pointer text-center text-xs font-semibold uppercase tracking-wide text-muted hover:text-fg">
+                  {topicFilter.length > 0
+                    ? `${topicFilter.length} topic${topicFilter.length === 1 ? '' : 's'} picked - narrow further`
+                    : 'Narrow to specific topics (optional)'}
+                </summary>
+                <div className="mt-3 flex flex-wrap justify-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setTopicFilter([])}
+                    aria-pressed={topicFilter.length === 0}
+                    className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
+                      topicFilter.length === 0
+                        ? 'border-brand bg-brand text-on-brand'
+                        : 'border-line bg-surface text-fg hover:border-brand'
+                    }`}
+                  >
+                    All topics
+                  </button>
+                  {sectionTopics.map((t) => (
+                    <button
+                      key={t}
+                      type="button"
+                      onClick={() => toggleTopic(t)}
+                      aria-pressed={topicFilter.includes(t)}
+                      className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+                        topicFilter.includes(t)
+                          ? 'border-brand bg-brand-soft text-brand-strong'
+                          : 'border-line bg-surface text-fg hover:border-brand'
+                      }`}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+              </details>
             )}
 
             <div className="mx-auto mb-5 flex max-w-md justify-center gap-2">
@@ -254,8 +347,10 @@ export default function MockExam() {
             {paper.length === 0 ? (
               <div className="mx-auto max-w-md py-6 text-center">
                 <p className="readable text-muted">
-                  No exam questions for {pack?.name || subject} yet, so there is not enough to build a
-                  paper from.
+                  No exam questions for {activeSection ? activeSection.label : pack?.name || subject}
+                  {topicFilter.length > 0 ? ' with that topic selection' : ''} yet, so there is not
+                  enough to build a paper from.{' '}
+                  {(hasSections || topicFilter.length > 0) && 'Try a different paper or clear the topic filter.'}
                 </p>
                 <div className="mt-5">
                   <Button as={Link} to={`/study?subject=${encodeURIComponent(subject)}`} variant="secondary" size="sm">
@@ -393,26 +488,27 @@ export default function MockExam() {
                     </ul>
                   </div>
 
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {[
-                      { label: `Full (${q.marks})`, value: q.marks },
-                      { label: `Half (${Math.round(q.marks / 2)})`, value: Math.round(q.marks / 2) },
-                      { label: 'None (0)', value: 0 },
-                    ].map((opt) => (
-                      <button
-                        key={opt.label}
-                        type="button"
-                        onClick={() => award(i, opt.value)}
-                        aria-pressed={awarded[i] === opt.value}
-                        className={`rounded-full border px-3.5 py-1.5 text-sm font-semibold transition-colors ${
-                          awarded[i] === opt.value
-                            ? 'border-brand bg-brand text-on-brand'
-                            : 'border-line bg-surface text-fg hover:border-brand'
-                        }`}
-                      >
-                        {opt.label}
-                      </button>
-                    ))}
+                  <div className="mt-3">
+                    <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-muted">
+                      Marks awarded (out of {q.marks})
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {Array.from({ length: q.marks + 1 }, (_, n) => n).map((n) => (
+                        <button
+                          key={n}
+                          type="button"
+                          onClick={() => award(i, n)}
+                          aria-pressed={awarded[i] === n}
+                          className={`h-9 min-w-9 rounded-full border px-2.5 text-sm font-bold tabular-nums transition-colors ${
+                            awarded[i] === n
+                              ? 'border-brand bg-brand text-on-brand'
+                              : 'border-line bg-surface text-fg hover:border-brand'
+                          }`}
+                        >
+                          {n}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
