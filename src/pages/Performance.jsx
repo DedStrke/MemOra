@@ -23,6 +23,28 @@ function StatCard({ label, value, accent }) {
   )
 }
 
+function MockResultRow({ s }) {
+  const when = daysAgo(s.ts)
+  const pct = s.totalMarks ? Math.round((s.score / s.totalMarks) * 100) : 0
+  const tone = pct >= 80 ? 'text-success' : pct >= 50 ? 'text-warning' : 'text-danger'
+  return (
+    <li className="flex items-center justify-between gap-3 border-b border-line py-3.5 last:border-b-0">
+      <div className="min-w-0">
+        <p className="truncate text-sm font-semibold text-fg">{s.subject}</p>
+        <p className="text-xs text-muted">
+          {s.questionCount || '?'} questions &middot; {when === 0 ? 'Today' : `${when}d ago`}
+        </p>
+      </div>
+      <div className="shrink-0 text-right">
+        <p className={`text-base font-extrabold tabular-nums ${tone}`}>
+          {s.score} / {s.totalMarks}
+        </p>
+        <p className={`text-xs font-semibold ${tone}`}>{pct}%</p>
+      </div>
+    </li>
+  )
+}
+
 function MistakeRow({ m }) {
   const when = daysAgo(m.ts)
   return (
@@ -57,7 +79,7 @@ function MistakeRow({ m }) {
 }
 
 export default function Performance() {
-  const { user, attempts } = useApp()
+  const { user, attempts, sessions } = useApp()
   const [subjectFilter, setSubjectFilter] = useState('all')
 
   const subjectNames = user.subjects?.map((s) => s.name) || []
@@ -68,6 +90,18 @@ export default function Performance() {
   const weak = useMemo(
     () => weakestTopics(attempts, subjectFilter === 'all' ? undefined : subjectFilter),
     [attempts, subjectFilter],
+  )
+
+  // Mock papers get their own results list - a per-paper score, not folded
+  // into the question-by-question mistake log below. Any topic that was
+  // actually wrong on a mock still lands in that log and in "Focus here",
+  // via the same logAttempt calls every other technique uses.
+  const mockResults = useMemo(
+    () =>
+      (sessions || [])
+        .filter((s) => s.technique === 'mock-exam' && (subjectFilter === 'all' || s.subject === subjectFilter))
+        .sort((a, b) => b.ts - a.ts),
+    [sessions, subjectFilter],
   )
 
   return (
@@ -139,6 +173,22 @@ export default function Performance() {
             <StatCard label="Didn't know" value={stats.dontKnow} accent="text-warning" />
             <StatCard label="Accuracy" value={`${stats.accuracy}%`} accent="text-brand-strong" />
           </motion.div>
+
+          {/* mock exam results - separate from the question-level mistake log below */}
+          {mockResults.length > 0 && (
+            <motion.div variants={fadeInUp} className="mt-6 card p-6">
+              <h2 className="text-lg font-bold text-fg">Mock exam results</h2>
+              <p className="readable mt-1 text-sm text-muted">
+                Every paper you've taken, most recent first. Anything you got wrong on one still
+                shows up in Focus here and Recent mistakes below.
+              </p>
+              <ul className="mt-2">
+                {mockResults.map((s) => (
+                  <MockResultRow key={s.id} s={s} />
+                ))}
+              </ul>
+            </motion.div>
+          )}
 
           <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1.4fr]">
             {/* weakest topics */}

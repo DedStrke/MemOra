@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import EyeMark from '@/components/ui/EyeMark'
@@ -87,35 +87,44 @@ function RotatingSubjects() {
   Collapsing header: transparent and edge-to-edge at the very top of the
   page (so it reads as part of the atmosphere, not a bar sitting on top of
   it), then fades in a glass panel and floats as an inset pill once the
-  learner scrolls - all interpolated continuously off real scroll position.
+  learner scrolls. A discrete "past the threshold" boolean driving plain CSS
+  transitions, not a continuous per-pixel scroll-linked style - recalculating
+  an animated border-radius on a backdrop-filter layer every scroll frame is
+  expensive enough to desync the sticky header from the page on scroll.
 */
 function CollapsingHeader() {
   const { account } = useApp()
-  const { scrollY } = useScroll()
-  const padY = useTransform(scrollY, [0, 140], [30, 12])
-  const logoScale = useTransform(scrollY, [0, 140], [1, 0.8])
-  const insetX = useTransform(scrollY, [0, 140], [0, 16])
-  const insetTop = useTransform(scrollY, [0, 140], [0, 12])
-  const radius = useTransform(scrollY, [0, 140], [0, 26])
-  const glassOpacity = useTransform(scrollY, [0, 140], [0, 1])
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 90)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <motion.header
-      style={{ marginLeft: insetX, marginRight: insetX, marginTop: insetTop, borderRadius: radius }}
-      className="sticky top-0 z-40 overflow-hidden"
+    <header
+      className={`sticky top-0 z-40 overflow-hidden transition-[margin] duration-300 ease-out ${
+        scrolled ? 'mx-4 mt-3' : 'mx-0 mt-0'
+      }`}
     >
-      <motion.div className="glass-strong absolute inset-0 !rounded-none" style={{ opacity: glassOpacity }} />
-      <motion.div
-        style={{ paddingTop: padY, paddingBottom: padY }}
-        className="relative mx-auto flex max-w-6xl items-center justify-between px-5"
+      <div
+        className={`glass-strong absolute inset-0 transition-[opacity,border-radius] duration-300 ease-out ${
+          scrolled ? '!rounded-3xl opacity-100' : '!rounded-none opacity-0'
+        }`}
+      />
+      <div
+        className={`relative mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 ease-out ${
+          scrolled ? 'py-3' : 'py-[30px]'
+        }`}
       >
         <Link to={account ? '/dashboard' : '/'} className="flex items-center gap-2 text-xl font-semibold text-fg">
-          <motion.div style={{ scale: logoScale }} className="origin-left">
+          <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.8]' : 'scale-100'}`}>
             <EyeMark pulseOnHover pulseOnClick className="h-8 w-8 text-brand" />
-          </motion.div>
-          <motion.div style={{ scale: logoScale }} className="origin-left">
+          </div>
+          <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.8]' : 'scale-100'}`}>
             <Wordmark />
-          </motion.div>
+          </div>
         </Link>
         <div className="flex items-center gap-3">
           <Link
@@ -136,8 +145,8 @@ function CollapsingHeader() {
             )}
           </Button>
         </div>
-      </motion.div>
-    </motion.header>
+      </div>
+    </header>
   )
 }
 

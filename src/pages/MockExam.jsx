@@ -1,13 +1,22 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
-import { getPackByName } from '@/constants/library'
+import { getPackByName, topicLevelMap } from '@/constants/library'
 import { EXAM_BOARD_META } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
+
+// Preset paper lengths - picked, not typed, and timed like real papers
+// rather than a computed-and-rounded number (30/60/90 reads like an actual
+// exam clock, not an estimate).
+const PAPER_PRESETS = [
+  { id: 'short', label: 'Short', marks: 20, minutes: 30 },
+  { id: 'standard', label: 'Standard', marks: 40, minutes: 60 },
+  { id: 'full', label: 'Full paper', marks: 60, minutes: 90 },
+]
 
 function shuffle(arr) {
   const a = [...arr]
@@ -24,7 +33,7 @@ function shuffle(arr) {
   the bank runs dry), then order low-to-high marks the way a real paper
   reads - short-answer starters first, the longer response questions last.
 */
-function buildPaper(examQuestions, targetMarks = 40, maxQuestions = 12) {
+function buildPaper(examQuestions, targetMarks = 40, maxQuestions = 16) {
   const picked = []
   let total = 0
   for (const q of shuffle(examQuestions)) {
@@ -34,12 +43,6 @@ function buildPaper(examQuestions, targetMarks = 40, maxQuestions = 12) {
     if (total >= targetMarks) break
   }
   return picked.sort((a, b) => a.marks - b.marks)
-}
-
-// ~1.5 minutes per mark is the rough rate real A-level papers are timed at,
-// rounded to a clean number and floored so a short paper still feels timed.
-function suggestedMinutes(totalMarks) {
-  return Math.max(20, Math.round((totalMarks * 1.5) / 5) * 5)
 }
 
 function formatClock(seconds) {
@@ -85,8 +88,22 @@ export default function MockExam() {
       ? { board: user.subjects.find((s) => s.name === subject).spec, code: '', paper: null }
       : null)
 
+  // Year 12 gets AS-only content where the subject actually splits that way
+  // (Maths, Economics); a subject with no real AS/A2 split (Computer
+  // Science) has nothing to filter, so Year 12 still sees everything.
+  const isYear12 = user.yearGroup === 'Year 12'
+  const availableQuestions = (() => {
+    if (!pack) return []
+    const all = pack.examQuestions || []
+    if (!isYear12) return all
+    const levels = topicLevelMap(pack)
+    return all.filter((q) => levels[q.topic] !== 'A2')
+  })()
+
   // paper | running | marking | results
   const [phase, setPhase] = useState('paper')
+  const [presetId, setPresetId] = useState('standard')
+  const preset = PAPER_PRESETS.find((p) => p.id === presetId) || PAPER_PRESETS[1]
   const [paper, setPaper] = useState([])
   const [answers, setAnswers] = useState({}) // index -> student's written answer
   const [awarded, setAwarded] = useState({}) // index -> marks self-awarded
@@ -94,17 +111,18 @@ export default function MockExam() {
   const [startedAt, setStartedAt] = useState(null)
 
   const totalMarks = paper.reduce((sum, q) => sum + q.marks, 0)
-  const minutes = suggestedMinutes(totalMarks)
 
-  // Regenerate whenever the subject changes (fresh random paper each visit).
+  // Regenerate whenever the subject or preset changes - picking a length is
+  // already a shuffle, no separate manual step needed to get a fresh paper.
   useEffect(() => {
     if (!pack) return
-    const p = buildPaper(pack.examQuestions || [])
+    const p = buildPaper(availableQuestions, preset.marks)
     setPaper(p)
     setAnswers({})
     setAwarded({})
     setPhase('paper')
-  }, [pack])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pack, presetId])
 
   // Countdown, once the paper is actually running.
   useEffect(() => {
@@ -115,13 +133,13 @@ export default function MockExam() {
 
   const regenerate = () => {
     if (!pack) return
-    setPaper(buildPaper(pack.examQuestions || []))
+    setPaper(buildPaper(availableQuestions, preset.marks))
     setAnswers({})
     setAwarded({})
   }
 
   const start = () => {
-    setSecondsLeft(minutes * 60)
+    setSecondsLeft(preset.minutes * 60)
     setStartedAt(Date.now())
     setPhase('running')
   }
@@ -133,13 +151,16 @@ export default function MockExam() {
   const finishMarking = () => {
     const scored = paper.reduce((sum, q, i) => sum + (awarded[i] ?? 0), 0)
     const pct = totalMarks ? scored / totalMarks : 0
-    const usedMinutes = startedAt ? Math.min(180, Math.round((Date.now() - startedAt) / 60000)) : minutes
+    const usedMinutes = startedAt ? Math.min(180, Math.round((Date.now() - startedAt) / 60000)) : preset.minutes
     logSession({
       subject,
       technique: 'mock-exam',
       difficulty: pct >= 0.8 ? 2 : pct >= 0.5 ? 3 : 4,
       topic: null,
       minutes: usedMinutes,
+      score: scored,
+      totalMarks,
+      questionCount: paper.length,
     })
     paper.forEach((q, i) => {
       const marks = awarded[i] ?? 0
@@ -204,6 +225,32 @@ export default function MockExam() {
           <motion.div key="paper" variants={fadeInUp} initial="hidden" animate="show" exit={{ opacity: 0 }}>
             <PaperHeader subjectLabel={pack?.name || subject} board={board} />
 
+            {isYear12 && Object.keys(topicLevelMap(pack || {})).length > 0 && (
+              <p className="mx-auto mb-5 max-w-md text-center text-xs font-medium text-muted">
+                <Icon name="access" className="mr-1 inline h-3.5 w-3.5 text-brand-strong" />
+                Year 12: sticking to Year 1 (AS) content for this paper.
+              </p>
+            )}
+
+            <div className="mx-auto mb-5 flex max-w-md justify-center gap-2">
+              {PAPER_PRESETS.map((p) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setPresetId(p.id)}
+                  aria-pressed={presetId === p.id}
+                  className={`flex-1 rounded-xl border px-3 py-2.5 text-center transition-colors ${
+                    presetId === p.id
+                      ? 'border-brand bg-brand-soft'
+                      : 'border-line bg-surface hover:border-brand'
+                  }`}
+                >
+                  <span className="block text-sm font-bold text-fg">{p.label}</span>
+                  <span className="block text-xs text-muted">{p.marks} marks &middot; {p.minutes} min</span>
+                </button>
+              ))}
+            </div>
+
             {paper.length === 0 ? (
               <div className="mx-auto max-w-md py-6 text-center">
                 <p className="readable text-muted">
@@ -228,7 +275,7 @@ export default function MockExam() {
                     <p className="text-xs text-muted">marks</p>
                   </div>
                   <div className="p-4">
-                    <p className="text-2xl font-extrabold text-fg">{minutes}</p>
+                    <p className="text-2xl font-extrabold text-fg">{preset.minutes}</p>
                     <p className="text-xs text-muted">minutes</p>
                   </div>
                 </div>
@@ -255,7 +302,7 @@ export default function MockExam() {
         {phase === 'running' && (
           <motion.div key="running" variants={fadeInUp} initial="hidden" animate="show" exit={{ opacity: 0 }}>
             <div
-              className={`sticky top-2 z-10 mb-6 flex items-center justify-between gap-3 rounded-2xl border px-4 py-3 ${
+              className={`sticky top-20 z-30 mb-6 flex items-center justify-between gap-3 rounded-2xl border px-4 py-3 shadow-lg ${
                 secondsLeft <= 300
                   ? 'border-danger bg-danger/10'
                   : 'border-line bg-surface'

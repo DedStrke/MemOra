@@ -2283,3 +2283,30 @@ export const getPackByName = (name) => {
     null
   )
 }
+
+/*
+  Derives an AS/A2 (Year 1/Year 2) level per topic from the pack's own
+  `groups` outline, where the curriculum actually splits that way - Maths
+  labels its subgroups "Year 1 (AS)" / "Year 2 (A2)"; Economics' AS themes
+  are Theme 1-2, A2 adds Theme 3-4. A subject without a real AS/A2 split
+  (Computer Science's OCR H446 is one linear two-year course, not a
+  decoupled AS + A2) returns an empty map, so nothing gets filtered out for
+  a Year 12 student there - there is no "AS-only" subset to fall back to.
+*/
+export function topicLevelMap(pack) {
+  const map = {}
+  if (!pack?.groups) return map
+  for (const group of pack.groups) {
+    const groupLevel = /^Theme (1|2)\b/.test(group.label)
+      ? 'AS'
+      : /^Theme (3|4)\b/.test(group.label)
+        ? 'A2'
+        : null
+    for (const sub of group.subgroups || []) {
+      const subLevel = /\(AS\)/.test(sub.label) ? 'AS' : /\(A2\)/.test(sub.label) ? 'A2' : groupLevel
+      if (!subLevel) continue
+      for (const topic of sub.topics || []) map[topic] = subLevel
+    }
+  }
+  return map
+}

@@ -6,8 +6,12 @@ import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import SubjectPicker from '@/components/ui/SubjectPicker'
 import { fadeInUp } from '@/lib/motion'
-import { PRIORITISED_COURSES, specsFor } from '@/constants/content'
+import { PRIORITISED_COURSES, specsFor, YEAR_GROUPS } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
+
+// Only the school-qualification year groups - University has its own branch
+// below and doesn't reach this picker.
+const SCHOOL_YEAR_GROUPS = YEAR_GROUPS.filter((y) => y !== 'University')
 
 /*
   Manage courses (route /courses). Tap subjects to add or remove them, set the
@@ -16,7 +20,7 @@ import { useApp } from '@/context/AppProvider'
 */
 export default function Courses() {
   const navigate = useNavigate()
-  const { user, setSubjects } = useApp()
+  const { user, setSubjects, setYearGroup } = useApp()
   const prioritised = PRIORITISED_COURSES.includes(user?.courseType)
   const boards = specsFor(user?.courseType)
 
@@ -28,6 +32,7 @@ export default function Courses() {
       priority: !!s.priority,
     })),
   )
+  const [yearGroup, setYearGroupLocal] = useState(user?.yearGroup || 'Year 13')
 
   const cleaned = rows
     .filter((s) => s.name.trim())
@@ -38,6 +43,7 @@ export default function Courses() {
     if (!canSave) return
     if (prioritised && !cleaned.some((s) => s.priority)) cleaned[0].priority = true
     setSubjects(cleaned)
+    setYearGroup(yearGroup)
     navigate('/dashboard')
   }
 
@@ -80,6 +86,31 @@ export default function Courses() {
           Add or remove subjects and set your exam boards.
           {prioritised ? ' Star the one you want front and centre.' : ''}
         </p>
+      </motion.div>
+
+      <motion.div variants={fadeInUp} className="mt-6">
+        <p className="mb-2 text-sm font-semibold text-fg">Year group</p>
+        <p className="mb-3 text-xs text-muted">
+          For A-levels, this decides whether mock exams include Year 2 (A2) content yet, or stick
+          to Year 1 (AS) until you're there.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {SCHOOL_YEAR_GROUPS.map((y) => (
+            <button
+              key={y}
+              type="button"
+              onClick={() => setYearGroupLocal(y)}
+              aria-pressed={yearGroup === y}
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                yearGroup === y
+                  ? 'border-brand bg-brand text-on-brand'
+                  : 'border-line bg-surface text-fg hover:border-brand'
+              }`}
+            >
+              {y}
+            </button>
+          ))}
+        </div>
       </motion.div>
 
       <motion.div variants={fadeInUp} className="mt-6">

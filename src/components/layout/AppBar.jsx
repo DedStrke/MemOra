@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { NAV_LINKS } from '@/constants/content'
 import Icon from '@/components/ui/Icon'
 import EyeMark from '@/components/ui/EyeMark'
@@ -45,32 +45,39 @@ export default function AppBar() {
 
   // Same collapsing treatment as the landing header: transparent and
   // edge-to-edge at rest, fading in a glass panel and floating as an inset
-  // pill once the page scrolls - continuous, off real scroll position.
-  const { scrollY } = useScroll()
-  const padY = useTransform(scrollY, [0, 100], [18, 10])
-  const logoScale = useTransform(scrollY, [0, 100], [1, 0.88])
-  const insetX = useTransform(scrollY, [0, 100], [0, 14])
-  const insetTop = useTransform(scrollY, [0, 100], [0, 10])
-  const radius = useTransform(scrollY, [0, 100], [0, 24])
-  const glassOpacity = useTransform(scrollY, [0, 100], [0, 1])
+  // pill once the page scrolls. A discrete "past the threshold" boolean
+  // driving plain CSS transitions, rather than a continuous per-pixel
+  // scroll-linked style - the earlier version recalculated an animated
+  // border-radius on a backdrop-filter layer every scroll frame, which is
+  // expensive enough to desync the sticky header from the page on scroll.
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <motion.header
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      style={{ marginLeft: insetX, marginRight: insetX, marginTop: insetTop, borderRadius: radius }}
-      className="sticky top-0 z-40"
+      className={`sticky top-0 z-40 transition-[margin] duration-300 ease-out ${
+        scrolled ? 'mx-3.5 mt-2.5' : 'mx-0 mt-0'
+      }`}
     >
       {/* Clipped to the pill shape on its own - the header itself must stay
           overflow-visible so the mobile menu dropdown can pop out below it. */}
-      <motion.div
-        className="glass-strong absolute inset-0 overflow-hidden"
-        style={{ opacity: glassOpacity, borderRadius: radius }}
+      <div
+        className={`glass-strong absolute inset-0 overflow-hidden transition-[opacity,border-radius] duration-300 ease-out ${
+          scrolled ? 'rounded-3xl opacity-100' : 'rounded-none opacity-0'
+        }`}
       />
-      <motion.div
-        style={{ paddingTop: padY, paddingBottom: padY }}
-        className="relative mx-auto flex max-w-6xl items-center justify-between px-5"
+      <div
+        className={`relative mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 ease-out ${
+          scrolled ? 'py-2.5' : 'py-[18px]'
+        }`}
       >
         <div className="flex items-center gap-7">
           {/* AppBar only ever renders on in-app pages, so the logo goes back
@@ -80,12 +87,12 @@ export default function AppBar() {
             to="/dashboard"
             className="flex items-center gap-2 text-xl font-semibold text-fg"
           >
-            <motion.div style={{ scale: logoScale }} className="origin-left">
+            <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.88]' : 'scale-100'}`}>
               <EyeMark pulseOnHover pulseOnClick className="h-9 w-9 text-brand" />
-            </motion.div>
-            <motion.div style={{ scale: logoScale }} className="origin-left">
+            </div>
+            <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.88]' : 'scale-100'}`}>
               <Wordmark />
-            </motion.div>
+            </div>
           </Link>
 
           {/* Inline nav next to the wordmark (mobile still uses the hamburger). */}
@@ -206,7 +213,7 @@ export default function AppBar() {
             </AnimatePresence>
           </div>
         </div>
-      </motion.div>
+      </div>
     </motion.header>
   )
 }

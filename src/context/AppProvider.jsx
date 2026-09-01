@@ -162,6 +162,7 @@ export default function AppProvider({ children }) {
       // ---- profile ----
       setName: (name) => patch({ profile: { ...state.profile, name } }),
       setBio: (bio) => patch({ profile: { ...state.profile, bio } }),
+      setYearGroup: (yearGroup) => patch({ profile: { ...state.profile, yearGroup } }),
       setAvatar: (avatar) => patch({ profile: { ...state.profile, avatar } }),
       setSubjects: (subjects) => patch({ profile: { ...state.profile, subjects } }),
 
