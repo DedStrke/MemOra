@@ -8,6 +8,7 @@ import EyeMark from '@/components/ui/EyeMark'
 import Wordmark from '@/components/ui/Wordmark'
 import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
 import Footer from '@/components/layout/Footer'
+import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
 import { MARKETING, REVIEWS, FAQ_ITEMS } from '@/constants/content'
 
@@ -64,6 +65,8 @@ export default function HowItWorks() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      <AtmosphereBackground />
+
       {/* Top bar */}
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
         <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-fg">
@@ -79,16 +82,13 @@ export default function HowItWorks() {
       </header>
 
       {/* Hero */}
-      <div className="relative">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-[440px] bg-gradient-to-b from-brand-soft via-page to-transparent"
-        />
+      <div className="relative z-10">
         <motion.section
           variants={staggerContainer}
           initial="hidden"
           animate="show"
           className="relative mx-auto max-w-3xl px-5 pt-14 pb-10 text-center"
+          style={{ textShadow: '0 2px 24px color-mix(in srgb, var(--page) 75%, transparent)' }}
         >
           <motion.p
             variants={fadeInUp}
@@ -128,7 +128,8 @@ export default function HowItWorks() {
       <motion.section
         {...inViewProps}
         variants={staggerContainer}
-        className="mx-auto max-w-6xl px-5 py-20 sm:py-28"
+        className="relative z-10 mx-auto max-w-6xl px-5 py-20 sm:py-28"
+        style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--page) 70%, transparent)' }}
       >
         <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <span className="kicker mb-4">What it does</span>
@@ -155,11 +156,12 @@ export default function HowItWorks() {
       </motion.section>
 
       {/* How it works */}
-      <div id="how-it-works" className="bg-raised/50">
+      <div id="how-it-works" className="relative z-10 bg-raised/50">
         <motion.section
           {...inViewProps}
           variants={staggerContainer}
           className="mx-auto max-w-6xl px-5 py-20 sm:py-28"
+          style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--raised) 70%, transparent)' }}
         >
           <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
             <span className="kicker mb-4">How it works</span>
@@ -195,7 +197,8 @@ export default function HowItWorks() {
       <motion.section
         {...inViewProps}
         variants={staggerContainer}
-        className="mx-auto max-w-6xl px-5 py-20 sm:py-28"
+        className="relative z-10 mx-auto max-w-6xl px-5 py-20 sm:py-28"
+        style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--page) 70%, transparent)' }}
       >
         <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <span className="kicker mb-4">Loved by students</span>
@@ -235,7 +238,8 @@ export default function HowItWorks() {
         id="faq"
         {...inViewProps}
         variants={staggerContainer}
-        className="mx-auto max-w-3xl px-5 py-20 sm:py-28"
+        className="relative z-10 mx-auto max-w-3xl px-5 py-20 sm:py-28"
+        style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--page) 70%, transparent)' }}
       >
         <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <span className="kicker mb-4">FAQ</span>
@@ -252,7 +256,7 @@ export default function HowItWorks() {
       <motion.section
         {...inViewProps}
         variants={staggerContainer}
-        className="mx-auto max-w-3xl px-5 pb-24 pt-4 text-center"
+        className="relative z-10 mx-auto max-w-3xl px-5 pb-24 pt-4 text-center"
       >
         <motion.div
           variants={fadeInUp}

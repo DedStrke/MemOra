@@ -60,9 +60,14 @@ export default function AppBar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
       style={{ marginLeft: insetX, marginRight: insetX, marginTop: insetTop, borderRadius: radius }}
-      className="sticky top-0 z-40 overflow-hidden"
+      className="sticky top-0 z-40"
     >
-      <motion.div className="glass-strong absolute inset-0 !rounded-none" style={{ opacity: glassOpacity }} />
+      {/* Clipped to the pill shape on its own - the header itself must stay
+          overflow-visible so the mobile menu dropdown can pop out below it. */}
+      <motion.div
+        className="glass-strong absolute inset-0 overflow-hidden"
+        style={{ opacity: glassOpacity, borderRadius: radius }}
+      />
       <motion.div
         style={{ paddingTop: padY, paddingBottom: padY }}
         className="relative mx-auto flex max-w-6xl items-center justify-between px-5"
