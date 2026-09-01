@@ -75,7 +75,7 @@ const CORE_REVISION = [
       },
       {
         "front": "What is a^(m/n)?",
-        "back": "(ⁿ√a)^m — the nth root of a, raised to power m",
+        "back": "(ⁿ√a)^m: the nth root of a, raised to power m",
         "topic": "Algebraic Expressions"
       },
       {
@@ -90,7 +90,7 @@ const CORE_REVISION = [
       },
       {
         "front": "What is the rule for (a^m)^n?",
-        "back": "a^(mn) — multiply the powers",
+        "back": "a^(mn): multiply the powers",
         "topic": "Algebraic Expressions"
       },
       {
@@ -100,7 +100,7 @@ const CORE_REVISION = [
       },
       {
         "front": "Is √a + √b equal to √(a+b)?",
-        "back": "No — surds cannot be added under one root like this",
+        "back": "No: surds cannot be added under one root like this",
         "topic": "Algebraic Expressions"
       },
       {
@@ -575,7 +575,7 @@ const CORE_REVISION = [
       },
       {
         "front": "Is log(a+b) equal to log(a)+log(b)?",
-        "back": "No — this is a common mistake; the log laws only work for multiplication/division inside the log",
+        "back": "No: this is a common mistake; the log laws only work for multiplication/division inside the log",
         "topic": "Exponentials and Logarithms"
       },
       {
@@ -884,7 +884,7 @@ const CORE_REVISION = [
         "topic": "Forces and Newton's Laws"
       },
       {
-        "front": "Tension in a string over a smooth pulley — same or different each side?",
+        "front": "Tension in a string over a smooth pulley: same or different each side?",
         "back": "Same throughout (light, inextensible string, smooth pulley)",
         "topic": "Forces and Newton's Laws"
       },
@@ -1502,7 +1502,7 @@ const CORE_REVISION = [
         "marks": 2,
         "markScheme": [
           "(sin²θ+cos²θ)/(sinθcosθ) = 1/(sinθcosθ)",
-          "Final answer: True identity — combine fractions using sin²+cos²=1"
+          "Final answer: True identity: combine fractions using sin²+cos²=1"
         ],
         "topic": "Trigonometric Identities and Equations"
       },
@@ -1860,7 +1860,7 @@ const CORE_REVISION = [
         "marks": 2,
         "markScheme": [
           "0.03 < 0.05 so reject H0",
-          "Final answer: Reject H0 — significant evidence p<0.5"
+          "Final answer: Reject H0: significant evidence p<0.5"
         ],
         "topic": "Statistical Hypothesis Testing"
       },
@@ -1896,8 +1896,8 @@ const CORE_REVISION = [
         "question": "Why do we model an object as a particle?",
         "marks": 2,
         "markScheme": [
-          "Conceptual — simplifies the physics",
-          "Final answer: To simplify — ignore size/shape and rotational effects"
+          "Conceptual: simplifies the physics",
+          "Final answer: To simplify: ignore size/shape and rotational effects"
         ],
         "topic": "Modelling in Mechanics"
       },
@@ -1905,7 +1905,7 @@ const CORE_REVISION = [
         "question": "Why is a string modelled as \"light\"?",
         "marks": 2,
         "markScheme": [
-          "Conceptual — simplifies the model",
+          "Conceptual: simplifies the model",
           "Final answer: So its mass can be ignored and doesn't affect the force/tension calculations"
         ],
         "topic": "Modelling in Mechanics"
@@ -1923,7 +1923,7 @@ const CORE_REVISION = [
         "question": "A ball is thrown and modelled as a particle under gravity only. Give one limitation of this model.",
         "marks": 2,
         "markScheme": [
-          "Conceptual — real-world critique",
+          "Conceptual: real-world critique",
           "Final answer: It ignores air resistance, which would reduce speed/range in reality"
         ],
         "topic": "Modelling in Mechanics"

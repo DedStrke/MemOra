@@ -117,7 +117,7 @@ export const STICKY_REVIEWS = [
 export const FAQ_ITEMS = [
   { q: 'Is this free?', a: 'Yes, completely.' },
   { q: 'What subjects are covered?', a: 'Maths, Economics, and Computer Science, with real flashcards, multiple choice, and past-paper-style questions with mark schemes.' },
-  { q: 'Where is my data kept?', a: "In your browser, on whichever device you're using — it doesn't sync between devices, so switching computers or clearing your browser data means starting fresh there." },
+  { q: 'Where is my data kept?', a: "In your browser, on whichever device you're using. It doesn't sync between devices, so switching computers or clearing your browser data means starting fresh there." },
   { q: 'Can I track my progress?', a: 'Yes. Every finished session is logged, and the progress page shows per-subject trends over time.' },
 ]
 
@@ -295,7 +295,7 @@ export const LEGAL = {
   },
   contact: {
     title: 'Contact',
-    intro: "Memora is a personal project, not a company with a support line — but bug reports and ideas are genuinely welcome.",
+    intro: "Memora is a personal project, not a company with a support line, but bug reports and ideas are genuinely welcome.",
     githubUrl: 'https://github.com/DedStrke/MemOra',
     githubLabel: 'Open an issue on GitHub',
     githubBody: 'The fastest way to report a bug, request a subject, or suggest a feature. Every issue gets read.',

@@ -41,7 +41,7 @@ export const CS_EXTRA_FLASHCARDS_2 = [
   },
   {
     front: "What does MISD stand for, and is it common?",
-    back: "Multiple Instruction, Single Data — a rare classification, mainly used in specialist fault-tolerant systems.",
+    back: "Multiple Instruction, Single Data: a rare classification, mainly used in specialist fault-tolerant systems.",
     topic: "Types of Processor",
   },
   {
@@ -92,7 +92,7 @@ export const CS_EXTRA_FLASHCARDS_2 = [
   },
   {
     front: "What is the time complexity of accessing an array element by its index?",
-    back: "O(1) — constant time, since the address can be calculated directly.",
+    back: "O(1): constant time, since the address can be calculated directly.",
     topic: "Algorithms: Searching, Sorting & Graph Traversal",
   },
   {
@@ -300,7 +300,7 @@ export const CS_EXTRA_MCQ_2 = [
       "Interrupt bus",
     ],
     answer: 3,
-    explanation: "There is no separate 'interrupt bus' — interrupt requests are signalled via the control bus.",
+    explanation: "There is no separate 'interrupt bus'; interrupt requests are signalled via the control bus.",
     topic: "Structure and Function of the Processor",
   },
 

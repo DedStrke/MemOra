@@ -203,7 +203,7 @@ export default function SignIn() {
           </form>
 
           <p className="mt-6 border-t border-line pt-4 text-xs leading-relaxed text-muted">
-            Accounts are stored only in this browser — nothing is uploaded, and your revision
+            Accounts are stored only in this browser, nothing is uploaded, and your revision
             won't follow you to another device.{' '}
             <Link to="/dashboard" className="font-semibold text-brand-strong hover:underline">
               Skip and just study

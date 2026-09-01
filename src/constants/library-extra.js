@@ -41,7 +41,7 @@ export const EXTRA_REVISION = [
     "flashcards": [
       {
         "front": "What does PC stand for and what does it hold?",
-        "back": "Program Counter — the address of the next instruction to be fetched",
+        "back": "Program Counter: the address of the next instruction to be fetched",
         "topic": "Structure and Function of the Processor"
       },
       {
@@ -206,7 +206,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Is RAM volatile or non-volatile?",
-        "back": "Volatile — contents lost when power is removed",
+        "back": "Volatile: contents lost when power is removed",
         "topic": "Input, Output and Storage"
       },
       {
@@ -306,12 +306,12 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Why does the CPU use interrupts rather than polling?",
-        "back": "More efficient — avoids wasting CPU cycles repeatedly checking devices that usually have nothing to report",
+        "back": "More efficient: avoids wasting CPU cycles repeatedly checking devices that usually have nothing to report",
         "topic": "Systems Software"
       },
       {
         "front": "What is FCFS scheduling?",
-        "back": "First Come First Served — processes run strictly in the order they arrive",
+        "back": "First Come First Served: processes run strictly in the order they arrive",
         "topic": "Systems Software"
       },
       {
@@ -346,7 +346,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Advantage of an interpreter over a compiler?",
-        "back": "Easier to debug — errors are reported immediately, line by line",
+        "back": "Easier to debug: errors are reported immediately, line by line",
         "topic": "Applications Generation (Translators)"
       },
       {
@@ -391,7 +391,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Give an example of a semantic error",
-        "back": "Adding a string to an integer without conversion (type mismatch) — grammatically valid but logically inconsistent",
+        "back": "Adding a string to an integer without conversion (type mismatch): grammatically valid but logically inconsistent",
         "topic": "Applications Generation (Translators)"
       },
       {
@@ -411,7 +411,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "What is pair programming?",
-        "back": "Two programmers work together at one workstation — one writing code, one reviewing it",
+        "back": "Two programmers work together at one workstation: one writing code, one reviewing it",
         "topic": "Software Development Methodologies"
       },
       {
@@ -486,7 +486,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Is hashing reversible?",
-        "back": "No — it is a one-way process",
+        "back": "No: it is a one-way process",
         "topic": "Compression, Encryption and Hashing"
       },
       {
@@ -541,12 +541,12 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "What does 2NF add on top of 1NF?",
-        "back": "No partial dependency — non-key attributes depend on the whole primary key",
+        "back": "No partial dependency: non-key attributes depend on the whole primary key",
         "topic": "Databases"
       },
       {
         "front": "What does 3NF add on top of 2NF?",
-        "back": "No transitive dependency — non-key attributes depend only on the primary key",
+        "back": "No transitive dependency: non-key attributes depend only on the primary key",
         "topic": "Databases"
       },
       {
@@ -576,7 +576,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "What is an ERD?",
-        "back": "Entity Relationship Diagram — visually models entities/tables and the relationships between them",
+        "back": "Entity Relationship Diagram: visually models entities/tables and the relationships between them",
         "topic": "Databases"
       },
       {
@@ -626,7 +626,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Key feature of peer-to-peer networks?",
-        "back": "No central server — each device can act as both client and server",
+        "back": "No central server: each device can act as both client and server",
         "topic": "Networks"
       },
       {
@@ -796,12 +796,12 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "What does LIFO stand for, and which structure uses it?",
-        "back": "Last In First Out — a stack",
+        "back": "Last In First Out: a stack",
         "topic": "Data Structures"
       },
       {
         "front": "What does FIFO stand for, and which structure uses it?",
-        "back": "First In First Out — a queue",
+        "back": "First In First Out: a queue",
         "topic": "Data Structures"
       },
       {
@@ -861,7 +861,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "One disadvantage of a linked list compared to an array?",
-        "back": "No direct/instant access by index — must traverse from the start",
+        "back": "No direct/instant access by index: must traverse from the start",
         "topic": "Data Structures"
       },
       {
@@ -971,17 +971,17 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "What technique does merge sort use?",
-        "back": "Divide and conquer — splits the list, sorts, then merges",
+        "back": "Divide and conquer: splits the list, sorts, then merges",
         "topic": "Algorithms: Searching, Sorting & Graph Traversal"
       },
       {
         "front": "What does BFS stand for, and what structure does it use?",
-        "back": "Breadth-First Search — uses a queue",
+        "back": "Breadth-First Search: uses a queue",
         "topic": "Algorithms: Searching, Sorting & Graph Traversal"
       },
       {
         "front": "What does DFS stand for, and what structure does it use?",
-        "back": "Depth-First Search — uses a stack (or recursion)",
+        "back": "Depth-First Search: uses a stack (or recursion)",
         "topic": "Algorithms: Searching, Sorting & Graph Traversal"
       },
       {
@@ -1001,7 +1001,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Worst-case time complexity of quicksort, and why does it occur?",
-        "back": "O(n²) — occurs when the pivot chosen is consistently the smallest/largest element, giving very unbalanced partitions",
+        "back": "O(n²): occurs when the pivot chosen is consistently the smallest/largest element, giving very unbalanced partitions",
         "topic": "Algorithms: Searching, Sorting & Graph Traversal"
       },
       {
@@ -1061,7 +1061,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Are computational thinking skills only useful for programming?",
-        "back": "No — they are transferable to problem-solving in many fields, e.g. science, engineering, business",
+        "back": "No: they are transferable to problem-solving in many fields, e.g. science, engineering, business",
         "topic": "Elements of Computational Thinking"
       },
       {
@@ -1121,7 +1121,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "What does count-controlled iteration mean, and which loop type is it?",
-        "back": "A loop that repeats a known, fixed number of times — a FOR loop",
+        "back": "A loop that repeats a known, fixed number of times: a FOR loop",
         "topic": "Programming Techniques"
       },
       {
@@ -1276,7 +1276,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "What is UML?",
-        "back": "Unified Modeling Language — a standard notation for visualising system design",
+        "back": "Unified Modeling Language: a standard notation for visualising system design",
         "topic": "Analysis and Design (Systems Life Cycle)"
       },
       {
@@ -1366,7 +1366,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Does the Computer Misuse Act require actual damage to have occurred for an offence to be committed?",
-        "back": "No — unauthorised access alone is an offence regardless of damage caused",
+        "back": "No: unauthorised access alone is an offence regardless of damage caused",
         "topic": "Legal, Moral, Cultural and Ethical Issues"
       },
       {
@@ -1381,7 +1381,7 @@ export const EXTRA_REVISION = [
       },
       {
         "front": "Can copying a company database without authorisation break more than one law at once?",
-        "back": "Yes — e.g. it could breach both the Computer Misuse Act and the Data Protection Act/GDPR simultaneously",
+        "back": "Yes: e.g. it could breach both the Computer Misuse Act and the Data Protection Act/GDPR simultaneously",
         "topic": "Legal, Moral, Cultural and Ethical Issues"
       }
     ],
@@ -2158,7 +2158,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Any two valid factors with explanation",
-          "Final answer: Clock speed — more cycles per second means more instructions processed; number of cores — allows more instructions to be processed in parallel"
+          "Final answer: Clock speed: more cycles per second means more instructions processed; number of cores: allows more instructions to be processed in parallel"
         ],
         "topic": "Structure and Function of the Processor"
       },
@@ -2203,7 +2203,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Conceptual explanation, evaluative",
-          "Final answer: Performance also depends on other factors such as cache size, number of cores, and how efficiently instructions are pipelined — a higher clock speed with a bottleneck elsewhere (e.g. slow memory access) gives diminishing returns"
+          "Final answer: Performance also depends on other factors such as cache size, number of cores, and how efficiently instructions are pipelined: a higher clock speed with a bottleneck elsewhere (e.g. slow memory access) gives diminishing returns"
         ],
         "topic": "Structure and Function of the Processor"
       },
@@ -2266,7 +2266,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Application of taxonomy",
-          "Final answer: SISD — Single Instruction, Single Data"
+          "Final answer: SISD: Single Instruction, Single Data"
         ],
         "topic": "Types of Processor"
       },
@@ -2293,7 +2293,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Conceptual explanation, evaluative",
-          "Final answer: Not all tasks/software can be effectively split to run in parallel — some processes are inherently sequential, and coordinating between cores also introduces overhead, so gains are often less than proportional"
+          "Final answer: Not all tasks/software can be effectively split to run in parallel: some processes are inherently sequential, and coordinating between cores also introduces overhead, so gains are often less than proportional"
         ],
         "topic": "Types of Processor"
       },
@@ -2356,7 +2356,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Applied scenario reasoning",
-          "Final answer: Solid-state (flash) storage — it has no moving parts, so it withstands shock/vibration far better than a magnetic HDD, which is important for a device used in rough conditions"
+          "Final answer: Solid-state (flash) storage: it has no moving parts, so it withstands shock/vibration far better than a magnetic HDD, which is important for a device used in rough conditions"
         ],
         "topic": "Input, Output and Storage"
       },
@@ -2455,7 +2455,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Conceptual explanation",
-          "Final answer: Paging avoids external fragmentation, since a process's memory need not be contiguous — it can be split into fixed-size pages placed anywhere in memory, making more efficient use of available RAM"
+          "Final answer: Paging avoids external fragmentation, since a process's memory need not be contiguous: it can be split into fixed-size pages placed anywhere in memory, making more efficient use of available RAM"
         ],
         "topic": "Systems Software"
       },
@@ -2527,7 +2527,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Applied classification",
-          "Final answer: Semantic error (undeclared identifier used) — the grammar is valid but the meaning/usage is invalid"
+          "Final answer: Semantic error (undeclared identifier used): the grammar is valid but the meaning/usage is invalid"
         ],
         "topic": "Applications Generation (Translators)"
       },
@@ -2554,7 +2554,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Descriptive recall",
-          "Final answer: Requirements analysis, design, implementation, testing, maintenance — each completed fully before the next begins"
+          "Final answer: Requirements analysis, design, implementation, testing, maintenance: each completed fully before the next begins"
         ],
         "topic": "Software Development Methodologies"
       },
@@ -2617,7 +2617,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Applied scenario recommendation",
-          "Final answer: Waterfall — its distinct, fully-documented sequential stages naturally support the formal sign-off and audit trail required by regulators, unlike agile's more fluid, less rigidly-documented iterations"
+          "Final answer: Waterfall: its distinct, fully-documented sequential stages naturally support the formal sign-off and audit trail required by regulators, unlike agile's more fluid, less rigidly-documented iterations"
         ],
         "topic": "Software Development Methodologies"
       },
@@ -2734,7 +2734,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Definition explanation",
-          "Final answer: A transaction is treated as a single indivisible unit — it either fully completes or is fully rolled back, with no partial changes left in the database"
+          "Final answer: A transaction is treated as a single indivisible unit: it either fully completes or is fully rolled back, with no partial changes left in the database"
         ],
         "topic": "Databases"
       },
@@ -2761,7 +2761,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Conceptual explanation",
-          "Final answer: Update anomalies — the same data must be updated in multiple places, risking inconsistency if not all copies are updated correctly; also wastes storage space"
+          "Final answer: Update anomalies: the same data must be updated in multiple places, risking inconsistency if not all copies are updated correctly; also wastes storage space"
         ],
         "topic": "Databases"
       },
@@ -2779,7 +2779,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Applied normalisation reasoning",
-          "Final answer: Violates 1NF — Product1/2/3 form a repeating group, rather than each cell holding a single atomic value; this should be split into a separate table with one row per order item"
+          "Final answer: Violates 1NF: Product1/2/3 form a repeating group, rather than each cell holding a single atomic value; this should be split into a separate table with one row per order item"
         ],
         "topic": "Databases"
       },
@@ -3122,7 +3122,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Applied trace",
-          "Final answer: Not balanced — after pushing ( and [, we see ) which should match the top of stack [, but they don't match, so the check fails immediately"
+          "Final answer: Not balanced: after pushing ( and [, we see ) which should match the top of stack [, but they don't match, so the check fails immediately"
         ],
         "topic": "Data Structures"
       },
@@ -3194,7 +3194,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Direct circuit translation",
-          "Final answer: NOT(A.B) — equivalent to a NAND gate"
+          "Final answer: NOT(A.B): equivalent to a NAND gate"
         ],
         "topic": "Boolean Algebra"
       },
@@ -3238,7 +3238,7 @@ export const EXTRA_REVISION = [
         "question": "Write the Sum of Products expression for a truth table where the output is 1 only when A=1,B=0 and A=0,B=1",
         "marks": 2,
         "markScheme": [
-          "One AND term per row where output=1, combined with OR — this is actually the XOR function",
+          "One AND term per row where output=1, combined with OR: this is actually the XOR function",
           "Final answer: A.NOT(B) + NOT(A).B"
         ],
         "topic": "Boolean Algebra"
@@ -3284,7 +3284,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Step trace",
-          "Final answer: Middle element is 7 (index 3) — found immediately on the first comparison"
+          "Final answer: Middle element is 7 (index 3): found immediately on the first comparison"
         ],
         "topic": "Algorithms: Searching, Sorting & Graph Traversal"
       },
@@ -3347,7 +3347,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Applied reasoning",
-          "Final answer: Insertion sort — it performs very few comparisons/shifts when data is already nearly in order, making it more efficient than algorithms like bubble sort or quicksort in this specific case"
+          "Final answer: Insertion sort: it performs very few comparisons/shifts when data is already nearly in order, making it more efficient than algorithms like bubble sort or quicksort in this specific case"
         ],
         "topic": "Algorithms: Searching, Sorting & Graph Traversal"
       },
@@ -3419,7 +3419,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Conceptual explanation",
-          "Final answer: The core skills — breaking problems down, simplifying to essential detail, thinking through logical steps — apply to solving complex problems in many other fields, not just writing code"
+          "Final answer: The core skills (breaking problems down, simplifying to essential detail, thinking through logical steps) apply to solving complex problems in many other fields, not just writing code"
         ],
         "topic": "Elements of Computational Thinking"
       },
@@ -3833,7 +3833,7 @@ export const EXTRA_REVISION = [
         "marks": 2,
         "markScheme": [
           "Applied multi-law legal reasoning",
-          "Final answer: The Computer Misuse Act — unauthorised access/copying of data with intent to commit a further offence; and the Data Protection Act/GDPR — processing and sharing personal customer data without a lawful basis or consent"
+          "Final answer: The Computer Misuse Act: unauthorised access/copying of data with intent to commit a further offence; and the Data Protection Act/GDPR: processing and sharing personal customer data without a lawful basis or consent"
         ],
         "topic": "Legal, Moral, Cultural and Ethical Issues"
       },
