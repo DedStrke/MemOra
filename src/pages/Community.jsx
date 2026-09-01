@@ -103,8 +103,12 @@ export default function Community() {
         ) : (
           posts.map((p) => (
             <motion.div key={p.id} variants={fadeInUp} className="card flex items-start gap-3 p-4">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-on-brand">
-                {initial}
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand text-sm font-bold text-on-brand">
+                {user?.avatar ? (
+                  <img src={user.avatar} alt="" className="h-full w-full object-cover" />
+                ) : (
+                  initial
+                )}
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 text-xs text-muted">

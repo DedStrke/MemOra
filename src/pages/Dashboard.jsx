@@ -29,13 +29,6 @@ function techniqueHasContent(pack, techniqueId) {
   }
 }
 
-const GOAL_LINE = {
-  pass: 'Steady does it. We’ll get you over the line together.',
-  ace: 'Those top grades are within reach. Let’s make today count.',
-  specific: 'Let’s chip away at that tricky bit, one piece at a time.',
-  custom: '',
-}
-
 const FEATURE_ACCENT = {
   flash: 'bg-flash-soft text-flash',
   quiz: 'bg-quiz-soft text-quiz',
@@ -56,9 +49,7 @@ function StatPill({ icon, value, label }) {
 
 export default function Dashboard() {
   const { user, recentTopic, sessions } = useApp()
-  const goalLine =
-    (user.goal?.choice === 'custom' ? user.goal.text : GOAL_LINE[user.goal?.choice]) ||
-    'Good to see you. Let’s make today count.'
+  const heroSubtitle = user.bio?.trim() || 'Those top grades are within reach. Let’s make today count.'
 
   // What can they study, and which one is selected in the technique picker.
   const subjectNames =
@@ -114,7 +105,7 @@ export default function Dashboard() {
                   let&rsquo;s make today count.
                 </span>
               </h1>
-              <p className="readable mt-4 max-w-md text-lg leading-relaxed text-muted">{goalLine}</p>
+              <p className="readable mt-4 max-w-md text-lg leading-relaxed text-muted">{heroSubtitle}</p>
               <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <Button as={Link} to="/study" size="lg" className="shrink-0">
                   <Icon name="play" className="h-5 w-5" />

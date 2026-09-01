@@ -132,8 +132,12 @@ export default function AppBar() {
                   >
                     {/* Who's studying */}
                     <div className="flex items-center gap-3 border-b border-line px-4 py-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-on-brand">
-                        {initial}
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand text-sm font-bold text-on-brand">
+                        {user?.avatar ? (
+                          <img src={user.avatar} alt="" className="h-full w-full object-cover" />
+                        ) : (
+                          initial
+                        )}
                       </span>
                       <div className="min-w-0">
                         <p className="truncate text-sm font-semibold text-fg">{user?.name}</p>

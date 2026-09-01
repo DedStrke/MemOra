@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
@@ -5,8 +6,35 @@ import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import AccentPicker from '@/components/ui/AccentPicker'
 import { fadeInUp } from '@/lib/motion'
-import { PROFILE, GOAL_OPTIONS } from '@/constants/content'
+import { PROFILE } from '@/constants/content'
 import { useApp, THEMES, THEME_META } from '@/context/AppProvider'
+
+// Crops to a centered square and downsizes before storing, so a phone photo
+// doesn't blow up localStorage - a small JPEG data URL instead of a multi-MB
+// original.
+function readAndResizeImage(file, size = 160) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onerror = () => reject(new Error('read failed'))
+    reader.onload = () => {
+      const img = new Image()
+      img.onerror = () => reject(new Error('decode failed'))
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        canvas.width = size
+        canvas.height = size
+        const ctx = canvas.getContext('2d')
+        const scale = Math.max(size / img.width, size / img.height)
+        const w = img.width * scale
+        const h = img.height * scale
+        ctx.drawImage(img, (size - w) / 2, (size - h) / 2, w, h)
+        resolve(canvas.toDataURL('image/jpeg', 0.85))
+      }
+      img.src = reader.result
+    }
+    reader.readAsDataURL(file)
+  })
+}
 
 function Row({ label, value }) {
   return (
@@ -43,40 +71,109 @@ function Choice({ label, options, value, onChange }) {
 }
 
 export default function Profile() {
-  const { user, setName, a11y, setA11y, theme, setTheme } = useApp()
-
-  const goalLabel =
-    user.goal?.choice === 'custom'
-      ? user.goal.text
-      : GOAL_OPTIONS.find((g) => g.id === user.goal?.choice)?.label
+  const { user, setName, setBio, setAvatar, a11y, setA11y, theme, setTheme } = useApp()
+  const fileInputRef = useRef(null)
+  const [avatarError, setAvatarError] = useState('')
   const initial = (user.name?.[0] || '?').toUpperCase()
+
+  const pickAvatar = () => fileInputRef.current?.click()
+
+  const onAvatarChange = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    if (!file.type.startsWith('image/')) {
+      setAvatarError('Please choose an image file.')
+      return
+    }
+    if (file.size > 8 * 1024 * 1024) {
+      setAvatarError('That image is too large (max 8MB).')
+      return
+    }
+    try {
+      const dataUrl = await readAndResizeImage(file)
+      setAvatar(dataUrl)
+      setAvatarError('')
+    } catch {
+      setAvatarError('Could not read that image - try another.')
+    }
+  }
 
   return (
     <Section width="narrow" animateOnMount className="pt-10 pb-24">
-      <motion.div variants={fadeInUp} className="flex items-center gap-4">
-        <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand text-2xl font-bold text-on-brand">
-          {initial}
-        </span>
-        <div className="min-w-0 flex-1">
-          <input
-            value={user.name}
-            onChange={(e) => setName(e.target.value)}
-            aria-label="Your name"
-            className="w-full max-w-xs rounded-lg border border-transparent bg-transparent text-3xl font-bold text-fg transition-colors hover:border-line focus:border-brand focus:outline-none"
-          />
+      {/* Identity: photo, name, bio - the things that are "you" */}
+      <motion.div variants={fadeInUp} className="card p-6">
+        <div className="flex items-start gap-4">
+          <div className="relative shrink-0">
+            <button
+              type="button"
+              onClick={pickAvatar}
+              aria-label={user.avatar ? 'Change profile photo' : 'Add a profile photo'}
+              className="group relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-brand text-2xl font-bold text-on-brand"
+            >
+              {user.avatar ? (
+                <img src={user.avatar} alt="" className="h-full w-full object-cover" />
+              ) : (
+                initial
+              )}
+              <span className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/40 group-hover:opacity-100">
+                <Icon name="camera" className="h-5 w-5 text-white" />
+              </span>
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={onAvatarChange}
+              className="sr-only"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <input
+              value={user.name}
+              onChange={(e) => setName(e.target.value)}
+              aria-label="Your name"
+              className="w-full rounded-lg border border-transparent bg-transparent text-3xl font-bold text-fg transition-colors hover:border-line focus:border-brand focus:outline-none"
+            />
+            {user.avatar && (
+              <button
+                type="button"
+                onClick={() => setAvatar(null)}
+                className="mt-0.5 text-xs font-semibold text-muted transition-colors hover:text-danger"
+              >
+                Remove photo
+              </button>
+            )}
+          </div>
         </div>
-      </motion.div>
-      <motion.p variants={fadeInUp} className="readable mt-3 text-sm text-muted">
-        {PROFILE.subtitle}
-      </motion.p>
+        {avatarError && (
+          <p className="mt-2 flex items-center gap-1.5 text-sm font-medium text-danger">
+            <Icon name="x" className="h-4 w-4 shrink-0" />
+            {avatarError}
+          </p>
+        )}
 
+        <label className="mt-5 block">
+          <span className="mb-1.5 block text-sm font-semibold text-muted">Bio</span>
+          <textarea
+            rows={2}
+            value={user.bio || ''}
+            onChange={(e) => setBio(e.target.value)}
+            placeholder="A line about you - what you're revising for, how you like to work, whatever."
+            maxLength={160}
+            className="w-full resize-none rounded-xl border border-line bg-page px-4 py-3 text-sm text-fg placeholder:text-muted focus:border-brand focus:outline-none"
+          />
+        </label>
+        <p className="mt-3 text-xs text-muted">{PROFILE.subtitle}</p>
+      </motion.div>
+
+      {/* Course + subjects */}
       <motion.div
         variants={fadeInUp}
         className="mt-6 card p-6"
       >
         <dl className="space-y-4">
           <Row label="Year group" value={user.yearGroup} />
-          <Row label="Goal" value={goalLabel} />
           <Row label="Course type" value={user.courseType} />
           {user.courseType === 'University' ? (
             <Row label="Course" value={user.courseName} />

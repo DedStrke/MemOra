@@ -69,13 +69,6 @@ export const YEAR_GROUPS = [
   'Other',
 ]
 
-export const GOAL_OPTIONS = [
-  { id: 'pass', icon: 'check', label: 'Just want to pass', desc: 'Get over the line, stress-free' },
-  { id: 'ace', icon: 'star', label: 'Want to ace it', desc: 'Aiming for the top grades' },
-  { id: 'specific', icon: 'target', label: 'Get better at a specific thing', desc: 'Focus on a weak spot' },
-  { id: 'custom', icon: 'sparkles', label: 'Something else', desc: 'Tell us in your own words' },
-]
-
 export const COURSE_TYPES = [
   { id: 'A-level', label: 'A-level' },
   { id: 'AS-level', label: 'AS-level' },

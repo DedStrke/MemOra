@@ -32,7 +32,8 @@ const A11Y_DEFAULT = { font: 'default', spacing: 'normal', letter: 'normal', tex
 const DEFAULT_PROFILE = {
   name: 'there',
   yearGroup: 'Year 13',
-  goal: { choice: 'ace', text: '' },
+  bio: '',
+  avatar: null,
   courseType: 'A-level',
   courseName: '',
   subjects: [
@@ -160,6 +161,8 @@ export default function AppProvider({ children }) {
 
       // ---- profile ----
       setName: (name) => patch({ profile: { ...state.profile, name } }),
+      setBio: (bio) => patch({ profile: { ...state.profile, bio } }),
+      setAvatar: (avatar) => patch({ profile: { ...state.profile, avatar } }),
       setSubjects: (subjects) => patch({ profile: { ...state.profile, subjects } }),
 
       // ---- misc ----
