@@ -1,9 +1,9 @@
-# AdaptHub
+# Memora
 
 **A mood-aware study companion, built for every mind.**
 
 EduTech hackathon entry for the theme _"Build for every mind, for those who learn
-differently."_ Most revision apps only care what you study. AdaptHub also cares
+differently."_ Most revision apps only care what you study. Memora also cares
 **how you are doing**. It checks your mood before and during every study session
 and shapes the session around it: a motivational line tuned to your goal, real
 practice content, a mid-session check-in, and a nudge to take a break when you

@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /*
-  ADAPTLEARN DESIGN SYSTEM
+  MEMORA DESIGN SYSTEM
   ========================
   This file powers the whole accessibility engine. There are two layers:
 
@@ -615,6 +615,25 @@ h1, h2, h3, h4 {
 .signal-pulse {
   transform-origin: center;
   animation: signal-pulse var(--signal-dur, 2.2s) ease-in-out infinite;
+}
+
+/* --------------------------------------------------- AMBIENT GLOW (app pages) */
+/* Slow drifting blobs behind glass surfaces (e.g. the dashboard hero) so the
+   blur/refraction has something to actually catch. Respects reduced-motion
+   via the general rule above. */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-4%, 5%); }
+}
+.float-slow {
+  animation: float-slow 16s ease-in-out infinite;
+}
+.float-slow-alt {
+  animation: float-slow 20s ease-in-out infinite reverse;
+}
+[data-theme='high-contrast'] .float-slow,
+[data-theme='high-contrast'] .float-slow-alt {
+  display: none;
 }
 
 /* ------------------------------------------------ BREATHING (wellbeing) */

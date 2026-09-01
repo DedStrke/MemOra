@@ -10,6 +10,7 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { FEATURES, STUDY_TECHNIQUES } from '@/constants/content'
 import { getPackByName } from '@/constants/library'
+import { subjectMetrics, studyStreak } from '@/lib/sessions'
 
 // A technique is offered only if the subject's pack actually has content for
 // it, so nobody lands on an empty "no MCQs yet" dead end.
@@ -43,8 +44,18 @@ const FEATURE_ACCENT = {
   success: 'bg-success/15 text-success',
 }
 
+function StatPill({ icon, value, label }) {
+  return (
+    <div className="glass flex min-w-[6rem] flex-1 flex-col items-center gap-1 rounded-2xl px-4 py-4 text-center sm:min-w-[7rem] sm:flex-none sm:px-6">
+      <Icon name={icon} className="h-5 w-5 text-brand-strong" />
+      <p className="text-2xl font-extrabold text-fg">{value}</p>
+      <p className="text-xs font-semibold text-muted">{label}</p>
+    </div>
+  )
+}
+
 export default function Dashboard() {
-  const { user, recentTopic } = useApp()
+  const { user, recentTopic, sessions } = useApp()
   const goalLine =
     (user.goal?.choice === 'custom' ? user.goal.text : GOAL_LINE[user.goal?.choice]) ||
     'Good to see you. Let’s make today count.'
@@ -60,29 +71,74 @@ export default function Dashboard() {
   const activeSubject = subjectNames.includes(studySubject) ? studySubject : defaultSubject
   const activePack = getPackByName(activeSubject)
 
-  return (
-    <Section width="wide" animateOnMount className="pt-8 pb-28">
-      {/* Greeting + start session */}
-      <motion.div
-        variants={fadeInUp}
-        className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center"
-      >
-        <div>
-          <h1 className="text-4xl font-extrabold text-fg sm:text-5xl">
-            Hi {user.name}, welcome back!
-          </h1>
-          <p className="readable mt-4 text-lg leading-relaxed text-muted">{goalLine}</p>
-        </div>
-        <Button as={Link} to="/study" size="lg" className="shrink-0">
-          <Icon name="play" className="h-5 w-5" />
-          Start a study session
-        </Button>
-      </motion.div>
+  // Real, aggregate stats for the hero strip - summed across every subject
+  // from actual logged sessions, same honesty rule as the subject cards.
+  const streak = studyStreak(sessions)
+  const totalHours = Math.round(
+    subjectNames.reduce((sum, n) => sum + subjectMetrics(sessions, n).hours, 0) * 10,
+  ) / 10
+  const totalChapters = subjectNames.reduce(
+    (sum, n) => sum + subjectMetrics(sessions, n).chaptersCovered,
+    0,
+  )
 
-      {/* Exam countdown */}
-      <div className="mt-6">
-        <CountdownCard />
+  return (
+    <div className="relative">
+      {/* Ambient glow, fixed behind the whole page so the glass surfaces below
+          have something to catch and refract as the page scrolls past them. */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="float-slow absolute -top-32 left-[8%] h-96 w-96 rounded-full bg-brand/20 blur-[110px]" />
+        <div className="float-slow-alt absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-paper/15 blur-[110px]" />
+        <div className="float-slow absolute bottom-0 left-1/4 h-80 w-80 rounded-full bg-quiz/10 blur-[110px]" />
       </div>
+
+      <Section width="wide" animateOnMount className="pt-8 pb-28">
+        {/* Hero */}
+        <motion.div
+          variants={fadeInUp}
+          className="glass-strong relative overflow-hidden rounded-[2rem] p-8 sm:p-12"
+        >
+          <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <span className="kicker">
+                <Icon name="sparkles" className="h-4 w-4" />
+                Welcome back
+              </span>
+              <h1 className="mt-4 text-4xl font-extrabold leading-[1.05] text-fg sm:text-5xl lg:text-6xl">
+                Hi {user.name},
+                <br />
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{ backgroundImage: 'linear-gradient(100deg, var(--brand-strong), var(--paper))' }}
+                >
+                  let&rsquo;s make today count.
+                </span>
+              </h1>
+              <p className="readable mt-4 max-w-md text-lg leading-relaxed text-muted">{goalLine}</p>
+              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <Button as={Link} to="/study" size="lg" className="shrink-0">
+                  <Icon name="play" className="h-5 w-5" />
+                  Start a study session
+                </Button>
+                <Button as={Link} to="/progress" variant="link" className="text-base font-semibold">
+                  See your progress
+                  <Icon name="arrowRight" className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3 sm:flex-nowrap sm:gap-4">
+              <StatPill icon="activity" value={`${streak}`} label="day streak" />
+              <StatPill icon="target" value={`${totalHours}h`} label="hours logged" />
+              <StatPill icon="cap" value={`${totalChapters}`} label="chapters covered" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Exam countdown */}
+        <div className="mt-6">
+          <CountdownCard />
+        </div>
 
       {/* Subjects */}
       <motion.div
@@ -113,7 +169,7 @@ export default function Dashboard() {
           <motion.div key={f.id} variants={fadeInUp}>
             <Link
               to={f.to}
-              className="flex h-full flex-col card card-lift p-7"
+              className="glass card-lift flex h-full flex-col rounded-3xl p-7"
             >
               <span
                 className={`flex h-14 w-14 items-center justify-center rounded-2xl ${FEATURE_ACCENT[f.accent]}`}
@@ -131,7 +187,7 @@ export default function Dashboard() {
       <div className="mt-8 grid gap-4 lg:grid-cols-2">
         <motion.div
           variants={fadeInUp}
-          className="card p-6"
+          className="glass rounded-3xl p-6"
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-muted">
             Most recent topic
@@ -149,7 +205,7 @@ export default function Dashboard() {
 
         <motion.div
           variants={fadeInUp}
-          className="card p-6"
+          className="glass rounded-3xl p-6"
         >
           <h2 className="mb-1 text-lg font-bold text-fg">Study a subject</h2>
           <p className="mb-3 text-sm text-muted">
@@ -204,6 +260,7 @@ export default function Dashboard() {
           </div>
         </motion.div>
       </div>
-    </Section>
+      </Section>
+    </div>
   )
 }

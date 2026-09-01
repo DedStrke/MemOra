@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { NAV_LINKS } from '@/constants/content'
 import Icon from '@/components/ui/Icon'
 import EyeMark from '@/components/ui/EyeMark'
@@ -43,22 +43,42 @@ export default function AppBar() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
+  // Same collapsing treatment as the landing header: transparent and
+  // edge-to-edge at rest, fading in a glass panel and floating as an inset
+  // pill once the page scrolls - continuous, off real scroll position.
+  const { scrollY } = useScroll()
+  const padY = useTransform(scrollY, [0, 100], [18, 10])
+  const logoScale = useTransform(scrollY, [0, 100], [1, 0.88])
+  const insetX = useTransform(scrollY, [0, 100], [0, 14])
+  const insetTop = useTransform(scrollY, [0, 100], [0, 10])
+  const radius = useTransform(scrollY, [0, 100], [0, 24])
+  const glassOpacity = useTransform(scrollY, [0, 100], [0, 1])
+
   return (
     <motion.header
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="glass-strong sticky top-0 z-40 !rounded-none !border-0"
+      style={{ marginLeft: insetX, marginRight: insetX, marginTop: insetTop, borderRadius: radius }}
+      className="sticky top-0 z-40 overflow-hidden"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
+      <motion.div className="glass-strong absolute inset-0 !rounded-none" style={{ opacity: glassOpacity }} />
+      <motion.div
+        style={{ paddingTop: padY, paddingBottom: padY }}
+        className="relative mx-auto flex max-w-6xl items-center justify-between px-5"
+      >
         <div className="flex items-center gap-7">
           {/* Logo goes to the first page (landing). */}
           <Link
             to="/"
             className="flex items-center gap-2 text-xl font-semibold text-fg"
           >
-            <EyeMark pulseOnHover pulseOnClick className="h-9 w-9 text-brand" />
-            <Wordmark />
+            <motion.div style={{ scale: logoScale }} className="origin-left">
+              <EyeMark pulseOnHover pulseOnClick className="h-9 w-9 text-brand" />
+            </motion.div>
+            <motion.div style={{ scale: logoScale }} className="origin-left">
+              <Wordmark />
+            </motion.div>
           </Link>
 
           {/* Inline nav next to the wordmark (mobile still uses the hamburger). */}
@@ -175,7 +195,7 @@ export default function AppBar() {
             </AnimatePresence>
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.header>
   )
 }

@@ -7,13 +7,13 @@ import { fadeInUp, staggerContainer, popIn } from '@/lib/motion'
 /*
   Multi-exam countdown.
 
-  Exams live in localStorage under 'adapthub:exams' as an array of
+  Exams live in localStorage under 'memora:exams' as an array of
   { id, name, date }. This card reads and writes that key directly so it does
   not depend on the app store's single `exam` slice. Boxes share one row with
   flex-1, so a lone exam is a wide rectangle and each added exam makes every box
   narrower while keeping the same height. They wrap on small screens.
 */
-const STORAGE_KEY = 'adapthub:exams'
+const STORAGE_KEY = 'memora:exams'
 
 // Whole days between today and the exam date (yyyy-mm-dd).
 function daysUntil(dateStr) {
@@ -98,7 +98,7 @@ export default function CountdownCard() {
   const removeExam = (id) => setExams((list) => list.filter((e) => e.id !== id))
 
   return (
-    <motion.div variants={fadeInUp} className="card p-6">
+    <motion.div variants={fadeInUp} className="glass rounded-3xl p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="kicker">
           <Icon name="calendar" className="h-4 w-4" aria-hidden="true" />

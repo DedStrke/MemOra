@@ -48,13 +48,21 @@ export default function AtmosphereBackground() {
           loop
           muted
           playsInline
-          poster="/hero/hero-poster.jpg"
+          poster={`${import.meta.env.BASE_URL}hero/hero-poster.jpg`}
         >
-          <source src="/hero/hero-bg-mobile.mp4" media="(max-width: 768px)" type="video/mp4" />
-          <source src="/hero/hero-bg.mp4" type="video/mp4" />
+          <source
+            src={`${import.meta.env.BASE_URL}hero/hero-bg-mobile.mp4`}
+            media="(max-width: 768px)"
+            type="video/mp4"
+          />
+          <source src={`${import.meta.env.BASE_URL}hero/hero-bg.mp4`} type="video/mp4" />
         </video>
       ) : (
-        <img src="/hero/hero-poster.jpg" alt="" className="hero-video h-full w-full object-cover" />
+        <img
+          src={`${import.meta.env.BASE_URL}hero/hero-poster.jpg`}
+          alt=""
+          className="hero-video h-full w-full object-cover"
+        />
       )}
       {/* theme tint - ties the natural footage to the current mood */}
       <div className="hero-video-tint absolute inset-0" />

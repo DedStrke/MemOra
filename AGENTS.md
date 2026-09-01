@@ -12,7 +12,7 @@ If you are a human contributor, this doubles as the contributor guide. See
 
 ## What this project is
 
-**AdaptHub** - a mood-aware study companion, built for every mind. It checks a
+**Memora** - a mood-aware study companion, built for every mind. It checks a
 student's mood before and during each study session and shapes the session
 around it: a goal-tuned motivational line, real practice content, a mid-session
 check-in, and a nudge to take a break when they are struggling.

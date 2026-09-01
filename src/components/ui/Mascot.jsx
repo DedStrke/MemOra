@@ -1,5 +1,5 @@
 /*
-  Sparky - the AdaptHub mascot. A friendly rounded "idea spark" buddy.
+  Sparky - the Memora mascot. A friendly rounded "idea spark" buddy.
   The body recolours with the brand token so it fits every theme; the facial
   features are fixed character colours (like a logo).
 

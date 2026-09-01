@@ -57,7 +57,7 @@ function Pillar({ subject, index, big = false, sessions }) {
   return (
     <motion.div variants={fadeInUp} className={big ? 'flex' : 'flex h-full'}>
       <div
-        className={`group relative flex w-full flex-col card card-lift ${big ? 'p-6' : 'p-5'}`}
+        className={`glass card-lift group relative flex w-full flex-col rounded-3xl ${big ? 'p-6' : 'p-5'}`}
       >
         {/* Whole-card click target -> start a study session. It sits behind the
             content as a stretched overlay, so the Notes/Past-papers links can be
