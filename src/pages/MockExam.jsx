@@ -9,6 +9,7 @@ import { getPackByName, topicLevelMap } from '@/constants/library'
 import { EXAM_BOARD_META } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
 import { slugify, resolveSlug } from '@/lib/slug'
+import Chip from '@/components/ui/Chip'
 
 // Preset paper lengths - picked, not typed, and timed like real papers
 // rather than a computed-and-rounded number (30/60/90 reads like an actual
@@ -70,7 +71,7 @@ function PaperHeader({ subjectLabel, board, sectionLabel }) {
 export default function MockExam() {
   const { subjectSlug } = useParams()
   const navigate = useNavigate()
-  const { user, sessions, logSession, logAttempt } = useApp()
+  const { user, logSession, logAttempt } = useApp()
 
   const subjectNames =
     user.courseType === 'University' && user.courseName
@@ -220,15 +221,9 @@ export default function MockExam() {
         </motion.div>
         <motion.div variants={staggerContainer} className="mt-6 flex flex-wrap justify-center gap-2">
           {subjectNames.map((name) => (
-            <motion.button
-              key={name}
-              variants={fadeInUp}
-              type="button"
-              onClick={() => pickSubject(name)}
-              className="rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
-            >
-              {name}
-            </motion.button>
+            <motion.div key={name} variants={fadeInUp}>
+              <Chip onClick={() => pickSubject(name)}>{name}</Chip>
+            </motion.div>
           ))}
         </motion.div>
       </Section>
@@ -265,19 +260,14 @@ export default function MockExam() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {pack.groups.map((g, idx) => (
-                    <button
+                    <Chip
                       key={g.label}
-                      type="button"
-                      onClick={() => pickSection(idx)}
+                      selected={sectionIdx === idx}
                       aria-pressed={sectionIdx === idx}
-                      className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
-                        sectionIdx === idx
-                          ? 'border-brand bg-brand text-on-brand'
-                          : 'border-line bg-surface text-fg hover:border-brand'
-                      }`}
+                      onClick={() => pickSection(idx)}
                     >
                       {g.label}
-                    </button>
+                    </Chip>
                   ))}
                 </div>
               </div>
@@ -293,32 +283,24 @@ export default function MockExam() {
                     : 'Narrow to specific topics (optional)'}
                 </summary>
                 <div className="mt-3 flex flex-wrap justify-center gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => setTopicFilter([])}
+                  <Chip
+                    size="sm"
+                    selected={topicFilter.length === 0}
                     aria-pressed={topicFilter.length === 0}
-                    className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
-                      topicFilter.length === 0
-                        ? 'border-brand bg-brand text-on-brand'
-                        : 'border-line bg-surface text-fg hover:border-brand'
-                    }`}
+                    onClick={() => setTopicFilter([])}
                   >
                     All topics
-                  </button>
+                  </Chip>
                   {sectionTopics.map((t) => (
-                    <button
+                    <Chip
                       key={t}
-                      type="button"
-                      onClick={() => toggleTopic(t)}
+                      size="sm"
+                      selected={topicFilter.includes(t)}
                       aria-pressed={topicFilter.includes(t)}
-                      className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                        topicFilter.includes(t)
-                          ? 'border-brand bg-brand-soft text-brand-strong'
-                          : 'border-line bg-surface text-fg hover:border-brand'
-                      }`}
+                      onClick={() => toggleTopic(t)}
                     >
                       {t}
-                    </button>
+                    </Chip>
                   ))}
                 </div>
               </details>
@@ -493,19 +475,15 @@ export default function MockExam() {
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {Array.from({ length: q.marks + 1 }, (_, n) => n).map((n) => (
-                        <button
+                        <Chip
                           key={n}
-                          type="button"
-                          onClick={() => award(i, n)}
+                          selected={awarded[i] === n}
                           aria-pressed={awarded[i] === n}
-                          className={`h-9 min-w-9 rounded-full border px-2.5 text-sm font-bold tabular-nums transition-colors ${
-                            awarded[i] === n
-                              ? 'border-brand bg-brand text-on-brand'
-                              : 'border-line bg-surface text-fg hover:border-brand'
-                          }`}
+                          onClick={() => award(i, n)}
+                          className="min-w-9 font-bold tabular-nums"
                         >
                           {n}
-                        </button>
+                        </Chip>
                       ))}
                     </div>
                   </div>

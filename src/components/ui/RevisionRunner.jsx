@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import FlipCard from '@/components/ui/FlipCard'
+import Chip from '@/components/ui/Chip'
 import SpeakButton from '@/components/ui/SpeakButton'
 import { fadeInUp, popIn } from '@/lib/motion'
 
@@ -104,14 +105,9 @@ function NotesRunner({ pack, chapter, empty }) {
         <p className="mb-4 text-sm text-muted">Pick a topic to read its notes.</p>
         <div className="flex flex-wrap gap-2">
           {topics.map((t) => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setSelected(t)}
-              className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
-            >
+            <Chip key={t} onClick={() => setSelected(t)}>
               {t}
-            </button>
+            </Chip>
           ))}
         </div>
       </div>

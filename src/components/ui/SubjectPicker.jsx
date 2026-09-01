@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Icon from '@/components/ui/Icon'
 import Button from '@/components/ui/Button'
+import Chip from '@/components/ui/Chip'
 import { SUBJECT_CATALOG } from '@/constants/content'
 
 /*
@@ -42,11 +43,6 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
     (s) => !SUBJECT_CATALOG.some((c) => c.toLowerCase() === s.name.toLowerCase()),
   )
 
-  const chipCls = (sel) =>
-    `inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm font-medium transition-colors ${
-      sel ? 'border-brand bg-brand text-on-brand' : 'border-line bg-surface text-fg hover:border-brand'
-    }`
-
   return (
     <div>
       <p className="mb-2 text-sm font-medium text-fg">Tap the subjects you study</p>
@@ -54,23 +50,22 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
         {SUBJECT_CATALOG.map((name) => {
           const sel = has(name)
           return (
-            <button key={name} type="button" onClick={() => toggle(name)} aria-pressed={sel} className={chipCls(sel)}>
+            <Chip key={name} selected={sel} aria-pressed={sel} onClick={() => toggle(name)}>
               {sel && <Icon name="check" className="h-4 w-4" />}
               {name}
-            </button>
+            </Chip>
           )
         })}
         {extras.map((s) => (
-          <button
+          <Chip
             key={s.id ?? s.name}
-            type="button"
-            onClick={() => toggle(s.name)}
+            selected
             aria-pressed="true"
-            className={chipCls(true)}
+            onClick={() => toggle(s.name)}
           >
             <Icon name="check" className="h-4 w-4" />
             {s.name}
-          </button>
+          </Chip>
         ))}
       </div>
 
@@ -133,20 +128,15 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
           <p className="mb-2 text-sm font-medium text-fg">Which is your top priority?</p>
           <div className="flex flex-wrap gap-2">
             {subjects.map((s) => (
-              <button
+              <Chip
                 key={s.id ?? s.name}
-                type="button"
-                onClick={() => star(s.name)}
+                selected={s.priority}
                 aria-pressed={s.priority}
-                className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
-                  s.priority
-                    ? 'border-brand bg-brand-soft text-brand-strong'
-                    : 'border-line bg-surface text-fg hover:border-brand'
-                }`}
+                onClick={() => star(s.name)}
               >
                 <Icon name="star" filled={s.priority} className="h-4 w-4" />
                 {s.name}
-              </button>
+              </Chip>
             ))}
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NAV_LINKS } from '@/constants/content'
 import Icon from '@/components/ui/Icon'
@@ -29,11 +29,23 @@ const navLinkClass = ({ isActive }) =>
   }`
 
 export default function AppBar() {
-  const { user, account, signOut } = useApp()
+  const { user, account, signOut, showToast } = useApp()
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const initial = (user?.name?.[0] || '?').toUpperCase()
 
   const close = () => setOpen(false)
+
+  // Signing out has to leave the app - staying on an in-app page after
+  // signing out shows a dashboard that is no longer "yours", with a top bar
+  // still offering Sign out. Land on the marketing page with a confirmation,
+  // the way every other product does it.
+  const handleSignOut = () => {
+    signOut()
+    close()
+    navigate('/')
+    showToast('Signed out')
+  }
 
   // Close the menu with Escape.
   useEffect(() => {
@@ -191,13 +203,10 @@ export default function AppBar() {
                         <button
                           type="button"
                           role="menuitem"
-                          onClick={() => {
-                            signOut()
-                            close()
-                          }}
+                          onClick={handleSignOut}
                           className={itemClass({ isActive: false })}
                         >
-                          <Icon name="chevronRight" className="h-4 w-4 text-muted" />
+                          <Icon name="logout" className="h-4 w-4 text-muted" />
                           Sign out
                         </button>
                       ) : (

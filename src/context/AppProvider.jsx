@@ -94,6 +94,15 @@ const AppContext = createContext(null)
 export default function AppProvider({ children }) {
   const [state, setState] = useState(load)
   const [account, setAccount] = useState(auth.currentAccount)
+  // Transient confirmation pill (see ui/Toast.jsx). Deliberately NOT part of
+  // `state` - it must never be persisted or restored on reload.
+  const [toast, setToast] = useState(null)
+
+  const showToast = (message) => {
+    const id = Date.now()
+    setToast({ id, message })
+    setTimeout(() => setToast((t) => (t?.id === id ? null : t)), 2600)
+  }
 
   // Accepts a plain patch object, or an updater `(state) => patch` when the
   // patch needs to read current state - always the live state React is
@@ -141,6 +150,10 @@ export default function AppProvider({ children }) {
       attempts: state.attempts,
       posts: state.posts,
       user: state.profile,
+
+      // ---- transient UI ----
+      toast,
+      showToast,
 
       // ---- account (device-local, see lib/auth.js) ----
       account,
@@ -219,7 +232,7 @@ export default function AppProvider({ children }) {
       deletePost: (id) => patch((s) => ({ posts: s.posts.filter((p) => p.id !== id) })),
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [state, account],
+    [state, account, toast],
   )
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

@@ -5,6 +5,7 @@ import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import AccentPicker from '@/components/ui/AccentPicker'
+import Chip from '@/components/ui/Chip'
 import { fadeInUp } from '@/lib/motion'
 import { PROFILE } from '@/constants/content'
 import { useApp, THEMES, THEME_META } from '@/context/AppProvider'
@@ -51,19 +52,14 @@ function Choice({ label, options, value, onChange }) {
       <p className="mb-2 text-sm font-semibold text-muted">{label}</p>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
-          <button
+          <Chip
             key={String(o.value)}
-            type="button"
-            onClick={() => onChange(o.value)}
+            selected={value === o.value}
             aria-pressed={value === o.value}
-            className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-              value === o.value
-                ? 'border-brand bg-brand text-on-brand'
-                : 'border-line bg-surface text-fg hover:border-brand'
-            }`}
+            onClick={() => onChange(o.value)}
           >
             {o.label}
-          </button>
+          </Chip>
         ))}
       </div>
     </div>

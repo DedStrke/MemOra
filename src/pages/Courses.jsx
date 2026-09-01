@@ -5,6 +5,7 @@ import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import SubjectPicker from '@/components/ui/SubjectPicker'
+import Chip from '@/components/ui/Chip'
 import { fadeInUp } from '@/lib/motion'
 import { PRIORITISED_COURSES, specsFor, YEAR_GROUPS } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
@@ -96,19 +97,14 @@ export default function Courses() {
         </p>
         <div className="flex flex-wrap gap-2">
           {SCHOOL_YEAR_GROUPS.map((y) => (
-            <button
+            <Chip
               key={y}
-              type="button"
-              onClick={() => setYearGroupLocal(y)}
+              selected={yearGroup === y}
               aria-pressed={yearGroup === y}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                yearGroup === y
-                  ? 'border-brand bg-brand text-on-brand'
-                  : 'border-line bg-surface text-fg hover:border-brand'
-              }`}
+              onClick={() => setYearGroupLocal(y)}
             >
               {y}
-            </button>
+            </Chip>
           ))}
         </div>
       </motion.div>

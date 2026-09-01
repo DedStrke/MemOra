@@ -7,6 +7,7 @@ import Icon from '@/components/ui/Icon'
 import Mascot from '@/components/ui/Mascot'
 import ProgressBar from '@/components/ui/ProgressBar'
 import FlipCard from '@/components/ui/FlipCard'
+import Chip from '@/components/ui/Chip'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { REVISION } from '@/constants/library'
@@ -333,18 +334,15 @@ function AiView({ onSave, onCancel }) {
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <span className="text-sm text-muted">How many cards?</span>
             {[6, 8, 12].map((n) => (
-              <button
+              <Chip
                 key={n}
-                type="button"
+                selected={count === n}
+                aria-pressed={count === n}
                 onClick={() => setCount(n)}
-                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-                  count === n
-                    ? 'border-brand bg-brand-soft text-brand-strong'
-                    : 'border-line bg-surface text-fg hover:border-brand'
-                }`}
+                className="tabular-nums"
               >
                 {n}
-              </button>
+              </Chip>
             ))}
           </div>
           {error && <p className="mt-4 text-sm font-medium text-danger">{error}</p>}

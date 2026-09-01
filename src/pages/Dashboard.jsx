@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
+import Chip from '@/components/ui/Chip'
 import Icon from '@/components/ui/Icon'
 import CountdownCard from '@/components/dashboard/CountdownCard'
 import SubjectPillars from '@/components/dashboard/SubjectPillars'
@@ -40,13 +41,23 @@ const FEATURE_ACCENT = {
   success: 'bg-success/15 text-success',
 }
 
-function StatPill({ icon, value, label }) {
+// Section heading, used for every band below the hero so they all announce
+// themselves the same way instead of each inventing its own treatment.
+function Band({ kicker, title, action, children }) {
   return (
-    <div className="glass flex min-w-[6rem] flex-1 flex-col items-center gap-1 rounded-2xl px-4 py-4 text-center sm:min-w-[7rem] sm:flex-none sm:px-6">
-      <Icon name={icon} className="h-5 w-5 text-brand-strong" />
-      <p className="text-2xl font-extrabold text-fg">{value}</p>
-      <p className="text-xs font-semibold text-muted">{label}</p>
-    </div>
+    <>
+      <motion.div
+        variants={fadeInUp}
+        className="mt-16 mb-5 flex flex-wrap items-end justify-between gap-4"
+      >
+        <div>
+          <span className="kicker">{kicker}</span>
+          <h2 className="mt-2 text-2xl font-bold text-fg">{title}</h2>
+        </div>
+        {action}
+      </motion.div>
+      {children}
+    </>
   )
 }
 
@@ -76,6 +87,12 @@ export default function Dashboard() {
     0,
   )
 
+  const stats = [
+    { icon: 'activity', value: streak, label: 'day streak' },
+    { icon: 'clock', value: `${totalHours}h`, label: 'hours logged' },
+    { icon: 'cap', value: totalChapters, label: 'chapters covered' },
+  ]
+
   return (
     <div className="relative">
       {/* Ambient glow, fixed behind the whole page so the glass surfaces below
@@ -87,191 +104,176 @@ export default function Dashboard() {
       </div>
 
       <Section width="wide" animateOnMount className="pt-8 pb-28">
-        {/* Hero */}
+        {/* ---------------------------------------------------------- HERO */}
         <motion.div
           variants={fadeInUp}
-          className="glass-strong relative overflow-hidden rounded-[2rem] p-8 sm:p-12"
+          className="glass-strong relative overflow-hidden rounded-[2rem]"
         >
-          <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <span className="kicker">
-                <Icon name="sparkles" className="h-4 w-4" />
-                Welcome back
+          <div className="p-8 sm:p-12">
+            <h1 className="text-4xl font-extrabold leading-[1.05] text-fg sm:text-5xl lg:text-6xl">
+              Hi {user.name},
+              <br />
+              <span
+                className="bg-clip-text text-transparent"
+                style={{ backgroundImage: 'linear-gradient(100deg, var(--brand-strong), var(--paper))' }}
+              >
+                let&rsquo;s make today count.
               </span>
-              <h1 className="mt-4 text-4xl font-extrabold leading-[1.05] text-fg sm:text-5xl lg:text-6xl">
-                Hi {user.name},
-                <br />
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: 'linear-gradient(100deg, var(--brand-strong), var(--paper))' }}
-                >
-                  let&rsquo;s make today count.
-                </span>
-              </h1>
-              <p className="readable mt-4 max-w-md text-lg leading-relaxed text-muted">{heroSubtitle}</p>
-              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-                <Button as={Link} to="/study" size="lg" className="shrink-0">
-                  <Icon name="play" className="h-5 w-5" />
-                  Start a study session
-                </Button>
-                <Button as={Link} to="/progress" variant="link" className="text-base font-semibold">
-                  See your progress
-                  <Icon name="arrowRight" className="h-4 w-4" />
-                </Button>
+            </h1>
+            <p className="readable mt-4 max-w-md text-lg leading-relaxed text-muted">
+              {heroSubtitle}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Button as={Link} to="/study" size="lg" className="shrink-0">
+                <Icon name="play" className="h-5 w-5" />
+                Start a study session
+              </Button>
+              <Button as={Link} to="/progress" variant="link" className="text-base font-semibold">
+                See your progress
+                <Icon name="arrowRight" className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Stats read as part of the hero, on a shared rule, rather than
+              as loose pills floating beside it. */}
+          <div className="grid grid-cols-3 border-t border-line/70">
+            {stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`px-4 py-5 text-center sm:px-8 sm:text-left ${
+                  i > 0 ? 'border-l border-line/70' : ''
+                }`}
+              >
+                <div className="flex items-center justify-center gap-1.5 sm:justify-start">
+                  <Icon name={s.icon} className="h-4 w-4 text-brand-strong" />
+                  <span className="text-2xl font-extrabold tabular-nums text-fg">{s.value}</span>
+                </div>
+                <p className="mt-0.5 text-xs font-semibold text-muted">{s.label}</p>
               </div>
-            </div>
-
-            <div className="flex flex-wrap gap-3 sm:flex-nowrap sm:gap-4">
-              <StatPill icon="activity" value={`${streak}`} label="day streak" />
-              <StatPill icon="target" value={`${totalHours}h`} label="hours logged" />
-              <StatPill icon="cap" value={`${totalChapters}`} label="chapters covered" />
-            </div>
+            ))}
           </div>
         </motion.div>
 
-        {/* Exam countdown */}
-        <div className="mt-6">
-          <CountdownCard />
-        </div>
-
-      {/* Subjects */}
-      <motion.div
-        variants={fadeInUp}
-        className="mt-14 mb-5 flex items-end justify-between gap-4"
-      >
-        <div>
-          <span className="kicker">On your plate</span>
-          <h2 className="mt-2 text-2xl font-bold text-fg">Your subjects</h2>
-        </div>
-        <Button as={Link} to="/courses" variant="secondary" size="sm" className="shrink-0">
-          <Icon name="plus" className="h-4 w-4" />
-          Add course
-        </Button>
-      </motion.div>
-      <SubjectPillars user={user} />
-
-      {/* Tools / feature cards */}
-      <motion.div variants={fadeInUp} className="mt-20 mb-6">
-        <span className="kicker">Your toolkit</span>
-        <h2 className="mt-2 text-2xl font-bold text-fg">Tools</h2>
-      </motion.div>
-      <motion.div
-        variants={staggerContainer}
-        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-      >
-        {FEATURES.map((f) => (
-          <motion.div key={f.id} variants={fadeInUp}>
-            <Link
-              to={f.to}
-              className="glass card-lift flex h-full flex-col rounded-3xl p-7"
-            >
-              <span
-                className={`flex h-14 w-14 items-center justify-center rounded-2xl ${FEATURE_ACCENT[f.accent]}`}
+        {/* --------------------------------------------------- QUICK START */}
+        <Band
+          kicker="Jump in"
+          title="Study a subject"
+          action={
+            recentTopic ? (
+              // recentTopic is "<chapter> · <technique>", which can run long
+              // enough to blow out a button, so it goes in the tooltip.
+              <Button
+                as={Link}
+                to="/study"
+                variant="secondary"
+                size="sm"
+                className="shrink-0"
+                title={`Last session: ${recentTopic}`}
               >
-                <Icon name={f.icon} className="h-7 w-7" />
-              </span>
-              <h3 className="mt-5 text-lg font-semibold text-fg">{f.label}</h3>
-              <p className="mt-1 text-base text-muted">{f.desc}</p>
-            </Link>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Recent topic + technique picker */}
-      <div className="mt-8 grid gap-4 lg:grid-cols-2">
-        <motion.div
-          variants={fadeInUp}
-          className="glass rounded-3xl p-6"
+                <Icon name="refresh" className="h-4 w-4" />
+                Resume last session
+              </Button>
+            ) : null
+          }
         >
-          <p className="text-sm font-semibold uppercase tracking-widest text-muted">
-            Most recent topic
-          </p>
-          <p className="mt-2 text-xl font-bold text-fg">
-            {recentTopic || 'Nothing here yet. Your first session is a great place to start.'}
-          </p>
-          <div className="mt-4">
-            <Button as={Link} to="/study" variant="subtle" size="sm">
-              <Icon name="refresh" className="h-4 w-4" />
-              Revise it
-            </Button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          variants={fadeInUp}
-          className="glass rounded-3xl p-6"
-        >
-          <h2 className="mb-1 text-lg font-bold text-fg">Study a subject</h2>
-          <p className="mb-3 text-sm text-muted">
-            Pick a subject, then choose how to revise it.
-          </p>
-          {subjectNames.length > 0 && (
-            <div className="mb-4 flex flex-wrap gap-2">
-              {subjectNames.map((name) => (
-                <button
-                  key={name}
-                  type="button"
-                  onClick={() => setStudySubject(name)}
-                  aria-pressed={activeSubject === name}
-                  className={`rounded-full border px-3 py-1.5 text-sm font-medium transition-colors ${
-                    activeSubject === name
-                      ? 'border-brand bg-brand text-on-brand'
-                      : 'border-line bg-surface text-fg hover:border-brand'
-                  }`}
-                >
-                  {name}
-                </button>
-              ))}
-            </div>
-          )}
-          <div className="flex flex-wrap gap-2">
-            {STUDY_TECHNIQUES.map((t) => {
-              const available = techniqueHasContent(activePack, t.id)
-              if (!available) {
-                return (
-                  <span
-                    key={t.id}
-                    title={`No ${t.label.toLowerCase()} for ${activeSubject} yet`}
-                    className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-muted opacity-40"
+          <motion.div variants={fadeInUp} className="glass rounded-3xl p-6">
+            {subjectNames.length > 0 && (
+              <div className="mb-5 flex flex-wrap gap-2">
+                {subjectNames.map((name) => (
+                  <Chip
+                    key={name}
+                    selected={activeSubject === name}
+                    aria-pressed={activeSubject === name}
+                    onClick={() => setStudySubject(name)}
                   >
-                    <Icon name={t.icon} className="h-4 w-4" />
-                    {t.label}
-                  </span>
-                )
-              }
-              return (
-                <Link
-                  key={t.id}
-                  to={`/study/${slugify(activeSubject)}/${t.id}`}
-                  title={t.desc}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
-                >
-                  <Icon name={t.icon} className="h-4 w-4 text-brand-strong" />
-                  {t.label}
-                </Link>
-              )
-            })}
-            {activePack?.examQuestions?.length > 0 ? (
-              <Link
-                to={`/mock/${slugify(activeSubject)}`}
-                title="A timed, randomised paper for one section"
-                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
-              >
-                <Icon name="clock" className="h-4 w-4 text-brand-strong" />
-                Mock exam
-              </Link>
-            ) : (
-              <span
-                title={`No exam questions for ${activeSubject} yet`}
-                className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-muted opacity-40"
-              >
-                <Icon name="clock" className="h-4 w-4" />
-                Mock exam
-              </span>
+                    {name}
+                  </Chip>
+                ))}
+              </div>
             )}
-          </div>
-        </motion.div>
-      </div>
+            <div className="flex flex-wrap gap-2">
+              {STUDY_TECHNIQUES.map((t) => {
+                const available = techniqueHasContent(activePack, t.id)
+                return (
+                  <Chip
+                    key={t.id}
+                    to={available ? `/study/${slugify(activeSubject)}/${t.id}` : undefined}
+                    disabled={!available}
+                    title={available ? t.desc : `No ${t.label.toLowerCase()} for ${activeSubject} yet`}
+                  >
+                    <Icon
+                      name={t.icon}
+                      className={`h-4 w-4 ${available ? 'text-brand-strong' : ''}`}
+                    />
+                    {t.label}
+                  </Chip>
+                )
+              })}
+              <Chip
+                to={activePack?.examQuestions?.length > 0 ? `/mock/${slugify(activeSubject)}` : undefined}
+                disabled={!activePack?.examQuestions?.length}
+                title={
+                  activePack?.examQuestions?.length
+                    ? 'A timed, randomised paper for one section'
+                    : `No exam questions for ${activeSubject} yet`
+                }
+              >
+                <Icon
+                  name="clock"
+                  className={`h-4 w-4 ${activePack?.examQuestions?.length ? 'text-brand-strong' : ''}`}
+                />
+                Mock exam
+              </Chip>
+            </div>
+          </motion.div>
+        </Band>
+
+        {/* ----------------------------------------------------- COUNTDOWN */}
+        <Band kicker="Coming up" title="Exam countdown">
+          <CountdownCard />
+        </Band>
+
+        {/* ------------------------------------------------------ SUBJECTS */}
+        <Band
+          kicker="On your plate"
+          title="Your subjects"
+          action={
+            <Button as={Link} to="/courses" variant="secondary" size="sm" className="shrink-0">
+              <Icon name="plus" className="h-4 w-4" />
+              Add course
+            </Button>
+          }
+        >
+          <SubjectPillars user={user} />
+        </Band>
+
+        {/* --------------------------------------------------------- TOOLS */}
+        <Band kicker="Your toolkit" title="Tools">
+          <motion.div
+            variants={staggerContainer}
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {FEATURES.map((f) => (
+              <motion.div key={f.id} variants={fadeInUp}>
+                <Link
+                  to={f.to}
+                  className="glass card-lift flex h-full items-center gap-4 rounded-3xl p-5"
+                >
+                  <span
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${FEATURE_ACCENT[f.accent]}`}
+                  >
+                    <Icon name={f.icon} className="h-6 w-6" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-semibold text-fg">{f.label}</span>
+                    <span className="block text-sm text-muted">{f.desc}</span>
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Band>
       </Section>
     </div>
   )

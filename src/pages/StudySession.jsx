@@ -5,7 +5,8 @@ import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import RevisionRunner from '@/components/ui/RevisionRunner'
-import { fadeInUp, popIn, staggerContainer } from '@/lib/motion'
+import Chip from '@/components/ui/Chip'
+import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { STUDY_TECHNIQUES } from '@/constants/content'
 import { getPackByName } from '@/constants/library'
 import { lastSessionForSubject, isTough } from '@/lib/sessions'
@@ -96,14 +97,9 @@ function ChapterPicker({ pack, onPick }) {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {sub.topics.map((topic) => (
-                        <button
-                          key={topic}
-                          type="button"
-                          onClick={() => onPick(topic)}
-                          className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
-                        >
+                        <Chip key={topic} onClick={() => onPick(topic)}>
                           {topic}
-                        </button>
+                        </Chip>
                       ))}
                     </div>
                   </div>
@@ -114,14 +110,9 @@ function ChapterPicker({ pack, onPick }) {
         ) : (
           <div className="flex flex-wrap gap-2">
             {pack.topics.map((topic) => (
-              <button
-                key={topic}
-                type="button"
-                onClick={() => onPick(topic)}
-                className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
-              >
+              <Chip key={topic} onClick={() => onPick(topic)}>
                 {topic}
-              </button>
+              </Chip>
             ))}
           </div>
         )}

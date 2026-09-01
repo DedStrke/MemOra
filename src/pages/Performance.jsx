@@ -8,12 +8,7 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { attemptStats, mistakes, weakestTopics, daysAgo } from '@/lib/sessions'
 import { slugify } from '@/lib/slug'
-
-const SUBJECT_ACCENT = {
-  flash: 'bg-flash-soft text-flash',
-  quiz: 'bg-quiz-soft text-quiz',
-  paper: 'bg-paper-soft text-paper',
-}
+import Chip from '@/components/ui/Chip'
 
 function StatCard({ label, value, accent }) {
   return (
@@ -125,30 +120,22 @@ export default function Performance() {
 
       {/* subject filter */}
       <motion.div variants={fadeInUp} className="mt-6 flex flex-wrap gap-2">
-        <button
-          type="button"
+        <Chip
+          selected={subjectFilter === 'all'}
+          aria-pressed={subjectFilter === 'all'}
           onClick={() => setSubjectFilter('all')}
-          className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
-            subjectFilter === 'all'
-              ? 'border-brand bg-brand text-on-brand'
-              : 'border-line bg-surface text-fg hover:border-brand'
-          }`}
         >
           All subjects
-        </button>
+        </Chip>
         {subjectNames.map((name) => (
-          <button
+          <Chip
             key={name}
-            type="button"
+            selected={subjectFilter === name}
+            aria-pressed={subjectFilter === name}
             onClick={() => setSubjectFilter(name)}
-            className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
-              subjectFilter === name
-                ? 'border-brand bg-brand text-on-brand'
-                : 'border-line bg-surface text-fg hover:border-brand'
-            }`}
           >
             {name}
-          </button>
+          </Chip>
         ))}
       </motion.div>
 

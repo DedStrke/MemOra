@@ -18,6 +18,7 @@ import Terms from '@/pages/Terms'
 import Contact from '@/pages/Contact'
 import CursorGlow from '@/components/ui/CursorGlow'
 import ScrollToTop from '@/components/layout/ScrollToTop'
+import Toast from '@/components/ui/Toast'
 
 /*
   Routing.
@@ -32,6 +33,7 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <ScrollToTop />
       <CursorGlow />
+      <Toast />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
