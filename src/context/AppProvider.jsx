@@ -6,10 +6,11 @@ import * as auth from '@/lib/auth'
   localStorage on this device, no account and no backend. `user` is always
   present (never null) so pages never need to guard against a signed-out state.
 */
-export const THEMES = ['light', 'dark', 'high-contrast']
+export const THEMES = ['light', 'dark', 'cream', 'high-contrast']
 export const THEME_META = {
   light: { label: 'Light', icon: 'sun' },
   dark: { label: 'Dark', icon: 'moon' },
+  cream: { label: 'Cream', icon: 'book' },
   'high-contrast': { label: 'High contrast', icon: 'contrast' },
 }
 

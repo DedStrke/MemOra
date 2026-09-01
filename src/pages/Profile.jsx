@@ -6,7 +6,7 @@ import Icon from '@/components/ui/Icon'
 import AccentPicker from '@/components/ui/AccentPicker'
 import { fadeInUp } from '@/lib/motion'
 import { PROFILE, GOAL_OPTIONS } from '@/constants/content'
-import { useApp } from '@/context/AppProvider'
+import { useApp, THEMES, THEME_META } from '@/context/AppProvider'
 
 function Row({ label, value }) {
   return (
@@ -43,7 +43,7 @@ function Choice({ label, options, value, onChange }) {
 }
 
 export default function Profile() {
-  const { user, setName, a11y, setA11y } = useApp()
+  const { user, setName, a11y, setA11y, theme, setTheme } = useApp()
 
   const goalLabel =
     user.goal?.choice === 'custom'
@@ -126,6 +126,12 @@ export default function Profile() {
         </p>
         <div className="space-y-5">
           <Choice
+            label="Theme"
+            value={theme}
+            onChange={setTheme}
+            options={THEMES.map((t) => ({ value: t, label: THEME_META[t].label }))}
+          />
+          <Choice
             label="Text size"
             value={a11y.textScale}
             onChange={(v) => setA11y({ textScale: v })}
@@ -172,7 +178,7 @@ export default function Profile() {
           </div>
         </div>
         <p className="readable mt-5 text-xs text-muted">
-          Theme (light, dark, high contrast) lives in the top bar.
+          You can also switch theme quickly from the icons in the top bar.
         </p>
       </motion.div>
     </Section>
