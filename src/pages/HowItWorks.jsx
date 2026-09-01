@@ -1,13 +1,48 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Mascot from '@/components/ui/Mascot'
 import EyeMark from '@/components/ui/EyeMark'
 import Wordmark from '@/components/ui/Wordmark'
 import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
+import Footer from '@/components/layout/Footer'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
-import { MARKETING, REVIEWS } from '@/constants/content'
+import { MARKETING, REVIEWS, FAQ_ITEMS } from '@/constants/content'
+
+function FaqItem({ q, a }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <motion.div variants={fadeInUp} className="card overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+      >
+        <span className="font-semibold text-fg">{q}</span>
+        <Icon
+          name="chevronDown"
+          className={`h-4 w-4 shrink-0 text-muted transition-transform ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <p className="readable px-5 pb-4 text-sm text-muted">{a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
 
 function Stars({ rating }) {
   return (
@@ -195,6 +230,24 @@ export default function HowItWorks() {
         </div>
       </motion.section>
 
+      {/* FAQ */}
+      <motion.section
+        id="faq"
+        {...inViewProps}
+        variants={staggerContainer}
+        className="mx-auto max-w-3xl px-5 py-20 sm:py-28"
+      >
+        <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <span className="kicker mb-4">FAQ</span>
+          <h2 className="text-3xl font-extrabold text-fg sm:text-5xl">Questions, answered honestly</h2>
+        </motion.div>
+        <motion.div variants={staggerContainer} className="mt-10 space-y-3">
+          {FAQ_ITEMS.map((item) => (
+            <FaqItem key={item.q} q={item.q} a={item.a} />
+          ))}
+        </motion.div>
+      </motion.section>
+
       {/* Closing CTA */}
       <motion.section
         {...inViewProps}
@@ -216,6 +269,8 @@ export default function HowItWorks() {
           </div>
         </motion.div>
       </motion.section>
+
+      <Footer />
     </div>
   )
 }

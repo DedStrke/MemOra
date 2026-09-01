@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Wordmark from '@/components/ui/Wordmark'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import AccentPicker from '@/components/ui/AccentPicker'
+import Footer from '@/components/layout/Footer'
 import { useApp } from '@/context/AppProvider'
 import { isValidEmail, passwordProblem } from '@/lib/auth'
 
@@ -40,8 +41,9 @@ function Field({ id, label, type = 'text', value, onChange, error, autoComplete,
 export default function SignIn() {
   const navigate = useNavigate()
   const { signIn, signUp } = useApp()
+  const [searchParams] = useSearchParams()
 
-  const [mode, setMode] = useState('signin')
+  const [mode, setMode] = useState(searchParams.get('mode') === 'signup' ? 'signup' : 'signin')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -210,6 +212,8 @@ export default function SignIn() {
           </p>
         </motion.div>
       </main>
+
+      <Footer />
     </div>
   )
 }

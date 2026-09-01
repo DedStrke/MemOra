@@ -12,6 +12,9 @@ import Progress from '@/pages/Progress'
 import Performance from '@/pages/Performance'
 import Community from '@/pages/Community'
 import SignIn from '@/pages/SignIn'
+import Privacy from '@/pages/Privacy'
+import Terms from '@/pages/Terms'
+import Contact from '@/pages/Contact'
 import CursorGlow from '@/components/ui/CursorGlow'
 
 /*
@@ -30,6 +33,9 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/contact" element={<Contact />} />
 
         <Route element={<AppLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />

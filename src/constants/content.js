@@ -189,3 +189,115 @@ export const REVIEWS = {
     { id: 'r3', name: 'MCQ', role: 'Quick checks', avatar: '✅', rating: 5, quote: 'Instant feedback with an explanation for every option, so a wrong answer teaches you something too.' },
   ],
 }
+
+/* ----------------------------------------------------------- FOOTER */
+
+// Column links for the site footer. Kept separate from NAV_LINKS (the
+// top-bar set) since the footer surfaces a couple of extra destinations
+// (How it works, Community, the legal pages) that don't belong in the
+// in-app top bar.
+export const FOOTER_COLUMNS = [
+  {
+    heading: 'Study',
+    links: [
+      { label: 'Dashboard', to: '/dashboard' },
+      { label: 'Courses', to: '/courses' },
+      { label: 'Flashcards', to: '/flashcards' },
+      { label: 'Progress', to: '/progress' },
+      { label: 'Performance', to: '/performance' },
+    ],
+  },
+  {
+    heading: 'Learn',
+    links: [
+      { label: 'How it works', to: '/how-it-works' },
+      { label: 'FAQ', to: '/how-it-works#faq' },
+      { label: 'Community', to: '/community' },
+    ],
+  },
+  {
+    heading: 'Account',
+    links: [
+      { label: 'Sign in', to: '/signin' },
+      { label: 'Create account', to: '/signin?mode=signup' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { label: 'Privacy', to: '/privacy' },
+      { label: 'Terms', to: '/terms' },
+      { label: 'Contact', to: '/contact' },
+    ],
+  },
+]
+
+/* ------------------------------------------------------------ LEGAL */
+
+// Every claim here has to stay true to what the app actually does: no
+// server, no accounts beyond localStorage, no analytics, nothing sent
+// anywhere. Keep it that honest, or update the copy the moment that
+// stops being true.
+export const LEGAL = {
+  privacy: {
+    title: 'Privacy',
+    updated: 'August 2026',
+    intro: "The short version: Memora doesn't collect anything, because there's nowhere for it to go. Everything below explains exactly what that means.",
+    sections: [
+      {
+        heading: 'What Memora stores',
+        body: "Your profile, subjects, exam dates, study sessions, and any account you create are saved with the browser's localStorage, on the device you're using. None of it is uploaded, and Memora has no server to upload it to.",
+      },
+      {
+        heading: 'What that means in practice',
+        body: "Your data doesn't sync between devices or browsers. Clearing your browser's site data, using private/incognito mode, or switching computers all mean starting fresh. There is no way for Memora, or anyone else, to see your data remotely, because it never leaves your device.",
+      },
+      {
+        heading: 'Accounts and passwords',
+        body: 'Creating an account stores a name, email, and a salted, hashed password (never the password itself) in that same local storage. It exists to keep separate profiles apart on a shared device, not to identify you to a server, because there is no server.',
+      },
+      {
+        heading: 'Analytics and tracking',
+        body: 'None. No analytics scripts, no third-party trackers, no advertising, no cookies used for tracking. Fonts and other assets are bundled with the site rather than loaded from an external service.',
+      },
+      {
+        heading: 'Changes',
+        body: "If Memora ever changes how it handles data, for example by adding real accounts that sync, this page gets updated first and the change is explained plainly, not buried.",
+      },
+    ],
+  },
+  terms: {
+    title: 'Terms',
+    updated: 'August 2026',
+    intro: 'Plain-language terms for a free, personal study tool.',
+    sections: [
+      {
+        heading: 'What this is',
+        body: 'Memora is a free revision tool built as a personal project. It is not a company, and using it does not create any kind of formal agreement beyond the obvious: be reasonable, and don’t rely on it for anything critical.',
+      },
+      {
+        heading: 'No guarantees',
+        body: "Memora is provided as-is. Content is built carefully against real specifications, but it can still contain mistakes, and it is not a substitute for your teacher, your textbook, or the official specification and past papers from your exam board.",
+      },
+      {
+        heading: 'Your data, your device',
+        body: "Since everything lives in your browser's local storage, you're responsible for it. Clearing site data or switching devices deletes it permanently, with no way to recover it. There's no backup to restore from.",
+      },
+      {
+        heading: 'Acceptable use',
+        body: "Use Memora for studying. Don't try to break it, scrape it at scale, or use it in a way that disrupts it for other people.",
+      },
+      {
+        heading: 'Changes',
+        body: 'Memora is a project that keeps evolving. Features, content, and these terms can change as it does.',
+      },
+    ],
+  },
+  contact: {
+    title: 'Contact',
+    intro: "Memora is a personal project, not a company with a support line — but bug reports and ideas are genuinely welcome.",
+    githubUrl: 'https://github.com/DedStrke/MemOra',
+    githubLabel: 'Open an issue on GitHub',
+    githubBody: 'The fastest way to report a bug, request a subject, or suggest a feature. Every issue gets read.',
+  },
+}
