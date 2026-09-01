@@ -95,8 +95,17 @@ export default function AppProvider({ children }) {
   const [state, setState] = useState(load)
   const [account, setAccount] = useState(auth.currentAccount)
 
-  const patch = (p) => {
+  // Accepts a plain patch object, or an updater `(state) => patch` when the
+  // patch needs to read current state - always the live state React is
+  // batching to, never a value captured back when `value` was last built.
+  // Without this, calling a setter that reads `state.X` several times
+  // synchronously (e.g. logging every question in a mock exam in one
+  // forEach) silently drops all but the last call: each call computes its
+  // patch from the same stale `state`, so React's batched updates just
+  // overwrite each other instead of building on one another.
+  const patch = (updater) => {
     setState((s) => {
+      const p = typeof updater === 'function' ? updater(s) : updater
       const next = { ...s, ...p }
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
@@ -138,13 +147,13 @@ export default function AppProvider({ children }) {
       signIn: async (creds) => {
         const next = await auth.signIn(creds)
         setAccount(next)
-        patch({ profile: { ...state.profile, name: next.name } })
+        patch((s) => ({ profile: { ...s.profile, name: next.name } }))
         return next
       },
       signUp: async (creds) => {
         const next = await auth.signUp(creds)
         setAccount(next)
-        patch({ profile: { ...state.profile, name: next.name } })
+        patch((s) => ({ profile: { ...s.profile, name: next.name } }))
         return next
       },
       signOut: () => {
@@ -154,50 +163,60 @@ export default function AppProvider({ children }) {
 
       // ---- theme + reading prefs ----
       setTheme: (theme) => patch({ theme }),
-      cycleTheme: () => patch({ theme: THEMES[(THEMES.indexOf(state.theme) + 1) % THEMES.length] }),
+      cycleTheme: () => patch((s) => ({ theme: THEMES[(THEMES.indexOf(s.theme) + 1) % THEMES.length] })),
       accent: state.accent,
       setAccent: (accent) => patch({ accent }),
-      setA11y: (p) => patch({ a11y: { ...state.a11y, ...p } }),
+      setA11y: (p) => patch((s) => ({ a11y: { ...s.a11y, ...p } })),
 
       // ---- profile ----
-      setName: (name) => patch({ profile: { ...state.profile, name } }),
-      setBio: (bio) => patch({ profile: { ...state.profile, bio } }),
-      setYearGroup: (yearGroup) => patch({ profile: { ...state.profile, yearGroup } }),
-      setAvatar: (avatar) => patch({ profile: { ...state.profile, avatar } }),
-      setSubjects: (subjects) => patch({ profile: { ...state.profile, subjects } }),
+      setName: (name) => patch((s) => ({ profile: { ...s.profile, name } })),
+      setBio: (bio) => patch((s) => ({ profile: { ...s.profile, bio } })),
+      setYearGroup: (yearGroup) => patch((s) => ({ profile: { ...s.profile, yearGroup } })),
+      setAvatar: (avatar) => patch((s) => ({ profile: { ...s.profile, avatar } })),
+      setSubjects: (subjects) => patch((s) => ({ profile: { ...s.profile, subjects } })),
 
       // ---- misc ----
       setRecentTopic: (recentTopic) => patch({ recentTopic }),
 
       // Record a finished study session (progress reads this).
       logSession: (session) =>
-        patch({
-          sessions: [{ id: 'ses' + Date.now(), ts: Date.now(), ...session }, ...state.sessions].slice(0, 200),
-        }),
+        patch((s) => ({
+          sessions: [
+            { id: 'ses' + Date.now() + Math.random().toString(36).slice(2, 6), ts: Date.now(), ...session },
+            ...s.sessions,
+          ].slice(0, 200),
+        })),
 
       // Record one answered mcq/exam question (subject, topic, technique,
       // question, correct, dontKnow). The Performance page reads this to show
-      // exactly which questions you got wrong.
+      // exactly which questions you got wrong. Called many times in a row for
+      // a mock exam (once per question), so this must read live state.
       logAttempt: (attempt) =>
-        patch({
-          attempts: [{ id: 'att' + Date.now() + Math.random().toString(36).slice(2, 6), ts: Date.now(), ...attempt }, ...state.attempts].slice(0, 1000),
-        }),
+        patch((s) => ({
+          attempts: [
+            { id: 'att' + Date.now() + Math.random().toString(36).slice(2, 6), ts: Date.now(), ...attempt },
+            ...s.attempts,
+          ].slice(0, 1000),
+        })),
 
       // ---- decks ----
-      saveDeck: (deck) => {
-        const exists = state.decks.some((d) => d.id === deck.id)
-        patch({
-          decks: exists ? state.decks.map((d) => (d.id === deck.id ? deck : d)) : [deck, ...state.decks],
-        })
-      },
-      deleteDeck: (id) => patch({ decks: state.decks.filter((d) => d.id !== id) }),
+      saveDeck: (deck) =>
+        patch((s) => ({
+          decks: s.decks.some((d) => d.id === deck.id)
+            ? s.decks.map((d) => (d.id === deck.id ? deck : d))
+            : [deck, ...s.decks],
+        })),
+      deleteDeck: (id) => patch((s) => ({ decks: s.decks.filter((d) => d.id !== id) })),
 
       // ---- community (device-local only, see Community.jsx) ----
       addPost: (post) =>
-        patch({
-          posts: [{ id: 'post' + Date.now(), ts: Date.now(), ...post }, ...state.posts].slice(0, 300),
-        }),
-      deletePost: (id) => patch({ posts: state.posts.filter((p) => p.id !== id) }),
+        patch((s) => ({
+          posts: [
+            { id: 'post' + Date.now() + Math.random().toString(36).slice(2, 6), ts: Date.now(), ...post },
+            ...s.posts,
+          ].slice(0, 300),
+        })),
+      deletePost: (id) => patch((s) => ({ posts: s.posts.filter((p) => p.id !== id) })),
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [state, account],
