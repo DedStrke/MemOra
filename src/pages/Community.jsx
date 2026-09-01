@@ -4,73 +4,39 @@ import { motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
-import Mascot from '@/components/ui/Mascot'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
-import { COMMUNITY_POSTS } from '@/constants/mock'
+import { findProfanity } from '@/lib/profanity'
+import { daysAgo } from '@/lib/sessions'
 
-function PostCard({ post }) {
-  const [liked, setLiked] = useState(false)
-  const count = post.likes + (liked ? 1 : 0)
-
-  return (
-    <motion.article
-      variants={fadeInUp}
-      className="card p-6"
-    >
-      <div className="flex items-center gap-3">
-        <span
-          aria-hidden="true"
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-soft text-lg font-bold text-brand-strong"
-        >
-          {post.avatar}
-        </span>
-        <div className="min-w-0">
-          <p className="truncate font-semibold text-fg">{post.author}</p>
-          <p className="text-xs text-muted">{post.time}</p>
-        </div>
-      </div>
-
-      <p className="readable mt-4 text-fg">{post.text}</p>
-
-      <div className="mt-4">
-        <button
-          type="button"
-          onClick={() => setLiked((v) => !v)}
-          aria-pressed={liked}
-          aria-label={liked ? 'Remove your like' : 'Like this post'}
-          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors ${
-            liked
-              ? 'border-transparent bg-flash-soft text-flash'
-              : 'border-line bg-surface text-muted hover:border-brand hover:text-fg'
-          }`}
-        >
-          <Icon name="heart" className="h-4 w-4" />
-          {count}
-        </button>
-      </div>
-    </motion.article>
-  )
+function timeLabel(ts) {
+  const d = daysAgo(ts)
+  if (d === 0) return 'Today'
+  if (d === 1) return 'Yesterday'
+  return `${d}d ago`
 }
 
 export default function Community() {
-  const { user, posts, addPost } = useApp()
+  const { user, posts, addPost, deletePost } = useApp()
+  const initial = (user?.name?.[0] || 'Y').toUpperCase()
   const [text, setText] = useState('')
-
-  const feed = [...posts, ...COMMUNITY_POSTS]
+  const [error, setError] = useState('')
 
   const submit = () => {
-    const trimmed = text.trim()
-    if (!trimmed) return
-    addPost({
-      id: 'p' + Date.now(),
-      author: user.name,
-      avatar: (user.name[0] || '?').toUpperCase(),
-      text: trimmed,
-      time: 'now',
-      likes: 0,
-    })
+    const clean = text.trim()
+    if (!clean) return
+    const hits = findProfanity(clean)
+    if (hits.length) {
+      setError(
+        hits.length > 1
+          ? `That post won't go up: it contains words (${hits.join(', ')}) that aren't allowed here.`
+          : `That post won't go up: it contains a word (${hits[0]}) that isn't allowed here.`,
+      )
+      return
+    }
+    addPost({ text: clean })
     setText('')
+    setError('')
   }
 
   return (
@@ -82,42 +48,45 @@ export default function Community() {
         </Button>
       </motion.div>
 
-      {/* Heading */}
-      <motion.div variants={fadeInUp} className="mt-6 flex items-start gap-4">
-        <Mascot expression="wave" className="hidden h-20 w-20 shrink-0 sm:block" />
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-widest text-brand-strong">
-            You are not revising alone
-          </p>
-          <h1 className="mt-1 text-3xl font-bold text-fg sm:text-4xl">Community</h1>
-          <p className="readable mt-2 text-muted">
-            Share a win, ask for help, or cheer someone on. Every little post
-            keeps the whole group going.
-          </p>
-        </div>
+      <motion.div variants={fadeInUp} className="mt-6">
+        <span className="kicker">Your board</span>
+        <h1 className="mt-2 text-3xl font-extrabold text-fg sm:text-4xl">Community</h1>
+        <p className="readable mt-1 text-muted">
+          Wins, stuck points, whatever. Keep it clean, no swearing.
+        </p>
       </motion.div>
 
-      {/* Composer */}
       <motion.div
         variants={fadeInUp}
-        className="mt-8 card p-6"
+        className="mt-3 flex items-start gap-2.5 rounded-xl border border-line bg-raised px-4 py-3 text-sm text-muted"
       >
-        <label htmlFor="composer" className="font-semibold text-fg">
-          What is on your mind, {user.name}?
-        </label>
+        <Icon name="access" className="mt-0.5 h-4 w-4 shrink-0 text-brand-strong" />
+        <p className="readable">
+          This board is private to this device right now - your account signs you in here, not
+          into a shared server. Posts won't be visible to anyone else until real multi-device
+          sync is added.
+        </p>
+      </motion.div>
+
+      {/* composer */}
+      <motion.div variants={fadeInUp} className="mt-6 card p-5">
         <textarea
-          id="composer"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') submit()
-          }}
           rows={3}
-          placeholder="Share a study win, a question, or a bit of encouragement..."
-          className="mt-3 w-full resize-none rounded-xl border border-line bg-page px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value)
+            if (error) setError('')
+          }}
+          placeholder="What's on your mind..."
+          className="w-full resize-none rounded-xl border border-line bg-page px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
         />
-        <div className="mt-3 flex items-center justify-between gap-3">
-          <p className="text-xs text-muted">Be kind. We are all in this together.</p>
+        {error && (
+          <p className="readable mt-2 flex items-center gap-1.5 text-sm font-medium text-danger">
+            <Icon name="x" className="h-4 w-4 shrink-0" />
+            {error}
+          </p>
+        )}
+        <div className="mt-3 flex justify-end">
           <Button onClick={submit} disabled={!text.trim()}>
             <Icon name="send" className="h-4 w-4" />
             Post
@@ -125,16 +94,36 @@ export default function Community() {
         </div>
       </motion.div>
 
-      {/* Feed */}
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        animate="show"
-        className="mt-8 space-y-4"
-      >
-        {feed.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
+      {/* feed */}
+      <motion.div variants={staggerContainer} className="mt-8 space-y-3">
+        {posts.length === 0 ? (
+          <motion.div variants={fadeInUp} className="card p-8 text-center">
+            <p className="text-sm text-muted">Nothing posted yet. Say something above.</p>
+          </motion.div>
+        ) : (
+          posts.map((p) => (
+            <motion.div key={p.id} variants={fadeInUp} className="card flex items-start gap-3 p-4">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-on-brand">
+                {initial}
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2 text-xs text-muted">
+                  <span className="font-semibold text-fg">You</span>
+                  <span>· {timeLabel(p.ts)}</span>
+                </div>
+                <p className="readable mt-1 text-sm text-fg">{p.text}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => deletePost(p.id)}
+                aria-label="Delete post"
+                className="shrink-0 rounded-lg p-1.5 text-muted transition-colors hover:bg-danger/10 hover:text-danger"
+              >
+                <Icon name="x" className="h-4 w-4" />
+              </button>
+            </motion.div>
+          ))
+        )}
       </motion.div>
     </Section>
   )

@@ -1,12 +1,14 @@
 /*
   Derive real stats from the learner's study history (state.sessions in the
-  store). Every finished session is one entry; progress, knowledge decay and the
-  mood-aware adaptation all read from here, so what the learner sees reflects
-  what they actually did, not mock numbers.
+  store). Every finished session is one entry, and every number shown on the
+  dashboard is computed from real logged sessions - nothing here is seeded or
+  guessed. A subject with zero sessions shows zero, honestly.
 
-  A session: { id, subject, technique, mood, difficulty (1-5), ts }
+  A session: { id, subject, technique, difficulty (1-5), minutes, topic, ts }
   Sessions are stored newest-first.
 */
+import { getPackByName } from '@/constants/library'
+
 const norm = (x) => String(x || '').toLowerCase().replace(/[^a-z0-9]/g, '')
 
 export function sessionsForSubject(sessions = [], name) {
@@ -23,8 +25,8 @@ export function daysAgo(ts) {
   return Math.max(0, Math.floor((Date.now() - ts) / 86400000))
 }
 
-// A session counts as "tough" if it was hard (4-5) or done in a low mood.
-export const isTough = (s) => !!s && (s.difficulty >= 4 || s.mood === 'struggling')
+// A session counts as "tough" if it was rated hard (4-5).
+export const isTough = (s) => !!s && s.difficulty >= 4
 
 // Confidence = 6 - difficulty, so an easier session reads as higher confidence.
 // Returned oldest to newest for a left-to-right sparkline.
@@ -51,70 +53,107 @@ export function subjectStats(sessions = [], name) {
 }
 
 /*
-  Believable demo analytics for the subject cards.
-
-  A fresh account has no logged sessions, so the real stats above are all zeros.
-  To give every learner a dashboard that already looks alive, we seed each
-  subject's headline numbers from its name: the same subject always shows the
-  same values, and two different subjects show different ones. It is deterministic
-  (no Math.random), so nothing jumps around between renders.
-
-  Any REAL study still counts: when a subject has logged sessions, their volume
-  and confidence trend are layered on top of the seeded baseline, so genuine
-  practice visibly nudges the flashcard score, hours and graph upward.
-
-  The priority ("your subject") card is marked `big` and gets a deliberately
-  strong, upward profile so the hero of the dashboard always looks encouraging.
+  Real analytics for the subject cards. Every number here comes from actual
+  logged sessions - a subject with no sessions yet shows zero and an empty
+  chart, honestly, rather than a plausible-looking seeded number.
 */
+const DAY = 86400000
 
-// Stable 32-bit string hash (FNV-1a). Same input, same output, every time.
-function hashStr(str) {
-  let h = 2166136261
-  for (let i = 0; i < str.length; i += 1) {
-    h ^= str.charCodeAt(i)
-    h = Math.imul(h, 16777619)
-  }
-  return h >>> 0
-}
+export function subjectMetrics(sessions = [], name) {
+  const subs = sessionsForSubject(sessions, name)
+  const minutesOf = (list) => list.reduce((sum, s) => sum + (s.minutes || 0), 0)
 
-export function subjectAnalytics(name, { big = false, stats } = {}) {
-  const key = norm(name) || 'subject'
-  // Independent pseudo-values in [0, 1) from different "salts" of the name.
-  const r = (salt) => (hashStr(key + salt) % 1000) / 1000
+  const hours = Math.round((minutesOf(subs) / 60) * 10) / 10
 
-  // Flashcards out of 100: the hero sits high (60-80), others spread wide.
-  let cards = big
-    ? 60 + Math.round(r('cards') * 20)
-    : 42 + Math.round(r('cards') * 46)
+  const now = Date.now()
+  const thisWeek = subs.filter((s) => now - s.ts < 7 * DAY)
+  const lastWeek = subs.filter((s) => now - s.ts >= 7 * DAY && now - s.ts < 14 * DAY)
+  const delta = Math.round(((minutesOf(thisWeek) - minutesOf(lastWeek)) / 60) * 10) / 10
 
-  // Hours spent this term, one decimal.
-  let hours = big
-    ? Math.round((3 + r('hours') * 1.8) * 10) / 10
-    : Math.round((1.5 + r('hours') * 4.5) * 10) / 10
-
-  // Week-on-week change in hours: the hero always trends up, others can dip.
-  let delta = big
-    ? Math.round((0.6 + r('delta') * 1.8) * 10) / 10
-    : Math.round((r('delta') * 3.2 - 1.1) * 10) / 10
-
-  // Seven-point "hours vs day" series (confidence 1-6), gently trending.
-  const start = 1.6 + r('start') * 1.6
-  const slope = (big ? 1.8 : 0.6) + r('slope') * (big ? 1.6 : 2.4)
-  let series = Array.from({ length: 7 }, (_, i) => {
-    const wobble = (hashStr(key + 'w' + i) % 100) / 100 - 0.5
-    const v = start + (i / 6) * slope + wobble * (big ? 0.5 : 0.9)
-    return Math.max(1, Math.min(6, Math.round(v * 100) / 100))
+  // Real hours studied per day, oldest to newest, for the last 7 days.
+  const series = Array.from({ length: 7 }, (_, i) => {
+    const dayStart = Math.floor((now - (6 - i) * DAY) / DAY) * DAY
+    const dayMinutes = minutesOf(subs.filter((s) => s.ts >= dayStart && s.ts < dayStart + DAY))
+    return Math.round((dayMinutes / 60) * 100) / 100
   })
 
-  // Layer real logged sessions on top of the seeded baseline.
-  if (stats && stats.count) {
-    cards = Math.min(100, cards + Math.min(stats.count * 3, 30))
-    hours = Math.round((hours + stats.count * 0.75) * 10) / 10
-    delta = Math.round((delta + (stats.trend || 0) * 0.4) * 10) / 10
-    if (stats.series && stats.series.length > 1) series = stats.series
-  }
+  // Real curriculum coverage: how many of the subject's chapters have been
+  // studied at least once, out of how many exist.
+  const pack = getPackByName(name)
+  const totalChapters = pack?.topics?.length || 0
+  const chaptersCovered = new Set(subs.map((s) => s.topic).filter(Boolean)).size
 
-  return { cards, hours, delta, series }
+  return { hours, delta, series, chaptersCovered, totalChapters }
+}
+
+// Per-topic (chapter) breakdown for a subject, worst-confidence first, so a
+// learner can see exactly which chapters need another pass. Confidence uses
+// the same 6-minus-difficulty scale as confidenceSeries.
+export function topicStats(sessions = [], subjectName) {
+  const subs = sessionsForSubject(sessions, subjectName).filter((s) => s.topic)
+  const byTopic = new Map()
+  for (const s of subs) {
+    const list = byTopic.get(s.topic) || []
+    list.push(s)
+    byTopic.set(s.topic, list)
+  }
+  const rows = Array.from(byTopic.entries()).map(([topic, list]) => {
+    const sorted = list.slice().sort((a, b) => b.ts - a.ts)
+    const latestConfidence = Math.max(1, Math.min(5, 6 - (sorted[0]?.difficulty || 3)))
+    const avgDifficulty = list.reduce((sum, s) => sum + (s.difficulty || 3), 0) / list.length
+    return {
+      topic,
+      count: list.length,
+      latestConfidence,
+      avgDifficulty: Math.round(avgDifficulty * 10) / 10,
+      lastTs: sorted[0]?.ts || null,
+    }
+  })
+  // Weakest (lowest confidence, i.e. highest avg difficulty) first.
+  rows.sort((a, b) => b.avgDifficulty - a.avgDifficulty)
+  return rows
+}
+
+/*
+  Per-question attempt stats (state.attempts in the store), for the
+  Performance page. An attempt: { id, ts, subject, topic, technique,
+  question, correct, dontKnow }. Stored newest-first.
+*/
+export function attemptStats(attempts = []) {
+  const total = attempts.length
+  const correct = attempts.filter((a) => a.correct).length
+  const dontKnow = attempts.filter((a) => a.dontKnow).length
+  const wrong = total - correct - dontKnow
+  return {
+    total,
+    correct,
+    wrong,
+    dontKnow,
+    accuracy: total ? Math.round((correct / total) * 100) : null,
+  }
+}
+
+// Every missed question (wrong or "I don't know"), newest first, optionally
+// scoped to one subject.
+export function mistakes(attempts = [], subjectName) {
+  const scoped = subjectName ? sessionsForSubject(attempts, subjectName) : attempts
+  return scoped.filter((a) => !a.correct).slice().sort((a, b) => b.ts - a.ts)
+}
+
+// Which topics have the most misses, worst first - the "focus here" list.
+export function weakestTopics(attempts = [], subjectName, limit = 5) {
+  const scoped = (subjectName ? sessionsForSubject(attempts, subjectName) : attempts).filter((a) => a.topic)
+  const byTopic = new Map()
+  for (const a of scoped) {
+    const row = byTopic.get(a.topic) || { topic: a.topic, subject: a.subject, misses: 0, total: 0 }
+    row.total += 1
+    if (!a.correct) row.misses += 1
+    byTopic.set(a.topic, row)
+  }
+  return Array.from(byTopic.values())
+    .filter((r) => r.misses > 0)
+    .sort((a, b) => b.misses - a.misses || b.misses / b.total - a.misses / a.total)
+    .slice(0, limit)
 }
 
 // A simple day-streak: consecutive calendar days (ending today or yesterday)

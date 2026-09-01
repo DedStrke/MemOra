@@ -9,6 +9,24 @@ import SubjectPillars from '@/components/dashboard/SubjectPillars'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { FEATURES, STUDY_TECHNIQUES } from '@/constants/content'
+import { getPackByName } from '@/constants/library'
+
+// A technique is offered only if the subject's pack actually has content for
+// it, so nobody lands on an empty "no MCQs yet" dead end.
+function techniqueHasContent(pack, techniqueId) {
+  if (!pack) return true
+  switch (techniqueId) {
+    case 'mcq':
+      return pack.mcq?.length > 0
+    case 'exam-questions':
+      return pack.examQuestions?.length > 0
+    case 'flashcards':
+    case 'active-recall':
+    case 'blurting':
+    default:
+      return pack.flashcards?.length > 0
+  }
+}
 
 const GOAL_LINE = {
   pass: 'Steady does it. We’ll get you over the line together.',
@@ -22,6 +40,7 @@ const FEATURE_ACCENT = {
   quiz: 'bg-quiz-soft text-quiz',
   paper: 'bg-paper-soft text-paper',
   brand: 'bg-brand-soft text-brand-strong',
+  success: 'bg-success/15 text-success',
 }
 
 export default function Dashboard() {
@@ -39,6 +58,7 @@ export default function Dashboard() {
     user.subjects?.find((s) => s.priority)?.name || subjectNames[0] || 'Revision'
   const [studySubject, setStudySubject] = useState(defaultSubject)
   const activeSubject = subjectNames.includes(studySubject) ? studySubject : defaultSubject
+  const activePack = getPackByName(activeSubject)
 
   return (
     <Section width="wide" animateOnMount className="pt-8 pb-28">
@@ -155,17 +175,32 @@ export default function Dashboard() {
             </div>
           )}
           <div className="flex flex-wrap gap-2">
-            {STUDY_TECHNIQUES.map((t) => (
-              <Link
-                key={t.id}
-                to={`/study?subject=${encodeURIComponent(activeSubject)}&technique=${t.id}`}
-                title={t.desc}
-                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
-              >
-                <Icon name={t.icon} className="h-4 w-4 text-brand-strong" />
-                {t.label}
-              </Link>
-            ))}
+            {STUDY_TECHNIQUES.map((t) => {
+              const available = techniqueHasContent(activePack, t.id)
+              if (!available) {
+                return (
+                  <span
+                    key={t.id}
+                    title={`No ${t.label.toLowerCase()} for ${activeSubject} yet`}
+                    className="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-muted opacity-40"
+                  >
+                    <Icon name={t.icon} className="h-4 w-4" />
+                    {t.label}
+                  </span>
+                )
+              }
+              return (
+                <Link
+                  key={t.id}
+                  to={`/study?subject=${encodeURIComponent(activeSubject)}&technique=${t.id}`}
+                  title={t.desc}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
+                >
+                  <Icon name={t.icon} className="h-4 w-4 text-brand-strong" />
+                  {t.label}
+                </Link>
+              )
+            })}
           </div>
         </motion.div>
       </div>

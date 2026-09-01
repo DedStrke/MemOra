@@ -10,10 +10,14 @@ import { fadeInUp, popIn } from '@/lib/motion'
   Renders real AI-generated revision content for a subject, chosen by technique.
   Pulls from a REVISION pack: flashcards, mcq, examQuestions, topics.
 
-    <RevisionRunner pack={pack} technique="mcq" />
+    <RevisionRunner pack={pack} technique="mcq" onAnswer={(attempt) => ...} />
 
   Techniques: flashcards / active-recall -> flip cards, mcq -> quiz,
   exam-questions -> mark-scheme reveal, blurting -> write then self-check.
+
+  onAnswer (optional) fires once per answered question for mcq/exam-questions,
+  with { question, correct, dontKnow }. correct is false when dontKnow is
+  true. Used to power the Performance/mistakes page.
 */
 
 function Nav({ i, total, onPrev, onNext }) {
@@ -34,9 +38,107 @@ function Nav({ i, total, onPrev, onNext }) {
   )
 }
 
-function FlashcardRunner({ cards, recall }) {
+/*
+  A technique with no content for the current chapter used to be a dead end -
+  a line of text and no way forward. It now offers the two things that
+  actually resolve it, plus any techniques that DO have content here.
+*/
+function Empty({ label, pack, onSwitchTechnique, onChangeChapter }) {
+  const alternatives = [
+    { id: 'flashcards', label: 'Flashcards', count: pack?.flashcards?.length || 0 },
+    { id: 'mcq', label: 'MCQ', count: pack?.mcq?.length || 0 },
+    { id: 'exam-questions', label: 'Exam questions', count: pack?.examQuestions?.length || 0 },
+  ].filter((a) => a.count > 0)
+
+  return (
+    <div className="mx-auto max-w-md py-10 text-center">
+      <p className="readable text-muted">No {label} for this chapter yet.</p>
+
+      {alternatives.length > 0 && onSwitchTechnique ? (
+        <>
+          <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-muted">
+            Available here instead
+          </p>
+          <div className="mt-2 flex flex-wrap justify-center gap-2">
+            {alternatives.map((a) => (
+              <Button key={a.id} size="sm" variant="secondary" onClick={() => onSwitchTechnique(a.id)}>
+                {a.label}
+                <span className="text-muted">({a.count})</span>
+              </Button>
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      {onChangeChapter ? (
+        <div className="mt-5">
+          <Button size="sm" variant="ghost" onClick={onChangeChapter}>
+            <Icon name="arrowLeft" className="h-4 w-4" />
+            Pick another chapter
+          </Button>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
+/*
+  Notes are trusted, hand-authored HTML shipped in the source bundle (see
+  constants/cs-notes.js, maths-notes.js) - not user input - so rendering them
+  via dangerouslySetInnerHTML is safe here; there is no untrusted-content path
+  into this string.
+*/
+function NotesRunner({ pack, chapter, empty }) {
+  const notes = pack.notes || {}
+  const topics = Object.keys(notes)
+  const [selected, setSelected] = useState(chapter || null)
+
+  if (!topics.length) return <Empty label="notes" {...empty} />
+
+  const active = chapter || selected
+  const html = active ? notes[active] : null
+
+  if (!html) {
+    return (
+      <div className="mx-auto max-w-2xl">
+        <p className="mb-4 text-sm text-muted">Pick a topic to read its notes.</p>
+        <div className="flex flex-wrap gap-2">
+          {topics.map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setSelected(t)}
+              className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-medium text-fg transition-colors hover:border-brand hover:bg-brand-soft"
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="mx-auto max-w-2xl">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-lg font-bold text-fg">{active}</h3>
+        {!chapter && (
+          <Button size="sm" variant="ghost" onClick={() => setSelected(null)}>
+            <Icon name="arrowLeft" className="h-4 w-4" />
+            All topics
+          </Button>
+        )}
+      </div>
+      {/* eslint-disable-next-line react/no-danger -- trusted static content, see comment above */}
+      <div className="notes-content readable mt-4" dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
+  )
+}
+
+function FlashcardRunner({ cards, recall, empty }) {
   const [i, setI] = useState(0)
   const [flipped, setFlipped] = useState(false)
+  if (!cards.length) return <Empty label="flashcards" {...empty} />
   const total = cards.length
   const go = (n) => {
     setFlipped(false)
@@ -63,14 +165,23 @@ function FlashcardRunner({ cards, recall }) {
   )
 }
 
-function McqRunner({ items }) {
+// idx === -1 represents "I don't know" (always wrong, never confused with a
+// real option index).
+const DONT_KNOW = -1
+
+function McqRunner({ items, onAnswer, empty }) {
   const [i, setI] = useState(0)
   const [picked, setPicked] = useState(null)
+  if (!items.length) return <Empty label="MCQs" {...empty} />
   const q = items[i]
   const total = items.length
   const next = () => {
     setPicked(null)
     setI((i + 1) % total)
+  }
+  const pick = (idx) => {
+    setPicked(idx)
+    onAnswer?.({ question: q.question, correct: idx === q.answer, dontKnow: idx === DONT_KNOW })
   }
   return (
     <div className="mx-auto max-w-2xl">
@@ -102,7 +213,7 @@ function McqRunner({ items }) {
               key={idx}
               type="button"
               disabled={picked !== null}
-              onClick={() => setPicked(idx)}
+              onClick={() => pick(idx)}
               className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left text-fg transition-colors ${cls}`}
             >
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-current text-xs font-bold">
@@ -118,6 +229,18 @@ function McqRunner({ items }) {
             </button>
           )
         })}
+        <button
+          type="button"
+          disabled={picked !== null}
+          onClick={() => pick(DONT_KNOW)}
+          className={`flex w-full items-center gap-3 rounded-xl border border-dashed px-4 py-2.5 text-left text-sm font-medium transition-colors ${
+            picked === DONT_KNOW
+              ? 'border-warning bg-warning/10 text-fg'
+              : 'border-line text-muted hover:border-brand hover:text-fg'
+          } ${picked !== null && picked !== DONT_KNOW ? 'opacity-50' : ''}`}
+        >
+          <Icon name="brain" className="h-4 w-4 shrink-0" />I don't know
+        </button>
       </div>
       {picked !== null && (
         <motion.div
@@ -127,9 +250,18 @@ function McqRunner({ items }) {
           aria-live="polite"
           className="mt-4 rounded-xl bg-raised p-4"
         >
-          <p className={`text-sm font-bold ${picked === q.answer ? 'text-success' : 'text-danger'}`}>
-            {picked === q.answer ? 'Correct!' : 'Not quite.'}
+          <p
+            className={`text-sm font-bold ${
+              picked === q.answer ? 'text-success' : picked === DONT_KNOW ? 'text-warning' : 'text-danger'
+            }`}
+          >
+            {picked === q.answer ? 'Correct!' : picked === DONT_KNOW ? "That's okay, here's the answer:" : 'Not quite.'}
           </p>
+          {picked !== q.answer && (
+            <p className="readable mt-1 text-sm text-fg">
+              Correct answer: <strong>{q.options[q.answer]}</strong>
+            </p>
+          )}
           <p className="readable mt-1 text-sm text-muted">{q.explanation}</p>
           <div className="mt-3">
             <Button size="sm" onClick={next}>
@@ -143,14 +275,21 @@ function McqRunner({ items }) {
   )
 }
 
-function ExamRunner({ items }) {
+function ExamRunner({ items, onAnswer, empty }) {
   const [i, setI] = useState(0)
   const [revealed, setRevealed] = useState(false)
+  const [rated, setRated] = useState(null) // 'right' | 'wrong' | 'dontknow' | null
+  if (!items.length) return <Empty label="exam questions" {...empty} />
   const q = items[i]
   const total = items.length
   const next = () => {
     setRevealed(false)
+    setRated(null)
     setI((i + 1) % total)
+  }
+  const rate = (r) => {
+    setRated(r)
+    onAnswer?.({ question: q.question, correct: r === 'right', dontKnow: r === 'dontknow' })
   }
   return (
     <div className="mx-auto max-w-2xl">
@@ -187,12 +326,35 @@ function ExamRunner({ items }) {
               </li>
             ))}
           </ul>
-          <div className="mt-4">
-            <Button size="sm" variant="secondary" onClick={next}>
-              Next question
-              <Icon name="arrowRight" className="h-4 w-4" />
-            </Button>
-          </div>
+
+          {rated === null ? (
+            <div className="mt-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">
+                Be honest, how did you do?
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <Button size="sm" onClick={() => rate('right')}>
+                  <Icon name="check" className="h-4 w-4" />
+                  Got it right
+                </Button>
+                <Button size="sm" variant="secondary" onClick={() => rate('wrong')}>
+                  <Icon name="x" className="h-4 w-4" />
+                  Got it wrong
+                </Button>
+                <Button size="sm" variant="ghost" onClick={() => rate('dontknow')}>
+                  <Icon name="brain" className="h-4 w-4" />
+                  I didn't know
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-4">
+              <Button size="sm" variant="secondary" onClick={next}>
+                Next question
+                <Icon name="arrowRight" className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
         </motion.div>
       ) : (
         <div className="mt-4">
@@ -231,6 +393,9 @@ function BlurtRunner({ pack }) {
           className="mt-4 rounded-xl border border-line bg-surface p-5"
         >
           <p className="text-sm font-bold text-fg">Key points to check</p>
+          {!pack.flashcards.length && (
+            <p className="readable mt-2 text-sm text-muted">No key points for this chapter yet.</p>
+          )}
           <ul className="mt-2 space-y-2">
             {pack.flashcards.slice(0, 8).map((c, idx) => (
               <li key={idx} className="flex gap-2 text-sm">
@@ -252,20 +417,30 @@ function BlurtRunner({ pack }) {
   )
 }
 
-export default function RevisionRunner({ pack, technique = 'flashcards' }) {
+export default function RevisionRunner({
+  pack,
+  technique = 'flashcards',
+  chapter,
+  onAnswer,
+  onSwitchTechnique,
+  onChangeChapter,
+}) {
   if (!pack) return null
+  const empty = { pack, onSwitchTechnique, onChangeChapter }
 
   switch (technique) {
+    case 'notes':
+      return <NotesRunner pack={pack} chapter={chapter} empty={empty} />
     case 'mcq':
-      return <McqRunner items={pack.mcq} />
+      return <McqRunner items={pack.mcq} onAnswer={onAnswer} empty={empty} />
     case 'exam-questions':
-      return <ExamRunner items={pack.examQuestions} />
+      return <ExamRunner items={pack.examQuestions} onAnswer={onAnswer} empty={empty} />
     case 'blurting':
       return <BlurtRunner pack={pack} />
     case 'active-recall':
-      return <FlashcardRunner cards={pack.flashcards} recall />
+      return <FlashcardRunner cards={pack.flashcards} recall empty={empty} />
     case 'flashcards':
     default:
-      return <FlashcardRunner cards={pack.flashcards} />
+      return <FlashcardRunner cards={pack.flashcards} empty={empty} />
   }
 }

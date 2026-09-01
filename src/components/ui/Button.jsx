@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 
 /*
-  Reusable Button.
+  Reusable Button - liquid glass pill styling (translucent, blurred, a
+  hairline edge and soft sheen; see the .glass utilities in index.css).
 
   Props:
     - variant: 'primary' | 'secondary' | 'ghost' | 'subtle'  (default 'primary')
@@ -13,11 +14,11 @@ import { motion } from 'framer-motion'
   All sizes keep a comfortable tap target for motor/keyboard users.
 */
 const variants = {
-  primary: 'bg-brand text-on-brand hover:brightness-110 shadow-sm',
-  secondary:
-    'bg-surface text-fg border border-line hover:border-brand hover:text-brand-strong',
+  primary:
+    'glass text-on-brand [background-color:color-mix(in_srgb,var(--brand)_82%,transparent)] hover:[background-color:color-mix(in_srgb,var(--brand)_92%,transparent)]',
+  secondary: 'glass text-fg hover:[border-color:color-mix(in_srgb,var(--brand)_45%,var(--line))]',
   ghost: 'bg-transparent text-brand-strong hover:bg-brand-soft',
-  subtle: 'bg-raised text-fg hover:bg-brand-soft',
+  subtle: 'glass text-fg [background-color:color-mix(in_srgb,var(--raised)_60%,transparent)]',
 }
 
 const sizes = {
@@ -40,7 +41,7 @@ export default function Button({
     <MotionComponent
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
-      className={`inline-flex items-center justify-center rounded-xl font-semibold transition-[filter,background-color,border-color,color] duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${sizes[size]} ${variants[variant]} ${className}`}
+      className={`inline-flex items-center justify-center whitespace-nowrap rounded-full font-semibold transition-[filter,background-color,border-color,color] duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${sizes[size]} ${variants[variant]} ${className}`}
       {...rest}
     >
       {children}

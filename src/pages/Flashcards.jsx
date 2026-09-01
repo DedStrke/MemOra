@@ -10,7 +10,7 @@ import FlipCard from '@/components/ui/FlipCard'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { REVISION } from '@/constants/library'
-import { generateFlashcards } from '@/lib/chat'
+import { generateFlashcards, chatConfigured } from '@/lib/chat'
 
 /*
   Flashcard maker (route /flashcards). Three internal views:
@@ -265,7 +265,7 @@ function AiView({ onSave, onCancel }) {
     code === 'quota'
       ? 'The AI has hit its usage limit for now. Try again later, or build the deck yourself.'
       : code === 'no-key'
-        ? 'No AI key is set up yet. Add VITE_GEMINI_API_KEY to .env.local to use AI generation.'
+        ? 'No AI key is set up yet. Add VITE_MISTRAL_API_KEY to .env.local to use AI generation.'
         : 'Could not generate cards just now. Please try again in a moment.'
 
   const generate = async () => {
@@ -297,13 +297,23 @@ function AiView({ onSave, onCancel }) {
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-fg sm:text-2xl">Generate with AI</h2>
-          <p className="text-sm text-muted">Give a topic and Sparky writes the cards for you.</p>
+          <p className="text-sm text-muted">Give a topic and the cards are written for you.</p>
         </div>
         <Button variant="ghost" size="sm" onClick={onCancel}>
           <Icon name="x" className="h-4 w-4" />
           Cancel
         </Button>
       </div>
+
+      {!chatConfigured() && (
+        <p className="readable mb-4 flex items-start gap-2 rounded-xl border border-line bg-raised px-4 py-3 text-sm text-muted">
+          <Icon name="access" className="mt-0.5 h-4 w-4 shrink-0 text-brand-strong" />
+          No AI key is set up in this build, so generating will fail - add{' '}
+          <code className="rounded bg-page px-1 py-0.5 text-xs">VITE_MISTRAL_API_KEY</code> to{' '}
+          <code className="rounded bg-page px-1 py-0.5 text-xs">.env.local</code> to enable it, or
+          build the deck yourself instead.
+        </p>
+      )}
 
       {!cards ? (
         <div className="card p-6">

@@ -1,30 +1,10 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  updateProfile,
-  deleteUser,
-} from 'firebase/auth'
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore/lite'
-import { auth, db, authErrorMessage } from '@/lib/firebase'
+import { createContext, useContext, useMemo, useState } from 'react'
+import * as auth from '@/lib/auth'
 
 /*
-  App store. Real backend:
-  - Auth is Firebase Auth (email/password). `loggedIn` is the live session and
-    Firebase persists it across reloads, so you stay logged in.
-  - The profile, subjects and preferences are saved to Cloud Firestore at
-    `users/{uid}`, readable/writable only by that signed-in user (see
-    firestore.rules).
-  - Theme + reading adaptations also live in localStorage so they apply instantly
-    and work offline; they are mirrored into the user's doc so they follow the
-    account across devices.
-  - `decks`, `posts`, `exam`, `recentTopic` and `sessions` remain device-local
-    for now.
-
-  The useApp() surface is unchanged, so pages did not need rewriting; the async
-  bits (signUp / login) return { ok, message } for real error handling.
+  App store. This is a personal, single-user revision tool: everything lives in
+  localStorage on this device, no account and no backend. `user` is always
+  present (never null) so pages never need to guard against a signed-out state.
 */
 export const THEMES = ['light', 'dark', 'high-contrast']
 export const THEME_META = {
@@ -33,390 +13,190 @@ export const THEME_META = {
   'high-contrast': { label: 'High contrast', icon: 'contrast' },
 }
 
+// Accent colour, independent of light/dark - see the `[data-accent=...]`
+// blocks in index.css for the actual per-theme hex values. Ignored under
+// high-contrast, which always stays on its fixed, WCAG-driven yellow.
+export const ACCENTS = ['blue', 'red', 'green', 'purple', 'orange', 'pink']
+export const ACCENT_META = {
+  blue: { label: 'Blue', swatch: '#2563eb' },
+  red: { label: 'Red', swatch: '#dc2626' },
+  green: { label: 'Green', swatch: '#16a34a' },
+  purple: { label: 'Purple', swatch: '#7c3aed' },
+  orange: { label: 'Orange', swatch: '#ea580c' },
+  pink: { label: 'Pink', swatch: '#db2777' },
+}
+
 const A11Y_DEFAULT = { font: 'default', spacing: 'normal', letter: 'normal', textScale: 1, focus: false }
 
-// Device-local slice.
-const LOCAL_KEY = 'adapthub:v2'
-const LOCAL_DEFAULTS = {
+const DEFAULT_PROFILE = {
+  name: 'there',
+  yearGroup: 'Year 13',
+  goal: { choice: 'ace', text: '' },
+  courseType: 'A-level',
+  courseName: '',
+  subjects: [
+    { id: 'maths', name: 'Maths', spec: 'Edexcel', priority: false },
+    { id: 'economics', name: 'Economics', spec: 'Edexcel', priority: false },
+    { id: 'computer-science', name: 'Computer Science', spec: 'OCR', priority: true },
+  ],
+}
+
+const STORAGE_KEY = 'revisionhub:v1'
+const DEFAULTS = {
   theme: 'light',
+  accent: 'blue',
   a11y: A11Y_DEFAULT,
-  needs: [],
-  exam: null,
   recentTopic: null,
   decks: [],
-  posts: [],
-  // Finished study sessions (drives progress + knowledge-decay views).
   sessions: [],
+  attempts: [],
+  posts: [],
+  profile: DEFAULT_PROFILE,
 }
 
+/*
+  First visit follows the OS setting, but falls back to dark rather than
+  light: most people browsing a study tool at night prefer it, and dark is
+  the mode this design was tuned against. An explicit choice always wins -
+  it's persisted and read back in load().
+*/
 function systemTheme() {
   try {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
   } catch {
-    return 'light'
+    return 'dark'
   }
 }
 
-function loadLocal() {
+function load() {
   try {
-    const raw = localStorage.getItem(LOCAL_KEY)
-    if (!raw) return { ...LOCAL_DEFAULTS, theme: systemTheme() }
-    const saved = { ...LOCAL_DEFAULTS, ...JSON.parse(raw) }
-    if (!THEMES.includes(saved.theme)) saved.theme = systemTheme()
-    return saved
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return { ...DEFAULTS, theme: systemTheme() }
+    const saved = JSON.parse(raw)
+    const merged = {
+      ...DEFAULTS,
+      ...saved,
+      a11y: { ...A11Y_DEFAULT, ...(saved.a11y || {}) },
+      profile: { ...DEFAULT_PROFILE, ...(saved.profile || {}) },
+    }
+    if (!THEMES.includes(merged.theme)) merged.theme = systemTheme()
+    if (!ACCENTS.includes(merged.accent)) merged.accent = DEFAULTS.accent
+    return merged
   } catch {
-    return { ...LOCAL_DEFAULTS, theme: systemTheme() }
-  }
-}
-
-// Turn stated access needs into reading settings ONLY. Access needs never change
-// the colour theme: that stays entirely under the learner's control via the theme
-// switcher, so picking a need can never override their light / dark / high-contrast
-// choice.
-function a11yFromNeeds(needs = []) {
-  const a11y = { ...A11Y_DEFAULT }
-  const has = (n) => needs.includes(n)
-  if (has('dyslexia')) {
-    a11y.font = 'dyslexic'
-    a11y.spacing = 'relaxed'
-    a11y.letter = 'wide'
-  }
-  // Low vision: larger text. (High contrast is offered as a theme, not forced.)
-  if (has('low-vision')) {
-    a11y.textScale = Math.max(a11y.textScale, 1.3)
-  }
-  // ADHD: a focus mode that strips ambient motion and decoration so one task
-  // stands out, plus roomier line spacing to reduce visual crowding.
-  if (has('adhd')) {
-    a11y.focus = true
-    if (a11y.spacing === 'normal') a11y.spacing = 'relaxed'
-  }
-  return a11y
-}
-
-function firstTopic(profile) {
-  if (profile?.subjects?.length) return `${profile.subjects[0].name}: getting started`
-  if (profile?.courseName) return `${profile.courseName}: getting started`
-  return 'Getting started'
-}
-
-// Map a Firestore user document to the profile shape the UI reads.
-function profileFromDoc(d) {
-  return {
-    name: d.displayName || '',
-    email: d.email || null,
-    yearGroup: d.yearGroup || '',
-    goal: { choice: d.goalChoice || '', text: d.goalText || '' },
-    courseType: d.courseType || '',
-    courseName: d.courseName || '',
-    subjects: Array.isArray(d.subjects) ? d.subjects : [],
+    return { ...DEFAULTS, theme: systemTheme() }
   }
 }
 
 const AppContext = createContext(null)
 
 export default function AppProvider({ children }) {
-  const [local, setLocal] = useState(loadLocal)
-  const [authUser, setAuthUser] = useState(null) // Firebase Auth user (the session)
-  const [profile, setProfile] = useState(null) // profile doc from Firestore
-  const [authReady, setAuthReady] = useState(false) // has the first auth check run?
+  const [state, setState] = useState(load)
+  const [account, setAccount] = useState(auth.currentAccount)
 
-  // Persist the device-local slice.
-  useEffect(() => {
-    try {
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(local))
-    } catch {
-      /* storage unavailable, non-fatal */
-    }
-  }, [local])
+  const patch = (p) => {
+    setState((s) => {
+      const next = { ...s, ...p }
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+      } catch {
+        /* storage unavailable, non-fatal */
+      }
+      return next
+    })
+  }
 
   // Reflect theme + reading prefs onto <html> so index.css restyles everything.
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', local.theme)
-  }, [local.theme])
-
-  useEffect(() => {
+  useMemo(() => {
     const el = document.documentElement
-    const a = local.a11y || A11Y_DEFAULT
+    el.setAttribute('data-theme', state.theme)
+    el.setAttribute('data-accent', state.accent || 'blue')
+    const a = state.a11y || A11Y_DEFAULT
     el.setAttribute('data-font', a.font || 'default')
     el.setAttribute('data-spacing', a.spacing || 'normal')
     el.setAttribute('data-letter', a.letter || 'normal')
     el.setAttribute('data-focus', a.focus ? 'true' : 'false')
     el.style.setProperty('--text-scale', String(a.textScale || 1))
-  }, [local.a11y])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.theme, state.accent, state.a11y])
 
-  // Pull the signed-in user's profile + prefs from Firestore.
-  const hydrate = useCallback(async (uid) => {
-    try {
-      // Time-boxed so a blocked/slow Firestore can never hang the auth check
-      // (which gates the whole app behind the "Loading..." screen).
-      const snap = await Promise.race([
-        getDoc(doc(db, 'users', uid)),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 8000)),
-      ])
-      if (snap.exists()) {
-        const d = snap.data()
-        setProfile(profileFromDoc(d))
-        setLocal((s) => ({
-          ...s,
-          theme: THEMES.includes(d.theme) ? d.theme : s.theme,
-          needs: Array.isArray(d.needs) ? d.needs : s.needs,
-          a11y: {
-            font: d.font || A11Y_DEFAULT.font,
-            spacing: d.spacing || A11Y_DEFAULT.spacing,
-            letter: d.letter || A11Y_DEFAULT.letter,
-            textScale: d.textScale || A11Y_DEFAULT.textScale,
-          },
-        }))
-      } else {
-        setProfile(null)
-      }
-    } catch (err) {
-      console.warn('[firestore] could not load profile:', err?.message || err)
-      setProfile(null)
-    }
-  }, [])
-
-  // Watch the Firebase Auth session.
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (fbUser) => {
-      setAuthUser(fbUser)
-      if (fbUser) await hydrate(fbUser.uid)
-      else setProfile(null)
-      setAuthReady(true)
-    })
-    return unsub
-  }, [hydrate])
-
-  const value = useMemo(() => {
-    const patchLocal = (p) => setLocal((s) => ({ ...s, ...p }))
-
-    // Best-effort mirror of a preference change to the user's Firestore doc.
-    const savePref = (partial) => {
-      const u = auth.currentUser
-      if (!u) return
-      const a = { ...(local.a11y || A11Y_DEFAULT), ...(partial.a11y || {}) }
-      setDoc(
-        doc(db, 'users', u.uid),
-        {
-          theme: partial.theme ?? local.theme,
-          font: a.font,
-          spacing: a.spacing,
-          letter: a.letter,
-          textScale: a.textScale,
-          needs: partial.needs ?? local.needs,
-          updatedAt: serverTimestamp(),
-        },
-        { merge: true },
-      ).catch((e) => console.warn('[firestore] savePref failed:', e?.message || e))
-    }
-
-    // The profile the UI reads. Falls back to a safe skeleton if a session exists
-    // but its profile doc has not loaded yet, so pages never crash on null.
-    const derivedUser = profile
-      ? profile
-      : authUser
-        ? {
-            name: authUser.displayName || 'there',
-            email: authUser.email || null,
-            yearGroup: '',
-            goal: { choice: '', text: '' },
-            courseType: '',
-            courseName: '',
-            subjects: [],
-          }
-        : null
-
-    return {
+  const value = useMemo(
+    () => ({
       // ---- state ----
-      theme: local.theme,
-      a11y: local.a11y,
-      needs: local.needs,
-      exam: local.exam,
-      recentTopic: local.recentTopic,
-      decks: local.decks,
-      posts: local.posts,
-      sessions: local.sessions,
-      user: derivedUser,
-      loggedIn: Boolean(authUser),
-      onboarded: Boolean(profile),
-      authReady,
+      theme: state.theme,
+      a11y: state.a11y,
+      recentTopic: state.recentTopic,
+      decks: state.decks,
+      sessions: state.sessions,
+      attempts: state.attempts,
+      posts: state.posts,
+      user: state.profile,
+
+      // ---- account (device-local, see lib/auth.js) ----
+      account,
+      signIn: async (creds) => {
+        const next = await auth.signIn(creds)
+        setAccount(next)
+        patch({ profile: { ...state.profile, name: next.name } })
+        return next
+      },
+      signUp: async (creds) => {
+        const next = await auth.signUp(creds)
+        setAccount(next)
+        patch({ profile: { ...state.profile, name: next.name } })
+        return next
+      },
+      signOut: () => {
+        auth.signOut()
+        setAccount(null)
+      },
 
       // ---- theme + reading prefs ----
-      setTheme: (theme) => {
-        patchLocal({ theme })
-        savePref({ theme })
-      },
-      cycleTheme: () => {
-        const theme = THEMES[(THEMES.indexOf(local.theme) + 1) % THEMES.length]
-        patchLocal({ theme })
-        savePref({ theme })
-      },
-      setA11y: (p) => {
-        setLocal((s) => ({ ...s, a11y: { ...s.a11y, ...p } }))
-        savePref({ a11y: p })
-      },
-      applyNeeds: (needs = []) => {
-        // Reading adaptations only. The theme is intentionally left untouched, so
-        // selecting or clearing an access need never overrides the learner's chosen
-        // light / dark / high-contrast theme.
-        const a11y = a11yFromNeeds(needs)
-        setLocal((s) => ({ ...s, needs, a11y }))
-        savePref({ needs, a11y })
-      },
+      setTheme: (theme) => patch({ theme }),
+      cycleTheme: () => patch({ theme: THEMES[(THEMES.indexOf(state.theme) + 1) % THEMES.length] }),
+      accent: state.accent,
+      setAccent: (accent) => patch({ accent }),
+      setA11y: (p) => patch({ a11y: { ...state.a11y, ...p } }),
 
-      // ---- auth ----
-      signUp: async ({
-        email,
-        password,
-        name,
-        yearGroup,
-        goal,
-        courseType,
-        courseName,
-        subjects = [],
-        needs = [],
-      }) => {
-        let cred
-        try {
-          cred = await createUserWithEmailAndPassword(auth, email, password)
-        } catch (err) {
-          // Only a Firebase Auth failure blocks sign up (email/password provider
-          // not enabled, weak password, email already in use, and so on).
-          return { ok: false, reason: err?.code, message: authErrorMessage(err?.code) }
-        }
+      // ---- profile ----
+      setName: (name) => patch({ profile: { ...state.profile, name } }),
+      setSubjects: (subjects) => patch({ profile: { ...state.profile, subjects } }),
 
-        // Apply reading adaptations on this device right away, so the account is
-        // usable even if the cloud profile write does not go through. The theme is
-        // left as-is; access needs never change it.
-        const a11y = a11yFromNeeds(needs)
-        setLocal((s) => ({
-          ...s,
-          needs,
-          a11y,
-          recentTopic: firstTopic({ subjects, courseName }),
-        }))
+      // ---- misc ----
+      setRecentTopic: (recentTopic) => patch({ recentTopic }),
 
-        // Everything below is best-effort. An undeployed or rules-blocked
-        // Firestore must never fail an account that Auth already created, nor
-        // hang the UI, so each cloud call is time-boxed and errors are swallowed.
-        const race = (p, ms = 8000) =>
-          Promise.race([
-            p,
-            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), ms)),
-          ])
-        try {
-          if (name) await race(updateProfile(cred.user, { displayName: name }))
-        } catch (e) {
-          console.warn('[auth] display name not saved:', e?.message || e)
-        }
-        try {
-          const cleanSubjects = subjects
-            .filter((s) => s?.name)
-            .map((s) => ({
-              id: s.id || s.name,
-              name: s.name,
-              spec: s.spec || '',
-              priority: !!s.priority,
-            }))
-          await race(
-            setDoc(
-              doc(db, 'users', cred.user.uid),
-              {
-                displayName: name || '',
-                email: email || null,
-                yearGroup: yearGroup || '',
-                goalChoice: goal?.choice || '',
-                goalText: goal?.text || '',
-                courseType: courseType || '',
-                courseName: courseName || '',
-                subjects: cleanSubjects,
-                theme: local.theme,
-                font: a11y.font,
-                spacing: a11y.spacing,
-                letter: a11y.letter,
-                textScale: a11y.textScale,
-                needs,
-                createdAt: serverTimestamp(),
-                updatedAt: serverTimestamp(),
-              },
-              { merge: true },
-            ),
-          )
-          await race(hydrate(cred.user.uid))
-        } catch (e) {
-          console.warn(
-            '[firestore] profile not saved (backend not reachable or rules deny):',
-            e?.message || e,
-          )
-        }
-        return { ok: true }
-      },
-      login: async (email, password) => {
-        try {
-          await signInWithEmailAndPassword(auth, email, password)
-          return { ok: true }
-        } catch (err) {
-          return { ok: false, reason: err?.code, message: authErrorMessage(err?.code) }
-        }
-      },
-      logout: async () => {
-        try {
-          await signOut(auth)
-        } catch (e) {
-          console.warn('[auth] signOut failed:', e?.message || e)
-        }
-      },
-      deleteAccount: async () => {
-        try {
-          if (auth.currentUser) await deleteUser(auth.currentUser)
-        } catch (e) {
-          console.warn('[auth] deleteAccount failed:', e?.message || e)
-          return { ok: false, reason: e?.code, message: authErrorMessage(e?.code) }
-        }
-        return { ok: true }
-      },
-
-      // ---- profile-ish ----
-      setExam: (exam) => patchLocal({ exam }),
-      setRecentTopic: (recentTopic) => patchLocal({ recentTopic }),
-      setSubjects: (subjects) => {
-        setProfile((p) => (p ? { ...p, subjects } : p))
-        const u = auth.currentUser
-        if (u) {
-          setDoc(
-            doc(db, 'users', u.uid),
-            { subjects, updatedAt: serverTimestamp() },
-            { merge: true },
-          ).catch((e) => console.warn('[firestore] setSubjects failed:', e?.message || e))
-        }
-      },
-
-      // Record a finished study session (progress + knowledge-decay read this).
+      // Record a finished study session (progress reads this).
       logSession: (session) =>
-        setLocal((s) => ({
-          ...s,
-          sessions: [{ id: 'ses' + Date.now(), ts: Date.now(), ...session }, ...s.sessions].slice(
-            0,
-            200,
-          ),
-        })),
-
-      // ---- decks + posts (device-local for now) ----
-      saveDeck: (deck) =>
-        setLocal((s) => {
-          const exists = s.decks.some((d) => d.id === deck.id)
-          return {
-            ...s,
-            decks: exists
-              ? s.decks.map((d) => (d.id === deck.id ? deck : d))
-              : [deck, ...s.decks],
-          }
+        patch({
+          sessions: [{ id: 'ses' + Date.now(), ts: Date.now(), ...session }, ...state.sessions].slice(0, 200),
         }),
-      deleteDeck: (id) => setLocal((s) => ({ ...s, decks: s.decks.filter((d) => d.id !== id) })),
-      addPost: (post) => setLocal((s) => ({ ...s, posts: [post, ...s.posts] })),
-    }
-  }, [local, authUser, profile, authReady, hydrate])
+
+      // Record one answered mcq/exam question (subject, topic, technique,
+      // question, correct, dontKnow). The Performance page reads this to show
+      // exactly which questions you got wrong.
+      logAttempt: (attempt) =>
+        patch({
+          attempts: [{ id: 'att' + Date.now() + Math.random().toString(36).slice(2, 6), ts: Date.now(), ...attempt }, ...state.attempts].slice(0, 1000),
+        }),
+
+      // ---- decks ----
+      saveDeck: (deck) => {
+        const exists = state.decks.some((d) => d.id === deck.id)
+        patch({
+          decks: exists ? state.decks.map((d) => (d.id === deck.id ? deck : d)) : [deck, ...state.decks],
+        })
+      },
+      deleteDeck: (id) => patch({ decks: state.decks.filter((d) => d.id !== id) }),
+
+      // ---- community (device-local only, see Community.jsx) ----
+      addPost: (post) =>
+        patch({
+          posts: [{ id: 'post' + Date.now(), ts: Date.now(), ...post }, ...state.posts].slice(0, 300),
+        }),
+      deletePost: (id) => patch({ posts: state.posts.filter((p) => p.id !== id) }),
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [state, account],
+  )
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }

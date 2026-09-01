@@ -1,0 +1,347 @@
+/*
+  Additional OCR H446 Computer Science content, layered on top of the base
+  pack. Topic strings must match the chapter outline in library.js exactly,
+  or the chapter picker will filter these out.
+
+  Weighted toward the parts of H446 that carry the most marks and that
+  students most often lose them on: the fetch-execute cycle, Big-O reasoning,
+  normalisation, OOP vs procedural, and the legal/ethical section (where
+  answers tend to be vague rather than wrong).
+*/
+
+export const CS_EXTRA_MCQ = [
+  {
+    question: 'During the fetch stage, what is copied into the MAR?',
+    options: [
+      'The contents of the Program Counter',
+      'The contents of the Accumulator',
+      'The decoded instruction',
+      'The result of the ALU operation',
+    ],
+    answer: 0,
+    explanation: 'The PC holds the address of the next instruction, and that address is copied into the MAR so memory can be addressed.',
+    topic: 'Structure and Function of the Processor',
+  },
+  {
+    question: 'Increasing the number of cores helps least with',
+    options: [
+      'a strictly sequential task',
+      'video rendering',
+      'running many programs at once',
+      'parallel data processing',
+    ],
+    answer: 0,
+    explanation: 'A task whose steps each depend on the previous one cannot be split across cores, so extra cores sit idle.',
+    topic: 'Types of Processor',
+  },
+  {
+    question: 'Which statement about RISC compared with CISC is correct?',
+    options: [
+      'RISC has fewer, simpler instructions that usually take one cycle',
+      'RISC has more complex instructions than CISC',
+      'RISC always needs more memory for the same program',
+      'RISC cannot be pipelined',
+    ],
+    answer: 0,
+    explanation: 'RISC keeps the instruction set small and uniform, which makes pipelining much easier.',
+    topic: 'Types of Processor',
+  },
+  {
+    question: 'Which storage type has no moving parts?',
+    options: ['Solid state (SSD)', 'Hard disk drive', 'Optical disc', 'Magnetic tape'],
+    answer: 0,
+    explanation: 'SSDs use flash memory, so they are faster and more shock-resistant than mechanical drives.',
+    topic: 'Input, Output and Storage',
+  },
+  {
+    question: 'The main role of an operating system scheduler is to',
+    options: [
+      'decide which process uses the CPU next',
+      'allocate disk space to files',
+      'compile source code',
+      'encrypt data in transit',
+    ],
+    answer: 0,
+    explanation: 'Scheduling shares limited CPU time between competing processes.',
+    topic: 'Systems Software',
+  },
+  {
+    question: 'An interpreter differs from a compiler because it',
+    options: [
+      'translates and executes one line at a time',
+      'always produces a faster program',
+      'produces a standalone executable',
+      'checks the whole program before running any of it',
+    ],
+    answer: 0,
+    explanation: 'Interpreters translate line by line, so errors surface at the point of execution rather than up front.',
+    topic: 'Applications Generation (Translators)',
+  },
+  {
+    question: 'Agile is usually preferred over Waterfall when',
+    options: [
+      'requirements are expected to change',
+      'the specification is fixed and fully known',
+      'documentation matters more than working software',
+      'the client cannot be involved',
+    ],
+    answer: 0,
+    explanation: 'Agile iterates with continuous client feedback, which suits changing requirements; Waterfall assumes stable ones.',
+    topic: 'Software Development Methodologies',
+  },
+  {
+    question: 'Which is an example of lossless compression?',
+    options: ['Run-length encoding', 'MP3', 'JPEG', 'Reducing image resolution'],
+    answer: 0,
+    explanation: 'RLE reconstructs the original exactly; MP3 and JPEG permanently discard data.',
+    topic: 'Compression, Encryption and Hashing',
+  },
+  {
+    question: 'In asymmetric encryption, a message is encrypted with the recipient’s',
+    options: ['public key', 'private key', 'password', 'session cookie'],
+    answer: 0,
+    explanation: 'Encrypt with the public key so only the matching private key can decrypt it.',
+    topic: 'Compression, Encryption and Hashing',
+  },
+  {
+    question: 'A table is in Second Normal Form when it is in 1NF and',
+    options: [
+      'has no partial dependencies on part of a composite key',
+      'has no transitive dependencies',
+      'contains no duplicate rows',
+      'has a foreign key',
+    ],
+    answer: 0,
+    explanation: 'Removing partial dependencies gives 2NF; removing transitive dependencies is what gives 3NF.',
+    topic: 'Databases',
+  },
+  {
+    question: 'ACID’s "atomicity" guarantees that a transaction',
+    options: [
+      'completes fully or has no effect at all',
+      'is permanently saved once committed',
+      'cannot be read by other users',
+      'leaves the database valid',
+    ],
+    answer: 0,
+    explanation: 'Atomicity is all-or-nothing; durability covers permanence and consistency covers validity.',
+    topic: 'Databases',
+  },
+  {
+    question: 'Which protocol layer does TCP operate at in the TCP/IP model?',
+    options: ['Transport', 'Application', 'Internet', 'Link'],
+    answer: 0,
+    explanation: 'TCP is the transport layer, providing reliable ordered delivery above IP.',
+    topic: 'Networks',
+  },
+  {
+    question: 'The main purpose of DNS is to',
+    options: [
+      'translate domain names into IP addresses',
+      'encrypt web traffic',
+      'assign IP addresses to new devices',
+      'route packets between networks',
+    ],
+    answer: 0,
+    explanation: 'DHCP assigns addresses and routers route packets; DNS does name resolution.',
+    topic: 'Networks',
+  },
+  {
+    question: 'In a client-server model, the server',
+    options: [
+      'provides resources requested by clients',
+      'always has the fastest connection',
+      'shares files directly with peers',
+      'cannot store data',
+    ],
+    answer: 0,
+    explanation: 'Servers centrally provide resources; peer-to-peer is the model where nodes share directly.',
+    topic: 'Networks',
+  },
+  {
+    question: 'JavaScript running in the browser is an example of',
+    options: [
+      'client-side processing',
+      'server-side processing',
+      'database normalisation',
+      'packet switching',
+    ],
+    answer: 0,
+    explanation: 'It executes on the user’s machine, reducing server load but being visible to the user.',
+    topic: 'Web Technologies',
+  },
+  {
+    question: 'Denary 200 in 8-bit binary is',
+    options: ['11001000', '10011000', '11000100', '11001100'],
+    answer: 0,
+    explanation: '128 + 64 + 8 = 200, giving 1100 1000.',
+    topic: 'Data Types and Number Representation',
+  },
+  {
+    question: 'The two’s complement 8-bit representation of −5 is',
+    options: ['11111011', '10000101', '11111010', '00000101'],
+    answer: 0,
+    explanation: 'Invert 00000101 to 11111010, then add 1 to get 11111011.',
+    topic: 'Data Types and Number Representation',
+  },
+  {
+    question: 'Floating point sacrifices which property compared with fixed point?',
+    options: ['Precision', 'Range', 'Speed of storage', 'The ability to store negatives'],
+    answer: 0,
+    explanation: 'Floating point buys a much wider range at the cost of precision.',
+    topic: 'Data Types and Number Representation',
+  },
+  {
+    question: 'A stack is best described as',
+    options: ['Last In First Out', 'First In First Out', 'randomly accessed', 'always sorted'],
+    answer: 0,
+    explanation: 'Stacks are LIFO; queues are FIFO.',
+    topic: 'Data Structures',
+  },
+  {
+    question: 'Which traversal of a binary search tree outputs values in ascending order?',
+    options: ['In-order', 'Pre-order', 'Post-order', 'Breadth-first'],
+    answer: 0,
+    explanation: 'In-order visits left subtree, node, then right subtree, which yields sorted output for a BST.',
+    topic: 'Data Structures',
+  },
+  {
+    question: 'By De Morgan’s Law, NOT(A AND B) is equivalent to',
+    options: ['(NOT A) OR (NOT B)', '(NOT A) AND (NOT B)', 'A OR B', 'NOT(A OR B)'],
+    answer: 0,
+    explanation: 'Break the bar and change the operator: NOT(A·B) = NOT A + NOT B.',
+    topic: 'Boolean Algebra',
+  },
+  {
+    question: 'A binary search requires that the data is',
+    options: ['sorted', 'stored in a linked list', 'unique', 'numeric'],
+    answer: 0,
+    explanation: 'Halving the search space only works if the data is ordered.',
+    topic: 'Algorithms: Searching, Sorting & Graph Traversal',
+  },
+  {
+    question: 'The worst-case time complexity of bubble sort is',
+    options: ['O(n²)', 'O(n log n)', 'O(n)', 'O(log n)'],
+    answer: 0,
+    explanation: 'Nested passes over n items give quadratic behaviour in the worst case.',
+    topic: 'Algorithms: Searching, Sorting & Graph Traversal',
+  },
+  {
+    question: "Dijkstra's algorithm is used to find",
+    options: [
+      'the shortest path from a start node',
+      'whether a graph contains a cycle',
+      'a minimum spanning tree',
+      'the largest value in a tree',
+    ],
+    answer: 0,
+    explanation: 'Dijkstra finds shortest paths on graphs with non-negative weights.',
+    topic: 'Algorithms: Searching, Sorting & Graph Traversal',
+  },
+  {
+    question: 'Abstraction in computational thinking means',
+    options: [
+      'removing unnecessary detail',
+      'breaking a problem into parts',
+      'spotting patterns between problems',
+      'writing the algorithm out in code',
+    ],
+    answer: 0,
+    explanation: 'Decomposition is breaking down; abstraction is stripping away irrelevant detail.',
+    topic: 'Elements of Computational Thinking',
+  },
+]
+
+export const CS_EXTRA_EXAM = [
+  {
+    question: 'Explain how pipelining improves processor performance, and state one situation where it stalls.',
+    marks: 4,
+    markScheme: [
+      'Pipelining overlaps the fetch, decode and execute stages of consecutive instructions',
+      'While one instruction executes, the next is decoded and a third is fetched',
+      'This increases instruction throughput without increasing clock speed',
+      'Final answer: it stalls on a branch/jump, because the instructions already fetched may be the wrong ones and must be discarded',
+    ],
+    topic: 'Structure and Function of the Processor',
+  },
+  {
+    question: 'A company stores customer records with repeated address data. Explain how normalisation to 3NF would help.',
+    marks: 6,
+    markScheme: [
+      '1NF: remove repeating groups so each field holds a single atomic value',
+      '2NF: remove partial dependencies on part of a composite key',
+      '3NF: remove transitive dependencies, so addresses move to their own table linked by a foreign key',
+      'Reduces data redundancy, so the same address is stored once',
+      'Improves consistency: an address is updated in one place, avoiding update anomalies',
+      'Final answer: less storage used and fewer insert/update/delete anomalies',
+    ],
+    topic: 'Databases',
+  },
+  {
+    question: 'Compare object-oriented and procedural programming for a large team project.',
+    marks: 6,
+    markScheme: [
+      'Procedural organises code as sequences of procedures operating on shared data',
+      'OOP bundles data and the methods acting on it into classes',
+      'Encapsulation hides internal state, so one team can change a class internally without breaking others',
+      'Inheritance and polymorphism reduce duplicated code and allow shared interfaces',
+      'OOP has a steeper learning curve and can be over-engineered for small tasks',
+      'Final answer: OOP generally suits large team projects better because encapsulation keeps components independent',
+    ],
+    topic: 'Programming Paradigms',
+  },
+  {
+    question: 'Explain why a hash function used for storing passwords should be slow and salted.',
+    marks: 4,
+    markScheme: [
+      'A hash is one-way, so the stored value cannot be directly reversed to the password',
+      'A salt is random data added per user before hashing',
+      'Salting means identical passwords produce different hashes, defeating precomputed rainbow tables',
+      'Final answer: a deliberately slow function limits how many guesses an attacker can test per second in a brute-force attack',
+    ],
+    topic: 'Compression, Encryption and Hashing',
+  },
+  {
+    question: 'Describe two ways a company can reduce the environmental impact of its data centre.',
+    marks: 4,
+    markScheme: [
+      'Use virtualisation/consolidation so fewer physical servers run at higher utilisation',
+      'This reduces both direct power draw and cooling demand',
+      'Source electricity from renewable generation, or site the centre in a cool climate for free cooling',
+      'Final answer: responsibly recycle decommissioned hardware to limit e-waste and recover materials',
+    ],
+    topic: 'Legal, Moral, Cultural and Ethical Issues',
+  },
+  {
+    question: 'State the time complexity of binary search and justify it.',
+    marks: 3,
+    markScheme: [
+      'O(log n)',
+      'Each comparison discards half of the remaining search space',
+      'Final answer: the number of halvings needed to reduce n items to one is log₂ n',
+    ],
+    topic: 'Algorithms: Searching, Sorting & Graph Traversal',
+  },
+  {
+    question: 'Explain the difference between a stack and a queue, and give one use of each.',
+    marks: 4,
+    markScheme: [
+      'A stack is Last In First Out: items are pushed and popped from the same end',
+      'A queue is First In First Out: items are enqueued at the rear and dequeued from the front',
+      'Stack use: storing return addresses for procedure calls, or undo history',
+      'Final answer: queue use: managing print jobs or scheduling processes in the order they arrived',
+    ],
+    topic: 'Data Structures',
+  },
+  {
+    question: 'Explain why client-side validation alone is not sufficient security for a web form.',
+    marks: 4,
+    markScheme: [
+      'Client-side validation runs in the user’s browser',
+      'The user can disable JavaScript, edit the page, or send requests directly to the server',
+      'So malicious or malformed data can bypass the check entirely',
+      'Final answer: validation must be repeated server-side, where the user cannot tamper with it',
+    ],
+    topic: 'Web Technologies',
+  },
+]

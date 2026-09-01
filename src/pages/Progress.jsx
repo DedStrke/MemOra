@@ -7,7 +7,7 @@ import Mascot from '@/components/ui/Mascot'
 import Sparkline from '@/components/ui/Sparkline'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
-import { subjectStats, studyStreak } from '@/lib/sessions'
+import { subjectStats, studyStreak, topicStats } from '@/lib/sessions'
 
 const ACCENTS = ['text-flash', 'text-quiz', 'text-paper', 'text-brand-strong']
 const CHIPS = [
@@ -17,7 +17,36 @@ const CHIPS = [
   'bg-brand-soft text-brand-strong',
 ]
 
-function SubjectCard({ subject, index, stats }) {
+const CONFIDENCE_COLOR = (v) =>
+  v <= 2 ? 'bg-danger' : v <= 3 ? 'bg-warning' : 'bg-success'
+
+function TopicBreakdown({ rows }) {
+  if (!rows.length) return null
+  const worst = rows.slice(0, 5)
+  return (
+    <div className="mt-5 border-t border-line pt-4">
+      <p className="mb-2.5 text-xs font-medium uppercase tracking-wide text-muted">
+        Chapters to revisit
+      </p>
+      <ul className="space-y-2">
+        {worst.map((row) => (
+          <li key={row.topic} className="flex items-center gap-2.5">
+            <span
+              className={`h-2 w-2 shrink-0 rounded-full ${CONFIDENCE_COLOR(row.latestConfidence)}`}
+              aria-hidden="true"
+            />
+            <span className="readable min-w-0 flex-1 truncate text-sm text-fg">{row.topic}</span>
+            <span className="shrink-0 text-xs font-semibold text-muted">
+              {row.latestConfidence}/5
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function SubjectCard({ subject, index, stats, topics }) {
   const accent = ACCENTS[index % ACCENTS.length]
   const chip = CHIPS[index % CHIPS.length]
   const studied = stats.count > 0
@@ -72,6 +101,7 @@ function SubjectCard({ subject, index, stats }) {
               </p>
             </div>
           </div>
+          <TopicBreakdown rows={topics} />
         </>
       ) : (
         <div className="mt-6 flex flex-1 flex-col items-center justify-center rounded-xl border border-dashed border-line py-8 text-center">
@@ -170,6 +200,7 @@ export default function Progress() {
               subject={subject}
               index={index}
               stats={subjectStats(sessions, subject.name)}
+              topics={topicStats(sessions, subject.name)}
             />
           ))}
         </motion.div>

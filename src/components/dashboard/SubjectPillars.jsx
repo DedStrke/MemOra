@@ -5,7 +5,7 @@ import Sparkline from '@/components/ui/Sparkline'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { PRIORITISED_COURSES, subjectMascot } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
-import { subjectStats, subjectAnalytics } from '@/lib/sessions'
+import { subjectMetrics } from '@/lib/sessions'
 
 const ACCENTS = [
   { chip: 'bg-flash-soft text-flash', spark: 'text-flash' },
@@ -46,12 +46,13 @@ function InnerLinks({ subject }) {
   )
 }
 
-function Pillar({ subject, index, big = false, stats }) {
+function Pillar({ subject, index, big = false, sessions }) {
   const a = ACCENTS[index % ACCENTS.length]
   const name = subject.name
   const mascot = subjectMascot(name)
-  const { cards, hours, delta, series } = subjectAnalytics(name, { big, stats })
+  const { hours, delta, series, chaptersCovered, totalChapters } = subjectMetrics(sessions, name)
   const up = delta >= 0
+  const started = hours > 0 || chaptersCovered > 0
 
   return (
     <motion.div variants={fadeInUp} className={big ? 'flex' : 'flex h-full'}>
@@ -95,45 +96,51 @@ function Pillar({ subject, index, big = false, stats }) {
           </div>
         </div>
 
-        {/* (b) Flashcards + (c) Hours spent */}
+        {/* (b) Chapters covered + (c) Hours spent - both real, from logged sessions */}
         <div className={`grid grid-cols-2 gap-3 ${big ? 'mt-6' : 'mt-5'}`}>
           <div className="rounded-xl bg-raised px-3 py-2.5">
-            <p className="text-xs font-medium text-muted">Flashcards</p>
+            <p className="text-xs font-medium text-muted">Chapters</p>
             <p className="mt-0.5 text-lg font-bold text-fg">
-              {cards} <span className="text-sm font-medium text-muted">/ 100</span>
+              {chaptersCovered}
+              {totalChapters > 0 && (
+                <span className="text-sm font-medium text-muted"> / {totalChapters}</span>
+              )}
             </p>
           </div>
           <div className="rounded-xl bg-raised px-3 py-2.5">
             <p className="text-xs font-medium text-muted">Hours spent</p>
             <div className="mt-0.5 flex items-baseline gap-1.5">
               <span className="text-lg font-bold text-fg">{hours}h</span>
-              <span
-                className={`flex items-center gap-0.5 text-xs font-semibold ${
-                  up ? 'text-success' : 'text-danger'
-                }`}
-              >
-                <Icon
-                  name="chevronDown"
-                  className={`h-3 w-3 ${up ? 'rotate-180' : ''}`}
-                />
-                {Math.abs(delta)}
-                <span className="sr-only">
-                  {up ? 'up' : 'down'} vs last week
+              {started && (
+                <span
+                  className={`flex items-center gap-0.5 text-xs font-semibold ${
+                    up ? 'text-success' : delta < 0 ? 'text-danger' : 'text-muted'
+                  }`}
+                >
+                  {delta !== 0 && (
+                    <Icon name="chevronDown" className={`h-3 w-3 ${up ? 'rotate-180' : ''}`} />
+                  )}
+                  {Math.abs(delta)}
+                  <span className="sr-only">{up ? 'up' : 'down'} vs last week</span>
                 </span>
-              </span>
+              )}
             </div>
           </div>
         </div>
 
-        {/* (d) Hours vs day mini graph */}
+        {/* (d) Hours vs day mini graph, or an honest empty state */}
         <div className={`${big ? 'mt-6' : 'mt-4'}`}>
           <div className="mb-1 flex items-center justify-between">
             <span className="text-xs font-medium text-muted">Hours vs day</span>
             <span className="text-xs text-muted">last 7</span>
           </div>
-          <div className={a.spark}>
-            <Sparkline data={series} className={big ? 'h-16 w-full' : 'h-12 w-full'} />
-          </div>
+          {started ? (
+            <div className={a.spark}>
+              <Sparkline data={series} className={big ? 'h-16 w-full' : 'h-12 w-full'} />
+            </div>
+          ) : (
+            <p className="readable py-2 text-xs text-muted">Not studied yet - dive in below.</p>
+          )}
         </div>
 
         {/* (e) Flashcards + Past papers */}
@@ -149,10 +156,9 @@ export default function SubjectPillars({ user }) {
 
   // University: a single course card.
   if (courseType === 'University') {
-    const stats = subjectStats(sessions, courseName)
     return (
       <motion.div variants={staggerContainer} className="max-w-xl">
-        <Pillar subject={{ name: courseName }} index={3} big stats={stats} />
+        <Pillar subject={{ name: courseName }} index={3} big sessions={sessions} />
       </motion.div>
     )
   }
@@ -171,17 +177,17 @@ export default function SubjectPillars({ user }) {
       >
         {left && (
           <div className="lg:pt-8">
-            <Pillar subject={left} index={0} stats={subjectStats(sessions, left.name)} />
+            <Pillar subject={left} index={0} sessions={sessions} />
           </div>
         )}
         {top && (
           <div className="order-first lg:order-none lg:-mt-4">
-            <Pillar subject={top} index={3} big stats={subjectStats(sessions, top.name)} />
+            <Pillar subject={top} index={3} big sessions={sessions} />
           </div>
         )}
         {right && (
           <div className="lg:pt-8">
-            <Pillar subject={right} index={1} stats={subjectStats(sessions, right.name)} />
+            <Pillar subject={right} index={1} sessions={sessions} />
           </div>
         )}
       </motion.div>
@@ -195,7 +201,7 @@ export default function SubjectPillars({ user }) {
       className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
     >
       {subjects.map((s, i) => (
-        <Pillar key={s.id ?? s.name} subject={s} index={i} stats={subjectStats(sessions, s.name)} />
+        <Pillar key={s.id ?? s.name} subject={s} index={i} sessions={sessions} />
       ))}
     </motion.div>
   )

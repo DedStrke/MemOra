@@ -1,8 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
+import AccentPicker from '@/components/ui/AccentPicker'
 import { fadeInUp } from '@/lib/motion'
 import { PROFILE, GOAL_OPTIONS } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
@@ -42,8 +43,7 @@ function Choice({ label, options, value, onChange }) {
 }
 
 export default function Profile() {
-  const navigate = useNavigate()
-  const { user, logout, a11y, setA11y } = useApp()
+  const { user, setName, a11y, setA11y } = useApp()
 
   const goalLabel =
     user.goal?.choice === 'custom'
@@ -51,20 +51,19 @@ export default function Profile() {
       : GOAL_OPTIONS.find((g) => g.id === user.goal?.choice)?.label
   const initial = (user.name?.[0] || '?').toUpperCase()
 
-  const signOut = () => {
-    logout()
-    navigate('/')
-  }
-
   return (
     <Section width="narrow" animateOnMount className="pt-10 pb-24">
       <motion.div variants={fadeInUp} className="flex items-center gap-4">
         <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand text-2xl font-bold text-on-brand">
           {initial}
         </span>
-        <div>
-          <h1 className="text-3xl font-bold text-fg">{user.name}</h1>
-          <p className="text-muted">{user.email || 'No email on file'}</p>
+        <div className="min-w-0 flex-1">
+          <input
+            value={user.name}
+            onChange={(e) => setName(e.target.value)}
+            aria-label="Your name"
+            className="w-full max-w-xs rounded-lg border border-transparent bg-transparent text-3xl font-bold text-fg transition-colors hover:border-line focus:border-brand focus:outline-none"
+          />
         </div>
       </motion.div>
       <motion.p variants={fadeInUp} className="readable mt-3 text-sm text-muted">
@@ -109,14 +108,10 @@ export default function Profile() {
             <Icon name="plus" className="h-4 w-4" />
             Manage courses
           </Button>
-          <Button onClick={signOut} variant="ghost" size="sm">
-            <Icon name="logout" className="h-4 w-4" />
-            Sign out
-          </Button>
         </div>
       </motion.div>
 
-      {/* Display & reading adaptations */}
+      {/* Display & reading settings */}
       <motion.div
         variants={fadeInUp}
         className="mt-6 card p-6"
@@ -126,7 +121,7 @@ export default function Profile() {
           <h2 className="text-lg font-bold text-fg">Display and reading</h2>
         </div>
         <p className="readable mb-5 text-sm text-muted">
-          Tune how AdaptHub looks and reads. Changes apply instantly and save on this
+          Tune how the app looks and reads. Changes apply instantly and save on this
           device.
         </p>
         <div className="space-y-5">
@@ -171,6 +166,10 @@ export default function Profile() {
               { value: 'on', label: 'On' },
             ]}
           />
+          <div>
+            <p className="mb-2 text-sm font-semibold text-muted">Accent colour</p>
+            <AccentPicker />
+          </div>
         </div>
         <p className="readable mt-5 text-xs text-muted">
           Theme (light, dark, high contrast) lives in the top bar.

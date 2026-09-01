@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { SITE, NAV_LINKS } from '@/constants/content'
+import { NAV_LINKS } from '@/constants/content'
 import Icon from '@/components/ui/Icon'
-import WheelLogo from '@/components/ui/WheelLogo'
+import BrainMark from '@/components/ui/BrainMark'
+import Wordmark from '@/components/ui/Wordmark'
 import ThemeSwitcher from './ThemeSwitcher'
 import { useApp } from '@/context/AppProvider'
 
 // Icons for the nav destinations, so the menu reads clearly.
 const NAV_ICONS = {
   '/dashboard': 'home',
-  '/mental-health': 'heart',
+  '/courses': 'cap',
+  '/progress': 'activity',
+  '/performance': 'target',
   '/community': 'users',
 }
 
@@ -26,17 +29,11 @@ const navLinkClass = ({ isActive }) =>
   }`
 
 export default function AppBar() {
-  const { user, logout } = useApp()
-  const navigate = useNavigate()
+  const { user, account, signOut } = useApp()
   const [open, setOpen] = useState(false)
   const initial = (user?.name?.[0] || '?').toUpperCase()
 
   const close = () => setOpen(false)
-  const signOut = () => {
-    close()
-    logout()
-    navigate('/')
-  }
 
   // Close the menu with Escape.
   useEffect(() => {
@@ -51,17 +48,17 @@ export default function AppBar() {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="sticky top-0 z-40 border-b border-line bg-surface/85 backdrop-blur"
+      className="glass-strong sticky top-0 z-40 !rounded-none !border-0"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
         <div className="flex items-center gap-7">
           {/* Logo goes to the first page (landing). */}
           <Link
             to="/"
-            className="flex items-center gap-2 font-display text-xl font-semibold text-fg"
+            className="flex items-center gap-2 text-xl font-semibold text-fg"
           >
-            <WheelLogo hoverSpin className="h-9 w-9 text-brand" />
-            <span>{SITE.name}</span>
+            <BrainMark pulseOnHover pulseOnClick className="h-9 w-9 text-brand" />
+            <Wordmark />
           </Link>
 
           {/* Inline nav next to the wordmark (mobile still uses the hamburger). */}
@@ -85,7 +82,7 @@ export default function AppBar() {
               aria-expanded={open}
               aria-haspopup="menu"
               aria-label={open ? 'Close menu' : 'Open menu'}
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-surface text-fg transition-colors hover:border-brand"
+              className="glass flex h-10 w-10 items-center justify-center rounded-full text-fg transition-colors hover:[border-color:color-mix(in_srgb,var(--brand)_45%,var(--line))]"
             >
               <Icon name={open ? 'x' : 'menu'} className="h-5 w-5" />
             </button>
@@ -106,18 +103,18 @@ export default function AppBar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.16 }}
-                    className="absolute right-0 top-full z-50 mt-2 w-64 overflow-hidden rounded-2xl border border-line bg-surface shadow-xl"
+                    className="glass-strong absolute right-0 top-full z-50 mt-2 w-64 overflow-hidden rounded-2xl"
                   >
-                    {/* Who is signed in */}
+                    {/* Who's studying */}
                     <div className="flex items-center gap-3 border-b border-line px-4 py-3">
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-on-brand">
                         {initial}
                       </span>
                       <div className="min-w-0">
                         <p className="truncate text-sm font-semibold text-fg">{user?.name}</p>
-                        {user?.email && (
-                          <p className="truncate text-xs text-muted">{user.email}</p>
-                        )}
+                        {account ? (
+                          <p className="truncate text-xs text-muted">{account.email}</p>
+                        ) : null}
                       </div>
                     </div>
 
@@ -149,17 +146,28 @@ export default function AppBar() {
                         className={itemClass}
                       >
                         <Icon name="user" className="h-4 w-4 text-muted" />
-                        Profile
+                        Settings
                       </NavLink>
-                      <button
-                        type="button"
-                        role="menuitem"
-                        onClick={signOut}
-                        className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-semibold text-fg transition-colors hover:bg-raised"
-                      >
-                        <Icon name="logout" className="h-4 w-4 text-muted" />
-                        Sign out
-                      </button>
+
+                      {account ? (
+                        <button
+                          type="button"
+                          role="menuitem"
+                          onClick={() => {
+                            signOut()
+                            close()
+                          }}
+                          className={itemClass({ isActive: false })}
+                        >
+                          <Icon name="chevronRight" className="h-4 w-4 text-muted" />
+                          Sign out
+                        </button>
+                      ) : (
+                        <NavLink to="/signin" role="menuitem" onClick={close} className={itemClass}>
+                          <Icon name="user" className="h-4 w-4 text-muted" />
+                          Sign in
+                        </NavLink>
+                      )}
                     </nav>
                   </motion.div>
                 </>

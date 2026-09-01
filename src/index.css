@@ -33,16 +33,16 @@
   --line: #e1e4f0;
   --fg: #1b2036;
   --muted: #5a6180;
-  --brand: #5b57f2;
-  --brand-strong: #4842d6;
-  --brand-soft: #ecebfe;
+  --brand: #2563eb;
+  --brand-strong: #1d4ed8;
+  --brand-soft: #dbeafe;
   --on-brand: #ffffff;
-  --ring: #5b57f2;
+  --ring: #2563eb;
   --success: #128a5a;
   --warning: #b45309;
-  --danger: #d13b3b;
-  --flash: #6d5bf0;
-  --flash-soft: #ece9fe;
+  --danger: #dc2626;
+  --flash: #db2777;
+  --flash-soft: #fce7f3;
   --quiz: #0e9f6e;
   --quiz-soft: #d7f5e9;
   --paper: #dd8109;
@@ -54,22 +54,24 @@
 }
 
 [data-theme='dark'] {
-  --page: #0e1220;
-  --surface: #171c2e;
-  --raised: #1f2540;
-  --line: #2d3452;
-  --fg: #edeffb;
-  --muted: #a5abc9;
-  --brand: #6d68f5;
-  --brand-strong: #b7b4ff;
-  --brand-soft: #23264a;
+  /* Deep navy, not neutral black - carries the same blue hue as light mode
+     instead of the two themes reading as unrelated palettes. */
+  --page: #060a16;
+  --surface: #0e1526;
+  --raised: #182036;
+  --line: #29334d;
+  --fg: #f1f5fb;
+  --muted: #97a2c2;
+  --brand: #3b82f6;
+  --brand-strong: #93c5fd;
+  --brand-soft: #1a2a4a;
   --on-brand: #ffffff;
-  --ring: #8f8bff;
+  --ring: #60a5fa;
   --success: #34d399;
   --warning: #fbbf24;
   --danger: #f87171;
-  --flash: #8b7bf5;
-  --flash-soft: #262149;
+  --flash: #f472b6;
+  --flash-soft: #3b1530;
   --quiz: #2dd4a0;
   --quiz-soft: #0f3a2e;
   --paper: #f0a93a;
@@ -86,22 +88,48 @@
   --line: #e3d6b6;
   --fg: #3b3427;
   --muted: #6d634d;
-  --brand: #6a53d8;
-  --brand-strong: #58439a;
-  --brand-soft: #ebe6fb;
+  --brand: #1d4ed8;
+  --brand-strong: #1e3a8a;
+  --brand-soft: #dbe7fb;
   --on-brand: #ffffff;
-  --ring: #6a53d8;
+  --ring: #1d4ed8;
   --success: #1a7a4f;
   --warning: #9a5b09;
   --danger: #b4402f;
-  --flash: #6a53d8;
-  --flash-soft: #eae4fb;
+  --flash: #a8285f;
+  --flash-soft: #f6dbe9;
   --quiz: #1a7a4f;
   --quiz-soft: #dcf0e2;
   --paper: #b7770c;
   --paper-soft: #f6e8c9;
   color-scheme: light;
 }
+
+/* ------------------------------------------------------- ACCENT COLOURS
+   Independent of light/dark - only --brand/--brand-strong/--brand-soft/--ring
+   change. Blue is the default and needs no override (it's already the base
+   value in each theme block above). Declared here, before high-contrast, so
+   high-contrast's own fixed yellow always wins the cascade regardless of
+   whether an accent attribute is also present. */
+[data-accent='red'] { --brand: #dc2626; --brand-strong: #b91c1c; --brand-soft: #fee2e2; --ring: #dc2626; }
+[data-theme='dark'][data-accent='red'] { --brand: #ef4444; --brand-strong: #fca5a5; --brand-soft: #3f1518; --ring: #f87171; }
+[data-theme='cream'][data-accent='red'] { --brand: #b91c1c; --brand-strong: #7f1d1d; --brand-soft: #fde2e2; --ring: #b91c1c; }
+
+[data-accent='green'] { --brand: #16a34a; --brand-strong: #15803d; --brand-soft: #dcfce7; --ring: #16a34a; }
+[data-theme='dark'][data-accent='green'] { --brand: #22c55e; --brand-strong: #86efac; --brand-soft: #0f2e1c; --ring: #4ade80; }
+[data-theme='cream'][data-accent='green'] { --brand: #15803d; --brand-strong: #14532d; --brand-soft: #dcf3e3; --ring: #15803d; }
+
+[data-accent='purple'] { --brand: #7c3aed; --brand-strong: #6d28d9; --brand-soft: #ede9fe; --ring: #7c3aed; }
+[data-theme='dark'][data-accent='purple'] { --brand: #a78bfa; --brand-strong: #c4b5fd; --brand-soft: #241c3d; --ring: #a78bfa; }
+[data-theme='cream'][data-accent='purple'] { --brand: #6d28d9; --brand-strong: #4c1d95; --brand-soft: #ece4fb; --ring: #6d28d9; }
+
+[data-accent='orange'] { --brand: #ea580c; --brand-strong: #c2410c; --brand-soft: #ffedd5; --ring: #ea580c; }
+[data-theme='dark'][data-accent='orange'] { --brand: #fb923c; --brand-strong: #fdba74; --brand-soft: #3a2311; --ring: #fb923c; }
+[data-theme='cream'][data-accent='orange'] { --brand: #c2410c; --brand-strong: #9a3412; --brand-soft: #fbe6d3; --ring: #c2410c; }
+
+[data-accent='pink'] { --brand: #db2777; --brand-strong: #be185d; --brand-soft: #fce7f3; --ring: #db2777; }
+[data-theme='dark'][data-accent='pink'] { --brand: #f472b6; --brand-strong: #f9a8d4; --brand-soft: #3d1a2b; --ring: #f472b6; }
+[data-theme='cream'][data-accent='pink'] { --brand: #be185d; --brand-strong: #831843; --brand-soft: #f9dfea; --ring: #be185d; }
 
 /* High contrast - low vision: pure black, white text, high-vis accents. */
 [data-theme='high-contrast'] {
@@ -161,18 +189,18 @@
 /* ----------------------------------------------------------- FONT SWITCH */
 
 :root {
-  --app-font: 'Lexend', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --app-font: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
   /* Distinctive display face for headings + the wordmark. */
-  --font-head: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-head: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 [data-font='dyslexic'] {
-  --app-font: 'OpenDyslexic', 'Lexend', ui-sans-serif, system-ui, sans-serif;
-  --font-head: 'OpenDyslexic', 'Lexend', ui-sans-serif, system-ui, sans-serif;
+  --app-font: 'OpenDyslexic', 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-head: 'OpenDyslexic', 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
 }
 [data-font='hyperlegible'] {
-  --app-font: 'Atkinson Hyperlegible', 'Lexend', ui-sans-serif, system-ui,
+  --app-font: 'Atkinson Hyperlegible', 'Geist Variable', ui-sans-serif, system-ui,
     sans-serif;
-  --font-head: 'Atkinson Hyperlegible', 'Lexend', ui-sans-serif, system-ui,
+  --font-head: 'Atkinson Hyperlegible', 'Geist Variable', ui-sans-serif, system-ui,
     sans-serif;
 }
 
@@ -200,6 +228,52 @@
   line-height: var(--lh);
   letter-spacing: var(--ls);
   word-spacing: var(--ws);
+}
+
+/* Topic notes - rendered from trusted static HTML (constants/*-notes.js).
+   Plain semantic tags only (h3/p/ul/li/strong), styled to match the rest of
+   the reading system rather than relying on browser defaults. */
+.notes-content h3 {
+  margin-top: 1.5rem;
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+.notes-content h3:first-child {
+  margin-top: 0;
+}
+.notes-content p {
+  margin-top: 0.6rem;
+  color: var(--muted);
+}
+.notes-content ul,
+.notes-content ol {
+  margin-top: 0.6rem;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+.notes-content li {
+  margin-top: 0.35rem;
+}
+.notes-content li::marker {
+  color: var(--brand-strong);
+}
+.notes-content strong {
+  font-weight: 700;
+  color: var(--fg);
+}
+.notes-content sup {
+  color: var(--fg);
+}
+/* "Exam tip:" paragraphs (tagged at extraction time, see maths-notes.js /
+   cs-notes.js) are the highest-value line on the page - make sure they don't
+   read as just another muted paragraph. */
+.notes-content .exam-tip {
+  border-radius: 0.85rem;
+  background: var(--brand-soft);
+  padding: 0.75rem 1rem;
+  color: var(--fg);
 }
 
 /* Bionic reading: the engine wraps word-starts in <b class="bionic">. */
@@ -285,6 +359,121 @@ body {
     background: currentColor;
     opacity: 0.7;
   }
+
+  /* ---- Liquid glass (iOS-style translucent material) ----
+     A frosted, refractive surface: blurred/saturated backdrop, a hairline
+     edge that catches light, and a soft diagonal sheen. Built entirely from
+     the existing theme tokens (color-mix against --surface/--fg), so it
+     re-tints correctly across light, dark and cream with no extra work.
+     .glass-strong is a more opaque variant for surfaces that need to stay
+     legible over busy content (the header, open menus). */
+  .glass {
+    position: relative;
+    background-color: color-mix(in srgb, var(--surface) 55%, transparent);
+    background-image: linear-gradient(
+      135deg,
+      color-mix(in srgb, white 16%, transparent) 0%,
+      transparent 42%
+    );
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+    box-shadow:
+      0 8px 32px color-mix(in srgb, var(--fg) 10%, transparent),
+      inset 0 1px 0 color-mix(in srgb, white 28%, transparent);
+  }
+  .glass-strong {
+    position: relative;
+    background-color: color-mix(in srgb, var(--surface) 74%, transparent);
+    background-image: linear-gradient(
+      135deg,
+      color-mix(in srgb, white 14%, transparent) 0%,
+      transparent 42%
+    );
+    backdrop-filter: blur(24px) saturate(1.7);
+    -webkit-backdrop-filter: blur(24px) saturate(1.7);
+    border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+    box-shadow:
+      0 10px 40px color-mix(in srgb, var(--fg) 12%, transparent),
+      inset 0 1px 0 color-mix(in srgb, white 28%, transparent);
+  }
+  /* Low-vision users need crisp, solid contrast - blur/translucency works
+     against that, so high-contrast mode gets a flat, opaque swap-out. */
+  [data-theme='high-contrast'] .glass,
+  [data-theme='high-contrast'] .glass-strong {
+    background-image: none;
+    background-color: var(--surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid var(--line);
+    box-shadow: none;
+  }
+  /* Same reasoning for the drifting atmosphere blobs: pure flat black in
+     high-contrast, no haze. */
+  [data-theme='high-contrast'] .atmosphere {
+    display: none;
+  }
+  /* The real hero footage (AtmosphereBackground.jsx) - one encode, retinted
+     per theme instead of re-exported per mood. Light stays close to the
+     footage's natural blue; dark desaturates it into a grayscale storm;
+     cream warms it slightly.
+
+     Getting the reference look (real.gg's hero) is mostly ZOOM, not blur:
+     scaling well past the frame turns the fabric's small folds into a few
+     big directional light bands, and then only a light blur is needed to
+     erase the remaining weave. Heavy blur on an unzoomed frame just muddies
+     everything into one flat gradient. */
+  .hero-video {
+    display: block;
+    object-position: center;
+    filter: blur(14px) saturate(1.4) contrast(1.18);
+    animation: hero-breathe 26s ease-in-out infinite;
+  }
+  /* A slow, near-imperceptible zoom/drift so the backdrop is never fully
+     static even before the cursor moves anything - the "detail" is in the
+     video itself, not another CSS shape layered on top of it. Small enough
+     range that it reads as alive, not as a Ken Burns effect. */
+  @keyframes hero-breathe {
+    0%, 100% { transform: scale(1.9) translate(0, 0); }
+    50% { transform: scale(1.97) translate(-0.6%, 0.4%); }
+  }
+  [data-theme='dark'] .hero-video {
+    /* Partial desaturation, not full grayscale - the footage is naturally
+       blue, so easing off (rather than stripping) the colour keeps dark
+       mode in the same navy family as the page tokens above. */
+    filter: blur(14px) grayscale(0.5) saturate(0.9) brightness(0.62) contrast(1.25);
+  }
+  [data-theme='cream'] .hero-video {
+    filter: blur(14px) saturate(0.95) sepia(0.12);
+  }
+  .hero-video-tint {
+    background: color-mix(in srgb, var(--page) 30%, transparent);
+  }
+  /* A soft diagonal highlight that slowly travels across the backdrop -
+     blended (not painted flat), so it reads as light catching the footage
+     rather than a shape sitting on top of it. Biggest legibility win in
+     light mode, where the video's own contrast has less room to work with
+     against an already-bright page. */
+  .hero-sweep {
+    background: linear-gradient(
+      115deg,
+      transparent 30%,
+      color-mix(in srgb, white 55%, transparent) 48%,
+      transparent 66%
+    );
+    background-size: 260% 260%;
+    mix-blend-mode: soft-light;
+    animation: hero-sweep-drift 34s ease-in-out infinite;
+  }
+  [data-theme='dark'] .hero-sweep {
+    mix-blend-mode: overlay;
+    opacity: 0.7;
+  }
+  @keyframes hero-sweep-drift {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 55%; }
+    100% { background-position: 0% 0%; }
+  }
 }
 
 #root {
@@ -344,17 +533,16 @@ h1, h2, h3, h4 {
 [data-focus='true'] body {
   background-image: none;
 }
-[data-focus='true'] .marquee-track,
-[data-focus='true'] .wheel-idle {
+[data-focus='true'] .marquee-track {
   animation: none !important;
 }
 
 /* Respect reduced-motion for all functional motion (page transitions, hovers,
-   timers). The two AMBIENT brand animations, the marquee ticker and the slowly
-   turning hero wheel, are gentle, continuous and central to the brand, so they
-   are intentionally exempt and keep a calm, low-speed motion for everyone. */
+   timers). The marquee ticker is a gentle, continuous, central-to-the-brand
+   ambient animation, so it's intentionally exempt and keeps a calm, low-speed
+   motion for everyone. */
 @media (prefers-reduced-motion: reduce) {
-  *:not(.marquee-track):not(.wheel-idle):not(.breathe-active) {
+  *:not(.marquee-track):not(.breathe-active) {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
@@ -409,18 +597,24 @@ h1, h2, h3, h4 {
   padding-right: 0.6rem; /* trailing gap keeps spacing even across the seam */
 }
 
-/* ------------------------------------------------ WHEEL (idle brand spin) */
-/* A slow, continuous rotation for the brand mark. Driven by CSS (not the
-   framer MotionConfig) and exempt from the reduced-motion freeze above, so the
-   wheel keeps turning gently even when the OS requests reduced motion. */
-@keyframes wheel-idle-spin {
-  to {
-    transform: rotate(360deg);
+/* ------------------------------------------------ SIGNAL (brain mark idle) */
+/* A slow, gentle breathing pulse on the neural signal line, like it's idling
+   between thoughts. Respects reduced-motion via the general rule above (a
+   small decorative detail, not the core brand animation). */
+@keyframes signal-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95);
   }
 }
-.wheel-idle {
+.signal-pulse {
   transform-origin: center;
-  animation: wheel-idle-spin var(--wheel-dur, 44s) linear infinite;
+  animation: signal-pulse var(--signal-dur, 2.2s) ease-in-out infinite;
 }
 
 /* ------------------------------------------------ BREATHING (wellbeing) */

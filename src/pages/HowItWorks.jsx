@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Mascot from '@/components/ui/Mascot'
-import WheelLogo from '@/components/ui/WheelLogo'
+import BrainMark from '@/components/ui/BrainMark'
+import Wordmark from '@/components/ui/Wordmark'
 import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
-import { SITE, MARKETING, REVIEWS } from '@/constants/content'
-import { useApp } from '@/context/AppProvider'
+import { MARKETING, REVIEWS } from '@/constants/content'
 
 function Stars({ rating }) {
   return (
@@ -25,33 +25,21 @@ function Stars({ rating }) {
 }
 
 export default function HowItWorks() {
-  const { loggedIn } = useApp()
-  const startTo = loggedIn ? '/dashboard' : '/signup'
+  const startTo = '/dashboard'
 
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Top bar */}
       <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold text-fg">
-          <WheelLogo idle idleDuration={34} className="h-8 w-8 text-brand" />
-          {SITE.name}
+        <Link to="/" className="flex items-center gap-2 text-xl font-semibold text-fg">
+          <BrainMark idle pulseOnClick className="h-8 w-8 text-brand" />
+          <Wordmark />
         </Link>
         <div className="flex items-center gap-3">
           <ThemeSwitcher />
-          {loggedIn ? (
-            <Button as={Link} to="/dashboard" size="sm">
-              Go to dashboard
-            </Button>
-          ) : (
-            <>
-              <Button as={Link} to="/login" variant="ghost" size="sm">
-                Log in
-              </Button>
-              <Button as={Link} to="/signup" size="sm">
-                Get started
-              </Button>
-            </>
-          )}
+          <Button as={Link} to="/dashboard" size="sm">
+            Go to dashboard
+          </Button>
         </div>
       </header>
 
