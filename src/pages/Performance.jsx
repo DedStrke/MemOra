@@ -2,11 +2,14 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { attemptStats, mistakes, weakestTopics, daysAgo } from '@/lib/sessions'
+import { groupMistakes, findSiblingQuestion } from '@/lib/mistakes'
+import { getPackByName } from '@/constants/library'
 import { slugify } from '@/lib/slug'
 import Chip from '@/components/ui/Chip'
 
@@ -74,6 +77,47 @@ function MistakeRow({ m }) {
   )
 }
 
+// One mistake group (§7): a misconception, or a chapter when nothing's
+// tagged with one yet - see lib/mistakes.js for why that fallback exists.
+// Retry deliberately doesn't reuse the identical missed question: it looks
+// for a sibling item tagged with the same misconception first, falling
+// back to "revise this chapter" (a fresh randomised run) when there isn't
+// one, which today is always, since no content pack tags misconceptions.
+function MisconceptionRow({ group }) {
+  const primarySubject = group.subjects[0]
+  const pack = getPackByName(primarySubject)
+  // A tagged sibling item exists somewhere in the pack testing the same
+  // misconception - there's no stable per-item id to deep-link to it
+  // directly yet (a separate content-schema gap, see lib/attempts.js), so
+  // this stays informational for now: land on the chapter's own MCQ
+  // practice, where a randomised run will likely surface it anyway.
+  const hasSibling = Boolean(findSiblingQuestion(pack, group.misconception, null))
+  const singleTopic = group.topics.length === 1 ? group.topics[0].topic : null
+  // A gap ("didn't know") sends you back to Notes; an actual wrong answer
+  // sends you to Exam questions to retest it properly, not just MCQ
+  // recognition (§7's closing note on treating the two differently).
+  const retryMode = group.lastMissWasDontKnow ? 'notes' : 'exam-questions'
+  const retryHref = `/study/${slugify(primarySubject)}/${retryMode}${singleTopic ? `?chapter=${encodeURIComponent(singleTopic)}` : ''}`
+
+  return (
+    <li className="flex items-center justify-between gap-3 py-3">
+      <div className="min-w-0">
+        <p className="truncate text-sm font-semibold text-fg">
+          {group.misconception ? group.misconception.replace(/_/g, ' ') : group.topics[0]?.topic}
+        </p>
+        <p className="mt-0.5 text-xs text-muted">
+          {group.missCount} time{group.missCount === 1 ? '' : 's'}
+          {group.topics.length > 1 ? ` · across ${group.topics.length} chapters` : ` · ${primarySubject}`}
+          {hasSibling ? ' · a different question on this is ready' : ''}
+        </p>
+      </div>
+      <Button as={Link} to={retryHref} variant="subtle" size="sm" className="shrink-0">
+        Retry
+      </Button>
+    </li>
+  )
+}
+
 export default function Performance() {
   const { user, attempts, sessions } = useApp()
   const [subjectFilter, setSubjectFilter] = useState('all')
@@ -87,6 +131,14 @@ export default function Performance() {
     () => weakestTopics(attempts, subjectFilter === 'all' ? undefined : subjectFilter),
     [attempts, subjectFilter],
   )
+
+  // §7: misconception (or, until content is tagged, chapter) grouped view
+  // with resolution tracking - distinct from "Focus here" above, which is
+  // a raw miss ratio with no notion of whether it's since been fixed.
+  const mistakeGroups = useMemo(() => groupMistakes(scopedAttempts), [scopedAttempts])
+  const unresolvedGroups = mistakeGroups.filter((g) => !g.resolved)
+  const resolvedGroups = mistakeGroups.filter((g) => g.resolved)
+  const [showFixed, setShowFixed] = useState(false)
 
   // Mock papers get their own results list - a per-paper score, not folded
   // into the question-by-question mistake log below. Any topic that was
@@ -103,15 +155,11 @@ export default function Performance() {
   return (
     <Section width="wide" animateOnMount className="pt-8 pb-28">
       <motion.div variants={fadeInUp}>
-        <Button as={Link} to="/dashboard" variant="ghost" size="sm">
-          <Icon name="arrowLeft" className="h-4 w-4" />
-          Dashboard
-        </Button>
+        <Breadcrumbs />
       </motion.div>
 
       <motion.div variants={fadeInUp} className="mt-6">
-        <span className="kicker">Performance</span>
-        <h1 className="mt-2 text-3xl font-extrabold text-fg sm:text-4xl">Where you're losing marks</h1>
+        <h1 className="text-3xl font-extrabold text-fg sm:text-4xl">Where you're losing marks</h1>
         <p className="readable mt-1 text-muted">
           Built from MCQ and exam questions you've actually answered. Every wrong or "I don't
           know" answer shows up here so you can go straight back to it.
@@ -175,6 +223,54 @@ export default function Performance() {
                   <MockResultRow key={s.id} s={s} />
                 ))}
               </ul>
+            </motion.div>
+          )}
+
+          {/* misconceptions (§7): grouped by the actual error where content
+              tags one, chapter otherwise - the resolution-tracked view,
+              distinct from the raw miss-ratio in Focus here below. */}
+          {mistakeGroups.length > 0 && (
+            <motion.div variants={fadeInUp} className="mt-8 card p-6">
+              <div className="flex flex-wrap items-baseline justify-between gap-3">
+                <div>
+                  <h2 className="text-lg font-bold text-fg">Misconceptions</h2>
+                  <p className="readable mt-1 text-sm text-muted">
+                    Stays here until you get two in a row right. Then it moves to Fixed.
+                  </p>
+                </div>
+                {resolvedGroups.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowFixed((v) => !v)}
+                    className="text-sm font-semibold text-brand-strong hover:underline"
+                  >
+                    {showFixed ? 'Hide' : 'Show'} fixed ({resolvedGroups.length})
+                  </button>
+                )}
+              </div>
+              {unresolvedGroups.length === 0 ? (
+                <p className="readable mt-4 text-sm font-medium text-r3-solid">
+                  Nothing unresolved right now.
+                </p>
+              ) : (
+                <ul className="mt-2 divide-y divide-line">
+                  {unresolvedGroups.map((g) => (
+                    <MisconceptionRow key={g.key} group={g} />
+                  ))}
+                </ul>
+              )}
+              {showFixed && resolvedGroups.length > 0 && (
+                <ul className="mt-3 space-y-1 border-t border-line pt-3">
+                  {resolvedGroups.map((g) => (
+                    <li key={g.key} className="flex items-center gap-2 text-sm text-muted">
+                      <Icon name="check" className="h-4 w-4 shrink-0 text-r3-solid" />
+                      <span className="truncate">
+                        {g.misconception ? g.misconception.replace(/_/g, ' ') : g.topics[0]?.topic}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </motion.div>
           )}
 

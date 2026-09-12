@@ -90,49 +90,49 @@ export const BATCH_A_FLASHCARDS = [
   },
   {
     front: 'nth term of a geometric sequence?',
-    back: 'a r^(n-1)',
+    back: 'a rⁿ⁻¹',
     topic: 'Sequences and Series',
   },
   {
-    front: 'What does a recurrence relation like u(n+1) = f(u(n)) need to generate a sequence?',
-    back: 'A given first term, e.g. u1, so every later term can be found from the one before it',
+    front: 'What does a recurrence relation like uₙ₊₁ = f(uₙ) need to generate a sequence?',
+    back: 'A given first term, e.g. u₁, so every later term can be found from the one before it',
     topic: 'Sequences and Series',
   },
   {
-    front: 'What does sigma notation represent?',
-    back: 'The sum of a series; e.g. the sum from r=1 to n of u_r means u1 + u2 + ... + un',
+    front: 'What does σ notation represent?',
+    back: 'The sum of a series; e.g. the sum from r=1 to n of uᵣ means u₁ + u₂ + … + uₙ',
     topic: 'Sequences and Series',
   },
 
   // -------------------------------------- The Binomial Expansion (General n)
   {
-    front: 'General binomial expansion of (1+x)^n for any rational n?',
-    back: '1 + nx + [n(n-1)/2!]x^2 + [n(n-1)(n-2)/3!]x^3 + ...',
+    front: 'General binomial expansion of (1+x)ⁿ for any rational n?',
+    back: '1 + nx + [n(n-1)/2!]x² + [n(n-1)(n-2)/3!]x³ + …',
     topic: 'The Binomial Expansion (General n)',
   },
   {
-    front: 'How do you expand (a+bx)^n using the general binomial series?',
-    back: 'Write it as a^n (1 + (b/a)x)^n first, then expand (1 + (b/a)x)^n as a series',
+    front: 'How do you expand (a+bx)ⁿ using the general binomial series?',
+    back: 'Write it as aⁿ (1 + (b/a)x)ⁿ first, then expand (1 + (b/a)x)ⁿ as a series',
     topic: 'The Binomial Expansion (General n)',
   },
   {
-    front: 'Validity condition for expanding (a+bx)^n when n is not a positive integer?',
+    front: 'Validity condition for expanding (a+bx)ⁿ when n is not a positive integer?',
     back: '|bx/a| < 1, i.e. |x| < |a/b|',
     topic: 'The Binomial Expansion (General n)',
   },
   {
     front: 'Why is the general binomial expansion an infinite series, unlike for a positive integer n?',
-    back: 'For non-integer or negative n the series never terminates, since the product n(n-1)(n-2)... never reaches zero',
+    back: 'For non-integer or negative n the series never terminates, since the product n(n-1)(n-2)… never reaches zero',
     topic: 'The Binomial Expansion (General n)',
   },
   {
     front: 'How can the binomial expansion give a numerical approximation, e.g. for the square root of 1.02?',
-    back: 'Write it as (1+0.02)^(1/2), expand with n=1/2 and x=0.02, then substitute to get a decimal approximation',
+    back: 'Write it as (1+0.02)¹ᐟ², expand with n=1/2 and x=0.02, then substitute to get a decimal approximation',
     topic: 'The Binomial Expansion (General n)',
   },
   {
     front: 'How do you expand a fraction like 1/(1-2x) as a series?',
-    back: 'Write it as (1-2x)^(-1) and use the general binomial expansion with n=-1 and x replaced by -2x',
+    back: 'Write it as (1-2x)⁻¹ and use the general binomial expansion with n=-1 and x replaced by -2x',
     topic: 'The Binomial Expansion (General n)',
   },
   {
@@ -154,29 +154,29 @@ export const BATCH_A_FLASHCARDS = [
   },
   {
     front: 'Area of a segment formula (radians)?',
-    back: '½r^2(θ - sinθ), i.e. sector area minus triangle area',
+    back: '½r²(θ - sin θ), i.e. sector area minus triangle area',
     topic: 'Radians',
   },
   {
-    front: 'Small angle approximation for sinθ, θ small and in radians?',
-    back: 'sinθ ≈ θ',
+    front: 'Small angle approximation for sin θ, θ small and in radians?',
+    back: 'sin θ ≈ θ',
     topic: 'Radians',
   },
   {
-    front: 'Small angle approximation for tanθ, θ small and in radians?',
-    back: 'tanθ ≈ θ',
+    front: 'Small angle approximation for tan θ, θ small and in radians?',
+    back: 'tan θ ≈ θ',
     topic: 'Radians',
   },
 
   // --------------------------------------------------- Trigonometric Functions
   {
-    front: 'cosecθ = ?',
-    back: '1/sinθ',
+    front: 'cosec θ = ?',
+    back: '1/sin θ',
     topic: 'Trigonometric Functions',
   },
   {
-    front: 'cotθ = ?',
-    back: '1/tanθ = cosθ/sinθ',
+    front: 'cot θ = ?',
+    back: '1/tan θ = cos θ/sin θ',
     topic: 'Trigonometric Functions',
   },
   {
@@ -253,14 +253,14 @@ export const BATCH_A_MCQ = [
     question: 'The first term of a geometric sequence is 3 and the common ratio is 2. What is the 5th term?',
     options: ['96', '24', '48', '11'],
     answer: 2,
-    explanation: 'u5 = a r^(n-1) = 3 × 2⁴ = 3 × 16 = 48. Using r⁵ instead of r⁴ gives 96 (an off-by-one error); using r³ gives 24.',
+    explanation: 'u₅ = a rⁿ⁻¹ = 3 × 2⁴ = 3 × 16 = 48. Using r⁵ instead of r⁴ gives 96 (an off-by-one error); using r³ gives 24.',
     topic: 'Sequences and Series',
   },
   {
-    question: 'A sequence is defined by u1 = 2, u(n+1) = 3u(n) - 1. What is u3?',
+    question: 'A sequence is defined by u₁ = 2, uₙ₊₁ = 3u(n) - 1. What is u₃?',
     options: ['15', '5', '12', '14'],
     answer: 3,
-    explanation: 'u2 = 3(2)-1 = 5, then u3 = 3(5)-1 = 14. Forgetting the final "-1" gives 15; reporting u2 instead of u3 gives 5.',
+    explanation: 'u₂ = 3(2)-1 = 5, then u₃ = 3(5)-1 = 14. Forgetting the final "-1" gives 15; reporting u₂ instead of u₃ gives 5.',
     topic: 'Sequences and Series',
   },
   {
@@ -273,7 +273,7 @@ export const BATCH_A_MCQ = [
 
   // -------------------------------------- The Binomial Expansion (General n)
   {
-    question: 'In the expansion of (1+x)^(1/2), what is the coefficient of x²?',
+    question: 'In the expansion of (1+x)¹ᐟ², what is the coefficient of x²?',
     options: ['1/8', '-1/8', '-1/4', '1/4'],
     answer: 1,
     explanation: 'The coefficient is n(n-1)/2! with n=1/2: (1/2)(-1/2)/2 = -1/8. Forgetting to divide by 2! gives -1/4; a sign slip gives 1/8.',
@@ -287,15 +287,15 @@ export const BATCH_A_MCQ = [
     topic: 'The Binomial Expansion (General n)',
   },
   {
-    question: 'To expand (4+x)^(1/2) as a binomial series, the correct first step is to write it as',
+    question: 'To expand (4+x)¹ᐟ² as a binomial series, the correct first step is to write it as',
     options: [
-      '(1 + x/4)^(1/2)',
-      '4(1 + x/4)^(1/2)',
-      '4^(1/2) (1 + x)^(1/2)',
-      '4^(1/2) (1 + x/4)^(1/2)',
+      '(1 + x/4)¹ᐟ²',
+      '4(1 + x/4)¹ᐟ²',
+      '4¹ᐟ² (1 + x)¹ᐟ²',
+      '4¹ᐟ² (1 + x/4)¹ᐟ²',
     ],
     answer: 3,
-    explanation: '(4+x)^(1/2) = [4(1+x/4)]^(1/2) = 4^(1/2)(1+x/4)^(1/2). Forgetting the 4^(1/2) factor, or forgetting to divide x by 4, are common errors.',
+    explanation: '(4+x)¹ᐟ² = [4(1+x/4)]¹ᐟ² = 4¹ᐟ²(1+x/4)¹ᐟ². Forgetting the 4¹ᐟ² factor, or forgetting to divide x by 4, are common errors.',
     topic: 'The Binomial Expansion (General n)',
   },
 
@@ -318,7 +318,7 @@ export const BATCH_A_MCQ = [
     question: 'Using the small angle approximation, cos(0.3) is approximately',
     options: ['0.910', '1.045', '0.955', '0.850'],
     answer: 2,
-    explanation: 'cosθ ≈ 1 - θ²/2 = 1 - 0.09/2 = 0.955. Forgetting the "/2" gives 0.910; a sign error gives 1.045.',
+    explanation: 'cos θ ≈ 1 - θ²/2 = 1 - 0.09/2 = 0.955. Forgetting the "/2" gives 0.910; a sign error gives 1.045.',
     topic: 'Radians',
   },
 
@@ -491,15 +491,15 @@ export const BATCH_A_EXAM = [
     topic: 'Sequences and Series',
   },
   {
-    question: 'A sequence is defined by u1 = 4 and u(n+1) = 2u(n) - 3 for n ≥ 1. (a) Find u2, u3, and u4. (b) Determine whether the sequence is increasing, decreasing, or periodic.',
+    question: 'A sequence is defined by u₁ = 4 and uₙ₊₁ = 2u(n) - 3 for n ≥ 1. (a) Find u₂, u₃, and u₄. (b) Determine whether the sequence is increasing, decreasing, or periodic.',
     marks: 5,
     markScheme: [
-      'M1: u2 = 2(4) - 3 = 5',
-      'A1: u3 = 2(5) - 3 = 7',
-      'A1: u4 = 2(7) - 3 = 11',
+      'M1: u₂ = 2(4) - 3 = 5',
+      'A1: u₃ = 2(5) - 3 = 7',
+      'A1: u₄ = 2(7) - 3 = 11',
       'B1: Compare consecutive terms: 4 < 5 < 7 < 11',
-      'B1: Since every term generated satisfies u(n) > 3, u(n+1) - u(n) = u(n) - 3 > 0 for all n, confirming the sequence is strictly increasing',
-      'Final answer: u2=5, u3=7, u4=11; the sequence is increasing',
+      'B1: Since every term generated satisfies uₙ > 3, uₙ₊₁ - uₙ = uₙ - 3 > 0 for all n, confirming the sequence is strictly increasing',
+      'Final answer: u₂=5, u₃=7, u₄=11; the sequence is increasing',
     ],
     topic: 'Sequences and Series',
   },
@@ -521,7 +521,7 @@ export const BATCH_A_EXAM = [
 
   // -------------------------------------- The Binomial Expansion (General n)
   {
-    question: 'Find the binomial expansion of (1 - 2x)^(1/3) up to and including the term in x³, simplifying each coefficient. State the range of values of x for which the expansion is valid.',
+    question: 'Find the binomial expansion of (1 - 2x)¹ᐟ³ up to and including the term in x³, simplifying each coefficient. State the range of values of x for which the expansion is valid.',
     marks: 7,
     markScheme: [
       'M1: Use (1+kx)ⁿ = 1 + nkx + [n(n-1)/2!](kx)² + [n(n-1)(n-2)/3!](kx)³ with n=1/3, k=-2',
@@ -531,15 +531,15 @@ export const BATCH_A_EXAM = [
       'M1: x³ coefficient: (1/3)(-2/3)(-5/3)/6 = 5/81, times (-2x)³ = -8x³',
       'A1: x³ term: -40x³/81',
       'B1: Valid for |-2x| < 1, i.e. |x| < 1/2',
-      'Final answer: 1 - (2/3)x - (4/9)x² - (40/81)x³ + ..., valid for |x| < 1/2',
+      'Final answer: 1 - (2/3)x - (4/9)x² - (40/81)x³ + …, valid for |x| < 1/2',
     ],
     topic: 'The Binomial Expansion (General n)',
   },
   {
-    question: 'By expanding (1+x)^(1/2) up to the term in x², find an approximation for √1.1, using x = 0.1. Give your answer to 4 decimal places.',
+    question: 'By expanding (1+x)¹ᐟ² up to the term in x², find an approximation for √1.1, using x = 0.1. Give your answer to 4 decimal places.',
     marks: 5,
     markScheme: [
-      'M1: Use (1+x)^(1/2) ≈ 1 + (1/2)x + [(1/2)(-1/2)/2!]x²',
+      'M1: Use (1+x)¹ᐟ² ≈ 1 + (1/2)x + [(1/2)(-1/2)/2!]x²',
       'A1: Simplifies to 1 + x/2 - x²/8',
       'M1: Substitute x = 0.1 into the expansion',
       'A1: 1 + 0.05 - 0.00125 = 1.04875',
@@ -549,12 +549,12 @@ export const BATCH_A_EXAM = [
     topic: 'The Binomial Expansion (General n)',
   },
   {
-    question: 'f(x) = 1/√(4-x) = (4-x)^(-1/2). (a) Show that f(x) can be written as (1/2)(1 - x/4)^(-1/2). (b) Hence find the binomial expansion of f(x) up to and including the term in x², simplifying coefficients. (c) State the range of validity.',
+    question: 'f(x) = 1/√(4-x) = (4-x)⁻¹ᐟ². (a) Show that f(x) can be written as (1/2)(1 - x/4)⁻¹ᐟ². (b) Hence find the binomial expansion of f(x) up to and including the term in x², simplifying coefficients. (c) State the range of validity.',
     marks: 8,
     markScheme: [
-      'M1: Write 4 - x = 4(1 - x/4), so (4-x)^(-1/2) = 4^(-1/2)(1-x/4)^(-1/2)',
-      'A1: 4^(-1/2) = 1/2, giving f(x) = (1/2)(1-x/4)^(-1/2), as required',
-      'M1: Expand (1-x/4)^(-1/2) using n=-1/2: 1 + (-1/2)(-x/4) + [(-1/2)(-3/2)/2](-x/4)²',
+      'M1: Write 4 - x = 4(1 - x/4), so (4-x)⁻¹ᐟ² = 4⁻¹ᐟ²(1-x/4)⁻¹ᐟ²',
+      'A1: 4⁻¹ᐟ² = 1/2, giving f(x) = (1/2)(1-x/4)⁻¹ᐟ², as required',
+      'M1: Expand (1-x/4)⁻¹ᐟ² using n=-1/2: 1 + (-1/2)(-x/4) + [(-1/2)(-3/2)/2](-x/4)²',
       'A1: x term: (-1/2)(-x/4) = x/8',
       'A1: x² term: [(-1/2)(-3/2)/2] × x²/16 = (3/8)(x²/16) = 3x²/128',
       'M1: Multiply the whole series by 1/2',
@@ -572,7 +572,7 @@ export const BATCH_A_EXAM = [
       'A1: A = 2',
       'M1: Substitute x = 1/2 to find B',
       'A1: B = 3',
-      'M1: Expand 2(1+x)⁻¹ = 2(1 - x + x² - ...) and 3(1-2x)⁻¹ = 3(1 + 2x + 4x² + ...) up to the x² term',
+      'M1: Expand 2(1+x)⁻¹ = 2(1 - x + x² - …) and 3(1-2x)⁻¹ = 3(1 + 2x + 4x² + …) up to the x² term',
       'A1: 2/(1+x) ≈ 2 - 2x + 2x² and 3/(1-2x) ≈ 3 + 6x + 12x²',
       'B1: Valid for |x| < 1/2, the more restrictive of |x| < 1 and |x| < 1/2',
       'Final answer: (5-x)/((1+x)(1-2x)) ≈ 5 + 4x + 14x², valid for |x| < 1/2',
@@ -599,22 +599,22 @@ export const BATCH_A_EXAM = [
     markScheme: [
       'M1: Use sector area formula ½r²θ = 40 with r = 10',
       'A1: 50θ = 40, so θ = 0.8 radians',
-      'M1: Use triangle area = ½r² sinθ = ½(100)sin(0.8)',
+      'M1: Use triangle area = ½r² sin θ = ½(100)sin(0.8)',
       'A1: sin(0.8) ≈ 0.7174, so triangle area ≈ 35.87 cm²',
       'M1: Segment area = sector area - triangle area = 40 - 35.87',
       'A1: Segment area ≈ 4.13 cm²',
-      'B1: Equivalently, segment area = ½r²(θ - sinθ) = 50(0.8 - 0.7174) ≈ 4.13 cm² (checks)',
+      'B1: Equivalently, segment area = ½r²(θ - sin θ) = 50(0.8 - 0.7174) ≈ 4.13 cm² (checks)',
       'Final answer: θ = 0.8 radians, segment area ≈ 4.13 cm²',
     ],
     topic: 'Radians',
   },
   {
-    question: 'Using the small angle approximations for sinθ and cosθ, show that (1 - cosθ)/sinθ ≈ θ/2 for small θ in radians, then use this to estimate the value of (1 - cos 0.2)/sin 0.2 to 3 decimal places.',
+    question: 'Using the small angle approximations for sin θ and cos θ, show that (1 - cos θ)/sin θ ≈ θ/2 for small θ in radians, then use this to estimate the value of (1 - cos 0.2)/sin 0.2 to 3 decimal places.',
     marks: 6,
     markScheme: [
-      'M1: Use cosθ ≈ 1 - θ²/2, so 1 - cosθ ≈ θ²/2',
-      'M1: Use sinθ ≈ θ',
-      'A1: (1-cosθ)/sinθ ≈ (θ²/2)/θ = θ/2, as required',
+      'M1: Use cos θ ≈ 1 - θ²/2, so 1 - cos θ ≈ θ²/2',
+      'M1: Use sin θ ≈ θ',
+      'A1: (1-cos θ)/sin θ ≈ (θ²/2)/θ = θ/2, as required',
       'M1: Substitute θ = 0.2 into θ/2',
       'A1: = 0.1',
       'B1: State the approximation is valid because θ = 0.2 radians is small',
@@ -630,7 +630,7 @@ export const BATCH_A_EXAM = [
       'A1: r(3.5) = 25, so r = 50/7 ≈ 7.14 cm',
       'M1: Sector area = ½r²θ = ½(50/7)²(1.5)',
       'A1: Sector area ≈ 38.27 cm²',
-      'M1: Triangle area = ½r² sinθ = ½(50/7)² sin(1.5)',
+      'M1: Triangle area = ½r² sin θ = ½(50/7)² sin(1.5)',
       'A1: Triangle area ≈ 25.45 cm²',
       'M1: Segment area = sector area - triangle area = 38.27 - 25.45',
       'A1: Segment area ≈ 12.82 cm²',
@@ -687,9 +687,9 @@ export const BATCH_A_EXAM = [
     marks: 4,
     markScheme: [
       'M1: Divide both sides of sin²θ + cos²θ = 1 by sin²θ',
-      'A1: 1 + cot²θ = cosec²θ, using cosθ/sinθ = cotθ and 1/sinθ = cosecθ',
+      'A1: 1 + cot²θ = cosec²θ, using cos θ/sin θ = cot θ and 1/sin θ = cosec θ',
       'M1: Rearrange to cosec²θ - cot²θ = 1',
-      'B1: State the restriction θ ≠ nπ (n an integer) is needed since sinθ ≠ 0, so cosec and cot are defined',
+      'B1: State the restriction θ ≠ nπ (n an integer) is needed since sin θ ≠ 0, so cosec and cot are defined',
       'Final answer: cosec²θ - cot²θ = 1, as required',
     ],
     topic: 'Trigonometric Functions',

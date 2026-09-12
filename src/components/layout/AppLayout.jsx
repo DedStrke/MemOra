@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom'
 import AppBar from './AppBar'
 import Footer from './Footer'
+import FocusMusic from '@/components/ui/FocusMusic'
+import LevelUp from '@/components/ui/LevelUp'
 
 /*
   Shell for every app page: top bar + routed page. No login gate; this is a
@@ -17,6 +19,10 @@ export default function AppLayout() {
         <Outlet />
       </main>
       <Footer />
+      {/* Corner Spotify player - persists across app routes, see FocusMusic. */}
+      <FocusMusic />
+      {/* Level-up screen - watches XP on every app page. */}
+      <LevelUp />
     </div>
   )
 }

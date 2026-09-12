@@ -11,7 +11,7 @@ are struggling.
 
 Stack: **Vite + React 19 (JSX) + Tailwind v4 + Framer Motion + React Router v7**.
 All state persists to `localStorage`, so the demo runs with no backend. Ships as
-a static site to **Firebase Hosting**.
+a static site to **GitHub Pages**.
 
 ---
 
@@ -61,8 +61,8 @@ be inclusive:
 ## Run it
 
 ```bash
-git clone <your-repo-url>
-cd Hackathon
+git clone https://github.com/DedStrke/MemOra.git
+cd MemOra
 npm install
 npm run dev        # http://localhost:5173
 ```
@@ -73,10 +73,11 @@ npm run dev        # http://localhost:5173
 | `npm run build`   | Production build into `dist/`      |
 | `npm run preview` | Preview the production build       |
 | `npm run lint`    | Lint the codebase (oxlint)         |
-| `npm run deploy`  | Build and deploy to Firebase Hosting |
 
-Live URL: https://adapthub-a38b7.web.app (deploy needs the Firebase CLI and
-access to the `adapthub-a38b7` project).
+Deploys itself: a push to `main` triggers `.github/workflows/deploy.yml`,
+which builds and publishes to GitHub Pages. No manual deploy step.
+
+Live URL: https://dedstrke.github.io/MemOra/
 
 ## Project structure
 

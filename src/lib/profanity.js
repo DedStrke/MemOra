@@ -23,7 +23,6 @@ const STEMS = [
   'asshole',
   'dumbass',
   'jackass',
-  'dick',
   'piss',
   'cunt',
   'twat',
@@ -37,10 +36,33 @@ const STEMS = [
   'crap',
 ]
 
-const WHOLE_WORDS = ['ass', 'damn', 'goddamn', 'hell', 'prick', 'tit', 'tits', 'cock']
+/*
+  Matched whole-word only, never as stems. `dick` is here rather than in
+  STEMS on purpose: `dick\w*` also matches Dickens and Dickinson, which a
+  literature or history student has every reason to be writing about.
+  Same reasoning keeps `tit` off the stem list (title, titanium).
+*/
+const WHOLE_WORDS = [
+  'ass',
+  'cock',
+  'damn',
+  'dick',
+  'dickhead',
+  'goddamn',
+  'hell',
+  'prick',
+  'tit',
+  'tits',
+]
+
+// Longest alternatives first so the engine matches the fullest word it can
+// (`dickhead` before `dick`) instead of relying on backtracking to get there.
+const byLongest = (a, b) => b.length - a.length
 
 const PATTERN = new RegExp(
-  `\\b(${STEMS.map((s) => `${s}\\w*`).join('|')}|${WHOLE_WORDS.join('|')})\\b`,
+  `\\b(${[...STEMS].sort(byLongest).map((s) => `${s}\\w*`).join('|')}|${[...WHOLE_WORDS]
+    .sort(byLongest)
+    .join('|')})\\b`,
   'i',
 )
 

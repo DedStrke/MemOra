@@ -41,7 +41,7 @@ export const BATCH_D_FLASHCARDS = [
   // ------------------------------------------------ Forces and Friction
   {
     front: 'State the friction inequality and what each symbol means.',
-    back: 'F <= muR, where F is the frictional force, mu is the coefficient of friction between the surfaces, and R is the normal reaction force.',
+    back: 'F <= muR, where F is the frictional force, μ is the coefficient of friction between the surfaces, and R is the normal reaction force.',
     topic: 'Forces and Friction',
   },
   {
@@ -55,13 +55,13 @@ export const BATCH_D_FLASHCARDS = [
     topic: 'Forces and Friction',
   },
   {
-    front: 'For an object on a rough plane inclined at angle theta, what are the components of its weight mg parallel and perpendicular to the plane?',
-    back: 'Parallel to the plane, down the slope: mg sin(theta). Perpendicular to the plane, into the plane: mg cos(theta).',
+    front: 'For an object on a rough plane inclined at angle θ, what are the components of its weight mg parallel and perpendicular to the plane?',
+    back: 'Parallel to the plane, down the slope: mg sin(θ). Perpendicular to the plane, into the plane: mg cos(θ).',
     topic: 'Forces and Friction',
   },
   {
     front: 'How do you find the normal reaction R for an object resting on an inclined plane, with no other forces perpendicular to the slope?',
-    back: 'Resolve perpendicular to the plane: R = mg cos(theta), since there is no acceleration perpendicular to the plane.',
+    back: 'Resolve perpendicular to the plane: R = mg cos(θ), since there is no acceleration perpendicular to the plane.',
     topic: 'Forces and Friction',
   },
   {
@@ -78,27 +78,27 @@ export const BATCH_D_FLASHCARDS = [
   },
   {
     front: 'In projectile motion, what is the vertical acceleration?',
-    back: 'Constant, equal to g (approximately 9.8 m/s^2) directed downward, due to gravity.',
+    back: 'Constant, equal to g (approximately 9.8 m/s²) directed downward, due to gravity.',
     topic: 'Projectiles',
   },
   {
-    front: 'For a projectile launched with speed U at angle theta above the horizontal, what are the initial horizontal and vertical velocity components?',
-    back: 'Horizontal: U cos(theta). Vertical: U sin(theta).',
+    front: 'For a projectile launched with speed U at angle θ above the horizontal, what are the initial horizontal and vertical velocity components?',
+    back: 'Horizontal: U cos(θ). Vertical: U sin(θ).',
     topic: 'Projectiles',
   },
   {
     front: 'How do you find the maximum height reached by a projectile?',
-    back: 'Use the vertical motion only, with vertical velocity = 0 at the greatest height, e.g. v^2 = u^2 - 2gs with v = 0, or v = u - gt with v = 0 to find the time first.',
+    back: 'Use the vertical motion only, with vertical velocity = 0 at the greatest height, e.g. v² = u² - 2gs with v = 0, or v = u - gt with v = 0 to find the time first.',
     topic: 'Projectiles',
   },
   {
     front: 'How do you find the time of flight of a projectile that lands at the same height it was launched from?',
-    back: 'Use the vertical motion with total vertical displacement = 0, e.g. s = Ut sin(theta) - (1/2)gt^2 = 0, then solve for t, excluding t = 0.',
+    back: 'Use the vertical motion with total vertical displacement = 0, e.g. s = Ut sin(θ) - (1/2)gt² = 0, then solve for t, excluding t = 0.',
     topic: 'Projectiles',
   },
   {
     front: 'How do you find the speed and direction of a projectile at a given time?',
-    back: 'Find the horizontal component (constant) and vertical component (from v = u - gt) of velocity, then combine using speed = sqrt(horizontal^2 + vertical^2) and direction from tan(theta) = vertical / horizontal.',
+    back: 'Find the horizontal component (constant) and vertical component (from v = u - gt) of velocity, then combine using speed = √(horizontal² + vertical²) and direction from tan(θ) = vertical / horizontal.',
     topic: 'Projectiles',
   },
 
@@ -115,7 +115,7 @@ export const BATCH_D_FLASHCARDS = [
   },
   {
     front: 'For a mass on an inclined plane connected over a pulley at the top to a hanging mass, what forces act along the plane on the mass on the incline?',
-    back: 'The tension T up the slope, the component of weight mg sin(theta) down the slope, and friction (if the plane is rough), whose direction depends on which way the mass is moving or tending to move.',
+    back: 'The tension T up the slope, the component of weight mg sin(θ) down the slope, and friction (if the plane is rough), whose direction depends on which way the mass is moving or tending to move.',
     topic: 'Application of Forces',
   },
   {
@@ -147,7 +147,7 @@ export const BATCH_D_FLASHCARDS = [
   },
   {
     front: 'If the velocity vector of a particle is v(t), how do you find its acceleration vector?',
-    back: 'Differentiate each component of v with respect to t: a = dv/dt = d^2r/dt^2.',
+    back: 'Differentiate each component of v with respect to t: a = dv/dt = d²r/dt².',
     topic: 'Further Kinematics',
   },
   {
@@ -157,12 +157,12 @@ export const BATCH_D_FLASHCARDS = [
   },
   {
     front: 'How do you find the speed of a particle at a given time from its velocity vector v = xi + yj?',
-    back: 'Speed = |v| = sqrt(x^2 + y^2), the magnitude of the velocity vector, found using Pythagoras\' theorem.',
+    back: 'Speed = |v| = √(x² + y²), the magnitude of the velocity vector, found using Pythagoras\' theorem.',
     topic: 'Further Kinematics',
   },
   {
     front: 'How do you find the direction of motion of a particle from its velocity vector v = xi + yj?',
-    back: 'Find the angle theta the vector makes with a reference direction, usually i, using tan(theta) = y/x, then describe the direction, e.g. theta degrees above the i direction.',
+    back: 'Find the angle θ the vector makes with a reference direction, usually i, using tan(θ) = y/x, then describe the direction, e.g. θ degrees above the i direction.',
     topic: 'Further Kinematics',
   },
   {
@@ -171,8 +171,8 @@ export const BATCH_D_FLASHCARDS = [
     topic: 'Further Kinematics',
   },
   {
-    front: 'Write the vector form of the constant-acceleration displacement equation r = r0 + ut + (1/2)at^2.',
-    back: 'The position vector at time t equals the initial position vector plus ut plus (1/2)at^2, all as vectors, applied component-wise in i and j.',
+    front: 'Write the vector form of the constant-acceleration displacement equation r = r0 + ut + (1/2)at².',
+    back: 'The position vector at time t equals the initial position vector plus ut plus (1/2)at², all as vectors, applied component-wise in i and j.',
     topic: 'Further Kinematics',
   },
 ]
@@ -190,7 +190,7 @@ export const BATCH_D_MCQ = [
     ],
     answer: 2,
     explanation:
-      'The rod\'s own weight acts at the pivot and has no moment there. Taking moments about the pivot: 10 x 1.5 = 15 x d, so d = 15/15 = 1 m.',
+      'The rod\'s own weight acts at the pivot and has no moment there. Taking moments about the pivot: 10 × 1.5 = 15 x d, so d = 15/15 = 1 m.',
     topic: 'Moments',
   },
   {
@@ -199,7 +199,7 @@ export const BATCH_D_MCQ = [
     options: ['1.5 m', '1.8 m', '1.25 m', '2.0 m'],
     answer: 1,
     explanation:
-      'Taking moments about the pivot: 300 x 1.5 = 250 x d, so d = 450/250 = 1.8 m.',
+      'Taking moments about the pivot: 300 × 1.5 = 250 x d, so d = 450/250 = 1.8 m.',
     topic: 'Moments',
   },
   {
@@ -220,20 +220,20 @@ export const BATCH_D_MCQ = [
   // ------------------------------------------------ Forces and Friction
   {
     question:
-      'A block of mass 5 kg rests on a rough horizontal surface with coefficient of friction mu = 0.25. A horizontal force P is applied. What is the maximum value of P for the block to remain in equilibrium? (g = 9.8)',
+      'A block of mass 5 kg rests on a rough horizontal surface with coefficient of friction μ = 0.25. A horizontal force P is applied. What is the maximum value of P for the block to remain in equilibrium? (g = 9.8)',
     options: ['12.25 N', '49 N', '1.25 N', '24.5 N'],
     answer: 0,
     explanation:
-      'R = mg = 5 x 9.8 = 49 N. Maximum friction (and hence maximum P at limiting equilibrium) is muR = 0.25 x 49 = 12.25 N.',
+      'R = mg = 5 × 9.8 = 49 N. Maximum friction (and hence maximum P at limiting equilibrium) is muR = 0.25 × 49 = 12.25 N.',
     topic: 'Forces and Friction',
   },
   {
     question:
-      'A block of mass 2 kg on a rough plane inclined at 30 degrees to the horizontal is in limiting equilibrium, on the point of sliding down. Find the coefficient of friction mu. (g = 9.8)',
-    options: ['mu = sin30 degrees = 0.5', 'mu = cos30 degrees = 0.87', 'mu = tan30 degrees = 0.58', 'mu = 1/tan30 degrees = 1.73'],
+      'A block of mass 2 kg on a rough plane inclined at 30 degrees to the horizontal is in limiting equilibrium, on the point of sliding down. Find the coefficient of friction μ. (g = 9.8)',
+    options: ['μ = sin30 degrees = 0.5', 'μ = cos30 degrees = 0.87', 'μ = tan30 degrees = 0.58', 'μ = 1/tan30 degrees = 1.73'],
     answer: 2,
     explanation:
-      'Resolving perpendicular: R = mg cos30 degrees. Resolving parallel with friction acting up the slope at its limiting value: mg sin30 degrees = muR = mu mg cos30 degrees, so mu = tan30 degrees ≈ 0.58.',
+      'Resolving perpendicular: R = mg cos30 degrees. Resolving parallel with friction acting up the slope at its limiting value: mg sin30 degrees = muR = μ mg cos30 degrees, so μ = tan30 degrees ≈ 0.58.',
     topic: 'Forces and Friction',
   },
   {
@@ -253,14 +253,14 @@ export const BATCH_D_MCQ = [
     options: ['≈3.03 s', '≈2.14 s', '≈9.18 s', '≈4.59 s'],
     answer: 0,
     explanation:
-      'Vertical motion only: 45 = (1/2)(9.8)t^2, so t^2 = 90/9.8 ≈ 9.18 and t ≈ 3.03 s.',
+      'Vertical motion only: 45 = (1/2)(9.8)t², so t² = 90/9.8 ≈ 9.18 and t ≈ 3.03 s.',
     topic: 'Projectiles',
   },
   {
     question: 'A ball is projected at 20 m/s at 40 degrees above the horizontal. What is the initial vertical component of its velocity?',
     options: ['≈15.3 m/s', '≈20 m/s', '≈31.1 m/s', '≈12.9 m/s'],
     answer: 3,
-    explanation: 'The vertical component is U sin(theta) = 20 sin40 degrees ≈ 12.9 m/s.',
+    explanation: 'The vertical component is U sin(θ) = 20 sin40 degrees ≈ 12.9 m/s.',
     topic: 'Projectiles',
   },
   {
@@ -269,7 +269,7 @@ export const BATCH_D_MCQ = [
     options: ['≈58.8 m', '≈29.4 m', '≈32.7 m', '≈3.27 m'],
     answer: 1,
     explanation:
-      'Only the vertical component matters: using v^2 = u^2 - 2gh with v = 0 and u = 24, h = 24^2 / (2 x 9.8) = 576/19.6 ≈ 29.4 m.',
+      'Only the vertical component matters: using v² = u² - 2gh with v = 0 and u = 24, h = 24² / (2 × 9.8) = 576/19.6 ≈ 29.4 m.',
     topic: 'Projectiles',
   },
 
@@ -304,7 +304,7 @@ export const BATCH_D_MCQ = [
       'The three forces must all have equal magnitude',
       'The three forces, drawn head to tail, form a closed triangle since their vector sum is zero',
       'The triangle only closes if all three forces are perpendicular to each other',
-      'The forces form a closed triangle only if mu = 0',
+      'The forces form a closed triangle only if μ = 0',
     ],
     answer: 1,
     explanation:
@@ -315,16 +315,16 @@ export const BATCH_D_MCQ = [
   // -------------------------------------------------- Further Kinematics
   {
     question:
-      'A particle has position vector r = (t^3 - 2t)i + (3t^2)j metres at time t seconds. What is its velocity vector at t = 2?',
+      'A particle has position vector r = (t³ - 2t)i + (3t²)j metres at time t seconds. What is its velocity vector at t = 2?',
     options: ['8i + 12j', '12i + 10j', '10i + 12j', '(3t² − 2)i + 6tj'],
     answer: 2,
     explanation:
-      'v = dr/dt = (3t^2 - 2)i + (6t)j. At t = 2: (3(4) - 2)i + (12)j = 10i + 12j.',
+      'v = dr/dt = (3t² - 2)i + (6t)j. At t = 2: (3(4) - 2)i + (12)j = 10i + 12j.',
     topic: 'Further Kinematics',
   },
   {
     question:
-      'A particle moves with constant acceleration a = (2i - 3j) m/s^2. At t = 0 its velocity is u = (4i + j) m/s. What is its velocity at t = 3 seconds?',
+      'A particle moves with constant acceleration a = (2i - 3j) m/s². At t = 0 its velocity is u = (4i + j) m/s. What is its velocity at t = 3 seconds?',
     options: ['10i − 8j', '10i + 8j', '6i − 9j', '6i − 2j'],
     answer: 0,
     explanation:
@@ -336,7 +336,7 @@ export const BATCH_D_MCQ = [
     options: ['12 m/s', '6 m/s', '≈4.24 m/s', '≈8.49 m/s'],
     answer: 3,
     explanation:
-      'At t = 1, v = 6i + 6j, so speed = sqrt(6^2 + 6^2) = sqrt(72) ≈ 8.49 m/s.',
+      'At t = 1, v = 6i + 6j, so speed = √(6² + 6²) = √(72) ≈ 8.49 m/s.',
     topic: 'Further Kinematics',
   },
 ]
@@ -480,12 +480,12 @@ export const BATCH_D_EXAM = [
       'A particle is projected from a point on horizontal ground with speed 28 m/s at 35 degrees above the horizontal. Find (a) the greatest height reached, (b) the total time of flight before it returns to the ground, (c) the horizontal range. (g = 9.8)',
     marks: 7,
     markScheme: [
-      'B1: u_y = 28 sin35° ≈ 16.06 m/s, u_x = 28 cos35° ≈ 22.94 m/s',
+      'B1: uᵧ = 28 sin35° ≈ 16.06 m/s, uₓ = 28 cos35° ≈ 22.94 m/s',
       'M1: Use v² = u_y² − 2gh with v = 0 at the greatest height',
       'A1: h = 16.06² / (2 × 9.8) ≈ 13.2 m',
       'M1: Use symmetry of the vertical motion: total time of flight T = 2u_y/g',
       'A1: T = 2 × 16.06 / 9.8 ≈ 3.28 s',
-      'M1: Range = u_x × T',
+      'M1: Range = uₓ × T',
       'A1: Range = 22.94 × 3.28 ≈ 75.2 m',
       'Final answer: (a) height ≈ 13.2 m, (b) time of flight ≈ 3.28 s, (c) range ≈ 75.2 m',
     ],
@@ -508,9 +508,9 @@ export const BATCH_D_EXAM = [
       'A particle is projected from a point O with velocity 18 m/s at 25 degrees above the horizontal. O is 10 m above horizontal ground. Find the speed with which the particle strikes the ground. (g = 9.8)',
     marks: 5,
     markScheme: [
-      'B1: u_x = 18 cos25° ≈ 16.31 m/s (constant throughout), u_y = 18 sin25° ≈ 7.61 m/s (initial, upward)',
+      'B1: uₓ = 18 cos25° ≈ 16.31 m/s (constant throughout), uᵧ = 18 sin25° ≈ 7.61 m/s (initial, upward)',
       'M1: Vertical motion: v_y² = u_y² + 2g(10), taking the 10 m drop and g as magnitudes in the same direction',
-      'A1: v_y² = 7.61² + 2(9.8)(10) ≈ 253.9, so v_y ≈ 15.93 m/s',
+      'A1: v_y² = 7.61² + 2(9.8)(10) ≈ 253.9, so vᵧ ≈ 15.93 m/s',
       'M1: Combine horizontal and vertical components: speed² = u_x² + v_y²',
       'Final answer: speed = √(16.31² + 15.93²) ≈ 22.8 m/s',
     ],
@@ -554,11 +554,11 @@ export const BATCH_D_EXAM = [
       'A particle of weight 12 N is held in equilibrium by two light strings. One string is horizontal, and the other makes an angle of 50 degrees with the horizontal. Find the tension in each string.',
     marks: 4,
     markScheme: [
-      'M1: Resolve vertically: T2 sin50° = 12',
-      'A1: T2 = 12 / sin50° ≈ 15.7 N',
-      'M1: Resolve horizontally: T1 = T2 cos50°',
-      'A1: T1 ≈ 15.66 × cos50° ≈ 10.1 N',
-      'Final answer: T1 ≈ 10.1 N, T2 ≈ 15.7 N',
+      'M1: Resolve vertically: T₂ sin50° = 12',
+      'A1: T₂ = 12 / sin50° ≈ 15.7 N',
+      'M1: Resolve horizontally: T₁ = T₂ cos50°',
+      'A1: T₁ ≈ 15.66 × cos50° ≈ 10.1 N',
+      'Final answer: T₁ ≈ 10.1 N, T₂ ≈ 15.7 N',
     ],
     topic: 'Application of Forces',
   },
@@ -615,7 +615,7 @@ export const BATCH_D_EXAM = [
       'A1: Use r(0) = 2i − j to find D: D = 2i − j, so r = (t³ − 6t² + 2)i + (5t − 2t² − 1)j',
       'M1: Set the i-component of v to zero: 3t² − 12t = 0, so 3t(t − 4) = 0',
       'A1: t = 4 (rejecting t = 0, the initial instant)',
-      'B1: At t = 4, v_y = 5 − 4(4) = −11, so velocity = −11j m/s',
+      'B1: At t = 4, vᵧ = 5 − 4(4) = −11, so velocity = −11j m/s',
       'Final answer: v(t) = (3t² − 12t)i + (5 − 4t)j; r(t) = (t³ − 6t² + 2)i + (5t − 2t² − 1)j; at t = 4 s the particle moves parallel to j with velocity −11j m/s',
     ],
     topic: 'Further Kinematics',

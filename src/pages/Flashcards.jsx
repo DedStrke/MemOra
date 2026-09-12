@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Section from '@/components/ui/Section'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Mascot from '@/components/ui/Mascot'
@@ -411,10 +411,7 @@ export default function Flashcards() {
   return (
     <Section width="wide" animateOnMount className="pt-8 pb-28">
       <motion.div variants={fadeInUp}>
-        <Button as={Link} to="/dashboard" variant="ghost" size="sm">
-          <Icon name="arrowLeft" className="h-4 w-4" />
-          Dashboard
-        </Button>
+        <Breadcrumbs />
       </motion.div>
 
       {view === 'home' && (

@@ -64,11 +64,17 @@ export const ECON_GROUPS = [
       },
       {
         label: '2.5 Economic Growth',
-        topics: ['Causes and Effects of Economic Growth'],
+        topics: ['Causes and Effects of Economic Growth', 'Output Gaps and the Trade Cycle'],
       },
       {
         label: '2.6 Macroeconomic Objectives and Policy',
-        topics: ['Macroeconomic Objectives', 'Fiscal Policy', 'Monetary Policy', 'Supply-Side Policy'],
+        topics: [
+          'Macroeconomic Objectives',
+          'Fiscal Policy',
+          'Monetary Policy',
+          'Supply-Side Policy',
+          'Conflicts Between Objectives and the Phillips Curve',
+        ],
       },
     ],
   },
@@ -89,7 +95,15 @@ export const ECON_GROUPS = [
       },
       {
         label: '3.4 Market Structures',
-        topics: ['Perfect Competition', 'Monopolistic Competition', 'Oligopoly', 'Monopoly', 'Contestability'],
+        topics: [
+          'Efficiency',
+          'Perfect Competition',
+          'Monopolistic Competition',
+          'Oligopoly',
+          'Monopoly',
+          'Monopsony',
+          'Contestability',
+        ],
       },
       {
         label: '3.5 Labour Market',
@@ -106,7 +120,16 @@ export const ECON_GROUPS = [
     subgroups: [
       {
         label: '4.1 International Economics',
-        topics: ['International Trade', 'Trading Blocs and the WTO', 'The Balance of Payments', 'Exchange Rates'],
+        topics: [
+          'Globalisation',
+          'International Trade',
+          'Terms of Trade',
+          'Trading Blocs and the WTO',
+          'Protectionism and Trade Restrictions',
+          'The Balance of Payments',
+          'Exchange Rates',
+          'International Competitiveness',
+        ],
       },
       {
         label: '4.2 Poverty and Inequality',
@@ -114,7 +137,7 @@ export const ECON_GROUPS = [
       },
       {
         label: '4.3 Emerging and Developing Economies',
-        topics: ['Measures and Strategies for Development'],
+        topics: ['Measures and Strategies for Development', 'Factors Influencing Growth and Development'],
       },
       {
         label: '4.4 The Financial Sector',
@@ -122,7 +145,7 @@ export const ECON_GROUPS = [
       },
       {
         label: '4.5 Role of the State in the Macroeconomy',
-        topics: ['Public Expenditure and Taxation', 'The National Debt'],
+        topics: ['Public Expenditure and Taxation', 'The National Debt', 'Macroeconomic Policies in a Global Context'],
       },
     ],
   },

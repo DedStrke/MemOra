@@ -1,33 +1,33 @@
 export const BATCH_B_FLASHCARDS = [
   // ---------------------------------------------------- Trigonometry and Modelling
   {
-    front: "How do you write a sinθ + b cosθ in the form R sin(θ + α), with R > 0 and 0° < α < 90°?",
-    back: "R = √(a² + b²). Since R sin(θ+α) = R sinθ cosα + R cosθ sinα, matching coefficients gives a = R cosα and b = R sinα, so tanα = b/a.",
+    front: "How do you write a sin θ + b cos θ in the form R sin(θ + α), with R > 0 and 0° < α < 90°?",
+    back: "R = √(a² + b²). Since R sin(θ+α) = R sin θ cos α + R cos θ sin α, matching coefficients gives a = R cos α and b = R sin α, so tan α = b/a.",
     topic: "Trigonometry and Modelling",
   },
   {
-    front: "Expand R sin(θ + α) and explain how it is used to find R and α for a sinθ + b cosθ.",
-    back: "R sin(θ+α) = R sinθ cosα + R cosθ sinα. Comparing with a sinθ + b cosθ term by term gives a = R cosα (coefficient of sinθ) and b = R sinα (coefficient of cosθ), so R² = a² + b² and tanα = b/a.",
+    front: "Expand R sin(θ + α) and explain how it is used to find R and α for a sin θ + b cos θ.",
+    back: "R sin(θ+α) = R sin θ cos α + R cos θ sin α. Comparing with a sin θ + b cos θ term by term gives a = R cos α (coefficient of sin θ) and b = R sin α (coefficient of cos θ), so R² = a² + b² and tan α = b/a.",
     topic: "Trigonometry and Modelling",
   },
   {
-    front: "How do you write a sinθ − b cosθ in the form R sin(θ − α)?",
-    back: "R = √(a² + b²), tanα = b/a. This works because R sin(θ−α) = R sinθ cosα − R cosθ sinα, which matches a sinθ − b cosθ with a = R cosα, b = R sinα.",
+    front: "How do you write a sin θ − b cos θ in the form R sin(θ − α)?",
+    back: "R = √(a² + b²), tan α = b/a. This works because R sin(θ−α) = R sin θ cos α − R cos θ sin α, which matches a sin θ − b cos θ with a = R cos α, b = R sin α.",
     topic: "Trigonometry and Modelling",
   },
   {
-    front: "If a sinθ + b cosθ is written as R sin(θ+α), what are the maximum and minimum values, and when do they occur?",
+    front: "If a sin θ + b cos θ is written as R sin(θ+α), what are the maximum and minimum values, and when do they occur?",
     back: "Maximum value is R, occurring when θ+α = 90°. Minimum value is −R, occurring when θ+α = 270°.",
     topic: "Trigonometry and Modelling",
   },
   {
-    front: "Outline the method for solving a sinθ + b cosθ = c for 0 ≤ θ ≤ 360°.",
-    back: "Write the left side as R sin(θ+α) using R = √(a²+b²) and tanα = b/a. Solve sin(θ+α) = c/R for all values of (θ+α) in the shifted range, then subtract α to get θ.",
+    front: "Outline the method for solving a sin θ + b cos θ = c for 0 ≤ θ ≤ 360°.",
+    back: "Write the left side as R sin(θ+α) using R = √(a²+b²) and tan α = b/a. Solve sin(θ+α) = c/R for all values of (θ+α) in the shifted range, then subtract α to get θ.",
     topic: "Trigonometry and Modelling",
   },
   {
-    front: "How do you write a cosθ + b sinθ in the form R cos(θ − α)?",
-    back: "R = √(a² + b²), tanα = b/a. Since R cos(θ−α) = R cosθ cosα + R sinθ sinα matches a cosθ + b sinθ with a = R cosα, b = R sinα.",
+    front: "How do you write a cos θ + b sin θ in the form R cos(θ − α)?",
+    back: "R = √(a² + b²), tan α = b/a. Since R cos(θ−α) = R cos θ cos α + R sin θ sin α matches a cos θ + b sin θ with a = R cos α, b = R sin α.",
     topic: "Trigonometry and Modelling",
   },
 
@@ -70,13 +70,13 @@ export const BATCH_B_FLASHCARDS = [
 
   // ---------------------------------------------------- Differentiation (Year 2)
   {
-    front: "State d/dx(e^x), d/dx(ln x) and d/dx(a^x).",
-    back: "d/dx(e^x) = e^x. d/dx(ln x) = 1/x (x > 0). d/dx(a^x) = a^x ln a.",
+    front: "State d/dx(eˣ), d/dx(ln x) and d/dx(aˣ).",
+    back: "d/dx(eˣ) = eˣ. d/dx(ln x) = 1/x (x > 0). d/dx(aˣ) = aˣ ln a.",
     topic: "Differentiation (Year 2)",
   },
   {
     front: "State the derivatives of sin x, cos x and tan x.",
-    back: "d/dx(sinx) = cosx. d/dx(cosx) = −sinx. d/dx(tanx) = sec²x.",
+    back: "d/dx(sin x) = cos x. d/dx(cos x) = −sin x. d/dx(tan x) = sec²x.",
     topic: "Differentiation (Year 2)",
   },
   {
@@ -103,7 +103,7 @@ export const BATCH_B_FLASHCARDS = [
   },
   {
     front: "What does it mean for an iteration xₙ₊₁ = g(xₙ) to converge?",
-    back: "The sequence of values x₀, x₁, x₂, ... gets closer and closer to a fixed value (the root), so that successive terms agree to the required degree of accuracy.",
+    back: "The sequence of values x₀, x₁, x₂, … gets closer and closer to a fixed value (the root), so that successive terms agree to the required degree of accuracy.",
     topic: "Numerical Methods",
   },
   {
@@ -124,18 +124,18 @@ export const BATCH_B_FLASHCARDS = [
 
   // ---------------------------------------------------- Integration (Year 2)
   {
-    front: "State ∫e^x dx and ∫(1/x) dx.",
-    back: "∫e^x dx = e^x + c. ∫(1/x) dx = ln|x| + c.",
+    front: "State ∫eˣ dx and ∫(1/x) dx.",
+    back: "∫eˣ dx = eˣ + c. ∫(1/x) dx = ln|x| + c.",
     topic: "Integration (Year 2)",
   },
   {
-    front: "State ∫sinx dx and ∫cosx dx.",
-    back: "∫sinx dx = −cosx + c. ∫cosx dx = sinx + c.",
+    front: "State ∫sin x dx and ∫cos x dx.",
+    back: "∫sin x dx = −cos x + c. ∫cos x dx = sin x + c.",
     topic: "Integration (Year 2)",
   },
   {
     front: "What is ∫sec²x dx?",
-    back: "tanx + c, since d/dx(tanx) = sec²x.",
+    back: "tan x + c, since d/dx(tan x) = sec²x.",
     topic: "Integration (Year 2)",
   },
   {
@@ -145,7 +145,7 @@ export const BATCH_B_FLASHCARDS = [
   },
   {
     front: "State the trapezium rule for approximating ∫ from a to b of y dx with n strips of width h = (b−a)/n.",
-    back: "∫ y dx ≈ (h/2)[(y₀+yₙ) + 2(y₁+y₂+...+yₙ₋₁)], where y₀, y₁, ..., yₙ are the y-values at the n+1 equally spaced x-values from a to b.",
+    back: "∫ y dx ≈ (h/2)[(y₀+yₙ) + 2(y₁+y₂+…+yₙ₋₁)], where y₀, y₁, …, yₙ are the y-values at the n+1 equally spaced x-values from a to b.",
     topic: "Integration (Year 2)",
   },
 
@@ -176,8 +176,8 @@ export const BATCH_B_FLASHCARDS = [
     topic: "Vectors (3D)",
   },
   {
-    front: "State the formula for the scalar (dot) product of a = (a1,a2,a3) and b = (b1,b2,b3), and how it relates to the angle θ between them.",
-    back: "a·b = a1b1 + a2b2 + a3b3 = |a||b|cosθ, so cosθ = (a·b)/(|a||b|). If a·b = 0 (and neither vector is zero), the vectors are perpendicular.",
+    front: "State the formula for the scalar (dot) product of a = (a₁,a₂,a₃) and b = (b1,b2,b3), and how it relates to the angle θ between them.",
+    back: "a·b = a1b1 + a2b2 + a3b3 = |a||b|cos θ, so cos θ = (a·b)/(|a||b|). If a·b = 0 (and neither vector is zero), the vectors are perpendicular.",
     topic: "Vectors (3D)",
   },
 ]
@@ -185,21 +185,21 @@ export const BATCH_B_FLASHCARDS = [
 export const BATCH_B_MCQ = [
   // ---------------------------------------------------- Trigonometry and Modelling
   {
-    question: "Given f(θ) = 3 sinθ + 4 cosθ is written as R sin(θ + α), with R > 0 and 0° < α < 90°, what is the value of R?",
+    question: "Given f(θ) = 3 sin θ + 4 cos θ is written as R sin(θ + α), with R > 0 and 0° < α < 90°, what is the value of R?",
     options: ["5", "7", "25", "1"],
     answer: 0,
     explanation: "R = √(3² + 4²) = √(9 + 16) = √25 = 5.",
     topic: "Trigonometry and Modelling",
   },
   {
-    question: "For 3 sinθ + 4 cosθ ≡ R sin(θ + α), with R > 0 and 0° < α < 90°, what is α to 1 decimal place?",
+    question: "For 3 sin θ + 4 cos θ ≡ R sin(θ + α), with R > 0 and 0° < α < 90°, what is α to 1 decimal place?",
     options: ["36.9°", "53.1°", "45.0°", "63.4°"],
     answer: 1,
-    explanation: "tanα = b/a = 4/3, so α = arctan(4/3) ≈ 53.1°. (36.9° comes from swapping the ratio to arctan(3/4).)",
+    explanation: "tan α = b/a = 4/3, so α = arctan(4/3) ≈ 53.1°. (36.9° comes from swapping the ratio to arctan(3/4).)",
     topic: "Trigonometry and Modelling",
   },
   {
-    question: "The expression 5 cosθ − 12 sinθ is written as R cos(θ + α), R > 0. What is the minimum value of 5 cosθ − 12 sinθ?",
+    question: "The expression 5 cos θ − 12 sin θ is written as R cos(θ + α), R > 0. What is the minimum value of 5 cos θ − 12 sin θ?",
     options: ["5", "13", "-13", "12"],
     answer: 2,
     explanation: "R = √(5² + 12²) = √169 = 13. Since cos ranges from −1 to 1, the minimum of R cos(θ+α) is −R = −13.",
@@ -231,10 +231,10 @@ export const BATCH_B_MCQ = [
 
   // ---------------------------------------------------- Differentiation (Year 2)
   {
-    question: "Differentiate y = x² e^x using the product rule.",
-    options: ["2x e^x", "x² e^x", "e^x(x² + 2x)", "e^x(x² + x)"],
+    question: "Differentiate y = x² eˣ using the product rule.",
+    options: ["2x eˣ", "x² eˣ", "eˣ(x² + 2x)", "eˣ(x² + x)"],
     answer: 2,
-    explanation: "Product rule: dy/dx = (2x)(e^x) + (x²)(e^x) = e^x(2x + x²).",
+    explanation: "Product rule: dy/dx = (2x)(eˣ) + (x²)(eˣ) = eˣ(2x + x²).",
     topic: "Differentiation (Year 2)",
   },
   {
@@ -284,10 +284,10 @@ export const BATCH_B_MCQ = [
     topic: "Integration (Year 2)",
   },
   {
-    question: "Find ∫x cosx dx using integration by parts.",
-    options: ["x sinx − cosx + c", "x sinx + cosx + c", "-x sinx + cosx + c", "x cosx + sinx + c"],
+    question: "Find ∫x cos x dx using integration by parts.",
+    options: ["x sin x − cos x + c", "x sin x + cos x + c", "-x sin x + cos x + c", "x cos x + sin x + c"],
     answer: 1,
-    explanation: "u = x, dv/dx = cosx gives v = sinx, du/dx = 1. ∫x cosx dx = x sinx − ∫sinx dx = x sinx − (−cosx) + c = x sinx + cosx + c.",
+    explanation: "u = x, dv/dx = cos x gives v = sin x, du/dx = 1. ∫x cos x dx = x sin x − ∫sin x dx = x sin x − (−cos x) + c = x sin x + cos x + c.",
     topic: "Integration (Year 2)",
   },
   {
@@ -310,7 +310,7 @@ export const BATCH_B_MCQ = [
     question: "Find the angle between vectors a = i + j + k and b = 2i − j + k, to 1 decimal place.",
     options: ["61.9°", "45.0°", "70.5°", "48.2°"],
     answer: 0,
-    explanation: "a·b = 2 − 1 + 1 = 2, |a| = √3, |b| = √6, cosθ = 2/√18 ≈ 0.4714, so θ ≈ 61.9°.",
+    explanation: "a·b = 2 − 1 + 1 = 2, |a| = √3, |b| = √6, cos θ = 2/√18 ≈ 0.4714, so θ ≈ 61.9°.",
     topic: "Vectors (3D)",
   },
   {
@@ -325,11 +325,11 @@ export const BATCH_B_MCQ = [
 export const BATCH_B_EXAM = [
   // ---------------------------------------------------- Trigonometry and Modelling
   {
-    question: "Express 5 sinθ − 12 cosθ in the form R sin(θ − α), where R > 0 and 0° < α < 90°, giving α to 1 decimal place. Hence solve 5 sinθ − 12 cosθ = 6 for 0 ≤ θ ≤ 360°, giving your answers to 1 decimal place.",
+    question: "Express 5 sin θ − 12 cos θ in the form R sin(θ − α), where R > 0 and 0° < α < 90°, giving α to 1 decimal place. Hence solve 5 sin θ − 12 cos θ = 6 for 0 ≤ θ ≤ 360°, giving your answers to 1 decimal place.",
     marks: 7,
     markScheme: [
       "B1: R = √(5² + 12²) = 13",
-      "M1: tanα = 12/5 leading to α = 67.4° (1 dp)",
+      "M1: tan α = 12/5 leading to α = 67.4° (1 dp)",
       "M1: Rewrites equation as 13 sin(θ − 67.4°) = 6, i.e. sin(θ − 67.4°) = 6/13",
       "M1: Finds θ − 67.4° = 27.5° (from arcsin(6/13)) and uses 180° − 27.5° = 152.5° for the second value",
       "A1: θ − 67.4° = 27.5° or 152.5°",
@@ -339,13 +339,13 @@ export const BATCH_B_EXAM = [
     topic: "Trigonometry and Modelling",
   },
   {
-    question: "Prove the identity (sinθ + cosθ)² ≡ 1 + sin2θ.",
+    question: "Prove the identity (sin θ + cos θ)² ≡ 1 + sin2θ.",
     marks: 4,
     markScheme: [
-      "M1: Expand (sinθ + cosθ)² = sin²θ + 2 sinθ cosθ + cos²θ",
-      "M1: Use sin²θ + cos²θ = 1 to simplify to 1 + 2 sinθ cosθ",
-      "A1: Recognise 2 sinθ cosθ = sin2θ",
-      "Final answer: (sinθ + cosθ)² ≡ 1 + sin2θ, as required",
+      "M1: Expand (sin θ + cos θ)² = sin²θ + 2 sin θ cos θ + cos²θ",
+      "M1: Use sin²θ + cos²θ = 1 to simplify to 1 + 2 sin θ cos θ",
+      "A1: Recognise 2 sin θ cos θ = sin2θ",
+      "Final answer: (sin θ + cos θ)² ≡ 1 + sin2θ, as required",
     ],
     topic: "Trigonometry and Modelling",
   },
@@ -355,7 +355,7 @@ export const BATCH_B_EXAM = [
     markScheme: [
       "M1: R = √(2.5² + 1.5²)",
       "A1: R = 2.92 (3 sf)",
-      "M1: tanα = 1.5/2.5 = 0.6",
+      "M1: tan α = 1.5/2.5 = 0.6",
       "A1: α = 31.0° (1 dp)",
       "M1: Sets 30t − α = 90° to find the maximum, i.e. t = (90 + 31.0)/30",
       "Final answer: Maximum height ≈ 8.92 m, occurring first at t ≈ 4.03 hours (around 04:02)",
@@ -363,12 +363,12 @@ export const BATCH_B_EXAM = [
     topic: "Trigonometry and Modelling",
   },
   {
-    question: "(a) Express 7 cosθ + 24 sinθ in the form R cos(θ − α), where R > 0 and 0° < α < 90°, giving α to 2 decimal places. (b) Hence solve 7 cosθ + 24 sinθ = 15 for 0 ≤ θ ≤ 360°, giving your answers to 1 decimal place. (c) State the minimum value of 7 cosθ + 24 sinθ + 10, and the smallest positive value of θ at which it occurs.",
+    question: "(a) Express 7 cos θ + 24 sin θ in the form R cos(θ − α), where R > 0 and 0° < α < 90°, giving α to 2 decimal places. (b) Hence solve 7 cos θ + 24 sin θ = 15 for 0 ≤ θ ≤ 360°, giving your answers to 1 decimal place. (c) State the minimum value of 7 cos θ + 24 sin θ + 10, and the smallest positive value of θ at which it occurs.",
     marks: 8,
     markScheme: [
       "M1: R = √(7² + 24²)",
       "A1: R = 25",
-      "M1: tanα = 24/7 (or sinα = 24/25)",
+      "M1: tan α = 24/7 (or sin α = 24/25)",
       "A1: α = 73.74° (2 dp)",
       "M1: Forms 25 cos(θ − 73.74°) = 15, so cos(θ − 73.74°) = 0.6, giving θ − 73.74° = ±53.13°",
       "A1: θ = 20.6°",
@@ -490,13 +490,13 @@ export const BATCH_B_EXAM = [
     topic: "Numerical Methods",
   },
   {
-    question: "The equation x³ − 3x − 5 = 0 has a root near x = 2. (a) Show that the equation can be rearranged to x = (3x+5)^(1/3). (b) Using the iteration xₙ₊₁ = (3xₙ+5)^(1/3) with x₀ = 2, find x₁, x₂ and x₃, giving your answers to 4 decimal places.",
+    question: "The equation x³ − 3x − 5 = 0 has a root near x = 2. (a) Show that the equation can be rearranged to x = (3x+5)¹ᐟ³. (b) Using the iteration xₙ₊₁ = (3xₙ+5)¹ᐟ³ with x₀ = 2, find x₁, x₂ and x₃, giving your answers to 4 decimal places.",
     marks: 5,
     markScheme: [
-      "M1: Rearranges x³ − 3x − 5 = 0 to x³ = 3x + 5, then x = (3x+5)^(1/3)",
-      "M1: x₁ = (3(2)+5)^(1/3) = 11^(1/3)",
+      "M1: Rearranges x³ − 3x − 5 = 0 to x³ = 3x + 5, then x = (3x+5)¹ᐟ³",
+      "M1: x₁ = (3(2)+5)¹ᐟ³ = 11¹ᐟ³",
       "A1: x₁ = 2.2240",
-      "M1: x₂ = (3(2.2240)+5)^(1/3) = 11.6720^(1/3), x₃ = (3(2.2684)+5)^(1/3) = 11.8052^(1/3)",
+      "M1: x₂ = (3(2.2240)+5)¹ᐟ³ = 11.6720¹ᐟ³, x₃ = (3(2.2684)+5)¹ᐟ³ = 11.8052¹ᐟ³",
       "Final answer: x₁ = 2.2240, x₂ = 2.2684, x₃ = 2.2770 (4 dp)",
     ],
     topic: "Numerical Methods",
@@ -543,8 +543,8 @@ export const BATCH_B_EXAM = [
     marks: 6,
     markScheme: [
       "M1: u = ln x, dv/dx = x, so du/dx = 1/x, v = x²/2",
-      "M1: ∫x lnx dx = (x²/2)lnx − ∫(x²/2)(1/x) dx",
-      "A1: = (x²/2)lnx − x²/4 (+c)",
+      "M1: ∫x ln x dx = (x²/2)ln x − ∫(x²/2)(1/x) dx",
+      "A1: = (x²/2)ln x − x²/4 (+c)",
       "M1: Substitutes limits: at x=e, (e²/2)(1) − e²/4 = e²/4; at x=1, 0 − 1/4 = −1/4",
       "A1: Definite value = e²/4 − (−1/4)",
       "Final answer: (e² + 1)/4",
@@ -626,7 +626,7 @@ export const BATCH_B_EXAM = [
       "M1: Checks consistency in the z-equation: 4−2 = 2 and −1+3 = 2, both equal, confirming intersection",
       "A1: Point of intersection has position vector 2i + 2j + 2k",
       "M1: Finds d1·d2 = (1)(−1)+(0)(1)+(−1)(1) = −2, |d1| = √2, |d2| = √3",
-      "M1: cosθ = |−2|/(√2×√3) = 2/√6",
+      "M1: cos θ = |−2|/(√2×√3) = 2/√6",
       "Final answer: θ ≈ 35.3°",
     ],
     topic: "Vectors (3D)",

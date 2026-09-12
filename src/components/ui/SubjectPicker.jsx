@@ -2,13 +2,22 @@ import { useState } from 'react'
 import Icon from '@/components/ui/Icon'
 import Button from '@/components/ui/Button'
 import Chip from '@/components/ui/Chip'
-import { SUBJECT_CATALOG } from '@/constants/content'
+import { SUBJECT_CATALOG, SUBJECTS_COMING_SOON } from '@/constants/content'
+import { useApp } from '@/context/AppProvider'
 
 /*
-  Tap-to-pick subject chooser. Learners select subjects from a list of chips
-  instead of typing each one. Custom subjects can still be added by hand. Every
-  chosen subject then gets its own exam-board dropdown, so a learner can study,
-  say, AQA Biology and Edexcel Maths at the same time.
+  Tap-to-pick subject chooser (§4). Three tiers, deliberately not one flat
+  list with free text:
+
+    Available now  - SUBJECT_CATALOG, every one has real content behind
+                      every study mode. Tapping adds/removes a course.
+    Coming soon     - announced but not built yet. Tapping records interest
+                      (requestSubject) and does NOT create a course.
+    Not listed      - free text, also just a request. A course with nothing
+                      behind it is worse than no course at all (§4).
+
+  Every chosen subject then gets its own exam-board dropdown, so a learner
+  can study, say, AQA Biology and Edexcel Maths at the same time.
 
   Props:
     - subjects: [{ id, name, spec, priority }]
@@ -17,7 +26,9 @@ import { SUBJECT_CATALOG } from '@/constants/content'
     - boards: exam-board options offered per subject
 */
 export default function SubjectPicker({ subjects, onChange, prioritised = false, boards = [] }) {
+  const { requestSubject, showToast } = useApp()
   const [custom, setCustom] = useState('')
+  const [requested, setRequested] = useState(() => new Set())
 
   const has = (name) => subjects.some((s) => s.name.toLowerCase() === name.toLowerCase())
 
@@ -31,17 +42,27 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
     }
   }
   const star = (name) => onChange(subjects.map((s) => ({ ...s, priority: s.name === name })))
-  const addCustom = () => {
-    const n = custom.trim()
-    setCustom('')
-    if (!n || has(n)) return
-    onChange([...subjects, { id: n, name: n, spec: '', priority: subjects.length === 0 }])
-  }
 
-  // Chosen subjects that are not in the catalog (typed by hand).
-  const extras = subjects.filter(
+  // Subjects a user added before this restructure, under the old free-text
+  // rule, that aren't in the current curated catalog. Not deleted - just no
+  // longer toggleable from the catalog grid above, so they need their own
+  // way to be removed rather than silently becoming unmanageable.
+  const legacyCustom = subjects.filter(
     (s) => !SUBJECT_CATALOG.some((c) => c.toLowerCase() === s.name.toLowerCase()),
   )
+
+  const request = (name, board) => {
+    requestSubject({ name, board })
+    setRequested((r) => new Set(r).add(name.toLowerCase()))
+    showToast(`We'll let you know when ${name} is ready`)
+  }
+
+  const requestCustom = () => {
+    const n = custom.trim()
+    setCustom('')
+    if (!n) return
+    request(n)
+  }
 
   return (
     <div>
@@ -56,37 +77,6 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
             </Chip>
           )
         })}
-        {extras.map((s) => (
-          <Chip
-            key={s.id ?? s.name}
-            selected
-            aria-pressed="true"
-            onClick={() => toggle(s.name)}
-          >
-            <Icon name="check" className="h-4 w-4" />
-            {s.name}
-          </Chip>
-        ))}
-      </div>
-
-      <div className="mt-3 flex gap-2">
-        <input
-          type="text"
-          value={custom}
-          onChange={(e) => setCustom(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              e.preventDefault()
-              addCustom()
-            }
-          }}
-          placeholder="Add another subject"
-          className="min-w-0 flex-1 rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-fg placeholder:text-muted focus:border-brand focus:outline-none"
-        />
-        <Button type="button" variant="secondary" onClick={addCustom} disabled={!custom.trim()}>
-          <Icon name="plus" className="h-4 w-4" />
-          Add
-        </Button>
       </div>
 
       {boards.length > 0 && subjects.length > 0 && (
@@ -141,6 +131,71 @@ export default function SubjectPicker({ subjects, onChange, prioritised = false,
           </div>
         </div>
       )}
+
+      {legacyCustom.length > 0 && (
+        <div className="mt-5 rounded-xl border border-line bg-surface p-3.5">
+          <p className="mb-2 text-xs font-medium text-muted">
+            Added before subjects were curated - not in the current catalog, but kept:
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {legacyCustom.map((s) => (
+              <Chip key={s.id ?? s.name} selected onClick={() => toggle(s.name)}>
+                <Icon name="x" className="h-4 w-4" />
+                {s.name}
+              </Chip>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Coming soon: not selectable as a course, just interest tracking. */}
+      <div className="mt-6 border-t border-line pt-5">
+        <p className="mb-2 text-sm font-medium text-fg">Coming soon</p>
+        <p className="mb-2 text-xs text-muted">
+          These aren&rsquo;t built yet, so there&rsquo;s nothing to study - tap one to let us know
+          you want it, that&rsquo;s it.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {SUBJECTS_COMING_SOON.map((name) => {
+            const done = requested.has(name.toLowerCase())
+            return (
+              <Chip
+                key={name}
+                disabled={done}
+                onClick={() => request(name)}
+                title={done ? 'Thanks - we logged your interest' : `Let us know you want ${name}`}
+              >
+                {done && <Icon name="check" className="h-4 w-4" />}
+                {name}
+              </Chip>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Not listed: also a request, never a course with nothing behind it. */}
+      <div className="mt-5">
+        <p className="mb-2 text-sm font-medium text-fg">Not listed?</p>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={custom}
+            onChange={(e) => setCustom(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                requestCustom()
+              }
+            }}
+            placeholder="Tell us what subject you need"
+            className="min-w-0 flex-1 rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-fg placeholder:text-muted focus:border-brand focus:outline-none"
+          />
+          <Button type="button" variant="secondary" onClick={requestCustom} disabled={!custom.trim()}>
+            <Icon name="send" className="h-4 w-4" />
+            Request
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }

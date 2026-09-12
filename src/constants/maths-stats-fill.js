@@ -20,12 +20,12 @@ export const STATS_FLASHCARDS = [
 
   // ------------------------------------- Data Presentation and Interpretation
   { front: 'How is variance calculated from raw data?', back: 'σ² = Σ(x − x̄)²/n = Σx²/n − (x̄)²', topic: 'Data Presentation and Interpretation' },
-  { front: 'What is an outlier, using the IQR method?', back: 'A value more than 1.5 × IQR below Q1, or more than 1.5 × IQR above Q3.', topic: 'Data Presentation and Interpretation' },
+  { front: 'What is an outlier, using the IQR method?', back: 'A value more than 1.5 × IQR below Q₁, or more than 1.5 × IQR above Q₃.', topic: 'Data Presentation and Interpretation' },
   { front: 'What does frequency density measure on a histogram, and why is it used?', back: 'Frequency ÷ class width. It is used so that histograms with unequal class widths represent frequency correctly by the AREA of each bar, not its height.', topic: 'Data Presentation and Interpretation' },
   { front: 'What does positive skew mean for a distribution?', back: 'mean > median > mode, with a long tail of higher values on the right.', topic: 'Data Presentation and Interpretation' },
-  { front: 'What is the interquartile range and why is it a useful measure of spread?', back: 'IQR = Q3 − Q1. It measures spread while being unaffected by outliers, unlike the range.', topic: 'Data Presentation and Interpretation' },
+  { front: 'What is the interquartile range and why is it a useful measure of spread?', back: 'IQR = Q₃ − Q₁. It measures spread while being unaffected by outliers, unlike the range.', topic: 'Data Presentation and Interpretation' },
   { front: 'How does coding help when calculating the mean and standard deviation?', back: 'Using y = (x − a)/b turns large or awkward numbers into simpler ones. Once ȳ and σy are found, x̄ = a + bȳ and σx = b × σy convert back.', topic: 'Data Presentation and Interpretation' },
-  { front: 'What five values does a box plot show?', back: 'Minimum, lower quartile (Q1), median, upper quartile (Q3), and maximum - useful for comparing distributions and spotting skew or outliers at a glance.', topic: 'Data Presentation and Interpretation' },
+  { front: 'What five values does a box plot show?', back: 'Minimum, lower quartile (Q₁), median, upper quartile (Q₃), and maximum - useful for comparing distributions and spotting skew or outliers at a glance.', topic: 'Data Presentation and Interpretation' },
 
   // ------------------------------------------------------------- Probability
   { front: 'State the addition rule for two events A and B.', back: 'P(A∪B) = P(A) + P(B) − P(A∩B)', topic: 'Probability' },
@@ -106,7 +106,7 @@ export const STATS_MCQ = [
     topic: 'Data Presentation and Interpretation',
   },
   {
-    question: 'Data has Q1 = 12 and Q3 = 28. Using the 1.5×IQR rule, which values are outliers?',
+    question: 'Data has Q₁ = 12 and Q₃ = 28. Using the 1.5×IQR rule, which values are outliers?',
     options: ['below 12 or above 28', 'below 4 or above 36', 'below −12 or above 52', 'below 0 or above 40'],
     answer: 2,
     explanation: 'IQR = 16, so 1.5×IQR = 24. Lower bound = 12−24 = −12, upper bound = 28+24 = 52.',
@@ -318,13 +318,13 @@ export const STATS_EXAM = [
     topic: 'Data Presentation and Interpretation',
   },
   {
-    question: 'A data set has Q1 = 8, median = 14, Q3 = 24. Describe the skewness of the distribution and justify your answer.',
+    question: 'A data set has Q₁ = 8, median = 14, Q₃ = 24. Describe the skewness of the distribution and justify your answer.',
     marks: 3,
     markScheme: [
-      'Q3 − median = 24 − 14 = 10',
-      'median − Q1 = 14 − 8 = 6',
+      'Q₃ − median = 24 − 14 = 10',
+      'median − Q₁ = 14 − 8 = 6',
       'The upper gap (10) is larger than the lower gap (6)',
-      'Final answer: positively skewed, since the distance from the median to Q3 exceeds the distance from Q1 to the median',
+      'Final answer: positively skewed, since the distance from the median to Q₃ exceeds the distance from Q₁ to the median',
     ],
     topic: 'Data Presentation and Interpretation',
   },

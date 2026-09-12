@@ -1,0 +1,35 @@
+{
+  "hosting": {
+    "site": "memoraa",
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "rewrites": [
+      { "source": "/start/**", "destination": "/start/index.html" },
+      { "source": "/study/**", "destination": "/study/index.html" },
+      { "source": "/mock/**", "destination": "/mock/index.html" }
+    ],
+    "headers": [
+      {
+        "//": "Default everything to revalidate. cleanUrls strips the .html from the request path, so a rule matching **/*.html never fires on /study/maths/exam-questions or on / - which left every page cached for an hour and kept users on the previous bundle after each deploy. Matching ** instead is the only glob that reaches an extensionless route. The long-lived exceptions are re-granted below, because Firebase applies matching header blocks in order and the last one to set a key wins.",
+        "source": "**",
+        "headers": [
+          { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+          { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+        ]
+      },
+      {
+        "//": "Safe to cache forever: the build puts a content hash in every filename, so a changed file is a different URL.",
+        "source": "/assets/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      },
+      {
+        "source": "/hero/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+      }
+    ]
+  }
+}

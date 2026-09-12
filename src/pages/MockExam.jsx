@@ -10,14 +10,29 @@ import { EXAM_BOARD_META } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
 import { slugify, resolveSlug } from '@/lib/slug'
 import Chip from '@/components/ui/Chip'
+import AnswerInput from '@/components/ui/AnswerInput'
+import Diagram from '@/components/diagrams'
 
-// Preset paper lengths - picked, not typed, and timed like real papers
-// rather than a computed-and-rounded number (30/60/90 reads like an actual
-// exam clock, not an estimate).
+/*
+  Time allowed is 1.5 minutes per mark, applied to the marks the paper
+  ACTUALLY carries.
+
+  This used to be a fixed 30/60/90 per preset, which quietly gave the wrong
+  amount of time: buildPaper keeps adding questions until it reaches the
+  target, so a "40 mark" paper regularly came out at 44 or 45 marks and
+  still got exactly 60 minutes - 1.33 min/mark, and a different rate on
+  every shuffle. Deriving the clock from the finished paper keeps the ratio
+  exact however the questions fall.
+*/
+export const MINUTES_PER_MARK = 1.5
+const minutesForMarks = (marks) => Math.round(marks * MINUTES_PER_MARK)
+
+// Preset paper lengths - picked, not typed. Only the mark total is set
+// here; the time follows from it, so the two can never disagree.
 const PAPER_PRESETS = [
-  { id: 'short', label: 'Short', marks: 20, minutes: 30 },
-  { id: 'standard', label: 'Standard', marks: 40, minutes: 60 },
-  { id: 'full', label: 'Full paper', marks: 60, minutes: 90 },
+  { id: 'short', label: 'Short', marks: 20 },
+  { id: 'standard', label: 'Standard', marks: 40 },
+  { id: 'full', label: 'Full paper', marks: 60 },
 ]
 
 function shuffle(arr) {
@@ -131,10 +146,13 @@ export default function MockExam() {
   const [paper, setPaper] = useState([])
   const [answers, setAnswers] = useState({}) // index -> student's written answer
   const [awarded, setAwarded] = useState({}) // index -> marks self-awarded
+  const [earnedXp, setEarnedXp] = useState(0) // shown on the results screen
   const [secondsLeft, setSecondsLeft] = useState(0)
   const [startedAt, setStartedAt] = useState(null)
 
   const totalMarks = paper.reduce((sum, q) => sum + q.marks, 0)
+  // 1.5 min per mark, on the marks this paper actually carries.
+  const allowedMinutes = minutesForMarks(totalMarks)
   const topicFilterKey = topicFilter.slice().sort().join('|')
 
   // Regenerate whenever the subject, section, topic narrowing, or preset
@@ -165,7 +183,7 @@ export default function MockExam() {
   }
 
   const start = () => {
-    setSecondsLeft(preset.minutes * 60)
+    setSecondsLeft(allowedMinutes * 60)
     setStartedAt(Date.now())
     setPhase('running')
   }
@@ -177,8 +195,8 @@ export default function MockExam() {
   const finishMarking = () => {
     const scored = paper.reduce((sum, q, i) => sum + (awarded[i] ?? 0), 0)
     const pct = totalMarks ? scored / totalMarks : 0
-    const usedMinutes = startedAt ? Math.min(180, Math.round((Date.now() - startedAt) / 60000)) : preset.minutes
-    logSession({
+    const usedMinutes = startedAt ? Math.min(180, Math.round((Date.now() - startedAt) / 60000)) : allowedMinutes
+    const sessionId = logSession({
       subject,
       technique: 'mock-exam',
       difficulty: pct >= 0.8 ? 2 : pct >= 0.5 ? 3 : 4,
@@ -189,6 +207,10 @@ export default function MockExam() {
       questionCount: paper.length,
     })
     paper.forEach((q, i) => {
+      // The actual awarded value was being computed here and then thrown
+      // away, collapsed into a plain correct/incorrect boolean - so a mock
+      // question you got 3/4 on logged identically to one you got 0/4 on.
+      // marksAwarded/marksAvailable keep the real partial-credit result.
       const marks = awarded[i] ?? 0
       logAttempt({
         subject,
@@ -197,8 +219,12 @@ export default function MockExam() {
         question: q.question,
         correct: marks === q.marks,
         dontKnow: false,
+        marksAwarded: marks,
+        marksAvailable: q.marks,
+        sessionId,
       })
     })
+    setEarnedXp(usedMinutes + 10 + paper.filter((q, i) => (awarded[i] ?? 0) === q.marks).length * 2)
     setPhase('results')
   }
 
@@ -216,8 +242,7 @@ export default function MockExam() {
           </Button>
         </motion.div>
         <motion.div variants={fadeInUp} className="mt-6 text-center">
-          <span className="kicker mx-auto justify-center">Mock exam</span>
-          <h1 className="mt-2 text-3xl font-bold text-fg">Which subject?</h1>
+          <h1 className="text-3xl font-bold text-fg">Mock exam: which subject?</h1>
         </motion.div>
         <motion.div variants={staggerContainer} className="mt-6 flex flex-wrap justify-center gap-2">
           {subjectNames.map((name) => (
@@ -320,7 +345,7 @@ export default function MockExam() {
                   }`}
                 >
                   <span className="block text-sm font-bold text-fg">{p.label}</span>
-                  <span className="block text-xs text-muted">{p.marks} marks &middot; {p.minutes} min</span>
+                  <span className="block text-xs text-muted">{p.marks} marks &middot; {minutesForMarks(p.marks)} min</span>
                 </button>
               ))}
             </div>
@@ -351,7 +376,7 @@ export default function MockExam() {
                     <p className="text-xs text-muted">marks</p>
                   </div>
                   <div className="p-4">
-                    <p className="text-2xl font-extrabold text-fg">{preset.minutes}</p>
+                    <p className="text-2xl font-extrabold text-fg">{allowedMinutes}</p>
                     <p className="text-xs text-muted">minutes</p>
                   </div>
                 </div>
@@ -410,13 +435,19 @@ export default function MockExam() {
                     </span>
                   </div>
                   <p className="readable mt-2 text-fg">{q.question}</p>
-                  <textarea
-                    rows={q.marks > 4 ? 6 : 3}
-                    value={answers[i] || ''}
-                    onChange={(e) => setAnswers((a) => ({ ...a, [i]: e.target.value }))}
-                    placeholder="Write your answer..."
-                    className="mt-3 w-full resize-none rounded-xl border border-line bg-page px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
-                  />
+                  {/* palette="focus": ten questions on one page, so the
+                      symbol keys belong to whichever answer you're actually
+                      writing rather than sitting under all of them. */}
+                  <div className="mt-3">
+                    <AnswerInput
+                      value={answers[i] || ''}
+                      onChange={(v) => setAnswers((a) => ({ ...a, [i]: v }))}
+                      subject={pack?.name}
+                      rows={q.marks > 4 ? 6 : 3}
+                      placeholder="Write your answer..."
+                      palette="focus"
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -434,8 +465,7 @@ export default function MockExam() {
         {phase === 'marking' && (
           <motion.div key="marking" variants={fadeInUp} initial="hidden" animate="show" exit={{ opacity: 0 }}>
             <div className="mb-6 text-center">
-              <span className="kicker mx-auto justify-center">Self-marking</span>
-              <h1 className="mt-2 text-2xl font-bold text-fg">Be honest, how did each one go?</h1>
+              <h1 className="text-2xl font-bold text-fg">Be honest, how did each one go?</h1>
             </div>
 
             <div className="space-y-6">
@@ -467,6 +497,17 @@ export default function MockExam() {
                         </li>
                       ))}
                     </ul>
+                    {/* Diagram marks are part of the tariff on a "using a
+                        diagram" question, so self-marking without one means
+                        guessing at that part of the score. */}
+                    {q.diagram && q.diagramExpected && (
+                      <div className="mt-3">
+                        <p className="text-xs font-bold uppercase tracking-wide text-muted">
+                          The diagram the examiner expects
+                        </p>
+                        <Diagram id={q.diagram} />
+                      </div>
+                    )}
                   </div>
 
                   <div className="mt-3">
@@ -514,6 +555,9 @@ export default function MockExam() {
             </h1>
             <p className="mt-1 text-lg font-semibold text-muted">
               {totalMarks ? Math.round((scored / totalMarks) * 100) : 0}% on this paper
+            </p>
+            <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-3 py-1 text-sm font-bold text-brand-strong">
+              <Icon name="sparkles" className="h-4 w-4" />+{earnedXp} XP
             </p>
             <p className="readable mx-auto mt-3 max-w-md text-sm text-muted">
               Logged against {pack.name}, so it feeds your progress and shows up in your weakest

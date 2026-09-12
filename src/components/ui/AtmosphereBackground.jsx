@@ -58,9 +58,15 @@ export default function AtmosphereBackground() {
           <source src={`${import.meta.env.BASE_URL}hero/hero-bg.mp4`} type="video/mp4" />
         </video>
       ) : (
+        /* alt="" is deliberate and correct here, not an omission: this is a
+           purely decorative backdrop behind the hero text. Giving it a
+           description would make a screen reader announce scenery that
+           carries no information, interrupting the actual content. */
         <img
           src={`${import.meta.env.BASE_URL}hero/hero-poster.jpg`}
           alt=""
+          aria-hidden="true"
+          decoding="async"
           className="hero-video h-full w-full object-cover"
         />
       )}

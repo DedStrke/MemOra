@@ -1,8 +1,12 @@
-name: Deploy to GitHub Pages
+# DISABLED: the site now deploys to Firebase Hosting (memoraa.web.app), which
+# serves from the domain root, so vite.config.js sets base: '/'. A build with
+# that base cannot work on GitHub Pages, where the site lives under /MemOra/ -
+# every asset URL would 404. Left in place rather than deleted so the Pages
+# setup is recoverable: to go back, restore base: '/MemOra/' and the
+# GitHub-Pages origin in src/lib/seo.js, then re-add the push trigger below.
+name: Deploy to GitHub Pages (disabled - now on Firebase)
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -32,9 +36,6 @@ jobs:
 
       - name: Build
         run: npm run build
-
-      - name: Add SPA fallback (client-side routing needs 404 -> index.html)
-        run: cp dist/index.html dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

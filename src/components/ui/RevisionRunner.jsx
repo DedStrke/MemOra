@@ -5,6 +5,10 @@ import Icon from '@/components/ui/Icon'
 import FlipCard from '@/components/ui/FlipCard'
 import Chip from '@/components/ui/Chip'
 import SpeakButton from '@/components/ui/SpeakButton'
+import AnswerInput from '@/components/ui/AnswerInput'
+import EssayPlanner from '@/components/ui/EssayPlanner'
+import Diagram from '@/components/diagrams'
+import { diagramsForChapter } from '@/constants/diagram-map'
 import { fadeInUp, popIn } from '@/lib/motion'
 
 /*
@@ -125,8 +129,49 @@ function NotesRunner({ pack, chapter, empty }) {
           </Button>
         )}
       </div>
-      {/* eslint-disable-next-line react/no-danger -- trusted static content, see comment above */}
-      <div className="notes-content readable mt-4" dangerouslySetInnerHTML={{ __html: html }} />
+      <NotesBody html={html} />
+    </div>
+  )
+}
+
+/*
+  Renders a note, splicing real diagram components into it.
+
+  Economics is examined through diagrams, so its notes carry markers of the
+  form <div data-diagram="monopoly"></div> at the point each diagram is
+  discussed. They can't be plain HTML in the note string: the diagrams are
+  React components that read the theme's CSS variables and carry their own
+  <title>/<desc> for screen readers, and inlining ~30 SVGs into the note
+  text would make it unreadable to edit.
+
+  So the HTML is split on the markers and the pieces interleaved: HTML
+  chunk, diagram, HTML chunk. A note with no markers takes the same path
+  and simply renders as one chunk.
+*/
+const DIAGRAM_MARKER = /<div\s+data-diagram="([a-z0-9-]+)"\s*><\/div>/gi
+
+function NotesBody({ html }) {
+  const parts = []
+  let last = 0
+  let m
+  DIAGRAM_MARKER.lastIndex = 0
+  while ((m = DIAGRAM_MARKER.exec(html)) !== null) {
+    if (m.index > last) parts.push({ type: 'html', value: html.slice(last, m.index) })
+    parts.push({ type: 'diagram', value: m[1] })
+    last = m.index + m[0].length
+  }
+  if (last < html.length) parts.push({ type: 'html', value: html.slice(last) })
+
+  return (
+    <div className="notes-content readable mt-4">
+      {parts.map((p, i) =>
+        p.type === 'diagram' ? (
+          <Diagram key={i} id={p.value} />
+        ) : (
+          // eslint-disable-next-line react/no-danger -- trusted static content, see comment above
+          <div key={i} dangerouslySetInnerHTML={{ __html: p.value }} />
+        ),
+      )}
     </div>
   )
 }
@@ -156,6 +201,16 @@ function FlashcardRunner({ cards, recall, empty }) {
         flipped={flipped}
         onFlip={() => setFlipped((f) => !f)}
       />
+      {/* Rendered below the card, not inside it: the flip is a 3D transform
+          with a fixed height and backface-visibility, and an SVG inside
+          that gets clipped and mirrored. Below it, the diagram appears only
+          once you've flipped - so a "sketch this" card still makes you draw
+          it from memory first. */}
+      {flipped && cards[i].diagram && (
+        <motion.div variants={fadeInUp} initial="hidden" animate="show" className="mx-auto mt-4 max-w-2xl">
+          <Diagram id={cards[i].diagram} />
+        </motion.div>
+      )}
       <Nav i={i} total={total} onPrev={() => go(i - 1)} onNext={() => go(i + 1)} />
     </div>
   )
@@ -259,6 +314,18 @@ function McqRunner({ items, onAnswer, empty }) {
             </p>
           )}
           <p className="readable mt-1 text-sm text-muted">{q.explanation}</p>
+          {/* Only after a wrong answer or an "I don't know". Showing the
+              chapter diagram on every correct answer too would repeat the
+              same picture through a whole session and teach you to scroll
+              past it; here it arrives exactly when it is the fix. */}
+          {q.diagram && picked !== q.answer && (
+            <div className="mt-3">
+              <p className="text-xs font-bold uppercase tracking-wide text-muted">
+                The diagram behind this
+              </p>
+              <Diagram id={q.diagram} />
+            </div>
+          )}
           <div className="mt-3">
             <Button size="sm" onClick={next}>
               Next question
@@ -271,16 +338,18 @@ function McqRunner({ items, onAnswer, empty }) {
   )
 }
 
-function ExamRunner({ items, onAnswer, empty }) {
+function ExamRunner({ items, onAnswer, empty, subject }) {
   const [i, setI] = useState(0)
   const [revealed, setRevealed] = useState(false)
   const [rated, setRated] = useState(null) // 'right' | 'wrong' | 'dontknow' | null
+  const [answer, setAnswer] = useState('')
   if (!items.length) return <Empty label="exam questions" {...empty} />
   const q = items[i]
   const total = items.length
   const next = () => {
     setRevealed(false)
     setRated(null)
+    setAnswer('')
     setI((i + 1) % total)
   }
   const rate = (r) => {
@@ -293,19 +362,58 @@ function ExamRunner({ items, onAnswer, empty }) {
         <p className="text-xs font-semibold uppercase tracking-widest text-muted">
           Question {i + 1} of {total}
         </p>
-        <span className="rounded-full bg-paper-soft px-2.5 py-0.5 text-xs font-semibold text-paper">
-          {q.marks} marks
+        <span className="flex flex-wrap items-center justify-end gap-1.5">
+          {/* Which paper a question comes from decides whether a calculator
+              is allowed and how long you get, so it belongs with the question
+              rather than buried in the answer. */}
+          {q.paper && (
+            <span className="rounded-full border border-line px-2.5 py-0.5 text-xs font-semibold text-muted">
+              {q.paper}
+            </span>
+          )}
+          <span className="rounded-full bg-paper-soft px-2.5 py-0.5 text-xs font-semibold text-paper">
+            {q.marks} marks
+          </span>
         </span>
       </div>
       <div className="mt-2 flex items-start justify-between gap-3">
-        <h3 className="readable text-lg font-bold text-fg">{q.question}</h3>
+        {/* Multi-part questions are written with real line breaks between the
+            parts. Without pre-line those collapse and (a), (b) and (c) run
+            together into a wall of text that is far harder to read than the
+            printed paper it is imitating. */}
+        <h3 className="readable whitespace-pre-line text-lg font-bold text-fg">{q.question}</h3>
         <SpeakButton text={q.question} label="Read the question aloud" className="mt-0.5" />
       </div>
-      <textarea
-        rows={5}
-        placeholder="Plan or write your answer, then reveal the mark scheme..."
-        className="mt-4 w-full resize-none rounded-xl border border-line bg-page px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
-      />
+      {/* A tracing or debugging question is unanswerable without the code it
+          refers to, so the snippet belongs with the QUESTION, not hidden
+          behind the mark scheme with the model answer. */}
+      {q.snippet && (
+        <pre className="mt-3 overflow-x-auto rounded-lg border border-line bg-paper-soft/40 p-3 text-xs leading-relaxed">
+          <code className="font-mono text-fg">{q.snippet}</code>
+        </pre>
+      )}
+      {q.starter && (
+        <div className="mt-3">
+          <p className="text-xs font-bold uppercase tracking-wide text-muted">Starter code</p>
+          <pre className="mt-1 overflow-x-auto rounded-lg border border-line bg-paper-soft/40 p-3 text-xs leading-relaxed">
+            <code className="font-mono text-fg">{q.starter}</code>
+          </pre>
+        </div>
+      )}
+
+      {/* Controlled, and kept on screen when the mark scheme opens - the
+          whole point of self-marking is reading your answer against the
+          scheme line by line, which you can't do if it has scrolled off or
+          been thrown away. Cleared on Next question. */}
+      <div className="mt-4">
+        <AnswerInput
+          value={answer}
+          onChange={setAnswer}
+          subject={subject}
+          rows={5}
+          placeholder="Plan or write your answer, then reveal the mark scheme..."
+        />
+      </div>
       {revealed ? (
         <motion.div
           variants={fadeInUp}
@@ -313,7 +421,137 @@ function ExamRunner({ items, onAnswer, empty }) {
           animate="show"
           className="mt-4 rounded-xl border border-line bg-surface p-5"
         >
-          <p className="text-sm font-bold text-fg">Mark scheme</p>
+          {/*
+            A levelled essay is marked differently from a short question: the
+            examiner places the whole answer in a band, and the band is
+            decided mostly by evaluation. Showing only a list of indicative
+            content would teach the wrong thing - a student can write every
+            point on it and still be capped in the middle of the range for
+            never weighing anything. So where a question carries levels, the
+            AO split and the ladder come first, and evaluation is separated
+            from knowledge rather than mixed into one list.
+          */}
+          {q.ao && (
+            <div className="mb-4 flex flex-wrap gap-1.5">
+              {Object.entries(q.ao).map(([ao, marks]) => (
+                <span
+                  key={ao}
+                  className="rounded-full border border-line px-2 py-0.5 text-xs font-semibold text-muted"
+                >
+                  {ao} {marks}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {q.plan && (
+            <div className="mb-4">
+              <p className="text-sm font-bold text-fg">How to structure it</p>
+              <ol className="mt-2 list-decimal space-y-1 pl-5">
+                {q.plan.map((step, idx) => (
+                  <li key={idx} className="readable text-sm text-muted">
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+
+          {/*
+            Code has to be shown as code: monospace, and with its indentation
+            intact, because in an algorithm the indentation IS the block
+            structure. Rendered as prose it becomes unreadable and unmarkable.
+            The container scrolls sideways on its own so a long line never
+            makes the whole page scroll.
+          */}
+          {q.solution && (
+            <div className="mb-4">
+              <p className="text-sm font-bold text-fg">Model answer</p>
+              <pre className="mt-2 overflow-x-auto rounded-lg border border-line bg-paper-soft/40 p-3 text-xs leading-relaxed">
+                <code className="font-mono text-fg">{q.solution}</code>
+              </pre>
+            </div>
+          )}
+
+          {/*
+            A Maths mark scheme is not a list of points - it is a sequence of
+            working lines, each carrying its own code. M is method (awarded
+            for the correct approach even when the arithmetic is wrong), A is
+            accuracy (only available if the M before it was earned), B is a
+            standalone mark. Showing the code beside each line is the whole
+            point: it is how you find out that you lost one accuracy mark
+            rather than the four you assumed, and which line to redo.
+          */}
+          {q.workedSolution && (
+            <div className="mb-4">
+              <p className="text-sm font-bold text-fg">
+                Worked solution <span className="font-normal text-muted"> - mark yourself line by line</span>
+              </p>
+              <div className="mt-2 overflow-x-auto rounded-lg border border-line">
+                <table className="w-full border-collapse text-sm">
+                  <tbody>
+                    {q.workedSolution.map((step, idx) => (
+                      <tr key={idx} className="border-b border-line last:border-b-0">
+                        <td className="px-3 py-2 align-top text-fg">
+                          {step.part && (
+                            <span className="mr-2 font-bold text-muted">{step.part}</span>
+                          )}
+                          <span className="readable">{step.line}</span>
+                        </td>
+                        <td className="w-16 px-3 py-2 text-right align-top font-mono text-xs font-semibold text-brand-strong">
+                          {step.mark}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {q.totalCheck && (
+                <p className="mt-2 text-xs text-muted">{q.totalCheck}</p>
+              )}
+            </div>
+          )}
+
+          {q.traceHeaders && (
+            <div className="mb-4">
+              <p className="text-sm font-bold text-fg">Completed trace table</p>
+              <div className="mt-2 overflow-x-auto">
+                <table className="w-full border-collapse text-xs">
+                  <thead>
+                    <tr>
+                      {q.traceHeaders.map((h) => (
+                        <th
+                          key={h}
+                          className="border border-line bg-paper-soft/40 px-2 py-1.5 text-left font-bold text-fg"
+                        >
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {q.traceRows.map((row, ri) => (
+                      <tr key={ri}>
+                        {row.map((cell, ci) => (
+                          <td key={ci} className="border border-line px-2 py-1.5 font-mono text-muted">
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          <p className="text-sm font-bold text-fg">
+            {q.evaluation
+              ? 'Knowledge, application and analysis'
+              : q.kind === 'code' || q.kind === 'trace'
+                ? 'How the marks are awarded'
+                : 'Mark scheme'}
+          </p>
           <ul className="mt-2 space-y-2">
             {q.markScheme.map((m, idx) => (
               <li key={idx} className="flex gap-2 text-sm">
@@ -322,6 +560,80 @@ function ExamRunner({ items, onAnswer, empty }) {
               </li>
             ))}
           </ul>
+
+          {q.evaluation && (
+            <div className="mt-4">
+              <p className="text-sm font-bold text-fg">
+                Evaluation <span className="font-normal text-muted"> - where most of the marks are</span>
+              </p>
+              <ul className="mt-2 space-y-2">
+                {q.evaluation.map((m, idx) => (
+                  <li key={idx} className="flex gap-2 text-sm">
+                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-strong" />
+                    <span className="readable text-muted">{m}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {q.judgement && (
+            <div className="mt-4 rounded-lg border border-line bg-paper-soft/40 p-3">
+              <p className="text-xs font-bold uppercase tracking-wide text-muted">A supported judgement</p>
+              <p className="readable mt-1 text-sm text-fg">{q.judgement}</p>
+            </div>
+          )}
+
+          {/* Where the marks are actually lost, which the model answer alone
+              never shows: an off-by-one, a return inside the loop, a check
+              made after the change instead of before it. */}
+          {q.pitfalls && (
+            <div className="mt-4">
+              <p className="text-sm font-bold text-fg">
+                Where marks get lost <span className="font-normal text-muted"> - check your answer for these</span>
+              </p>
+              <ul className="mt-2 space-y-2">
+                {q.pitfalls.map((m, idx) => (
+                  <li key={idx} className="flex gap-2 text-sm">
+                    <Icon name="x" className="mt-0.5 h-4 w-4 shrink-0 text-r2-shaky" />
+                    <span className="readable text-muted">{m}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {q.levels && (
+            <div className="mt-4">
+              <p className="text-sm font-bold text-fg">Mark yourself against the levels</p>
+              <div className="mt-2 space-y-1.5">
+                {q.levels.map((lv) => (
+                  <div key={lv.band} className="rounded-lg border border-line p-2.5">
+                    <p className="text-xs font-bold text-fg">
+                      {lv.band} <span className="text-muted">({lv.marks})</span>
+                    </p>
+                    <p className="readable mt-0.5 text-xs text-muted">{lv.descriptor}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {/* Always shown here, unlike the MCQ runner. Exam questions are
+              worked one at a time and slowly, so there is no repetition
+              problem, and the mark scheme is exactly where you check your
+              own diagram. The heading distinguishes the two cases: a
+              question that says "using a diagram" awards marks for it, and
+              you can't mark that part of your answer without seeing one. */}
+          {q.diagram && (
+            <div className="mt-4">
+              <p className="text-xs font-bold uppercase tracking-wide text-muted">
+                {q.diagramExpected
+                  ? 'The diagram the examiner expects'
+                  : 'The diagram behind this chapter'}
+              </p>
+              <Diagram id={q.diagram} />
+            </div>
+          )}
 
           {rated === null ? (
             <div className="mt-4">
@@ -364,8 +676,13 @@ function ExamRunner({ items, onAnswer, empty }) {
   )
 }
 
-function BlurtRunner({ pack }) {
+function BlurtRunner({ pack, chapter }) {
   const [revealed, setRevealed] = useState(false)
+  const [blurt, setBlurt] = useState('')
+  // Blurting a chapter means recalling its diagrams too, so they belong in
+  // the checklist. Only for a specific chapter - a whole-subject blurt
+  // would dump twenty-odd diagrams on the page.
+  const diagrams = chapter ? diagramsForChapter(pack.name, chapter) : []
   return (
     <div className="mx-auto max-w-2xl">
       <p className="text-xs font-semibold uppercase tracking-widest text-muted">Blurting</p>
@@ -376,11 +693,15 @@ function BlurtRunner({ pack }) {
         Empty your memory onto the page, no peeking. Then reveal the key points and tick
         off what you remembered.
       </p>
-      <textarea
-        rows={7}
-        placeholder="Start blurting..."
-        className="mt-4 w-full resize-none rounded-xl border border-line bg-page px-4 py-3 text-fg placeholder:text-muted focus:border-brand focus:outline-none"
-      />
+      <div className="mt-4">
+        <AnswerInput
+          value={blurt}
+          onChange={setBlurt}
+          subject={pack.name}
+          rows={7}
+          placeholder="Start blurting..."
+        />
+      </div>
       {revealed ? (
         <motion.div
           variants={fadeInUp}
@@ -400,6 +721,16 @@ function BlurtRunner({ pack }) {
               </li>
             ))}
           </ul>
+          {diagrams.length > 0 && (
+            <div className="mt-5 border-t border-line pt-4">
+              <p className="text-sm font-bold text-fg">
+                Diagram{diagrams.length > 1 ? 's' : ''} you should have drawn
+              </p>
+              {diagrams.map((id) => (
+                <Diagram key={id} id={id} />
+              ))}
+            </div>
+          )}
         </motion.div>
       ) : (
         <div className="mt-4">
@@ -430,9 +761,17 @@ export default function RevisionRunner({
     case 'mcq':
       return <McqRunner items={pack.mcq} onAnswer={onAnswer} empty={empty} />
     case 'exam-questions':
-      return <ExamRunner items={pack.examQuestions} onAnswer={onAnswer} empty={empty} />
+      return <ExamRunner items={pack.examQuestions} onAnswer={onAnswer} empty={empty} subject={pack.name} />
+    case 'essay-plans':
+      // The planner keeps its own paper/topic filters and its own drafts,
+      // so it takes the whole bank rather than a chapter-scoped slice.
+      return pack.essayBank?.length ? (
+        <EssayPlanner items={pack.essayBank} />
+      ) : (
+        <Empty label="essay plans" {...empty} />
+      )
     case 'blurting':
-      return <BlurtRunner pack={pack} />
+      return <BlurtRunner pack={pack} chapter={chapter} />
     case 'active-recall':
       return <FlashcardRunner cards={pack.flashcards} recall empty={empty} />
     case 'flashcards':

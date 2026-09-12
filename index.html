@@ -1,15 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Shell defaults; replaced per route by scripts/prerender.mjs at build
+         time and by Seo.jsx during navigation. -->
+    <title>Memora - A-level revision built for your exact spec</title>
     <meta
       name="description"
-      content="Memora: real, spec-accurate flashcards, exam questions, and MCQs for Maths, Economics, and Computer Science, with chapter-by-chapter practice and progress tracking."
+      content="Free A-level revision for Edexcel Maths, Edexcel Economics and OCR Computer Science. Spec-accurate notes, flashcards, MCQs and exam questions with real mark schemes."
     />
+    <link rel="canonical" href="https://memoraa.web.app/" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)" />
+    <!-- Unqualified fallback, last so browsers still match the two above
+         first. Link scrapers (Discord tints its embed stripe with this) read
+         a theme-color without a media attribute. -->
     <meta name="theme-color" content="#2563eb" />
-    <title>Memora</title>
+    <meta name="application-name" content="Memora" />
+    <meta name="apple-mobile-web-app-title" content="Memora" />
+    <meta name="author" content="Memora" />
+
+    <!-- Fonts are bundled locally via @fontsource, so no third-party font
+         host is contacted and there is nothing to preconnect to. -->
   </head>
   <body>
     <div id="root"></div>

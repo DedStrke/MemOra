@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Mascot from '@/components/ui/Mascot'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import EyeMark from '@/components/ui/EyeMark'
 import Wordmark from '@/components/ui/Wordmark'
 import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
@@ -93,6 +94,9 @@ export default function HowItWorks() {
           className="relative mx-auto max-w-3xl px-5 pt-14 pb-10 text-center"
           style={{ textShadow: '0 2px 24px color-mix(in srgb, var(--page) 75%, transparent)' }}
         >
+          <motion.div variants={fadeInUp} className="mb-4 flex justify-center">
+            <Breadcrumbs />
+          </motion.div>
           <motion.p
             variants={fadeInUp}
             className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3.5 py-1.5 text-sm font-semibold text-brand-strong backdrop-blur"
@@ -135,7 +139,6 @@ export default function HowItWorks() {
         style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--page) 70%, transparent)' }}
       >
         <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
-          <span className="kicker mb-4">What it does</span>
           <h2 className="text-3xl font-extrabold text-fg sm:text-5xl">
             {MARKETING.whatItDoes.heading}
           </h2>
@@ -167,7 +170,6 @@ export default function HowItWorks() {
           style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--raised) 70%, transparent)' }}
         >
           <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
-            <span className="kicker mb-4">How it works</span>
             <h2 className="text-3xl font-extrabold text-fg sm:text-5xl">
               {MARKETING.howItWorks.heading}
             </h2>
@@ -204,7 +206,6 @@ export default function HowItWorks() {
         style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--page) 70%, transparent)' }}
       >
         <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
-          <span className="kicker mb-4">Loved by students</span>
           <h2 className="text-3xl font-extrabold text-fg sm:text-5xl">{REVIEWS.heading}</h2>
           <p className="readable mt-4 text-lg text-muted">{REVIEWS.intro}</p>
         </motion.div>
@@ -245,7 +246,6 @@ export default function HowItWorks() {
         style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--page) 70%, transparent)' }}
       >
         <motion.div variants={fadeInUp} className="mx-auto flex max-w-2xl flex-col items-center text-center">
-          <span className="kicker mb-4">FAQ</span>
           <h2 className="text-3xl font-extrabold text-fg sm:text-5xl">Questions, answered honestly</h2>
         </motion.div>
         <motion.div variants={staggerContainer} className="mt-10 space-y-3">

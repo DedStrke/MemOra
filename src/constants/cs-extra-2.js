@@ -276,7 +276,7 @@ export const CS_EXTRA_MCQ_2 = [
       "The speed of data transfer to the hard disk",
     ],
     answer: 1,
-    explanation: "An n-bit address bus can express 2^n unique addresses, which caps the directly addressable memory.",
+    explanation: "An n-bit address bus can express 2ⁿ unique addresses, which caps the directly addressable memory.",
     topic: "Structure and Function of the Processor",
   },
   {
@@ -860,7 +860,7 @@ export const CS_EXTRA_MCQ_2 = [
       "8",
     ],
     answer: 0,
-    explanation: "8 bits give 2^8 = 256 unique combinations.",
+    explanation: "8 bits give 2⁸ = 256 unique combinations.",
     topic: "Data Types and Number Representation",
   },
 
@@ -1539,7 +1539,7 @@ export const CS_EXTRA_EXAM_2 = [
     marks: 3,
     markScheme: [
       "Number of addressable locations = 2 raised to the power of the number of address bus bits",
-      "2^16 = 65536",
+      "2¹⁶ = 65536",
       "Final answer: 65,536 memory locations",
     ],
     topic: "Structure and Function of the Processor",

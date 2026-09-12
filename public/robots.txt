@@ -1,0 +1,20 @@
+# Memora - https://memoraa.web.app/
+# Free A-level revision for Edexcel Maths, Edexcel Economics and OCR Computer Science.
+
+User-agent: *
+Allow: /
+
+# Personal, device-local tool state. These render differently for every
+# visitor and hold nothing a search result could usefully point at, so they
+# are kept out of the index. They stay crawlable (not Disallow) so the
+# internal links on them still pass through - the pages themselves carry
+# <meta name="robots" content="noindex, follow">.
+Disallow: /study/
+Disallow: /mock/
+
+# Session URLs differ only by query string; indexing them would create
+# hundreds of near-identical entries.
+Disallow: /*?chapter=
+Disallow: /*?technique=
+
+Sitemap: https://memoraa.web.app/sitemap.xml

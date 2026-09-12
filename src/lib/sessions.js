@@ -11,6 +11,35 @@ import { getPackByName } from '@/constants/library'
 
 const norm = (x) => String(x || '').toLowerCase().replace(/[^a-z0-9]/g, '')
 
+/*
+  Day maths runs on the LEARNER'S calendar, not on UTC.
+
+  Dividing a timestamp by 86400000 buckets it into UTC days, which is only
+  correct at UTC+0. Anywhere else it puts late-evening sessions into
+  tomorrow (or early-morning ones into yesterday), so "Today" reads as
+  "1d ago", streaks break a day early, and the 7-day chart shifts. These
+  helpers use real local midnights instead, and step by calendar date so
+  DST's 23- and 25-hour days stay one day each.
+*/
+const DAY_MS = 86400000
+
+const startOfDay = (ts) => {
+  const d = new Date(ts)
+  d.setHours(0, 0, 0, 0)
+  return d.getTime()
+}
+
+const addDays = (ts, n) => {
+  const d = new Date(ts)
+  d.setDate(d.getDate() + n)
+  d.setHours(0, 0, 0, 0)
+  return d.getTime()
+}
+
+// Whole calendar days between two instants. Rounded, so a DST shift inside
+// the span can't turn "1 day" into 0.96 and floor away to 0.
+const daysBetween = (fromTs, toTs) => Math.round((startOfDay(toTs) - startOfDay(fromTs)) / DAY_MS)
+
 export function sessionsForSubject(sessions = [], name) {
   const n = norm(name)
   return (sessions || []).filter((s) => norm(s.subject) === n)
@@ -22,7 +51,21 @@ export function lastSessionForSubject(sessions = [], name) {
 
 export function daysAgo(ts) {
   if (!ts) return null
-  return Math.max(0, Math.floor((Date.now() - ts) / 86400000))
+  return Math.max(0, daysBetween(ts, Date.now()))
+}
+
+/*
+  Whole calendar days from today until a "YYYY-MM-DD" exam date.
+
+  Shared because the Dashboard and the Progress page had their own copies
+  and disagreed: one measured from midnight, the other from Date.now(), so
+  the same exam read "41d" on one page and "in 40 days" on the other for
+  most of the working day. Counting from the start of today is the correct
+  one - "days until" is a count of calendar days, not of elapsed hours.
+*/
+export function daysUntilDate(dateStr) {
+  if (!dateStr) return null
+  return daysBetween(Date.now(), new Date(dateStr + 'T00:00:00').getTime())
 }
 
 // A session counts as "tough" if it was rated hard (4-5).
@@ -70,10 +113,13 @@ export function subjectMetrics(sessions = [], name) {
   const lastWeek = subs.filter((s) => now - s.ts >= 7 * DAY && now - s.ts < 14 * DAY)
   const delta = Math.round(((minutesOf(thisWeek) - minutesOf(lastWeek)) / 60) * 10) / 10
 
-  // Real hours studied per day, oldest to newest, for the last 7 days.
+  // Real hours studied per day, oldest to newest, for the last 7 days -
+  // bucketed by the learner's own calendar days, not UTC ones.
+  const today = startOfDay(now)
   const series = Array.from({ length: 7 }, (_, i) => {
-    const dayStart = Math.floor((now - (6 - i) * DAY) / DAY) * DAY
-    const dayMinutes = minutesOf(subs.filter((s) => s.ts >= dayStart && s.ts < dayStart + DAY))
+    const dayStart = addDays(today, i - 6)
+    const dayEnd = addDays(dayStart, 1)
+    const dayMinutes = minutesOf(subs.filter((s) => s.ts >= dayStart && s.ts < dayEnd))
     return Math.round((dayMinutes / 60) * 100) / 100
   })
 
@@ -158,17 +204,20 @@ export function weakestTopics(attempts = [], subjectName, limit = 5) {
 
 // A simple day-streak: consecutive calendar days (ending today or yesterday)
 // with at least one session.
-export function studyStreak(sessions = []) {
-  if (!sessions.length) return 0
-  const days = new Set(
-    sessions.map((s) => Math.floor((s.ts || 0) / 86400000)),
-  )
-  const today = Math.floor(Date.now() / 86400000)
+// Any recorded work counts as a study day: a finished session OR an
+// answered question. A student who does twenty MCQs and closes the tab
+// has studied, whether or not a session record was written.
+export function studyStreak(sessions = [], attempts = []) {
+  if (!sessions.length && !attempts.length) return 0
+  const days = new Set([...sessions, ...attempts].filter((s) => s.ts).map((s) => startOfDay(s.ts)))
+  const today = startOfDay(Date.now())
+  // Studying today extends the streak; not having studied yet today doesn't
+  // break a run that was alive yesterday.
+  let d = days.has(today) ? today : addDays(today, -1)
   let streak = 0
-  let d = days.has(today) ? today : today - 1
   while (days.has(d)) {
     streak += 1
-    d -= 1
+    d = addDays(d, -1)
   }
   return streak
 }

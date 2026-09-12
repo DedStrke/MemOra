@@ -15,8 +15,56 @@ import { MATHS_FLASHCARDS_2, MATHS_MCQ_2, MATHS_EXAM_2 } from './maths-extra-2'
 import { CS_EXTRA_MCQ, CS_EXTRA_EXAM } from './cs-extra'
 import { CS_EXTRA_MCQ_2, CS_EXTRA_EXAM_2, CS_EXTRA_FLASHCARDS_2 } from './cs-extra-2'
 import { CS_NOTES } from './cs-notes'
+import { CS_ESSAYS } from './cs-essays'
+import { CS_PROGRAMMING } from './cs-programming'
+import { mergeNotes } from './notes-merge'
+import { MATHS_EXAM_PURE } from './maths-exams-pure'
+import { MATHS_EXAM_APPLIED } from './maths-exams-applied'
+import { MATHS_EXTRA_WORKED } from './maths-notes-extra'
+import { MATHS_EXTRA_WORKED_2 } from './maths-notes-extra2'
+import { CS_EXTRA_DEPTH } from './cs-notes-extra'
+import { CS_COMP1_NOTES } from './cs-notes-comp1'
+import { CS_COMP2_NOTES } from './cs-notes-comp2'
+import { CS_COMP3_NOTES } from './cs-notes-comp3'
+import { CS_EXTRA_DEPTH_2 } from './cs-notes-depth-2'
+import { CS_EXTRA_FLASHCARDS_4, CS_EXTRA_MCQ_4, CS_EXTRA_EXAM_4 } from './cs-extra-4'
 import { ECON_NOTES } from './econ-full'
+import { ECON_THEME2_NOTES } from './econ-notes-theme2'
+import { ECON_THEME2B_NOTES } from './econ-notes-theme2b'
+import { ECON_THEME2C_NOTES } from './econ-notes-theme2c'
+import { ECON_THEME1A_NOTES } from './econ-notes-theme1a'
+import { ECON_THEME1B_NOTES } from './econ-notes-theme1b'
+import { ECON_THEME3A_NOTES } from './econ-notes-theme3a'
+import { ECON_THEME3B_NOTES } from './econ-notes-theme3b'
+import { ECON_THEME4_NOTES } from './econ-notes-theme4'
+import { ECON_EXAM_2 } from './econ-exam-2'
+import { ECON_EXAM_3 } from './econ-exam-3'
+import { ECON_ESSAYS } from './econ-essays'
+import { ECON_ESSAY_BANK } from './econ-essay-bank'
+import { ECON_FIRM_CARDS } from './econ-flashcards-firm'
+import { ECON_FIRM_MASTER_NOTES } from './econ-notes-firm-master'
+import { ECON_MCQ_2 } from './econ-mcq-2'
+import { ECON_EXTRA_DEPTH } from './econ-notes-extra'
+import { ECON_EXTRA_DEPTH_2 } from './econ-notes-extra2'
+import { ECON_GAP_NOTES } from './econ-notes-gaps'
+import { ECON_EXTRA_FLASHCARDS_4, ECON_EXTRA_MCQ_4, ECON_EXTRA_EXAM_4 } from './econ-extra-4'
+import { withDiagrams } from './econ-diagrams'
+import {
+  tagWithDiagrams,
+  appendDiagramsToNotes,
+  MATHS_CHAPTER_DIAGRAMS,
+  CS_CHAPTER_DIAGRAMS,
+} from './diagram-map'
+import { ECON_DIAGRAM_CARDS } from './econ-diagram-cards'
+import { MATHS_DIAGRAM_CARDS, CS_DIAGRAM_CARDS } from './diagram-cards'
 import { MATHS_NOTES } from './maths-notes'
+import { MATHS_NOTES_2 } from './maths-notes-2'
+import { MATHS_PURE1_NOTES } from './maths-notes-pure1'
+import { MATHS_PURE2_NOTES } from './maths-notes-pure2'
+import { MATHS_APPLIED_NOTES } from './maths-notes-applied'
+import { MATHS_MCQ_3 } from './maths-mcq-3'
+import { CS_EXAM_3, CS_MCQ_3 } from './cs-extra-3'
+import { SUBJECT_PACKS } from './subjects'
 
 const CORE_REVISION = [
   {
@@ -69,13 +117,13 @@ const CORE_REVISION = [
     ],
     "flashcards": [
       {
-        "front": "What is a^(1/n)?",
+        "front": "What is a¹ᐟⁿ?",
         "back": "The nth root of a: ⁿ√a",
         "topic": "Algebraic Expressions"
       },
       {
-        "front": "What is a^(m/n)?",
-        "back": "(ⁿ√a)^m: the nth root of a, raised to power m",
+        "front": "What is aᵐᐟⁿ?",
+        "back": "(ⁿ√a)ᵐ: the nth root of a, raised to power m",
         "topic": "Algebraic Expressions"
       },
       {
@@ -89,8 +137,8 @@ const CORE_REVISION = [
         "topic": "Algebraic Expressions"
       },
       {
-        "front": "What is the rule for (a^m)^n?",
-        "back": "a^(mn): multiply the powers",
+        "front": "What is the rule for (aᵐ)ⁿ?",
+        "back": "aᵐⁿ: multiply the powers",
         "topic": "Algebraic Expressions"
       },
       {
@@ -114,7 +162,7 @@ const CORE_REVISION = [
         "topic": "Algebraic Expressions"
       },
       {
-        "front": "a^(-n) = ?",
+        "front": "a⁻ⁿ = ?",
         "back": "1/aⁿ",
         "topic": "Algebraic Expressions"
       },
@@ -340,7 +388,7 @@ const CORE_REVISION = [
       },
       {
         "front": "What happens to signs in (a-b)ⁿ expansion?",
-        "back": "Terms alternate in sign (+,-,+,-...)",
+        "back": "Terms alternate in sign (+,-,+,-…)",
         "topic": "The Binomial Expansion"
       },
       {
@@ -409,28 +457,28 @@ const CORE_REVISION = [
         "topic": "Trigonometric Identities and Equations"
       },
       {
-        "front": "tanθ in terms of sin and cos?",
-        "back": "sinθ / cosθ",
+        "front": "tan θ in terms of sin and cos?",
+        "back": "sin θ / cos θ",
         "topic": "Trigonometric Identities and Equations"
       },
       {
-        "front": "For sinθ = k, if principal value is θ, what is the second solution (0-360°)?",
+        "front": "For sin θ = k, if principal value is θ, what is the second solution (0-360°)?",
         "back": "180° - θ",
         "topic": "Trigonometric Identities and Equations"
       },
       {
-        "front": "For cosθ = k, if principal value is θ, what is the second solution (0-360°)?",
+        "front": "For cos θ = k, if principal value is θ, what is the second solution (0-360°)?",
         "back": "360° - θ",
         "topic": "Trigonometric Identities and Equations"
       },
       {
-        "front": "For tanθ = k, what is the pattern of solutions?",
-        "back": "θ, θ+180°, θ+360°, ... (period 180°)",
+        "front": "For tan θ = k, what is the pattern of solutions?",
+        "back": "θ, θ+180°, θ+360°, … (period 180°)",
         "topic": "Trigonometric Identities and Equations"
       },
       {
-        "front": "How do you solve a quadratic in sinθ (e.g. 2sin²θ-sinθ-1=0)?",
-        "back": "Substitute x=sinθ, solve the quadratic in x, then solve sinθ=x for each value",
+        "front": "How do you solve a quadratic in sin θ (e.g. 2sin²θ-sin θ-1=0)?",
+        "back": "Substitute x=sin θ, solve the quadratic in x, then solve sin θ=x for each value",
         "topic": "Trigonometric Identities and Equations"
       },
       {
@@ -495,7 +543,7 @@ const CORE_REVISION = [
       },
       {
         "front": "What do you rewrite √x as before differentiating?",
-        "back": "x^(1/2)",
+        "back": "x¹ᐟ²",
         "topic": "Differentiation"
       },
       {
@@ -629,13 +677,13 @@ const CORE_REVISION = [
         "topic": "Radians"
       },
       {
-        "front": "Small angle approx for cosθ?",
+        "front": "Small angle approx for cos θ?",
         "back": "1 - θ²/2",
         "topic": "Radians"
       },
       {
-        "front": "secθ = ?",
-        "back": "1/cosθ",
+        "front": "sec θ = ?",
+        "back": "1/cos θ",
         "topic": "Trigonometric Functions"
       },
       {
@@ -649,7 +697,7 @@ const CORE_REVISION = [
         "topic": "Trigonometric Functions"
       },
       {
-        "front": "Formula for R in a sinθ + b cosθ = R sin(θ+α)?",
+        "front": "Formula for R in a sin θ + b cos θ = R sin(θ+α)?",
         "back": "R = √(a² + b²)",
         "topic": "Trigonometry and Modelling"
       },
@@ -960,7 +1008,7 @@ const CORE_REVISION = [
       },
       {
         "front": "Component of weight parallel to a slope angle θ?",
-        "back": "mg sinθ",
+        "back": "mg sin θ",
         "topic": "Forces and Friction"
       },
       {
@@ -1005,10 +1053,10 @@ const CORE_REVISION = [
         "topic": "Algebraic Expressions"
       },
       {
-        "question": "Write 8^(2/3) as an integer",
+        "question": "Write 8²ᐟ³ as an integer",
         "marks": 2,
         "markScheme": [
-          "8^(2/3) = (∛8)² = 2² = 4",
+          "8²ᐟ³ = (∛8)² = 2² = 4",
           "Final answer: 4"
         ],
         "topic": "Algebraic Expressions"
@@ -1050,7 +1098,7 @@ const CORE_REVISION = [
         "topic": "Algebraic Expressions"
       },
       {
-        "question": "Solve 3^(2x) = 27",
+        "question": "Solve 3²ˣ = 27",
         "marks": 2,
         "markScheme": [
           "27=3³, so 2x=3, x=1.5",
@@ -1207,7 +1255,7 @@ const CORE_REVISION = [
         "topic": "Graphs and Transformations"
       },
       {
-        "question": "Describe the transformation from y=sinx to y=-sinx",
+        "question": "Describe the transformation from y=sin x to y=-sin x",
         "marks": 2,
         "markScheme": [
           "y=-f(x) reflects in the x-axis",
@@ -1462,7 +1510,7 @@ const CORE_REVISION = [
         "topic": "Trigonometric Ratios"
       },
       {
-        "question": "Solve sinθ = 0.5 for 0≤θ≤360°",
+        "question": "Solve sin θ = 0.5 for 0≤θ≤360°",
         "marks": 2,
         "markScheme": [
           "Principal value 30°, second solution 180-30=150",
@@ -1471,7 +1519,7 @@ const CORE_REVISION = [
         "topic": "Trigonometric Identities and Equations"
       },
       {
-        "question": "Solve cosθ = -0.5 for 0≤θ≤360°",
+        "question": "Solve cos θ = -0.5 for 0≤θ≤360°",
         "marks": 2,
         "markScheme": [
           "Principal value from cos⁻¹(0.5)=60°, so 180-60=120 and 180+60=240",
@@ -1480,7 +1528,7 @@ const CORE_REVISION = [
         "topic": "Trigonometric Identities and Equations"
       },
       {
-        "question": "Solve tanθ = 1 for 0≤θ≤360°",
+        "question": "Solve tan θ = 1 for 0≤θ≤360°",
         "marks": 2,
         "markScheme": [
           "Principal value 45°, add 180° for next solution",
@@ -1492,13 +1540,13 @@ const CORE_REVISION = [
         "question": "Solve 2sin²θ - 1 = 0 for 0≤θ≤360°",
         "marks": 2,
         "markScheme": [
-          "sin²θ=0.5, sinθ=±0.707, four solutions in range",
+          "sin²θ=0.5, sin θ=±0.707, four solutions in range",
           "Final answer: θ = 45°, 135°, 225°, 315°"
         ],
         "topic": "Trigonometric Identities and Equations"
       },
       {
-        "question": "Prove sinθ/cosθ + cosθ/sinθ = 1/(sinθcosθ)",
+        "question": "Prove sin θ/cos θ + cos θ/sin θ = 1/(sinθcosθ)",
         "marks": 2,
         "markScheme": [
           "(sin²θ+cos²θ)/(sinθcosθ) = 1/(sinθcosθ)",
@@ -1573,8 +1621,8 @@ const CORE_REVISION = [
         "question": "Find dy/dx for y = √x + 3/x",
         "marks": 2,
         "markScheme": [
-          "Rewrite as x^(1/2)+3x⁻¹, then differentiate",
-          "Final answer: ½x^(-1/2) - 3x⁻²"
+          "Rewrite as x¹ᐟ²+3x⁻¹, then differentiate",
+          "Final answer: ½x⁻¹ᐟ² - 3x⁻²"
         ],
         "topic": "Differentiation"
       },
@@ -1681,7 +1729,7 @@ const CORE_REVISION = [
         "topic": "Exponentials and Logarithms"
       },
       {
-        "question": "Solve 3^(2x+1) = 20 (3 s.f.)",
+        "question": "Solve 3²ˣ⁺¹ = 20 (3 s.f.)",
         "marks": 2,
         "markScheme": [
           "(2x+1)log3=log20, 2x+1=log20/log3≈2.727, x≈0.864",
@@ -1699,10 +1747,10 @@ const CORE_REVISION = [
         "topic": "Exponentials and Logarithms"
       },
       {
-        "question": "A population grows as P=200e^(0.05t). Find P after 10 years (nearest whole)",
+        "question": "A population grows as P=200e⁰·⁰⁵ᵗ. Find P after 10 years (nearest whole)",
         "marks": 2,
         "markScheme": [
-          "P=200e^0.5≈200×1.6487≈330",
+          "P=200e⁰·⁵≈200×1.6487≈330",
           "Final answer: ≈330"
         ],
         "topic": "Exponentials and Logarithms"
@@ -1728,7 +1776,7 @@ const CORE_REVISION = [
         "topic": "Functions and Graphs"
       },
       {
-        "question": "Find the sum to infinity of 8 + 4 + 2 + ...",
+        "question": "Find the sum to infinity of 8 + 4 + 2 + …",
         "marks": 2,
         "markScheme": [
           "a=8, r=1/2, S∞=8/(1-0.5)=16",
@@ -1786,8 +1834,8 @@ const CORE_REVISION = [
         "question": "Differentiate y = x²sinx using the product rule",
         "marks": 2,
         "markScheme": [
-          "u=x², v=sinx: u'v+uv' = 2xsinx + x²cosx",
-          "Final answer: 2x sinx + x² cosx"
+          "u=x², v=sin x: u'v+uv' = 2xsinx + x²cosx",
+          "Final answer: 2x sin x + x² cos x"
         ],
         "topic": "Differentiation (Year 2)"
       },
@@ -2240,26 +2288,91 @@ const withExtras = (pack) => {
   if (pack.id === 'maths') {
     return {
       ...pack,
-      flashcards: [...pack.flashcards, ...MATHS_FLASHCARDS_2],
-      mcq: [...pack.mcq, ...MATHS_MCQ, ...MATHS_MCQ_2],
-      examQuestions: [...pack.examQuestions, ...MATHS_EXAM_2],
-      notes: MATHS_NOTES,
+      flashcards: tagWithDiagrams([...pack.flashcards, ...MATHS_FLASHCARDS_2, ...MATHS_DIAGRAM_CARDS], 'Maths'),
+      mcq: tagWithDiagrams([...pack.mcq, ...MATHS_MCQ, ...MATHS_MCQ_2, ...MATHS_MCQ_3], 'Maths'),
+      examQuestions: tagWithDiagrams([...pack.examQuestions, ...MATHS_EXAM_2, ...MATHS_EXAM_PURE, ...MATHS_EXAM_APPLIED], 'Maths'),
+      // MATHS_NOTES_2 second, so its full chapters override the one-line
+      // placeholders MATHS_NOTES holds for every A2, Statistics and
+      // Mechanics Year 2 topic.
+      notes: appendDiagramsToNotes(mergeNotes({ ...MATHS_NOTES, ...MATHS_NOTES_2, ...MATHS_PURE1_NOTES, ...MATHS_PURE2_NOTES, ...MATHS_APPLIED_NOTES }, MATHS_EXTRA_WORKED, MATHS_EXTRA_WORKED_2), MATHS_CHAPTER_DIAGRAMS),
     }
   }
   if (pack.id === 'computer-science') {
     return {
       ...pack,
-      flashcards: [...pack.flashcards, ...CS_EXTRA_FLASHCARDS_2],
-      mcq: [...pack.mcq, ...CS_EXTRA_MCQ, ...CS_EXTRA_MCQ_2],
-      examQuestions: [...pack.examQuestions, ...CS_EXTRA_EXAM, ...CS_EXTRA_EXAM_2],
-      notes: CS_NOTES,
+      flashcards: tagWithDiagrams([...pack.flashcards, ...CS_EXTRA_FLASHCARDS_2, ...CS_DIAGRAM_CARDS, ...CS_EXTRA_FLASHCARDS_4], 'Computer Science'),
+      mcq: tagWithDiagrams([...pack.mcq, ...CS_EXTRA_MCQ, ...CS_EXTRA_MCQ_2, ...CS_MCQ_3, ...CS_EXTRA_MCQ_4], 'Computer Science'),
+      examQuestions: tagWithDiagrams([...pack.examQuestions, ...CS_EXTRA_EXAM, ...CS_EXTRA_EXAM_2, ...CS_EXAM_3, ...CS_ESSAYS, ...CS_PROGRAMMING, ...CS_EXTRA_EXAM_4], 'Computer Science'),
+      notes: appendDiagramsToNotes(mergeNotes({ ...CS_NOTES, ...CS_COMP1_NOTES, ...CS_COMP2_NOTES, ...CS_COMP3_NOTES }, CS_EXTRA_DEPTH, CS_EXTRA_DEPTH_2), CS_CHAPTER_DIAGRAMS),
     }
   }
-  if (pack.id === 'economics') return { ...pack, notes: ECON_NOTES }
+  if (pack.id === 'economics') {
+    return {
+      ...pack,
+      // tagWithDiagrams attaches each chapter's diagram to its questions, so
+      // every technique can show one - the mark scheme for a "using a
+      // diagram" question, and the explanation after a wrong MCQ.
+      examQuestions: tagWithDiagrams([...pack.examQuestions, ...ECON_EXAM_2, ...ECON_EXAM_3, ...ECON_ESSAYS, ...ECON_EXTRA_EXAM_4], 'Economics'),
+      mcq: tagWithDiagrams([...pack.mcq, ...ECON_MCQ_2, ...ECON_EXTRA_MCQ_4], 'Economics'),
+      flashcards: tagWithDiagrams([...pack.flashcards, ...ECON_DIAGRAM_CARDS, ...ECON_FIRM_CARDS, ...ECON_EXTRA_FLASHCARDS_4], 'Economics'),
+      // A distinct technique from examQuestions: a bank of questions to PLAN
+      // answers to, with no model answers - see econ-essay-bank.js. Not
+      // filtered by chapter (the bank has its own paper/topic filters) and
+      // not run through tagWithDiagrams: which diagram a plan needs is part
+      // of the plan the student writes, not something handed to them.
+      essayBank: ECON_ESSAY_BANK,
+      // Diagrams spliced into the notes at the passage that describes
+      // them - see econ-diagrams.js.
+      // Rewritten chapters replace their thin originals; the rest are
+      // untouched until they are rewritten too.
+      notes: withDiagrams(
+        mergeNotes(
+          { ...ECON_NOTES, ...ECON_THEME2_NOTES, ...ECON_THEME2B_NOTES, ...ECON_THEME2C_NOTES, ...ECON_THEME1A_NOTES, ...ECON_THEME1B_NOTES, ...ECON_THEME3A_NOTES, ...ECON_THEME3B_NOTES, ...ECON_THEME4_NOTES, ...ECON_GAP_NOTES },
+          ECON_EXTRA_DEPTH,
+          ECON_EXTRA_DEPTH_2,
+          ECON_FIRM_MASTER_NOTES,
+        ),
+      ),
+    }
+  }
   return pack
 }
 
-export const REVISION = [...CORE_REVISION, ...EXTRA_REVISION].map(withExtras)
+/*
+  Drop repeats within a chapter, keeping the first occurrence.
+
+  Content arrives in batches written at different times, so the same
+  flashcard or question can be phrased twice for one chapter - a student
+  then meets it twice in a single session, which reads like a bug. Keyed on
+  "topic + text", so the SAME fact appearing under TWO chapters is kept:
+  that is deliberate (the national debt belongs to both Fiscal Policy and
+  The National Debt, and whichever chapter you revise should include it).
+
+  Applied at assembly rather than by editing the data, so a future batch
+  cannot silently reintroduce a duplicate.
+*/
+const dedupeByTopic = (items, key) => {
+  if (!Array.isArray(items)) return items
+  const seen = new Set()
+  return items.filter((x) => {
+    const id = `${x.topic ?? ''}␟${x[key] ?? ''}`
+    if (seen.has(id)) return false
+    seen.add(id)
+    return true
+  })
+}
+
+const dedupeContent = (pack) => ({
+  ...pack,
+  flashcards: dedupeByTopic(pack.flashcards, 'front'),
+  mcq: dedupeByTopic(pack.mcq, 'question'),
+  examQuestions: dedupeByTopic(pack.examQuestions, 'question'),
+})
+
+export const REVISION = [...CORE_REVISION, ...EXTRA_REVISION]
+  .map(withExtras)
+  .concat(SUBJECT_PACKS)
+  .map(dedupeContent)
 
 export const REVISION_SUBJECTS = REVISION.map((p) => ({ id: p.id, name: p.name }))
 

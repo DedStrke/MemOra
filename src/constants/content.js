@@ -13,9 +13,9 @@ export const SITE = {
 // Top-bar navigation.
 export const NAV_LINKS = [
   { label: 'Dashboard', to: '/dashboard' },
-  { label: 'Courses', to: '/courses' },
   { label: 'Progress', to: '/progress' },
-  { label: 'Performance', to: '/performance' },
+  { label: 'Mistakes', to: '/mistakes' },
+  { label: 'Friends', to: '/friends' },
   { label: 'Community', to: '/community' },
 ]
 
@@ -33,9 +33,7 @@ export const LANDING = {
 // Decorative rotator on the landing hero - a broad spread of subjects, not
 // limited to what the app actually has content for yet (SUBJECT_CATALOG).
 export const LANDING_SUBJECTS = [
-  'Art',
   'Biology',
-  'Business Studies',
   'Chemistry',
   'Computer Science',
   'Economics',
@@ -77,8 +75,18 @@ export const COURSE_TYPES = [
   { id: 'University', label: 'University' },
 ]
 
-// Course types that get a prioritised (one big + smaller) pillar layout.
+// Course types that get a prioritised (one big + smaller) pillar layout, AND
+// the ones where "year group" means an AS/A2-style two-year advanced
+// qualification - same set for both, since it's the same reason: these are
+// the two-year advanced courses, everything else is one year or doesn't use
+// year group content-gating at all. See §4 of the product build prompt.
 export const PRIORITISED_COURSES = ['A-level', 'AS-level', 'IAL']
+
+// For a PRIORITISED_COURSES course type, year group narrows to just these
+// two - that's the only distinction any mock-exam content pool or chapter
+// ordering actually reads (see MockExam.jsx's isYear12). Every other course
+// type keeps the full YEAR_GROUPS list.
+export const ADVANCED_YEAR_GROUPS = ['Year 12', 'Year 13']
 
 export const SPEC_BOARDS = ['AQA', 'Edexcel', 'OCR', 'WJEC / Eduqas', 'CIE', 'Other']
 
@@ -90,6 +98,24 @@ export const SPEC_BY_COURSE = {
   IAL: ['Edexcel', 'Oxford AQA', 'Cambridge', 'Other'],
 }
 export const specsFor = (courseType) => SPEC_BY_COURSE[courseType] || SPEC_BOARDS
+
+/*
+  Subject identity colours. Identity only - a subject's colour never encodes
+  progress or readiness (that's the r0-r4 ramp in index.css, deliberately a
+  separate scale). One colour per subject, used everywhere that subject
+  appears, so a card, a chip and a ring all agree.
+*/
+export const SUBJECT_COLORS = {
+  Maths: '#d9557f',
+  Economics: '#2e9e6b',
+  'Computer Science': '#e08a2c',
+  Biology: '#3f9e5c',
+  Chemistry: '#7c6cf0',
+  Physics: '#2f8bd4',
+  Psychology: '#c2559e',
+  Sociology: '#c47a2c',
+}
+export const subjectColor = (name) => SUBJECT_COLORS[name] || '#6b7594'
 
 // A subject "mascot" emoji shown next to each subject.
 export const SUBJECT_MASCOTS = {
@@ -113,19 +139,28 @@ export const FAQ_ITEMS = [
   { q: 'Can I track my progress?', a: 'Yes. Every finished session is logged, and the progress page shows per-subject trends over time.' },
 ]
 
-export const SUBJECT_CATALOG = ['Maths', 'Economics', 'Computer Science']
+// Subjects with real content behind every one of the seven study modes -
+// the only ones selectable as an actual course. See §4 of the product
+// build prompt: a course with nothing behind it is worse than no course.
+export const SUBJECT_CATALOG = [
+  'Maths',
+  'Economics',
+  'Computer Science',
+  'Biology',
+  'Chemistry',
+  'Physics',
+  'Psychology',
+  'Sociology',
+]
+
+// Announced but not yet content-complete. Tapping one in the subject picker
+// records interest (AppProvider's requestSubject) rather than adding a
+// course - there is nothing behind it yet to study.
+export const SUBJECTS_COMING_SOON = LANDING_SUBJECTS.filter(
+  (name) => !SUBJECT_CATALOG.includes(name),
+)
 
 /* ---------------------------------------------------------- DASHBOARD */
-
-// Feature cards that link out from the dashboard.
-export const FEATURES = [
-  { id: 'flashcards', icon: 'cards', accent: 'flash', label: 'Flashcard maker', desc: 'Build and flip decks', to: '/flashcards' },
-  { id: 'progress', icon: 'activity', accent: 'quiz', label: 'Progress tracker', desc: 'See how far you have come', to: '/progress' },
-  { id: 'performance', icon: 'target', accent: 'brand', label: 'Performance', desc: 'See exactly what you got wrong', to: '/performance' },
-  { id: 'community', icon: 'users', accent: 'success', label: 'Community', desc: 'Your own study board', to: '/community' },
-  { id: 'courses', icon: 'cap', accent: 'paper', label: 'Your courses', desc: 'Manage subjects and boards', to: '/courses' },
-  { id: 'mock', icon: 'clock', accent: 'flash', label: 'Mock exams', desc: 'A timed, randomised paper', to: '/mock' },
-]
 
 // Real spec codes for the subjects the content packs are actually built
 // against (see the header comment in constants/library.js) - used to give
@@ -136,6 +171,11 @@ export const EXAM_BOARD_META = {
   Maths: { board: 'Edexcel', code: '9MA0', paper: 'Paper 1: Pure Mathematics' },
   Economics: { board: 'Edexcel A', code: '9EC0', paper: 'Paper 1: Markets and Business Behaviour' },
   'Computer Science': { board: 'OCR', code: 'H446/01', paper: 'Paper 1: Computing Principles' },
+  Biology: { board: 'AQA', code: '7402', paper: 'Paper 1: Biological Processes' },
+  Chemistry: { board: 'AQA', code: '7405', paper: 'Paper 1: Physical and Inorganic Chemistry' },
+  Physics: { board: 'AQA', code: '7408', paper: 'Paper 1: Mechanics, Materials, Waves and Electricity' },
+  Psychology: { board: 'AQA', code: '7182', paper: 'Paper 1: Introductory Topics' },
+  Sociology: { board: 'AQA', code: '7192', paper: 'Paper 1: Education with Theory and Methods' },
 }
 
 export const STUDY_TECHNIQUES = [
@@ -145,6 +185,12 @@ export const STUDY_TECHNIQUES = [
   { id: 'mcq', icon: 'quiz', label: 'MCQ', desc: 'Quick multiple choice' },
   { id: 'blurting', icon: 'brain', label: 'Blurting', desc: 'Dump everything you know' },
   { id: 'active-recall', icon: 'refresh', label: 'Active recall', desc: 'Test, do not re-read' },
+  // The exam questions technique holds full, marked-up 25-mark essays for
+  // studying what a complete answer contains. This is the different skill:
+  // planning one from a cold question in the three minutes you actually get
+  // before writing, across far more questions than anyone has time to write
+  // ten full essays for. See econ-essay-bank.js and EssayPlanner.jsx.
+  { id: 'essay-plans', icon: 'scroll', label: 'Essay plans', desc: 'Structure an answer fast' },
 ]
 
 /* ------------------------------------------------ MARKETING (how it works) */
@@ -205,10 +251,10 @@ export const FOOTER_COLUMNS = [
     heading: 'Study',
     links: [
       { label: 'Dashboard', to: '/dashboard' },
-      { label: 'Courses', to: '/courses' },
       { label: 'Flashcards', to: '/flashcards' },
       { label: 'Progress', to: '/progress' },
-      { label: 'Performance', to: '/performance' },
+      { label: 'Mistakes', to: '/mistakes' },
+      { label: 'Settings', to: '/profile' },
     ],
   },
   {

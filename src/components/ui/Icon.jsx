@@ -298,6 +298,19 @@ const ICONS = {
   },
 
   // --------------------------------------------------- structural / small
+  music: (
+    <>
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+    </>
+  ),
+  pencil: (
+    <>
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+    </>
+  ),
   volume: (
     <>
       <path d="M11 5 6 9H3v6h3l5 4z" />

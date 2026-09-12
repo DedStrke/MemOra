@@ -66,7 +66,6 @@ function SubjectSlot({ offset, direction, phase }) {
 function RotatingSubjects() {
   return (
     <div className="mx-auto mt-8 flex w-full flex-col items-center">
-      <span className="kicker justify-center">Every subject</span>
       {/* Two slots on phones, four once there's room - so names never crowd. */}
       <div className="mt-3 flex w-full max-w-md items-center gap-3 sm:max-w-2xl sm:gap-6">
         {[0, 1, 2, 3].map((i) => (
@@ -152,8 +151,8 @@ function CollapsingHeader() {
 
 /*
   A stylised mockup of the real dashboard - built from the same tokens and
-  components as the real thing (glass, kicker, the brand->paper gradient
-  heading), not a screenshot, so it never goes stale and re-themes live with
+  components as the real thing (glass, the brand->paper gradient heading),
+  not a screenshot, so it never goes stale and re-themes live with
   the rest of the page. Sits in a "browser window" frame with a soft glow
   behind it, echoing the reference site's product-preview treatment.
 */
@@ -181,11 +180,7 @@ function DashboardPreview() {
         <div className="rounded-2xl bg-page/70 p-4 sm:p-7">
           {/* Mini hero */}
           <div className="glass rounded-2xl p-5 sm:p-7">
-            <span className="kicker text-[0.62rem]">
-              <Icon name="sparkles" className="h-3 w-3" />
-              Welcome back
-            </span>
-            <p className="mt-2 text-xl font-extrabold leading-tight text-fg sm:text-2xl">
+            <p className="text-xl font-extrabold leading-tight text-fg sm:text-2xl">
               Hi Alex,{' '}
               <span
                 className="bg-clip-text text-transparent"
@@ -242,16 +237,13 @@ function DashboardPreview() {
   )
 }
 
-function StoryBlock({ index, icon, kicker, title, body }) {
+function StoryBlock({ icon, title, body }) {
   return (
     <motion.div variants={fadeInUp} className="mx-auto flex max-w-lg flex-col items-center text-center">
       <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-3xl bg-brand-soft text-brand-strong">
         <Icon name={icon} className="h-7 w-7" />
       </span>
-      <span className="kicker mt-5">
-        0{index} &middot; {kicker}
-      </span>
-      <h3 className="mt-3 text-2xl font-bold text-fg sm:text-3xl">{title}</h3>
+      <h3 className="mt-5 text-2xl font-bold text-fg sm:text-3xl">{title}</h3>
       <p className="readable mt-3 text-muted">{body}</p>
     </motion.div>
   )
@@ -276,8 +268,13 @@ export default function Landing() {
           animate="show"
           className="flex w-full flex-col items-center"
         >
+          {/* The visible h1 is the wordmark, which reads as just "MemOra"
+              to a crawler or a screen reader - a brand name alone tells
+              neither what the page is. The hidden half completes the
+              heading without changing the design. */}
           <motion.h1 variants={fadeInUp}>
             <Wordmark size="hero" className="items-center" />
+            <span className="sr-only"> - A-level revision built for your exact spec</span>
           </motion.h1>
 
           <motion.p
@@ -330,8 +327,7 @@ export default function Landing() {
         className="relative z-10 mx-auto max-w-5xl px-5 pb-28"
       >
         <motion.div variants={fadeInUp} className="mb-10 text-center">
-          <span className="kicker mx-auto justify-center">Take a look inside</span>
-          <h2 className="mt-3 text-3xl font-bold text-fg sm:text-4xl">Your dashboard, at a glance</h2>
+          <h2 className="text-3xl font-bold text-fg sm:text-4xl">Your dashboard, at a glance</h2>
         </motion.div>
         <DashboardPreview />
       </motion.section>
@@ -346,27 +342,21 @@ export default function Landing() {
         style={{ textShadow: '0 2px 20px color-mix(in srgb, var(--page) 70%, transparent)' }}
       >
         <motion.div variants={fadeInUp} className="text-center">
-          <span className="kicker mx-auto justify-center">What {SITE.name} does</span>
+          <h2 className="text-2xl font-bold text-fg sm:text-3xl">What {SITE.name} does</h2>
         </motion.div>
 
         <StoryBlock
-          index={1}
           icon="cards"
-          kicker="The content"
           title="Deep, spec-matched content"
           body="Notes, flashcards, and questions built topic by topic against the real specification, not a generic summary."
         />
         <StoryBlock
-          index={2}
           icon="target"
-          kicker="The plan"
           title="A plan that adapts"
           body="Sessions notice when a topic was tough last time and ease you back in, so revision meets you where you are."
         />
         <StoryBlock
-          index={3}
           icon="activity"
-          kicker="The progress"
           title="Progress you can see"
           body="Real per-subject and per-chapter tracking from what you've actually answered, not seeded demo numbers."
         />

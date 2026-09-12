@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Wordmark from '@/components/ui/Wordmark'
 import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
+import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
@@ -32,6 +33,9 @@ export default function LegalLayout({ icon, title, updated, intro, sections }) {
       </header>
 
       <Section width="narrow" animateOnMount className="relative z-10 flex-1 pt-6 pb-20">
+        <motion.div variants={fadeInUp} className="mb-4">
+          <Breadcrumbs />
+        </motion.div>
         <motion.div variants={fadeInUp} className="glass-strong rounded-3xl p-7 sm:p-10">
           <div className="flex items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-soft text-brand-strong">

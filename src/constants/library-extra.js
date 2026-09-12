@@ -36,7 +36,10 @@ export const EXTRA_REVISION = [
       "Computational Methods",
       "Programming Paradigms",
       "Analysis and Design (Systems Life Cycle)",
-      "Legal, Moral, Cultural and Ethical Issues"
+      "Legal, Moral, Cultural and Ethical Issues",
+      "Assembly Language and the Little Man Computer",
+      "Algorithm Complexity (Big O)",
+      "Object-Oriented Programming"
     ],
     "flashcards": [
       {
@@ -3860,11 +3863,12 @@ export const EXTRA_REVISION = [
             ]
           },
           {
-            "label": "1.2 Software",
+            "label": "1.2 Software and Software Development",
             "topics": [
               "Systems Software",
               "Applications Generation (Translators)",
-              "Software Development Methodologies"
+              "Software Development Methodologies",
+              "Assembly Language and the Little Man Computer"
             ]
           },
           {
@@ -3877,12 +3881,17 @@ export const EXTRA_REVISION = [
             ]
           },
           {
-            "label": "1.4 Data Types, Structures & Algorithms",
+            "label": "1.4 Data Types, Data Structures and Boolean Algebra",
             "topics": [
               "Data Types and Number Representation",
               "Data Structures",
-              "Boolean Algebra",
-              "Algorithms: Searching, Sorting & Graph Traversal"
+              "Boolean Algebra"
+            ]
+          },
+          {
+            "label": "1.5 Legal, Moral, Cultural and Ethical Issues",
+            "topics": [
+              "Legal, Moral, Cultural and Ethical Issues"
             ]
           }
         ]
@@ -3891,24 +3900,26 @@ export const EXTRA_REVISION = [
         "label": "Component 2: Algorithms and Programming",
         "subgroups": [
           {
-            "label": "2.1 Computational Thinking",
+            "label": "2.1 Elements of Computational Thinking",
             "topics": [
               "Elements of Computational Thinking"
             ]
           },
           {
-            "label": "2.2 Programming & Design",
+            "label": "2.2 Problem Solving and Programming",
             "topics": [
               "Programming Techniques",
-              "Computational Methods",
               "Programming Paradigms",
+              "Object-Oriented Programming",
+              "Computational Methods",
               "Analysis and Design (Systems Life Cycle)"
             ]
           },
           {
-            "label": "2.3 Legal, Moral & Ethical Issues",
+            "label": "2.3 Algorithms",
             "topics": [
-              "Legal, Moral, Cultural and Ethical Issues"
+              "Algorithm Complexity (Big O)",
+              "Algorithms: Searching, Sorting & Graph Traversal"
             ]
           }
         ]
