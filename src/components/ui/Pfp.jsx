@@ -133,7 +133,7 @@ export default function Pfp({
           onClick={() => setAdjusting({ url: photo })}
           title="Adjust position"
           aria-label="Adjust how the picture is positioned"
-          className="absolute bottom-0 left-0 grid place-items-center rounded-full border-2 border-surface bg-surface text-fg shadow transition-colors hover:bg-brand hover:text-on-brand"
+          className="absolute bottom-0 left-0 grid place-items-center rounded-full border-2 border-surface bg-brand-soft text-brand-strong shadow transition-colors hover:bg-brand hover:text-on-brand"
           style={{ width: '30%', height: '30%', minWidth: '1.35rem', minHeight: '1.35rem' }}
         >
           <span style={{ width: '58%', height: '58%' }}>

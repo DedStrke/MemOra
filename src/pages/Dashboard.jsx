@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Avatar from '@/components/ui/Avatar'
 import BandBar from '@/components/ui/BandBar'
-import SilkField from '@/components/ui/SilkField'
+import SpineCard from '@/components/ui/SpineCard'
 import PaceVerdict from '@/components/dashboard/PaceVerdict'
 import HeroBanner from '@/components/dashboard/HeroBanner'
 import DailyQuote from '@/components/dashboard/DailyQuote'
@@ -18,7 +18,7 @@ import WeekChart from '@/components/dashboard/WeekChart'
 import useMe from '@/hooks/useMe'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
-import { PRIORITISED_COURSES, subjectColor } from '@/constants/content'
+import { PRIORITISED_COURSES, subjectColor, subjectIcon } from '@/constants/content'
 import { getPackByName } from '@/constants/library'
 import { daysAgo, daysUntilDate } from '@/lib/sessions'
 import { computeAllChapterStates, hasSlipped } from '@/lib/attempts'
@@ -78,30 +78,6 @@ function relativeDay(ts) {
   revision app at 1am is the wrong sentence. The late bucket acknowledges
   the hour without dismissing them.
 */
-/*
-  A surface that belongs to one subject.
-
-  No coloured spine down the left, and no aurora-plus-rings either - the
-  user's verdict on both was "looks AI generated", and they were right:
-  a 4px bar and a set of concentric arcs are what every template does.
-  Instead the subject's colour is the material of the card: a WebGL silk
-  shader (components/ui/SilkField.jsx) folds it through the right-hand
-  side and answers the cursor, and a hairline border takes the colour on
-  hover. `lift` opts into the shared hover treatment for cards that are
-  themselves the click target. Styles in index.css under .subject-card.
-*/
-function SpineCard({ color, className = '', lift = false, children }) {
-  return (
-    <div
-      className={`subject-card card relative min-w-0 overflow-hidden rounded-3xl ${lift ? 'card-lift' : ''} ${className}`}
-      style={{ '--subject': color }}
-    >
-      <SilkField color={color} />
-      <div className="relative">{children}</div>
-    </div>
-  )
-}
-
 function BandPill({ band }) {
   const tone = {
     not_started: 'bg-r0-not-started/25 text-fg',
@@ -176,8 +152,8 @@ function SubjectCard({ pack, spec, topics, hasActivity, pace, counts, value, cha
       <SpineCard color={color} className="p-5 pl-6">
         <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
           <div className="flex min-w-0 items-center gap-3.5">
-            <span aria-hidden="true" className="subject-card-tile grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-sm font-extrabold text-white">
-              {pack.name.slice(0, 2).toUpperCase()}
+            <span aria-hidden="true" className="subject-card-tile grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-white">
+              <Icon name={subjectIcon(pack.name)} className="h-6 w-6" />
             </span>
             <div className="min-w-0">
               <p className="text-lg font-extrabold leading-tight text-fg">

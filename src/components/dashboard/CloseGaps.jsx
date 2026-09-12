@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Buddy from '@/components/ui/Buddy'
+import SpineCard from '@/components/ui/SpineCard'
 import { subjectColor } from '@/constants/content'
 import { fadeInUp } from '@/lib/motion'
 
@@ -63,29 +64,31 @@ function reasonFor(rec) {
 function Row({ index, subject, topic, tag, reason, onStart }) {
   const color = subjectColor(subject)
   return (
-    <li className="gap-row relative flex flex-wrap items-center gap-x-4 gap-y-2 overflow-hidden rounded-2xl border border-line bg-surface p-3.5 pl-4">
-      <span
-        aria-hidden="true"
-        className="grid h-9 w-9 shrink-0 place-items-center rounded-xl text-sm font-extrabold tabular-nums"
-        style={{ background: `color-mix(in srgb, ${color} 14%, transparent)`, color }}
-      >
-        {index}
-      </span>
-      <div className="min-w-0 flex-1">
-        <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <span className="text-[0.62rem] font-extrabold uppercase tracking-[0.12em]" style={{ color }}>
-            {subject}
-          </span>
-          {tag}
-        </p>
-        <p className="mt-0.5 truncate text-sm font-bold text-fg sm:text-base">{topic}</p>
-        <p className="text-xs text-muted">{reason}</p>
+    <SpineCard as="li" color={color} rounded="rounded-2xl" className="p-3.5 pl-4">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <span
+          aria-hidden="true"
+          className="grid h-9 w-9 shrink-0 place-items-center rounded-xl text-sm font-extrabold tabular-nums"
+          style={{ background: `color-mix(in srgb, ${color} 14%, transparent)`, color }}
+        >
+          {index}
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="text-[0.62rem] font-extrabold uppercase tracking-[0.12em]" style={{ color }}>
+              {subject}
+            </span>
+            {tag}
+          </p>
+          <p className="mt-0.5 truncate text-sm font-bold text-fg sm:text-base">{topic}</p>
+          <p className="text-xs text-muted">{reason}</p>
+        </div>
+        <Button size="sm" onClick={onStart} className="shrink-0">
+          <Icon name="play" className="h-4 w-4" />
+          Start
+        </Button>
       </div>
-      <Button size="sm" onClick={onStart} className="shrink-0">
-        <Icon name="play" className="h-4 w-4" />
-        Start
-      </Button>
-    </li>
+    </SpineCard>
   )
 }
 
@@ -169,7 +172,10 @@ export default function CloseGaps({ gaps, total, suggestions = [], hasEvidence, 
                 reason={reasonFor(rec)}
                 onStart={() => onStart(rec)}
                 tag={
-                  <span className="inline-flex items-center rounded-full bg-brand-soft px-2 py-0.5 text-[0.66rem] font-bold text-brand-strong">
+                  <span
+                    className="inline-flex items-center rounded-full px-2 py-0.5 text-[0.66rem] font-bold"
+                    style={{ background: `color-mix(in srgb, ${subjectColor(rec.subject)} 16%, transparent)`, color: subjectColor(rec.subject) }}
+                  >
                     {bandLabel[rec.band] || 'Not started'}
                   </span>
                 }

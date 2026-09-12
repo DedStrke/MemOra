@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import BandBar from '@/components/ui/BandBar'
 import { useApp } from '@/context/AppProvider'
-import { PRIORITISED_COURSES, subjectColor } from '@/constants/content'
+import { PRIORITISED_COURSES, subjectColor, subjectIcon } from '@/constants/content'
 import { getPackByName } from '@/constants/library'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 import { slugify, resolveSlug } from '@/lib/slug'
@@ -138,10 +138,10 @@ export default function Start() {
                     <span aria-hidden="true" className="start-subject-glow" />
                     <span
                       aria-hidden="true"
-                      className="relative grid h-14 w-14 place-items-center rounded-2xl text-lg font-extrabold"
+                      className="relative grid h-14 w-14 place-items-center rounded-2xl"
                       style={{ background: `color-mix(in srgb, ${color} 16%, transparent)`, color }}
                     >
-                      {p.name.slice(0, 2).toUpperCase()}
+                      <Icon name={subjectIcon(p.name)} className="h-7 w-7" />
                     </span>
                     <h2 className="relative mt-5 text-2xl font-extrabold text-fg">{p.name}</h2>
                     <p className="relative text-sm text-muted">

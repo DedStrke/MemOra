@@ -44,7 +44,7 @@ export default function FriendCard({
         onChange={onBannerChange}
         onPosition={canEdit ? onBannerPosition : undefined}
         onError={onPhotoError}
-        className={compact ? 'h-16' : 'h-20 sm:h-24'}
+        className={compact ? 'h-16' : 'aspect-[24/7] w-full'}
       >
         <span aria-hidden="true" className="banner-scrim absolute inset-0" />
         {mine && (

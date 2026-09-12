@@ -188,7 +188,12 @@ export default function SilkField({ color }) {
       document.removeEventListener('visibilitychange', onVisibility)
       host.removeEventListener('pointermove', onMove)
       host.removeEventListener('pointerleave', onLeave)
-      gl.getExtension('WEBGL_lose_context')?.loseContext()
+      // No explicit loseContext() here: StrictMode's dev-only double-invoke
+      // reuses the same canvas node for the real mount, and an explicitly
+      // lost WebGL context never comes back - the card would stay blank
+      // (Chrome even paints a "context lost" placeholder over it) for the
+      // rest of the session. Real unmounts free the context via GC once
+      // the canvas node itself is discarded, same as any other WebGL app.
     }
   }, [color])
 

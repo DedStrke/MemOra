@@ -61,6 +61,19 @@
   /* Signature soft, layered shadows (tinted toward ink, not pure black). */
   --shadow-sm: 0 1px 2px rgb(24 26 52 / 0.05), 0 10px 30px -18px rgb(24 26 52 / 0.2);
   --shadow-lift: 0 3px 8px rgb(24 26 52 / 0.07), 0 24px 50px -22px rgb(24 26 52 / 0.32);
+  /* The colour a charged button's current (.btn-charge-current, further
+     down) swirls with. Deliberately declared here and NOT on .btn-charge
+     itself: a value set on the button's own selector would be a specified
+     value on that exact element, which always wins over an inherited one
+     regardless of specificity or cascade layers - it would shadow any
+     coloured ancestor no matter what. Left only at :root, a button with no
+     coloured ancestor inherits this (var(--brand), so it still re-themes
+     and re-accents for free), while a card that sets --subject or --tint
+     on itself (.subject-card, .start-subject, .start-method, .chapter-card
+     below) overrides it for every button nested inside, via ordinary
+     inheritance. Never replace the var(--brand) fallback with a literal
+     colour - that would break the accent picker for every plain button. */
+  --btn-tint: var(--brand);
   color-scheme: light;
 }
 
@@ -1038,11 +1051,19 @@ body {
     inset: 0;
     z-index: 0;
     border-radius: inherit;
+    /* Every stop is built from --btn-tint (see the :root comment above),
+       blended with the same violet/cyan sparkle the button has always
+       had, rather than a flat swap to a single local colour - a subject's
+       hue comes through as the dominant note while the electric,
+       multi-stop richness stays intact. With no coloured ancestor
+       --btn-tint falls back to --brand, so this reduces to a mix of
+       --brand with itself: visually close to the original brand/ring/
+       brand-strong swirl, not a pixel-identical reproduction of it. */
     background: conic-gradient(from 0deg,
-      var(--brand),
-      color-mix(in srgb, var(--ring) 40%, #cf6bff 60%),
-      color-mix(in srgb, var(--brand-strong) 35%, #3fe0ff 65%),
-      var(--brand)
+      var(--btn-tint),
+      color-mix(in srgb, var(--btn-tint) 45%, color-mix(in srgb, var(--ring) 40%, #cf6bff 60%) 55%),
+      color-mix(in srgb, var(--btn-tint) 55%, color-mix(in srgb, var(--brand-strong) 35%, #3fe0ff 65%) 45%),
+      var(--btn-tint)
     );
     filter: blur(6px) saturate(1.6);
     animation: btn-charge-spin 6s linear infinite;
@@ -1079,6 +1100,14 @@ body {
   .btn-charge:hover .btn-charge-label,
   .btn-charge:focus-visible .btn-charge-label {
     color: var(--on-brand);
+    /* --btn-tint now ranges over every subject/method colour (see
+       constants/content.js), not just the handful of curated accent
+       hues --on-brand is tuned for, so a couple of the brighter subject
+       tints sit closer to --on-brand than the accent picker ever gets. A
+       soft dark scrim behind the label is a uniform safety net for that -
+       cheap, and it does not depend on knowing any given tint's
+       lightness. */
+    text-shadow: 0 1px 3px color-mix(in srgb, black 45%, transparent);
   }
 
   /* ---- Wordmark gradient ----
@@ -1177,6 +1206,12 @@ body {
   [data-theme='high-contrast'] .btn-charge:hover .btn-charge-label,
   [data-theme='high-contrast'] .btn-charge:focus-visible .btn-charge-label {
     color: var(--on-brand);
+    /* The base hover rule's scrim exists for busy, unpredictable subject
+       colours behind the label - high contrast never shows one (the
+       current is display:none and the cover is a flat --brand fill), so
+       drop it rather than add an unexplained shadow to the mode built to
+       have none. */
+    text-shadow: none;
   }
   /* The real hero footage (AtmosphereBackground.jsx) - one encode, retinted
      per theme instead of re-exported per mood. Light stays close to the
@@ -1599,15 +1634,15 @@ h2 {
 
 /*
   "Close your gaps" on the dashboard (components/dashboard/CloseGaps.jsx):
-  a soft warning-coloured glow in the corner marks it as the "what is
-  broken" card, distinct from the subject cards' identity colours.
+  a soft warning-coloured glow in the corner marks the card itself as
+  "what is broken". Each row inside it is a SpineCard (components/ui/
+  SpineCard.jsx) in that row's own subject colour - the same silk
+  material the subject cards are made of, just one row at a time.
 */
 .gaps-glow {
   background: radial-gradient(closest-side, color-mix(in srgb, var(--r2-shaky) 28%, transparent), transparent);
   pointer-events: none;
 }
-.gap-row { transition: transform 0.15s ease, border-color 0.15s ease; }
-.gap-row:hover { transform: translateY(-1px); border-color: var(--brand); }
 [data-theme='high-contrast'] .gaps-glow { display: none; }
 
 /*
@@ -1615,7 +1650,15 @@ h2 {
   (pages/StudySession.jsx ChapterPicker). --subject / --tint are set
   inline per card from the subject's identity colour, so one stylesheet
   serves every subject and every method.
+
+  Each also feeds --btn-tint (see the :root comment near the top of this
+  file) from whichever of the two it carries, so a charged button
+  (.btn-charge) nested anywhere inside picks up that same colour instead
+  of always swirling the global --brand.
 */
+.start-subject { --btn-tint: var(--subject); }
+.start-method { --btn-tint: var(--tint); }
+.chapter-card { --btn-tint: var(--subject); }
 .start-hero {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -1704,13 +1747,17 @@ h2 {
 [data-theme='high-contrast'] .start-method-rec { background: var(--brand); color: var(--on-brand); }
 
 /*
-  Subject cards (pages/Dashboard.jsx SpineCard). The subject colour is the
-  material: a WebGL silk shader (components/ui/SilkField.jsx) fills the
-  card and fades out under the text, a gradient tile carries the initials,
-  and the border takes the colour on hover. --subject is set inline.
+  Subject cards (pages/Dashboard.jsx SpineCard, and CloseGaps' per-row
+  SpineCard). The subject colour is the material: a WebGL silk shader
+  (components/ui/SilkField.jsx) fills the card and fades out under the
+  text, a gradient tile carries the initials, and the border takes the
+  colour on hover. --subject is set inline. --btn-tint feeds any charged
+  button (.btn-charge) nested inside - "Start"/"Continue" - the same
+  colour, per the :root comment near the top of this file.
 */
 .subject-card {
   --subject: var(--brand);
+  --btn-tint: var(--subject);
   isolation: isolate;
   border-color: color-mix(in srgb, var(--subject) 22%, var(--line));
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;

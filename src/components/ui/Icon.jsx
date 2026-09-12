@@ -297,6 +297,118 @@ const ICONS = {
     ),
   },
 
+  // ---------------------------------------------------- subjects
+  // One duotone icon per SUBJECT_COLORS key (constants/content.js), wired up
+  // through subjectIcon(). Kept visually distinct from each other and from
+  // the generic icons above (leaf, users, brain, the bare `sigma` glyph).
+  subjectMaths: {
+    solid: <path d="M6 17Q12 5 18 17Z" />,
+    line: (
+      <>
+        <path d="M4 3v17h16" />
+        <path d="M6 17Q12 5 18 17" />
+      </>
+    ),
+  },
+  subjectEconomics: {
+    solid: (
+      <>
+        <rect x="4" y="14" width="4" height="6" />
+        <rect x="10" y="9" width="4" height="11" />
+        <rect x="16" y="4" width="4" height="16" />
+      </>
+    ),
+    line: (
+      <>
+        <rect x="4" y="14" width="4" height="6" />
+        <rect x="10" y="9" width="4" height="11" />
+        <rect x="16" y="4" width="4" height="16" />
+        <path d="M3 21h18" />
+      </>
+    ),
+  },
+  subjectComputerScience: {
+    solid: (
+      <>
+        <path d="M9 6 3 12 9 18 11 16 6 12 11 8Z" />
+        <path d="M15 6 21 12 15 18 13 16 18 12 13 8Z" />
+      </>
+    ),
+    line: (
+      <>
+        <path d="M9 6 3 12l6 6" />
+        <path d="M15 6l6 6-6 6" />
+      </>
+    ),
+  },
+  subjectBiology: {
+    solid: <path d="M4 12Q12 2 20 12Q12 16 4 12Z" />,
+    line: (
+      <>
+        <path d="M4 12Q12 2 20 12Q12 16 4 12Z" />
+        <path d="M5 12h13" />
+      </>
+    ),
+  },
+  subjectChemistry: {
+    solid: <path d="M10 3h4v6l6 11H4l6-11V3Z" />,
+    line: (
+      <>
+        <path d="M10 3h4v6l6 11H4l6-11V3Z" />
+        <path d="M6.3 16h11.4" />
+      </>
+    ),
+  },
+  subjectPhysics: {
+    solid: <circle cx="12" cy="12" r="9" />,
+    line: (
+      <>
+        <ellipse cx="12" cy="12" rx="9" ry="3.2" />
+        <ellipse cx="12" cy="12" rx="9" ry="3.2" transform="rotate(60 12 12)" />
+        <ellipse cx="12" cy="12" rx="9" ry="3.2" transform="rotate(120 12 12)" />
+        <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
+      </>
+    ),
+  },
+  subjectPsychology: {
+    solid: (
+      <>
+        <rect x="3" y="4" width="13" height="9" rx="3" />
+        <rect x="8" y="11" width="13" height="9" rx="3" />
+      </>
+    ),
+    line: (
+      <>
+        <rect x="3" y="4" width="13" height="9" rx="3" />
+        <path d="M6 13l-1.3 3.2 3.5-1.7" />
+        <rect x="8" y="11" width="13" height="9" rx="3" />
+        <path d="M18 20l1.3 3.2-3.5-1.7" />
+      </>
+    ),
+  },
+  subjectSociology: {
+    solid: (
+      <>
+        <circle cx="5.5" cy="8.5" r="2.4" />
+        <path d="M1.8 19a3.7 3.7 0 0 1 7.4 0z" />
+        <circle cx="18.5" cy="8.5" r="2.4" />
+        <path d="M14.8 19a3.7 3.7 0 0 1 7.4 0z" />
+        <circle cx="12" cy="7.5" r="3.2" />
+        <path d="M6.3 20a5.7 5.7 0 0 1 11.4 0z" />
+      </>
+    ),
+    line: (
+      <>
+        <circle cx="5.5" cy="8.5" r="2.4" />
+        <path d="M1.8 19a3.7 3.7 0 0 1 7.4 0" />
+        <circle cx="18.5" cy="8.5" r="2.4" />
+        <path d="M14.8 19a3.7 3.7 0 0 1 7.4 0" />
+        <circle cx="12" cy="7.5" r="3.2" />
+        <path d="M6.3 20a5.7 5.7 0 0 1 11.4 0" />
+      </>
+    ),
+  },
+
   // --------------------------------------------------- structural / small
   music: (
     <>

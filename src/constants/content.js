@@ -117,6 +117,21 @@ export const SUBJECT_COLORS = {
 }
 export const subjectColor = (name) => SUBJECT_COLORS[name] || '#6b7594'
 
+// Which Icon (components/ui/Icon.jsx) represents each subject - the
+// duotone `subject*` icons defined there, one per SUBJECT_COLORS key.
+// Falls back to the generic cap icon for a subject with no dedicated glyph.
+export const SUBJECT_ICONS = {
+  Maths: 'subjectMaths',
+  Economics: 'subjectEconomics',
+  'Computer Science': 'subjectComputerScience',
+  Biology: 'subjectBiology',
+  Chemistry: 'subjectChemistry',
+  Physics: 'subjectPhysics',
+  Psychology: 'subjectPsychology',
+  Sociology: 'subjectSociology',
+}
+export const subjectIcon = (name) => SUBJECT_ICONS[name] || 'cap'
+
 // A subject "mascot" emoji shown next to each subject.
 export const SUBJECT_MASCOTS = {
   maths: '➗',
