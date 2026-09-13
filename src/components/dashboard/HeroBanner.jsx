@@ -92,7 +92,7 @@ export default function HeroBanner({
 
   return (
     <motion.section variants={fadeInUp} aria-label="Your banner" className="card overflow-hidden rounded-3xl">
-      <Banner src={banner} pos={bannerPos} className="h-28 sm:h-36">
+      <Banner src={banner} pos={bannerPos} className="aspect-[24/7] w-full">
         <span aria-hidden="true" className="banner-scrim absolute inset-0" />
         <div className="relative flex h-full items-start justify-between p-4 sm:p-5">
           <p className="rounded-full bg-black/25 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-widest text-white backdrop-blur-sm">

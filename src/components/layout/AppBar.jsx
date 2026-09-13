@@ -3,8 +3,8 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NAV_LINKS } from '@/constants/content'
 import Icon from '@/components/ui/Icon'
-import EyeMark from '@/components/ui/EyeMark'
-import Wordmark from '@/components/ui/Wordmark'
+import SigilMark from '@/components/ui/SigilMark'
+import SigilWordmark from '@/components/ui/SigilWordmark'
 import { useApp, THEME_META } from '@/context/AppProvider'
 
 // Icons for the nav destinations, so the menu reads clearly.
@@ -54,9 +54,9 @@ export default function AppBar() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  // Same collapsing treatment as the landing header: transparent and
-  // edge-to-edge at rest, fading in a glass panel and floating as an inset
-  // pill once the page scrolls. A discrete "past the threshold" boolean
+  // Same collapsing treatment as the landing header: a glass panel at all
+  // times (never transparent, so page content can't show through it),
+  // floating as an inset pill once the page scrolls. A discrete "past the
   // driving plain CSS transitions, rather than a continuous per-pixel
   // scroll-linked style - the earlier version recalculated an animated
   // border-radius on a backdrop-filter layer every scroll frame, which is
@@ -86,7 +86,7 @@ export default function AppBar() {
         }`}
       />
       <div
-        className={`relative mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 ease-out ${
+        className={`relative flex w-full items-center justify-between px-6 transition-[padding] duration-300 ease-out sm:px-8 ${
           scrolled ? 'py-2.5' : 'py-[18px]'
         }`}
       >
@@ -99,10 +99,10 @@ export default function AppBar() {
             className="flex items-center gap-2 text-xl font-semibold text-fg"
           >
             <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.88]' : 'scale-100'}`}>
-              <EyeMark pulseOnHover pulseOnClick className="h-9 w-9 text-brand" />
+              <SigilMark className="h-9 w-9 text-brand" />
             </div>
             <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.88]' : 'scale-100'}`}>
-              <Wordmark />
+              <SigilWordmark />
             </div>
           </Link>
 

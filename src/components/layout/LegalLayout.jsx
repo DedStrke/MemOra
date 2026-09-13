@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import Wordmark from '@/components/ui/Wordmark'
+import SigilWordmark from '@/components/ui/SigilWordmark'
 import Footer from '@/components/layout/Footer'
 import Section from '@/components/ui/Section'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
@@ -25,7 +25,7 @@ export default function LegalLayout({ icon, title, updated, intro, sections }) {
 
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-6">
         <Link to={logoTo} className="flex items-center gap-2">
-          <Wordmark />
+          <SigilWordmark />
         </Link>
         <Link to="/" className="text-sm font-semibold text-fg transition-colors hover:text-brand-strong">
           Back to home

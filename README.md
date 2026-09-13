@@ -11,7 +11,7 @@ are struggling.
 
 Stack: **Vite + React 19 (JSX) + Tailwind v4 + Framer Motion + React Router v7**.
 All state persists to `localStorage`, so the demo runs with no backend. Ships as
-a static site to **GitHub Pages**.
+a static site to **Firebase Hosting** (memoraa.web.app).
 
 ---
 
@@ -22,7 +22,7 @@ The study session (`/study`) is the heart of the app:
 1. **Mood check-in.** Great, Okay, or Struggling.
 2. **Goal-referenced encouragement.** The message is keyed to your onboarding
    goal and current mood (for example, aiming for top grades and feeling okay:
-   _"Steady wins the A\*. A focused session now compounds fast."_).
+   _"Steady wins the A*. A focused session now compounds fast."_).
 3. **Focus block with real content.** A running timer plus AI-generated revision
    material chosen by technique: flashcards, MCQs with instant feedback, exam
    questions with mark schemes, blurting, or active recall.
@@ -38,9 +38,10 @@ The study session (`/study`) is the heart of the app:
 | **Onboarding wizard**    | Name, year, goal, course type, exam-board spec, and subjects     |
 | **Dashboard**            | Exam countdown, prioritised subject pillars, tools, technique picker, knowledge decay |
 | **Flashcard maker**      | Study AI-built decks or create, save, and delete your own        |
+| **Mock exams**           | Timed, board-specific papers with randomised questions and mark schemes |
 | **Community**            | Post a win or a question and cheer others on                     |
-| **Wellbeing**            | A breathing widget and small resets for when study gets heavy    |
-| **Progress**             | Per-subject trend sparklines and stats                           |
+| **Friends**              | Add friends, view leaderboards, compare progress                 |
+| **Progress**             | Per-subject trend sparklines, mistake analysis, XP tracking      |
 | **Profile + auth**       | Sign up, log in, log out, all on-device                          |
 
 ## Adapting for how people learn
@@ -73,11 +74,13 @@ npm run dev        # http://localhost:5173
 | `npm run build`   | Production build into `dist/`      |
 | `npm run preview` | Preview the production build       |
 | `npm run lint`    | Lint the codebase (oxlint)         |
+| `npm run deploy`  | Build and deploy to Firebase Hosting |
 
-Deploys itself: a push to `main` triggers `.github/workflows/deploy.yml`,
-which builds and publishes to GitHub Pages. No manual deploy step.
+Deploys itself: a push to `main` triggers `.github/workflows/deploy.yml`
+(present but disabled - deploy is now manual via `npm run deploy` to Firebase).
+The GitHub Pages workflow is left in place for recoverability.
 
-Live URL: https://dedstrke.github.io/MemOra/
+Live URL: https://memoraa.web.app
 
 ## Project structure
 
@@ -91,20 +94,91 @@ src/
 ├── lib/
 │   ├── motion.js                # Shared Framer Motion variants
 │   ├── fonts.js                 # Self-hosted fonts (no CDN)
-│   └── supabase.js              # Optional Supabase client (unused in the demo)
+│   ├── auth.js                  # localStorage auth helpers
+│   ├── sessions.js              # Study session persistence
+│   ├── attempts.js              # Attempt tracking
+│   ├── gaps.js                  # Knowledge gap analysis
+│   ├── mistakes.js              # Mistake tracking
+│   ├── xp.js                    # XP and levelling
+│   ├── pace.js                  # Pacing analytics
+│   ├── daily.js                 # Daily rewards/quotes
+│   ├── techniques.js            # Revision technique definitions
+│   ├── seo.js                   # SEO metadata helpers
+│   ├── slug.js                  # URL slug utilities
+│   ├── spotify.js               # Spotify integration
+│   ├── friends.js               # Friends/leaderboard logic
+│   ├── chat.js                  # Community chat
+│   ├── blobStore.js             # IndexedDB blob storage
+│   ├── avatar.js                # Avatar generation
+│   ├── image.js                 # Image handling
+│   ├── imagePos.js              # Image positioning
+│   ├── profanity.js             # Content filtering
+│   └── safety.js                # Safety utilities
 ├── constants/
 │   ├── content.js               # ALL copy + option definitions
-│   ├── library.js               # AI revision content (flashcards / MCQ / exam Qs)
-│   └── mock.js                  # Demo data (progress, decay, community, wellbeing)
+│   ├── library.js               # AI revision content index (flashcards / MCQ / exam Qs)
+│   ├── subjects/                # Per-subject revision content (Maths, Econ, CS)
+│   │   ├── maths-*.js
+│   │   ├── econ-*.js
+│   │   └── cs-*.js
+│   ├── diagram-*.js             # Interactive diagram definitions
+│   ├── econ-diagrams.js         # Economics diagram cards
+│   ├── econ-essay-*.js          # Economics essay bank, answers, annotations
+│   ├── econ-mcq-*.js            # Economics MCQ questions
+│   ├── econ-exam-*.js           # Economics exam questions
+│   ├── maths-notes-*.js         # Maths notes and MCQs
+│   ├── maths-exams-*.js         # Maths exam questions
+│   ├── assessments.js           # Assessment definitions
+│   ├── mascots.js               # Mascot definitions
+│   ├── quotes.js                # Daily quotes
+│   └── notes-merge.js           # Note merging utilities
+├── hooks/
+│   └── useMe.js                 # Current user hook
 ├── components/
-│   ├── layout/                  # AppBar, AppLayout, ThemeSwitcher, MascotChat
-│   ├── dashboard/               # CountdownCard, SubjectPillars, KnowledgeDecay
-│   └── ui/                      # Button, Card-less kit: Section, Icon, Mascot,
-│                                #   WheelLogo, FlipCard, RevisionRunner, Sparkline,
-│                                #   ProgressBar, OptionCard, Marquee, CursorGlow
-└── pages/                       # Landing, Login, Signup, Dashboard, Profile,
-                                 #   StudySession, Flashcards, Community,
-                                 #   MentalHealth, Progress, ComingSoon
+│   ├── layout/                  # AppBar, AppLayout, ThemeSwitcher, Footer, LegalLayout, ScrollToTop, Seo
+│   ├── dashboard/               # CountdownCard, SubjectPillars, KnowledgeDecay, AssessmentsCard, CloseGaps, DailyQuote, DailyReward, HeroBanner, PaceVerdict, WeekChart
+│   ├── diagrams/                # Interactive diagrams (Maths, Economics, CS)
+│   │   ├── index.jsx
+│   │   ├── primitives.jsx
+│   │   ├── maths.jsx
+│   │   ├── mathsExtra.jsx
+│   │   ├── economics.jsx
+│   │   ├── economicsExtra.jsx
+│   │   ├── economicsGaps.jsx
+│   │   ├── econGeometry.js
+│   │   ├── computerScience.jsx
+│   │   └── computerScienceExtra.jsx
+│   ├── econ/                    # Economics-specific components
+│   ├── friends/                 # FriendCard, LeaderboardList
+│   └── ui/                      # Reusable UI kit:
+│       # Button, Section, Icon, Mascot, WheelLogo, FlipCard,
+│       # RevisionRunner, Sparkline, ProgressBar, OptionCard,
+│       # Marquee, CursorGlow, FocusMusic, SpeakButton, SketchPad,
+│       # ImageAdjust, AccentPicker, Avatar, BandBar, Banner,
+│       # Breadcrumbs, Buddy, Chip, EssayPlanner, EyeMark, LevelUp,
+│       # MascotPicker, NeuronField, Pfp, ReadinessRing, SilkField,
+│       # StudyTimer, SubjectPicker, Toast, Wordmark, AtmosphereBackground,
+│       # AnswerInput, ChapterBar
+├── pages/
+│   ├── dev/
+│   │   └── DiagramGallery.jsx   # Dev-only diagram preview
+│   ├── Landing.jsx
+│   ├── HowItWorks.jsx
+│   ├── SignIn.jsx
+│   ├── Dashboard.jsx
+│   ├── Profile.jsx
+│   ├── Start.jsx
+│   ├── StudySession.jsx
+│   ├── MockExam.jsx
+│   ├── Flashcards.jsx
+│   ├── Progress.jsx
+│   ├── Performance.jsx          # Mistakes/XP analysis (route: /mistakes)
+│   ├── Community.jsx
+│   ├── Friends.jsx
+│   ├── Privacy.jsx
+│   ├── Terms.jsx
+│   ├── Contact.jsx
+│   └── NotFound.jsx
 ```
 
 ## Conventions
@@ -113,7 +187,7 @@ src/
   `text-fg`, `bg-surface`, `border-line`, `bg-brand`, `text-brand-strong`,
   `bg-flash-soft`, and so on). Add tokens in `src/index.css`.
 - **Copy** lives in `src/constants/content.js`; **revision content** in
-  `library.js`; **demo data** in `mock.js`.
+  `library.js` and subject folders; **demo data** is generated inline.
 - **Animations:** import variants from `src/lib/motion.js`.
 - **Imports:** use the `@/` alias for anything under `src/`.
 - **Components:** one per file, `PascalCase.jsx`, default export named like the

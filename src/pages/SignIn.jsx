@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Pfp from '@/components/ui/Pfp'
-import Wordmark from '@/components/ui/Wordmark'
+import SigilWordmark from '@/components/ui/SigilWordmark'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import AccentPicker from '@/components/ui/AccentPicker'
 import MascotPicker, { LookSwatch } from '@/components/ui/MascotPicker'
@@ -172,7 +172,7 @@ export default function SignIn() {
 
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-6">
         <Link to={logoTo} className="flex items-center gap-2">
-          <Wordmark />
+          <SigilWordmark />
         </Link>
         {!showingSetup && (
           <Link to="/" className="text-sm font-semibold text-fg transition-colors hover:text-brand-strong">

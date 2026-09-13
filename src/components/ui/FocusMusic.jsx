@@ -123,6 +123,7 @@ export default function FocusMusic() {
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
   const [connected, setConnected] = useState(() => Boolean(spotifyAccessToken()))
+  const [connectBusy, setConnectBusy] = useState(false)
   const [mine, setMine] = useState(null)
   const [mineError, setMineError] = useState(null)
   const [playing, setPlaying] = useState(false)
@@ -208,9 +209,14 @@ export default function FocusMusic() {
   // Account: finish a login round trip, list playlists, poll now-playing.
   useEffect(() => {
     if (!spotifyConfigured()) return
-    finishSpotifyLogin().then((ok) => {
-      if (ok) {
+    finishSpotifyLogin().then((result) => {
+      if (result === true) {
         setConnected(true)
+        setState((s) => ({ ...s, open: true }))
+      } else if (typeof result === 'string') {
+        // The exchange failed - say why, with the panel open, instead of
+        // silently showing Connect again.
+        setError(result)
         setState((s) => ({ ...s, open: true }))
       }
     })
@@ -355,10 +361,21 @@ export default function FocusMusic() {
                 ) : (
                   <button
                     type="button"
-                    onClick={() => beginSpotifyLogin()}
-                    className="rounded-full bg-brand px-2.5 py-1 text-[0.7rem] font-bold text-on-brand hover:opacity-90"
+                    disabled={connectBusy}
+                    onClick={async () => {
+                      setError(null)
+                      setConnectBusy(true)
+                      try {
+                        await beginSpotifyLogin()
+                      } catch {
+                        setError('Could not open Spotify login - allow cookies/site storage for this site, then try again.')
+                      } finally {
+                        setConnectBusy(false)
+                      }
+                    }}
+                    className="rounded-full bg-brand px-2.5 py-1 text-[0.7rem] font-bold text-on-brand hover:opacity-90 disabled:opacity-60"
                   >
-                    Connect Spotify
+                    {connectBusy ? 'Opening…' : 'Connect Spotify'}
                   </button>
                 )
               ) : (

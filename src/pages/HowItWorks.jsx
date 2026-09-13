@@ -5,9 +5,7 @@ import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Mascot from '@/components/ui/Mascot'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import EyeMark from '@/components/ui/EyeMark'
-import Wordmark from '@/components/ui/Wordmark'
-import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
+import MarketingHeader from '@/components/layout/MarketingHeader'
 import Footer from '@/components/layout/Footer'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
@@ -71,19 +69,7 @@ export default function HowItWorks() {
     <div className="relative min-h-screen overflow-hidden">
       <AtmosphereBackground />
 
-      {/* Top bar */}
-      <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link to={logoTo} className="flex items-center gap-2 text-xl font-semibold text-fg">
-          <EyeMark idle pulseOnClick className="h-8 w-8 text-brand" />
-          <Wordmark />
-        </Link>
-        <div className="flex items-center gap-3">
-          <ThemeSwitcher />
-          <Button as={Link} to="/dashboard" size="sm">
-            Go to dashboard
-          </Button>
-        </div>
-      </header>
+      <MarketingHeader ctaLabel="Go to dashboard" ctaTo="/dashboard" />
 
       {/* Hero */}
       <div className="relative z-10">

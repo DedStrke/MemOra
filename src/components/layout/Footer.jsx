@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Wordmark from '@/components/ui/Wordmark'
+import SigilWordmark from '@/components/ui/SigilWordmark'
 import { FOOTER_COLUMNS, SITE } from '@/constants/content'
 import { useApp } from '@/context/AppProvider'
 
@@ -42,7 +42,7 @@ export default function Footer() {
         <div className="mt-14 flex flex-col items-center gap-6 border-t border-line pt-8 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
           <div>
             <Link to={logoTo} className="flex items-center gap-2 text-fg">
-              <Wordmark />
+              <SigilWordmark />
             </Link>
             <p className="mt-2 text-sm text-muted">{SITE.tagline}</p>
           </div>

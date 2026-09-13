@@ -1,0 +1,689 @@
+<title>Memora Command Sigil</title>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     TOKENS - lifted directly from Memora's own dark theme + the
+     purple accent (src/index.css [data-theme='dark'][data-accent=
+     'purple']), so this presentation IS the site's palette, not
+     an approximation of it. Single-theme by choice: the brief asks
+     for "the actual website", and the actual website's identity
+     home is its dark mode.
+     ============================================================ */
+  :root {
+    --bg: #05070f;
+    --panel: #0e1526;
+    --panel-raised: #182036;
+    --line: #29334d;
+    --line-soft: #1c2438;
+    --ink: #f1f5fb;
+    --muted: #97a2c2;
+    --muted-dim: #6b769a;
+    --accent: #a78bfa;
+    --accent-strong: #c4b5fd;
+    --accent-soft: #241c3d;
+    --font-display: 'Bricolage Grotesque', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(1200px 600px at 15% -10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent),
+      radial-gradient(900px 500px at 85% 8%, color-mix(in srgb, var(--accent) 6%, transparent), transparent);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent-soft); color: var(--accent-strong); }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted-dim);
+  }
+  .section-title { font-size: clamp(1.5rem, 1.1rem + 1.3vw, 2.1rem); color: var(--ink); }
+  .section-sub { margin-top: 10px; max-width: 62ch; color: var(--muted); font-size: 0.98rem; line-height: 1.6; }
+
+  section { padding: 88px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-of-type { border-bottom: none; }
+
+  /* ============================================================
+     THE SIGIL - one shared SVG body, reused verbatim everywhere.
+     Geometry is exactly src/constants/sigil-geometry.js. Never
+     redrawn per section, per size, or per colour.
+     ============================================================ */
+  .sigil { color: var(--accent); }
+  .sigil-sweep { opacity: 0.85; }
+  .sigil-fragment { opacity: 0; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero { padding: 108px 0 96px; text-align: center; }
+  .hero-mark { width: 128px; height: 128px; margin: 0 auto; }
+  .hero-mark svg { width: 100%; height: 100%; }
+  .hero-lockup {
+    margin-top: 28px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3rem, 2rem + 4vw, 5.5rem);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .wm-o { height: 0.6em; width: 0.6em; transform: translateY(0.1em); color: var(--accent); }
+  .hero-tagline {
+    margin-top: 22px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-strip {
+    margin: 56px auto 0;
+    max-width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .hero-strip .line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
+  .hero-strip .dot { width: 5px; height: 5px; border-radius: 999px; background: var(--accent); }
+
+  .kit-row { margin-top: 72px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: 20px; overflow: hidden; }
+  .kit-cell { background: var(--panel); padding: 40px 24px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+  .kit-cell svg, .kit-cell .wm-o { color: var(--accent); }
+  .kit-icon { width: 52px; height: 52px; }
+  .kit-word { font-family: var(--font-display); font-weight: 700; font-size: 1.7rem; display: flex; align-items: baseline; gap: 2px; color: var(--ink); }
+  .kit-word .wm-o { height: 0.62em; width: 0.62em; transform: translateY(0.1em); }
+  .kit-label { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-dim); }
+
+  /* ============================================================
+     DASHBOARD INTEGRATION - the real AppBar, rebuilt from its own
+     source classes/tokens rather than a compressed screenshot, so
+     the type and colour are exact rather than approximate.
+     ============================================================ */
+  .stage-label { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .stage-label .tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-strong); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; }
+  .stage-label .desc { font-size: 0.82rem; color: var(--muted); }
+
+  .browser-frame { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #060a16; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6); }
+  .browser-chrome { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #0a1120; border-bottom: 1px solid var(--line); }
+  .browser-chrome span { width: 9px; height: 9px; border-radius: 999px; background: #29334d; }
+
+  .navbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; background: #060a16; border-bottom: 1px solid var(--line); font-family: var(--font-body); }
+  .navbar-left { display: flex; align-items: center; gap: 10px; }
+  .navbar .sigil { width: 30px; height: 30px; }
+  .navbar-word { font-family: var(--font-display); font-weight: 700; font-size: 1.28rem; display: flex; align-items: baseline; gap: 1px; color: var(--ink); }
+  .navbar-word .wm-o { height: 0.6em; width: 0.6em; transform: translateY(0.09em); }
+  .navbar-links { display: flex; align-items: center; gap: 26px; margin-left: 34px; }
+  .navbar-links a { font-size: 0.86rem; font-weight: 600; color: var(--muted); text-decoration: none; }
+  .navbar-links a.active { color: var(--accent-strong); }
+  .navbar-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+  .navbar-avatar { width: 30px; height: 30px; border-radius: 999px; background: var(--panel-raised); border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); font-size: 0.7rem; }
+  .navbar-ghost { flex: 1; }
+  .desktop-body { padding: 20px 24px 26px; background: #05070f; }
+  .ghost-hero { height: 96px; border-radius: 16px; background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 18%, #0e1526), #0e1526 65%); border: 1px solid var(--line-soft); }
+  .ghost-row { margin-top: 14px; display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
+  .ghost-card { height: 58px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line-soft); }
+
+  .integration-grid { margin-top: 40px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px; align-items: start; }
+  @media (max-width: 860px) { .integration-grid { grid-template-columns: 1fr; } }
+
+  .mobile-frame { width: 240px; margin: 0 auto; border: 1px solid var(--line); border-radius: 28px; padding: 10px; background: #060a16; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6); }
+  .mobile-screen { border-radius: 20px; overflow: hidden; background: #05070f; }
+  .mobile-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #060a16; border-bottom: 1px solid var(--line); }
+  .mobile-nav .sigil { width: 24px; height: 24px; }
+  .mobile-nav .navbar-word { font-size: 1.02rem; }
+  .mobile-nav .hamburger { display: flex; flex-direction: column; gap: 4px; }
+  .mobile-nav .hamburger span { width: 18px; height: 2px; background: var(--muted); border-radius: 2px; }
+  .mobile-body { padding: 16px; }
+  .mobile-hero { height: 78px; border-radius: 14px; background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 18%, #0e1526), #0e1526 65%); border: 1px solid var(--line-soft); }
+  .mobile-card { margin-top: 10px; height: 40px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line-soft); }
+
+  .favicon-row { margin-top: 26px; display: flex; align-items: center; gap: 18px; }
+  .favicon-tile { width: 48px; height: 48px; border-radius: 12px; background: var(--accent); display: grid; place-items: center; box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .favicon-tile svg { width: 60%; height: 60%; color: #05070f; }
+  .favicon-tab { display: flex; align-items: center; gap: 8px; padding: 7px 12px 7px 8px; background: var(--panel-raised); border: 1px solid var(--line); border-radius: 8px 8px 0 0; font-size: 0.76rem; color: var(--muted); }
+  .favicon-tab .dot { width: 16px; height: 16px; border-radius: 4px; background: var(--accent); display: grid; place-items: center; }
+  .favicon-tab .dot svg { width: 62%; height: 62%; color: #05070f; }
+
+  /* ============================================================
+     ANATOMY
+     ============================================================ */
+  .anatomy-grid { margin-top: 44px; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
+  @media (max-width: 860px) { .anatomy-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .anatomy-stage { position: relative; }
+  .anatomy-stage svg { width: 100%; height: auto; display: block; }
+  .anatomy-list { display: flex; flex-direction: column; gap: 26px; }
+  .anatomy-item { display: flex; gap: 16px; }
+  .anatomy-swatch { width: 8px; border-radius: 999px; flex-shrink: 0; margin-top: 4px; }
+  .anatomy-item h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 700; color: var(--ink); }
+  .anatomy-item h3 span { color: var(--muted-dim); font-weight: 500; }
+  .anatomy-item p { margin-top: 5px; font-size: 0.92rem; color: var(--muted); line-height: 1.6; }
+
+  .letter-notes { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 720px) { .letter-notes { grid-template-columns: 1fr 1fr; } }
+  .letter-note { border: 1px solid var(--line-soft); border-radius: 14px; padding: 18px; }
+  .letter-note .glyph { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-strong); }
+  .letter-note p { margin-top: 8px; font-size: 0.84rem; color: var(--muted); line-height: 1.5; }
+
+  /* ============================================================
+     ANIMATION STORYBOARD - the identical SVG in every tile; only
+     CSS states differ. Idle loops for real; hover is a real
+     :hover; click / XP / level-up fire on a real click.
+     ============================================================ */
+  .story-grid { margin-top: 44px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  @media (max-width: 980px) { .story-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .story-grid { grid-template-columns: 1fr; } }
+  .story-card { border: 1px solid var(--line); border-radius: 16px; padding: 20px 16px 18px; background: var(--panel); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+  .story-num { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted-dim); letter-spacing: 0.05em; }
+  .story-title { font-weight: 700; font-size: 0.94rem; color: var(--ink); }
+  .story-timing { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-strong); }
+  .story-stage { position: relative; width: 68px; height: 68px; display: grid; place-items: center; }
+  .story-stage svg { width: 56px; height: 56px; }
+  .story-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; min-height: 60px; }
+  .story-btn { border: 1px solid var(--line); background: var(--panel-raised); color: var(--accent-strong); font-family: var(--font-body); font-size: 0.76rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; cursor: pointer; }
+  .story-btn:hover { border-color: var(--accent); }
+  .story-btn:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* idle: always on */
+  .idle-blade { animation: idleBlade 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .idle-sweep { animation: idleSweep 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes idleBlade { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.4px); } }
+  @keyframes idleSweep { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(1.6deg); } }
+
+  /* hover: real :hover, no JS */
+  .hover-card .sigil-blade { transition: transform 0.22s cubic-bezier(0.16,1,0.3,1); transform-box: fill-box; transform-origin: center; }
+  .hover-card .sigil-sweep { transition: transform 0.22s cubic-bezier(0.16,1,0.3,1); transform-box: fill-box; transform-origin: center; }
+  .hover-card .sigil-terminal { transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1); transform-box: fill-box; transform-origin: center; }
+  .hover-card:hover .sigil-blade { transform: translateY(-3px); }
+  .hover-card:hover .sigil-sweep { transform: rotate(-3deg) scale(0.97); }
+  .hover-card:hover .sigil-terminal { transform: scale(1.1); }
+
+  /* click / xp / level-up: JS toggles these, CSS keyframes do the rest */
+  .click-fire .sigil { animation: clickFire 0.34s cubic-bezier(0.16,1,0.3,1); }
+  @keyframes clickFire {
+    0% { transform: scale(1) rotate(0deg); }
+    35% { transform: scale(0.9) rotate(-5deg); }
+    70% { transform: scale(1.04) rotate(2deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+  .xp-fire .sigil-terminal { animation: xpTerminal 0.43s cubic-bezier(0.16,1,0.3,1); transform-box: fill-box; transform-origin: center; }
+  .xp-fire .sigil-fragment { animation: xpFragment 0.43s ease-out; }
+  @keyframes xpTerminal { 0%, 100% { transform: scale(1); } 45% { transform: scale(1.14) translateY(-1px); } }
+  @keyframes xpFragment { 0% { opacity: 0; transform: translateY(0) scale(0.6); } 45% { opacity: 1; } 100% { opacity: 0; transform: translateY(-8px) scale(1); } }
+  .levelup-fire .sigil { animation: levelScale 0.82s cubic-bezier(0.16,1,0.3,1); }
+  .levelup-fire .sigil-fragment { animation: levelFragment 0.82s ease-out; }
+  .levelup-fire .story-ring { animation: levelRing 0.7s ease-out; }
+  @keyframes levelScale {
+    0% { transform: scale(1) rotate(0deg); }
+    22% { transform: scale(0.9) rotate(0deg); }
+    52% { transform: scale(1.32) rotate(-3deg); }
+    75% { transform: scale(0.97) rotate(1deg); }
+    100% { transform: scale(1.02) rotate(0deg); }
+  }
+  @keyframes levelFragment { 0%, 18% { opacity: 0; transform: translateY(0) scale(0.5); } 55% { opacity: 1; transform: translateY(-9px) scale(1.1); } 100% { opacity: 0; transform: translateY(-13px) scale(0.9); } }
+  .story-ring { position: absolute; inset: 0; border-radius: 999px; border: 2px solid var(--accent); opacity: 0; }
+  @keyframes levelRing { 0% { opacity: 0.7; transform: scale(0.4); } 100% { opacity: 0; transform: scale(1.9); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .idle-blade, .idle-sweep, .click-fire .sigil, .xp-fire .sigil-terminal, .xp-fire .sigil-fragment,
+    .levelup-fire .sigil, .levelup-fire .sigil-fragment, .levelup-fire .story-ring { animation: none !important; }
+    .hover-card .sigil-blade, .hover-card .sigil-sweep, .hover-card .sigil-terminal { transition: none !important; }
+  }
+
+  /* ============================================================
+     THEMES + ACCENTS
+     ============================================================ */
+  .theme-grid { margin-top: 44px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  @media (max-width: 780px) { .theme-grid { grid-template-columns: repeat(2, 1fr); } }
+  .theme-card { border-radius: 16px; padding: 30px 16px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; border: 1px solid var(--line-soft); }
+  .theme-card svg { width: 34px; height: 34px; }
+  .theme-word { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; display: flex; align-items: baseline; gap: 1px; }
+  .theme-word .wm-o { height: 0.6em; width: 0.6em; transform: translateY(0.09em); }
+  .theme-name { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .theme-dark { background: #0e1526; color: #a78bfa; }
+  .theme-dark .theme-word { color: #f1f5fb; }
+  .theme-dark .theme-name { color: #97a2c2; }
+  .theme-light { background: #fbfaf8; color: #2563eb; }
+  .theme-light .theme-word { color: #14161c; }
+  .theme-light .theme-name { color: #6b7280; }
+  .theme-cream { background: #f2ead8; color: #9a3412; }
+  .theme-cream .theme-word { color: #2c2013; }
+  .theme-cream .theme-name { color: #8a7355; }
+  .theme-hc { background: #000000; color: #ffe066; border-color: #ffe066; }
+  .theme-hc .theme-word { color: #ffffff; }
+  .theme-hc .theme-name { color: #ffe066; }
+
+  .accent-grid { margin-top: 44px; display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 14px; }
+  .accent-card { border: 1px solid var(--line-soft); border-radius: 14px; padding: 18px 10px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: var(--panel); }
+  .accent-card svg { width: 30px; height: 30px; }
+  .accent-name { font-size: 0.72rem; font-weight: 600; color: var(--muted); }
+  .accent-mono { background: #ffffff; }
+  .accent-mono svg { color: #05070f; }
+  .accent-mono .accent-name { color: #05070f; opacity: 0.7; }
+
+  /* ============================================================
+     SPEC FOOTER
+     ============================================================ */
+  .spec-footer { padding: 64px 0 96px; }
+  .spec-grid { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 860px) { .spec-grid { grid-template-columns: 1fr; } }
+  .spec-block h3 { font-family: var(--font-body); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-dim); margin-bottom: 12px; }
+  pre { margin: 0; overflow-x: auto; font-family: var(--font-mono); font-size: 0.76rem; line-height: 1.7; color: var(--muted); background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; padding: 16px; }
+  pre b { color: var(--accent-strong); font-weight: 600; }
+  .foot-note { margin-top: 56px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 0.78rem; color: var(--muted-dim); }
+  .foot-note .foot-brand { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+  .foot-note svg { width: 16px; height: 16px; color: var(--accent); }
+</style>
+
+<!-- ================================================================
+     THE SIGIL, as a reusable inline template referenced by id="sigil-tpl".
+     Browsers don't support SVG <use> across separate documents cleanly
+     for currentColor inheritance in every context here, so each instance
+     below is the same literal markup - the geometry is identical byte for
+     byte everywhere it appears (constants/sigil-geometry.js).
+     ================================================================ -->
+
+<div class="wrap">
+
+  <!-- ============================================================ HERO -->
+  <section class="hero">
+    <p class="eyebrow">Memora &middot; Brand identity</p>
+    <div class="hero-mark">
+      <svg class="sigil" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+        <path class="sigil-sweep" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+        <path class="sigil-blade" d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+        <path class="sigil-terminal" d="M84 40 L95 8 L102 40 L93 35 Z" />
+        <path class="sigil-fragment" d="M104 48 L118 26 L109 50 Z" />
+      </svg>
+    </div>
+    <div class="hero-lockup">
+      <span>Mem</span>
+      <svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" />
+        <path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" />
+      </svg>
+      <span>ra</span>
+    </div>
+    <p class="hero-tagline">Anime-inspired command identity</p>
+    <div class="hero-strip"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+
+    <div class="kit-row">
+      <div class="kit-cell">
+        <svg class="kit-icon" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+          <path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+          <path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+          <path d="M84 40 L95 8 L102 40 L93 35 Z" />
+        </svg>
+        <p class="kit-label">Icon only</p>
+      </div>
+      <div class="kit-cell">
+        <span class="kit-word">
+          <span>Mem</span>
+          <svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg>
+          <span>ra</span>
+        </span>
+        <p class="kit-label">Wordmark only</p>
+      </div>
+      <div class="kit-cell">
+        <svg class="kit-icon" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+          <path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+          <path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+          <path d="M84 40 L95 8 L102 40 L93 35 Z" />
+        </svg>
+        <span class="kit-word" style="font-size:1.4rem">
+          <span>Mem</span>
+          <svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg>
+          <span>ra</span>
+        </span>
+        <p class="kit-label">Combined lockup</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ DASHBOARD INTEGRATION -->
+  <section id="integration">
+    <p class="eyebrow">01 &middot; In the product</p>
+    <h2 class="section-title">Where it actually lives</h2>
+    <p class="section-sub">Rebuilt from Memora's own AppBar - same tokens, same type, same spacing - so this is exactly how the mark sits in the real dashboard, at the real size, not a mock-up guessing at it.</p>
+
+    <div class="stage-label"><span class="tag">Desktop</span><span class="desc">Top navigation bar, 30px icon, real nav links</span></div>
+    <div class="browser-frame">
+      <div class="browser-chrome"><span></span><span></span><span></span></div>
+      <div class="navbar">
+        <div class="navbar-left">
+          <svg class="sigil" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+            <path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+            <path d="M84 40 L95 8 L102 40 L93 35 Z" />
+          </svg>
+          <span class="navbar-word"><span>Mem</span><svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg><span>ra</span></span>
+        </div>
+        <nav class="navbar-links">
+          <a class="active">Dashboard</a>
+          <a>Progress</a>
+          <a>Mistakes</a>
+          <a>Friends</a>
+          <a>Community</a>
+        </nav>
+        <div class="navbar-right">
+          <span class="navbar-avatar">Y</span>
+        </div>
+      </div>
+      <div class="desktop-body">
+        <div class="ghost-hero"></div>
+        <div class="ghost-row"><div class="ghost-card"></div><div class="ghost-card"></div></div>
+      </div>
+    </div>
+
+    <div class="integration-grid">
+      <div>
+        <div class="stage-label" style="margin-top:40px"><span class="tag">Favicon</span><span class="desc">16px browser tab, 48px app icon</span></div>
+        <div class="favicon-row">
+          <div class="favicon-tab">
+            <span class="dot"><svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" /><path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" /><path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg></span>
+            memoraa.web.app
+          </div>
+          <div class="favicon-tile">
+            <svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" /><path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" /><path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="stage-label" style="margin-top:40px"><span class="tag">Mobile</span><span class="desc">24px icon, hamburger menu</span></div>
+        <div class="mobile-frame">
+          <div class="mobile-screen">
+            <div class="mobile-nav">
+              <div style="display:flex;align-items:center;gap:8px">
+                <svg class="sigil" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" /><path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" /><path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg>
+                <span class="navbar-word"><span>Mem</span><svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg><span>ra</span></span>
+              </div>
+              <div class="hamburger"><span></span><span></span><span></span></div>
+            </div>
+            <div class="mobile-body">
+              <div class="mobile-hero"></div>
+              <div class="mobile-card"></div>
+              <div class="mobile-card"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ ANATOMY -->
+  <section id="anatomy">
+    <p class="eyebrow">02 &middot; Construction</p>
+    <h2 class="section-title">Icon anatomy</h2>
+    <p class="section-sub">Three strokes, one silhouette. Geass supplies the geometry and the feeling - angular activation, a mark that reads as command rather than decoration - never its eye.</p>
+
+    <div class="anatomy-grid">
+      <div class="anatomy-stage">
+        <svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true" style="color: var(--accent)">
+          <path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+          <path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+          <path d="M84 40 L95 8 L102 40 L93 35 Z" />
+          <g stroke="var(--line)" stroke-width="1" opacity="0.6">
+            <line x1="64" y1="10" x2="20" y2="-6" />
+            <line x1="24" y1="56" x2="-14" y2="52" />
+            <line x1="98" y1="24" x2="128" y2="4" />
+          </g>
+        </svg>
+      </div>
+      <div class="anatomy-list">
+        <div class="anatomy-item">
+          <span class="anatomy-swatch" style="background:var(--accent)"></span>
+          <div>
+            <h3>Command mark <span>&middot; the blade</span></h3>
+            <p>The central angular form - focus and direction. Its diagonal wing is the identity's main axis, echoed in the wordmark's own M cut.</p>
+          </div>
+        </div>
+        <div class="anatomy-item">
+          <span class="anatomy-swatch" style="background:color-mix(in srgb, var(--accent) 70%, transparent)"></span>
+          <div>
+            <h3>Activation sweep <span>&middot; the cradle arc</span></h3>
+            <p>Momentum and flow. It deliberately levitates the blade rather than touching it - the mark reads as hovering, activated, not resting.</p>
+          </div>
+        </div>
+        <div class="anatomy-item">
+          <span class="anatomy-swatch" style="background:var(--accent-strong)"></span>
+          <div>
+            <h3>Rising terminal <span>&middot; the shard</span></h3>
+            <p>Ambition and progression. Extends on hover, and is echoed directly by the small shard cut into the wordmark's "o".</p>
+          </div>
+        </div>
+        <div class="anatomy-item">
+          <span class="anatomy-swatch" style="background:var(--muted-dim)"></span>
+          <div>
+            <h3>Level-up fragment <span>&middot; hidden by default</span></h3>
+            <p>Achievement. Opacity zero at rest - only an XP gain or a level up releases it, briefly, before it dissolves.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-notes">
+      <div class="letter-note"><span class="glyph">M</span><p>A slight angular cut on the left stroke, echoing the blade's diagonal. Still unmistakably a modern M.</p></div>
+      <div class="letter-note">
+        <span class="glyph" style="display:inline-flex;align-items:baseline;gap:1px">
+          <svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="height:0.85em;width:0.85em;color:var(--accent-strong)"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg>
+        </span>
+        <p>A ring broken by one angular cut, with a small detached shard. Reads instantly as an "o" - the open gap is what keeps it from ever reading as an eye.</p>
+      </div>
+      <div class="letter-note"><span class="glyph">a</span><p>A subtle upward terminal on the tail, the wordmark's quiet nod to progression - never dramatic, never an anime title font.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ ANIMATION -->
+  <section id="motion">
+    <p class="eyebrow">03 &middot; Motion</p>
+    <h2 class="section-title">Animation storyboard</h2>
+    <p class="section-sub">One icon, five states - no new shapes are drawn for any of them. Idle is looping now; hover it directly; click the buttons to fire XP gain and level up.</p>
+
+    <div class="story-grid">
+      <div class="story-card">
+        <p class="story-num">01</p>
+        <p class="story-title">Idle</p>
+        <p class="story-timing">3.4s loop</p>
+        <div class="story-stage">
+          <svg class="sigil" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <path class="sigil-sweep idle-sweep" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+            <path class="sigil-blade idle-blade" d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+            <path class="sigil-terminal" d="M84 40 L95 8 L102 40 L93 35 Z" />
+          </svg>
+        </div>
+        <p class="story-desc">Blade drifts half a pixel, sweep tilts a degree. Calm enough for a navbar forever.</p>
+      </div>
+
+      <div class="story-card hover-card">
+        <p class="story-num">02</p>
+        <p class="story-title">Hover / focus</p>
+        <p class="story-timing">180-240ms</p>
+        <div class="story-stage">
+          <svg class="sigil" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <path class="sigil-sweep" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+            <path class="sigil-blade" d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+            <path class="sigil-terminal" d="M84 40 L95 8 L102 40 L93 35 Z" />
+          </svg>
+        </div>
+        <p class="story-desc">Blade lifts, sweep tightens, terminal extends with a small overshoot. Hover this card.</p>
+      </div>
+
+      <div class="story-card" id="story-click">
+        <p class="story-num">03</p>
+        <p class="story-title">Click</p>
+        <p class="story-timing">250-350ms</p>
+        <div class="story-stage">
+          <svg class="sigil" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <path class="sigil-sweep" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+            <path class="sigil-blade" d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+            <path class="sigil-terminal" d="M84 40 L95 8 L102 40 L93 35 Z" />
+          </svg>
+        </div>
+        <p class="story-desc">Compresses, twists a few degrees, snaps back.</p>
+        <button class="story-btn" type="button" onclick="fire('story-click', 400)">Replay click</button>
+      </div>
+
+      <div class="story-card" id="story-xp">
+        <p class="story-num">04</p>
+        <p class="story-title">XP gain</p>
+        <p class="story-timing">350-450ms</p>
+        <div class="story-stage">
+          <svg class="sigil" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <path class="sigil-sweep" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+            <path class="sigil-blade" d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+            <path class="sigil-terminal" d="M84 40 L95 8 L102 40 L93 35 Z" />
+            <path class="sigil-fragment" d="M104 48 L118 26 L109 50 Z" />
+          </svg>
+        </div>
+        <p class="story-desc">Terminal extends, one fragment detaches upward and dissolves. No stars, no confetti.</p>
+        <button class="story-btn" type="button" onclick="fire('story-xp', 500)">Replay XP gain</button>
+      </div>
+
+      <div class="story-card" id="story-levelup" style="position:relative">
+        <p class="story-num">05</p>
+        <p class="story-title">Level up</p>
+        <p class="story-timing">650-850ms</p>
+        <div class="story-stage">
+          <span class="story-ring"></span>
+          <svg class="sigil" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">
+            <path class="sigil-sweep" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+            <path class="sigil-blade" d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+            <path class="sigil-terminal" d="M84 40 L95 8 L102 40 L93 35 Z" />
+            <path class="sigil-fragment" d="M104 48 L118 26 L109 50 Z" />
+          </svg>
+        </div>
+        <p class="story-desc">Charge, burst, settle with a small bounce. The signature moment.</p>
+        <button class="story-btn" type="button" onclick="fire('story-levelup', 900)">Replay level up</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ THEMES -->
+  <section id="themes">
+    <p class="eyebrow">04 &middot; Themes</p>
+    <h2 class="section-title">One SVG, four themes</h2>
+    <p class="section-sub">currentColor throughout - no fill baked into the artwork - so the identical mark drops into every one of Memora's themes without a redraw.</p>
+    <div class="theme-grid">
+      <div class="theme-card theme-dark">
+        <svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" /><path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" /><path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg>
+        <span class="theme-word"><span>Mem</span><svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg><span>ra</span></span>
+        <p class="theme-name">Dark</p>
+      </div>
+      <div class="theme-card theme-light">
+        <svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" /><path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" /><path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg>
+        <span class="theme-word"><span>Mem</span><svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg><span>ra</span></span>
+        <p class="theme-name">Light</p>
+      </div>
+      <div class="theme-card theme-cream">
+        <svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" /><path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" /><path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg>
+        <span class="theme-word"><span>Mem</span><svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg><span>ra</span></span>
+        <p class="theme-name">Cream</p>
+      </div>
+      <div class="theme-card theme-hc">
+        <svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" /><path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" /><path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg>
+        <span class="theme-word"><span>Mem</span><svg class="wm-o" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="12.5" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="65.5 13" /><path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" /></svg><span>ra</span></span>
+        <p class="theme-name">High contrast</p>
+      </div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:64px">05 &middot; Accents</p>
+    <h2 class="section-title">Same geometry, every accent</h2>
+    <p class="section-sub">Ten of Memora's accent options, plus black on white. The path data never changes - only the colour a viewer already chose for their own theme.</p>
+    <div class="accent-grid" id="accent-grid"></div>
+  </section>
+
+  <!-- ============================================================ SPEC -->
+  <section class="spec-footer">
+    <p class="eyebrow">Build spec</p>
+    <h2 class="section-title">For handoff</h2>
+    <div class="spec-grid">
+      <div class="spec-block">
+        <h3>Path data &middot; viewBox 0 0 128 128 &middot; fill currentColor</h3>
+        <pre>command:  <b>M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z</b>
+          <b>M72 54 L109 21 L101 57 L80 63 Z</b>
+
+sweep:    <b>M10 58 Q18 100 62 104 Q100 107 114 70</b>
+          <b>L100 68 Q90 92 62 90 Q32 88 24 56 Z</b>
+
+terminal: <b>M84 40 L95 8 L102 40 L93 35 Z</b>
+
+fragment: <b>M104 48 L118 26 L109 50 Z</b>  &middot; opacity 0 at rest</pre>
+      </div>
+      <div class="spec-block">
+        <h3>Rules</h3>
+        <pre>Single colour only - currentColor, never a baked-in hex.
+No stars, sparkles, lightning, magic circles, mascots.
+No eyes, pupils, irises, or watching motifs - none, ever.
+Silhouette must hold at 16px - test before shipping any change.
+Same four paths everywhere: nav, favicon, hero, every state.
+Wordmark stays "Memora" - the "o" is the only customised letter.</pre>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span class="foot-brand">
+        <svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" /><path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" /><path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg>
+        Memora &middot; Revise. Level up.
+      </span>
+      <span>Command sigil identity &middot; presentation v1</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function fire(id, ms) {
+    var el = document.getElementById(id);
+    var cls = id === 'story-click' ? 'click-fire' : id === 'story-xp' ? 'xp-fire' : 'levelup-fire';
+    el.classList.remove(cls);
+    void el.offsetWidth; // restart the animation on repeat clicks
+    el.classList.add(cls);
+    window.setTimeout(function () { el.classList.remove(cls); }, ms);
+  }
+
+  // Accent grid: one sigil, ten colours plus black-on-white - built once
+  // in JS so the eleven cells can never drift from a single source list.
+  var ACCENTS = [
+    ['Purple', '#a78bfa'], ['Blue', '#60a5fa'], ['Sky', '#38bdf8'], ['Teal', '#2dd4bf'],
+    ['Green', '#4ade80'], ['Lime', '#a3e635'], ['Orange', '#fb923c'], ['Red', '#f87171'],
+    ['Pink', '#f472b6'], ['Indigo', '#818cf8']
+  ];
+  var SIGIL_SVG = '<svg viewBox="0 0 128 128" fill="currentColor" aria-hidden="true">' +
+    '<path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />' +
+    '<path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />' +
+    '<path d="M84 40 L95 8 L102 40 L93 35 Z" /></svg>';
+  var grid = document.getElementById('accent-grid');
+  ACCENTS.forEach(function (a) {
+    var cell = document.createElement('div');
+    cell.className = 'accent-card';
+    cell.style.color = a[1];
+    cell.innerHTML = SIGIL_SVG + '<span class="accent-name">' + a[0] + '</span>';
+    grid.appendChild(cell);
+  });
+  var mono = document.createElement('div');
+  mono.className = 'accent-card accent-mono';
+  mono.innerHTML = SIGIL_SVG + '<span class="accent-name">Black on white</span>';
+  grid.appendChild(mono);
+</script>

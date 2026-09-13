@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="8" fill="#2563eb" />
-  <!-- eye mark, simplified for small-size legibility: outline + glowing iris
-       + core only, no starburst rays or corner ticks (too fine at 16px) -->
-  <g transform="translate(0 -0.7) scale(0.667)">
-    <path d="M8 26 Q14 14 24 13 Q34 12.5 42 18 Q37 30 24 32 Q13 33.5 8 26 Z" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linejoin="round" />
-    <circle cx="24" cy="22.5" r="8.2" fill="#0369a1" opacity="0.6" />
-    <circle cx="24" cy="22.5" r="3.6" fill="#e0f2fe" />
-    <circle cx="24" cy="22.5" r="2.1" fill="#38bdf8" />
+  <!-- Memora command sigil - exact geometry from
+       src/constants/sigil-geometry.js (viewBox 0 0 128, scaled 0.25 to
+       fit here), so the favicon is pixel-for-pixel the same shape as
+       components/ui/SigilMark.jsx draws at rest. -->
+  <g transform="scale(0.25)" fill="#ffffff">
+    <path opacity="0.85" d="M10 58 Q18 100 62 104 Q100 107 114 70 L100 68 Q90 92 62 90 Q32 88 24 56 Z" />
+    <path d="M64 10 L73 58 L68 58 L64 70 L60 58 L55 58 Z M72 54 L109 21 L101 57 L80 63 Z" />
+    <path d="M84 40 L95 8 L102 40 L93 35 Z" />
   </g>
 </svg>

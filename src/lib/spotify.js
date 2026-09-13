@@ -23,6 +23,34 @@
 const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID || ''
 const TOKEN_KEY = 'memora:spotify:token'
 const VERIFIER_KEY = 'memora:spotify:verifier'
+
+/*
+  sessionStorage throws when site storage is blocked (blocked cookies,
+  some private modes). A click that dies there looks like "nothing
+  happens", so keep an in-memory fallback for this tab instead.
+*/
+const memStore = {}
+const safeSet = (k, v) => {
+  try {
+    sessionStorage.setItem(k, v)
+  } catch {
+    memStore[k] = v
+  }
+}
+const safeGet = (k) => {
+  try {
+    return sessionStorage.getItem(k)
+  } catch {
+    return memStore[k] ?? null
+  }
+}
+const safeDel = (k) => {
+  try {
+    sessionStorage.removeItem(k)
+  } catch {
+    delete memStore[k]
+  }
+}
 const SCOPES = 'playlist-read-private playlist-read-collaborative user-read-currently-playing user-read-playback-state'
 
 export const spotifyConfigured = () => Boolean(CLIENT_ID)
@@ -80,7 +108,7 @@ export function spotifyLogout() {
 export async function beginSpotifyLogin() {
   if (!CLIENT_ID) return
   const verifier = randomVerifier()
-  sessionStorage.setItem(VERIFIER_KEY, verifier)
+  safeSet(VERIFIER_KEY, verifier)
   const params = new URLSearchParams({
     client_id: CLIENT_ID,
     response_type: 'code',
@@ -88,7 +116,11 @@ export async function beginSpotifyLogin() {
     scope: SCOPES,
     code_challenge_method: 'S256',
     code_challenge: await challengeFor(verifier),
-    state: 'memora-music',
+    // The verifier rides along in `state` (b64url is URL-safe), because
+    // Spotify echoes it back verbatim: approving is a full-page trip away
+    // and back, and anything kept only in this tab's storage can be gone
+    // by the time we return, which silently kills the exchange.
+    state: `memora-music.${verifier}`,
   })
   window.location.assign(`https://accounts.spotify.com/authorize?${params}`)
 }
@@ -96,19 +128,33 @@ export async function beginSpotifyLogin() {
 /*
   Call on every load. If the URL carries Spotify's ?code=..., exchange it
   for a token and strip the query so a refresh does not repeat it. Returns
-  true when a token was just obtained.
+  true when a token was just obtained, false when there is nothing to do,
+  or a human-readable reason string when Spotify refused - the caller
+  shows that instead of silently staying disconnected.
 */
 export async function finishSpotifyLogin() {
   const url = new URL(window.location.href)
   const code = url.searchParams.get('code')
   const state = url.searchParams.get('state')
-  if (!code || state !== 'memora-music') return false
-  const verifier = sessionStorage.getItem(VERIFIER_KEY)
+  const refused = url.searchParams.get('error')
+  if (state !== 'memora-music' && !(state && state.startsWith('memora-music.'))) return false
+  if (!code) {
+    url.searchParams.delete('error')
+    url.searchParams.delete('state')
+    window.history.replaceState({}, '', url.pathname + (url.search || '') + url.hash)
+    return refused
+      ? `Spotify refused the login (${refused}). Check User Management on the Spotify app, then try again.`
+      : false
+  }
+  // Prefer the verifier Spotify echoed back in `state` - it survived the
+  // round trip by construction. Fall back to tab storage for logins that
+  // started before this change.
+  const verifier = (state.includes('.') ? state.slice(state.indexOf('.') + 1) : null) || safeGet(VERIFIER_KEY)
   url.searchParams.delete('code')
   url.searchParams.delete('state')
   window.history.replaceState({}, '', url.pathname + (url.search || '') + url.hash)
   if (!verifier || !CLIENT_ID) return false
-  sessionStorage.removeItem(VERIFIER_KEY)
+  safeDel(VERIFIER_KEY)
   const body = new URLSearchParams({
     client_id: CLIENT_ID,
     grant_type: 'authorization_code',
@@ -116,12 +162,26 @@ export async function finishSpotifyLogin() {
     redirect_uri: redirectUri(),
     code_verifier: verifier,
   })
-  const res = await fetch('https://accounts.spotify.com/api/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body,
-  })
-  if (!res.ok) return false
+  let res
+  try {
+    res = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    })
+  } catch {
+    return 'Could not reach Spotify (network or an ad blocker stopped the request). Try again with blockers off for this site.'
+  }
+  if (!res.ok) {
+    let detail = ''
+    try {
+      const j = await res.json()
+      detail = j.error_description || j.error || ''
+    } catch {
+      /* non-JSON error body */
+    }
+    return `Spotify login failed (${res.status}${detail ? ` - ${detail}` : ''}). Check the redirect URI on the Spotify app, then retry.`
+  }
   writeToken(await res.json())
   return true
 }

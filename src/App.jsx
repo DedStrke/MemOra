@@ -19,6 +19,7 @@ import Terms from '@/pages/Terms'
 import Contact from '@/pages/Contact'
 import NotFound from '@/pages/NotFound'
 import DiagramGallery from '@/pages/dev/DiagramGallery'
+import BrandSheet from '@/pages/dev/BrandSheet'
 import CursorGlow from '@/components/ui/CursorGlow'
 import ScrollToTop from '@/components/layout/ScrollToTop'
 import Seo from '@/components/layout/Seo'
@@ -43,7 +44,8 @@ import Toast from '@/components/ui/Toast'
 */
 function Root() {
   const { search } = useLocation()
-  if (new URLSearchParams(search).get('state') === 'memora-music') {
+  const state = new URLSearchParams(search).get('state')
+  if (state === 'memora-music' || (state && state.startsWith('memora-music.'))) {
     return <Navigate to={`/dashboard${search}`} replace />
   }
   return <Landing />
@@ -94,6 +96,7 @@ export default function App() {
               nothing, and made every typo look to a crawler like a
               duplicate of the home page. */}
           {import.meta.env.DEV && <Route path="/dev/diagrams/:id?" element={<DiagramGallery />} />}
+          {import.meta.env.DEV && <Route path="/dev/brand" element={<BrandSheet />} />}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

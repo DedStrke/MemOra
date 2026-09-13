@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
-import EyeMark from '@/components/ui/EyeMark'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import Footer from '@/components/layout/Footer'
-import Wordmark from '@/components/ui/Wordmark'
-import ThemeSwitcher from '@/components/layout/ThemeSwitcher'
+import SigilWordmark from '@/components/ui/SigilWordmark'
+import MarketingHeader from '@/components/layout/MarketingHeader'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
 import { useApp } from '@/context/AppProvider'
 import { LANDING, LANDING_SUBJECTS, SITE } from '@/constants/content'
@@ -82,72 +81,6 @@ function RotatingSubjects() {
   )
 }
 
-/*
-  Collapsing header: transparent and edge-to-edge at the very top of the
-  page (so it reads as part of the atmosphere, not a bar sitting on top of
-  it), then fades in a glass panel and floats as an inset pill once the
-  learner scrolls. A discrete "past the threshold" boolean driving plain CSS
-  transitions, not a continuous per-pixel scroll-linked style - recalculating
-  an animated border-radius on a backdrop-filter layer every scroll frame is
-  expensive enough to desync the sticky header from the page on scroll.
-*/
-function CollapsingHeader() {
-  const { account } = useApp()
-  const [scrolled, setScrolled] = useState(false)
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 90)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  return (
-    <header
-      className={`sticky top-0 z-40 overflow-hidden transition-[margin] duration-300 ease-out ${
-        scrolled ? 'mx-4 mt-3' : 'mx-0 mt-0'
-      }`}
-    >
-      <div
-        className={`glass-strong absolute inset-0 transition-[opacity,border-radius] duration-300 ease-out ${
-          scrolled ? '!rounded-3xl opacity-100' : '!rounded-none opacity-0'
-        }`}
-      />
-      <div
-        className={`relative mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 ease-out ${
-          scrolled ? 'py-3' : 'py-[30px]'
-        }`}
-      >
-        <Link to={account ? '/dashboard' : '/'} className="flex items-center gap-2 text-xl font-semibold text-fg">
-          <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.8]' : 'scale-100'}`}>
-            <EyeMark pulseOnHover pulseOnClick className="h-8 w-8 text-brand" />
-          </div>
-          <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.8]' : 'scale-100'}`}>
-            <Wordmark />
-          </div>
-        </Link>
-        <div className="flex items-center gap-3">
-          <Link
-            to="/how-it-works"
-            className="hidden text-sm font-semibold text-fg transition-colors hover:text-brand-strong sm:inline"
-          >
-            How it works
-          </Link>
-          <ThemeSwitcher />
-          <Button as={Link} to={account ? '/dashboard' : '/signin'} size="sm">
-            {account ? (
-              <>
-                <span className="hidden sm:inline">Go to dashboard</span>
-                <span className="sm:hidden">Dashboard</span>
-              </>
-            ) : (
-              'Sign in'
-            )}
-          </Button>
-        </div>
-      </div>
-    </header>
-  )
-}
 
 /*
   A stylised mockup of the real dashboard - built from the same tokens and
@@ -255,7 +188,7 @@ export default function Landing() {
   return (
     <div className="relative min-h-screen">
       <AtmosphereBackground />
-      <CollapsingHeader />
+      <MarketingHeader showHowItWorks />
 
       {/* Hero - centered, one-line subtitle, matching the reference layout */}
       <section
@@ -273,7 +206,7 @@ export default function Landing() {
               neither what the page is. The hidden half completes the
               heading without changing the design. */}
           <motion.h1 variants={fadeInUp}>
-            <Wordmark size="hero" className="items-center" />
+            <SigilWordmark size="hero" className="items-center" />
             <span className="sr-only"> - A-level revision built for your exact spec</span>
           </motion.h1>
 
