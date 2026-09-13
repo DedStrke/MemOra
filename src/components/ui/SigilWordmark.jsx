@@ -72,13 +72,31 @@ function SigilWordmarkText({ className = '', animate = false }) {
       className={`inline-flex items-baseline font-display font-extrabold tracking-tight ${className}`}
     >
       {['M', 'e', 'm'].map((l, i) => (
-        <motion.span key={i} variants={letterVariants}>{l}</motion.span>
+        <motion.span 
+          key={i} 
+          variants={letterVariants}
+          whileHover={{ y: -5, scale: 1.1, filter: "brightness(1.2)" }}
+          style={{ display: 'inline-block' }}
+        >
+          {l}
+        </motion.span>
       ))}
-      <motion.span variants={letterVariants} style={{ display: 'inline-flex', alignItems: 'baseline' }}>
+      <motion.span 
+        variants={letterVariants} 
+        whileHover={{ y: -5, scale: 1.1, filter: "brightness(1.2)" }}
+        style={{ display: 'inline-flex', alignItems: 'baseline' }}
+      >
         <SigilO />
       </motion.span>
       {['r', 'a'].map((l, i) => (
-        <motion.span key={i} variants={letterVariants}>{l}</motion.span>
+        <motion.span 
+          key={i} 
+          variants={letterVariants}
+          whileHover={{ y: -5, scale: 1.1, filter: "brightness(1.2)" }}
+          style={{ display: 'inline-block' }}
+        >
+          {l}
+        </motion.span>
       ))}
     </motion.span>
   )

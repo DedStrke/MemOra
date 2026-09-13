@@ -206,19 +206,30 @@ export default function Landing() {
           <motion.h1 variants={fadeInUp} className="flex flex-col items-center gap-6">
             <motion.div
               initial={{ scale: 0.8, opacity: 0, rotate: -15, y: 20 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0, y: 0 }}
-              transition={{
-                type: 'spring',
-                stiffness: 80,
-                damping: 20,
-                delay: 0.1,
+              animate={{ 
+                scale: 1, 
+                opacity: 1, 
+                rotate: 0, 
+                y: [0, -12, 0] 
               }}
+              transition={{
+                y: {
+                  duration: 4,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "loop"
+                },
+                scale: { type: 'spring', stiffness: 80, damping: 20, delay: 0.1 },
+                opacity: { duration: 0.5, delay: 0.1 },
+                rotate: { type: 'spring', stiffness: 80, damping: 20, delay: 0.1 }
+              }}
+              whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
             >
-              <SigilMark className="h-28 w-28 text-brand sm:h-36 sm:w-36" idle={true} />
+              <SigilMark className="h-28 w-28 text-brand sm:h-36 sm:w-36 drop-shadow-[0_0_20px_var(--brand)]" idle={true} />
             </motion.div>
             
             <div className="flex flex-col items-center">
-              <SigilWordmark size="hero" animate={true} className="items-center drop-shadow-xl" />
+              <SigilWordmark size="hero" animate={true} className="items-center drop-shadow-[0_0_15px_var(--brand)]" />
               <span className="sr-only"> - A-level revision built for your exact spec</span>
             </div>
           </motion.h1>
