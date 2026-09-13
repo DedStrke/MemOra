@@ -94,17 +94,19 @@ export default function AppBar() {
           {/* AppBar only ever renders on in-app pages, so the logo goes back
               to the dashboard, not the marketing landing page - there's
               nothing for an already-in-app user to do there. */}
-          <Link
-            to="/dashboard"
-            className="flex items-center gap-2 text-xl font-semibold text-fg"
-          >
-            <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.88]' : 'scale-100'}`}>
-              <SigilMark className="h-9 w-9 text-brand" />
-            </div>
-            <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.88]' : 'scale-100'}`}>
-              <SigilWordmark />
-            </div>
-          </Link>
+          <motion.div whileHover={{ scale: 1.03, filter: 'brightness(1.15)' }}>
+            <Link
+              to="/dashboard"
+              className="flex items-center gap-2 text-xl font-semibold text-fg drop-shadow-[0_0_8px_var(--brand)]"
+            >
+              <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.88]' : 'scale-100'}`}>
+                <SigilMark className="h-9 w-9 text-brand" />
+              </div>
+              <div className={`origin-left transition-transform duration-300 ease-out ${scrolled ? 'scale-[0.88]' : 'scale-100'}`}>
+                <SigilWordmark animate={true} />
+              </div>
+            </Link>
+          </motion.div>
 
           {/* Inline nav next to the wordmark (mobile still uses the hamburger). */}
           <nav className="hidden items-center gap-6 md:flex">
