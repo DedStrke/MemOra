@@ -5,6 +5,7 @@ import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import AtmosphereBackground from '@/components/ui/AtmosphereBackground'
 import Footer from '@/components/layout/Footer'
+import SigilMark from '@/components/ui/SigilMark'
 import SigilWordmark from '@/components/ui/SigilWordmark'
 import MarketingHeader from '@/components/layout/MarketingHeader'
 import { fadeInUp, staggerContainer, inViewProps } from '@/lib/motion'
@@ -201,13 +202,25 @@ export default function Landing() {
           animate="show"
           className="flex w-full flex-col items-center"
         >
-          {/* The visible h1 is the wordmark, which reads as just "MemOra"
-              to a crawler or a screen reader - a brand name alone tells
-              neither what the page is. The hidden half completes the
-              heading without changing the design. */}
-          <motion.h1 variants={fadeInUp}>
-            <SigilWordmark size="hero" className="items-center" />
-            <span className="sr-only"> - A-level revision built for your exact spec</span>
+          {/* The visible h1 is the logo and wordmark. */}
+          <motion.h1 variants={fadeInUp} className="flex flex-col items-center gap-6">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, rotate: -15, y: 20 }}
+              animate={{ scale: 1, opacity: 1, rotate: 0, y: 0 }}
+              transition={{
+                type: 'spring',
+                stiffness: 80,
+                damping: 20,
+                delay: 0.1,
+              }}
+            >
+              <SigilMark className="h-28 w-28 text-brand sm:h-36 sm:w-36" idle={true} />
+            </motion.div>
+            
+            <div className="flex flex-col items-center">
+              <SigilWordmark size="hero" animate={true} className="items-center drop-shadow-xl" />
+              <span className="sr-only"> - A-level revision built for your exact spec</span>
+            </div>
           </motion.h1>
 
           <motion.p

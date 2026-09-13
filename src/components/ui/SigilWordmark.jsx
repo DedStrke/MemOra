@@ -14,6 +14,8 @@
   - 'hero' : 6xl–8xl (landing hero, marketing hero)
 */
 
+import { motion } from 'framer-motion'
+
 const O_LIFT = '0.09em'
 
 function SigilO() {
@@ -23,7 +25,6 @@ function SigilO() {
       aria-hidden="true"
       style={{ height: '0.62em', width: '0.62em', transform: `translateY(${O_LIFT})` }}
     >
-      {/* Interrupted ring — the gap breaks any eye-like closure */}
       <circle
         cx="20"
         cy="20"
@@ -33,40 +34,66 @@ function SigilO() {
         strokeWidth="7"
         strokeDasharray="65.5 13"
       />
-      {/* Small angular fragment detached from upper-right, echoing the sigil */}
       <path d="M33 4 L38.5 2.5 L35.5 11 Z" fill="currentColor" />
     </svg>
   )
 }
 
-function SigilWordmarkText({ className = '' }) {
+const letterVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.9 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', damping: 15, stiffness: 100 } }
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+}
+
+function SigilWordmarkText({ className = '', animate = false }) {
+  if (!animate) {
+    return (
+      <span
+        className={`inline-flex items-baseline font-display font-extrabold tracking-tight ${className}`}
+      >
+        <span>Mem</span>
+        <span style={{ display: 'inline-flex', alignItems: 'baseline' }}>
+          <SigilO />
+        </span>
+        <span>ra</span>
+      </span>
+    )
+  }
+
   return (
-    <span
+    <motion.span
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
       className={`inline-flex items-baseline font-display font-extrabold tracking-tight ${className}`}
     >
-      <span>Mem</span>
-      <span
-        style={{
-          display: 'inline-flex',
-          alignItems: 'baseline',
-        }}
-      >
+      {['M', 'e', 'm'].map((l, i) => (
+        <motion.span key={i} variants={letterVariants}>{l}</motion.span>
+      ))}
+      <motion.span variants={letterVariants} style={{ display: 'inline-flex', alignItems: 'baseline' }}>
         <SigilO />
-      </span>
-      <span>ra</span>
-    </span>
+      </motion.span>
+      {['r', 'a'].map((l, i) => (
+        <motion.span key={i} variants={letterVariants}>{l}</motion.span>
+      ))}
+    </motion.span>
   )
 }
 
-export default function SigilWordmark({ size = 'nav', className = '' }) {
+export default function SigilWordmark({ size = 'nav', className = '', animate = false }) {
   if (size === 'hero') {
     return (
       <SigilWordmarkText
+        animate={animate}
         className={`text-6xl sm:text-7xl lg:text-8xl text-brand ${className}`}
       />
     )
   }
   return (
-    <SigilWordmarkText className={`text-[21px] text-brand ${className}`} />
+    <SigilWordmarkText animate={animate} className={`text-[21px] text-brand ${className}`} />
   )
 }
