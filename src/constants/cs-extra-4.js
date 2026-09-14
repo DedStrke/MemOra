@@ -24,7 +24,6 @@ const LMC = 'Assembly Language and the Little Man Computer'
 const BIGO = 'Algorithm Complexity (Big O)'
 const OOP = 'Object-Oriented Programming'
 const CT = 'Elements of Computational Thinking'
-const AD = 'Analysis and Design (Systems Life Cycle)'
 const IOS = 'Input, Output and Storage'
 const BOOL = 'Boolean Algebra'
 const DT = 'Data Types and Number Representation'
@@ -94,13 +93,6 @@ export const CS_EXTRA_FLASHCARDS_4 = [
   c(CT, 'What is thinking logically?', 'Identifying the decision points in a solution, the conditions that determine each outcome, and how they affect the flow of the program.'),
   c(CT, 'What is thinking concurrently?', 'Identifying which parts of a problem can be done at the same time, and the dependencies and shared resources that limit this.'),
   c(CT, 'Give one benefit and one drawback of concurrent processing.', 'Benefit: faster overall completion and better use of multiple cores. Drawback: parts that share data need synchronisation, which adds complexity and can cause race conditions or deadlock.'),
-
-  // ---- Analysis and design (deepened)
-  c(AD, 'What is the difference between functional and non-functional requirements?', 'Functional requirements say WHAT the system must do (features); non-functional requirements say how well - performance, security, usability, reliability.'),
-  c(AD, 'Name three kinds of test data and what each checks.', 'Normal (typical valid input, works correctly), boundary/extreme (values at the edge of the valid range, e.g. 0 and 100 for 0-100), erroneous/invalid (data that should be rejected gracefully).'),
-  c(AD, 'What is the difference between black-box and white-box testing?', 'Black-box tests inputs against expected outputs without looking at the code; white-box tests the internal paths of the code with knowledge of its structure.'),
-  c(AD, 'What is the difference between alpha and beta testing?', 'Alpha testing is done in-house by the developers/testers; beta testing releases the product to a limited group of real users to find problems in real conditions.'),
-  c(AD, 'What is a feasibility study and what does it consider?', 'A check, before development, of whether the project is achievable: technical, economic (cost/benefit), legal, operational and schedule feasibility.'),
 
   // ---- Input, output and storage (deepened)
   c(IOS, 'What is the difference between RAM and ROM?', 'RAM is volatile read/write memory holding running programs and data; ROM is non-volatile read-only memory holding the firmware/bootstrap that runs at start-up.'),
@@ -214,8 +206,6 @@ export const CS_EXTRA_MCQ_4 = [
   // ---- Deepened chapters
   m(CT, 'Which is the best example of thinking ahead?', ['Writing the code before the design', 'Specifying the inputs, outputs and preconditions of a function before implementing it', 'Removing detail from a problem', 'Splitting a task between two processors'], 1, 'Thinking ahead is anticipating what a solution needs: inputs, outputs, preconditions, reusable components.'),
   m(CT, 'Two tasks can be run concurrently without difficulty when', ['they share a variable that both update', 'one needs the output of the other', 'they are independent of each other\'s data', 'they use the same file'], 2, 'Independence is what makes concurrency safe; shared data or dependencies force synchronisation.'),
-  m(AD, 'For a field that accepts ages from 0 to 120, which is BOUNDARY test data?', ['50', '-5', '120', 'abc'], 2, '120 is the edge of the valid range. 50 is normal, -5 and abc are erroneous.'),
-  m(AD, 'Beta testing is', ['testing by the developers before release', 'testing by a limited group of real users before general release', 'testing every line of code', 'testing only the user interface'], 1, 'Alpha is in-house; beta is with real users outside the organisation.'),
   m(IOS, 'Which storage medium works by reading pits and lands with a laser?', ['Magnetic', 'Optical', 'Flash', 'RAM'], 1, 'Optical discs - CD, DVD, Blu-ray - store data as pits and lands.'),
   m(BOOL, 'Which expression is equivalent to NOT(A OR B)?', ['NOT A OR NOT B', 'NOT A AND NOT B', 'A AND B', 'A OR B'], 1, 'De Morgan: break the bar and change OR to AND.'),
   m(BOOL, 'A half adder produces', ['a sum only', 'a sum and a carry out', 'a sum, a carry in and a carry out', 'a carry out only'], 1, 'Sum = A XOR B, Carry = A AND B. Only a full adder takes a carry in.'),
@@ -416,20 +406,6 @@ export const CS_EXTRA_EXAM_4 = [
     'Problem: if two processes share data, they can both read then write it, and one update is lost (a race condition)',
     'Or: two processes each waiting for a resource the other holds - deadlock',
     'Final answer: Concurrent thinking finds work that can proceed in parallel. When such work shares data or resources it must be synchronised, or it risks race conditions (lost updates) and deadlock.',
-  ]),
-  q(AD, 'A form accepts a percentage mark from 0 to 100. Give one example each of normal, boundary and erroneous test data, and state what each test checks.', 6, [
-    'Normal: e.g. 55 - checks that a typical valid value is accepted and processed correctly',
-    'Boundary: 0 and 100 - checks the edges of the valid range are accepted (and 101 / -1 rejected)',
-    'Erroneous: e.g. "abc" or 150 - checks invalid data is rejected without crashing',
-    'Each test has an expected outcome written down before it is run',
-    'Final answer: Normal (55) confirms typical input works; boundary (0, 100, and just outside) confirms the limits are handled exactly; erroneous ("abc", 150) confirms the program rejects bad input gracefully.',
-  ]),
-  q(AD, 'Explain the difference between black-box and white-box testing, and give one advantage of each.', 4, [
-    'Black-box: tests the program from the outside, comparing outputs with expected outputs, without reference to the code',
-    'Advantage: mirrors how users experience it; testers need no programming knowledge',
-    'White-box: tests with knowledge of the code, aiming to exercise every path and branch',
-    'Advantage: finds errors in paths a black-box tester might never trigger',
-    'Final answer: Black-box checks behaviour against the specification without seeing the code; white-box uses the code to make sure every branch runs. Together they cover both what the program should do and how it does it.',
   ]),
   q(IOS, 'A photographer needs portable storage for large image files that will be moved between many computers. Compare magnetic, optical and solid-state storage for this purpose and recommend one.', 6, [
     'Magnetic (HDD): high capacity at low cost per GB, but moving parts make it vulnerable to shocks when carried',

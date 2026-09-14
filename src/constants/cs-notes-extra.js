@@ -325,16 +325,6 @@ const paradigms = chapter(
   ),
 )
 
-const analysisDesign = chapter(
-  h('Why the analysis stage is where projects are won or lost'),
-  p(
-    'The cost of fixing a defect rises by roughly an order of magnitude at each stage it survives. A requirement misunderstood during analysis and caught during analysis costs a conversation. The same error caught after release costs a redesign, a rebuild, a retest and a redeployment - and possibly the customer. That is the entire justification for feasibility studies, requirement sign-off and prototyping.',
-  ),
-  p(
-    'It also explains why agile methods front-load customer CONTACT rather than customer documents: the fastest way to discover a misunderstood requirement is to show the customer working software, not to ask them to read a specification they will approve without fully picturing.',
-  ),
-)
-
 const ethics = chapter(
   h('Structuring a 12-mark ethics answer'),
   ul([
@@ -374,6 +364,5 @@ export const CS_EXTRA_DEPTH = {
   'Computational Methods': computationalMethods,
   'Programming Techniques': programmingTechniques,
   'Programming Paradigms': paradigms,
-  'Analysis and Design (Systems Life Cycle)': analysisDesign,
   'Legal, Moral, Cultural and Ethical Issues': ethics,
 }

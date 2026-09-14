@@ -819,18 +819,6 @@ export const CS_MCQ_3 = [
     topic: 'Programming Paradigms',
   },
   {
-    question: 'Which best describes a feasibility study in the systems life cycle?',
-    options: [
-      'An assessment of whether the project is technically, economically and legally viable',
-      'A test of whether the finished program works',
-      'A survey of what users want the system to do',
-      'A plan of the database structure',
-    ],
-    answer: 0,
-    explanation: 'A feasibility study checks TELOS factors - technical, economic, legal, operational and schedule - before resources are committed.',
-    topic: 'Analysis and Design (Systems Life Cycle)',
-  },
-  {
     question: 'Which UK law makes unauthorised access to computer material a criminal offence?',
     options: [
       'Computer Misuse Act 1990',

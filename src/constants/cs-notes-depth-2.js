@@ -40,6 +40,10 @@ const processor = chapter(
   tip(
     'A "describe the FDE cycle using the registers" question is marked on the REGISTER NAMES at each step. PC → MAR, PC + 1, memory → MDR, MDR → CIR, decode, execute. Six steps, six marks, in that order.',
   ),
+  h('How this relates to assembly language programs'),
+  p(
+    'Every line of an assembly program (and every LMC instruction) is exactly one of these fetch-decode-execute cycles. "ADD 30" above is an assembly mnemonic: the operand 30 is the address placed in the MAR, and the opcode ADD is what the control unit decodes from the CIR to choose the ALU operation. Tracing registers for an assembly program IS tracing the FDE cycle instruction by instruction - see the Assembly Language and the Little Man Computer chapter for the full instruction set.',
+  ),
   h('Contemporary processing'),
   p(
     'Modern processors combine the classic architecture with features the specification names separately. A multi-core chip has several complete processors sharing a package and usually a shared cache. Pipelining overlaps fetch, decode and execute of consecutive instructions. Multiple levels of cache (L1 per core, L2 per core or pair, L3 shared) sit between registers and RAM. Harvard-style separate instruction and data caches are common inside otherwise von Neumann chips. When asked about "contemporary" architecture, name these and explain that the aim of every one is to keep the processor from waiting on memory.',
@@ -177,6 +181,19 @@ const translators = chapter(
       ['Customisation', 'Anyone can adapt it', 'Only what the vendor allows'],
     ],
   ),
+  h('Utilities'),
+  p('A utility is system software that performs one specific maintenance or housekeeping job for the computer, as opposed to an application (which does a task for the USER, like writing a letter) or the OS kernel itself (which manages hardware and resources).'),
+  table(
+    ['Utility', 'Job'],
+    [
+      ['Anti-malware / antivirus', 'Scans files and running processes against known threat signatures/behaviour and removes or quarantines matches'],
+      ['Disk defragmenter', 'On a magnetic (HDD) drive, rearranges fragmented files into contiguous blocks so the read/write head moves less, speeding up access'],
+      ['File compression utility', 'Reduces file size for storage or transfer using a compression algorithm, and reverses it on demand'],
+      ['Backup utility', 'Copies data to a second location/medium on a schedule so it can be restored after loss or corruption'],
+      ['Disk cleanup / disk management', 'Removes temporary files, or partitions/formats/checks a drive for errors'],
+    ],
+  ),
+  p('Utilities are usually bundled with the OS but can also be installed separately; either way they sit alongside applications as software the user runs deliberately, distinct from the OS itself managing hardware in the background.'),
 )
 
 const methodologies = chapter(
@@ -749,6 +766,34 @@ const programmingTechniques = chapter(
     'Recursion mirrors the mathematical definition and suits trees and divide-and-conquer; each call uses a stack frame, so deep recursion risks stack overflow and is slower.',
     'Iteration uses constant memory and is faster for a simple loop, but is clumsy for naturally recursive structures.',
   ]),
+  h('Use of object-oriented techniques'),
+  p('As a programming technique (not just theory), writing in an object-oriented style means modelling the problem as classes before writing any procedural logic: decide what the "things" in the problem are, what data each holds, and what actions each can perform, then write one class per thing.'),
+  code(
+    [
+      'class Account',
+      '    private balance',
+      '    procedure new(startingBalance)',
+      '        balance = startingBalance',
+      '    endprocedure',
+      '    procedure deposit(amount)',
+      '        balance = balance + amount',
+      '    endprocedure',
+      '    function getBalance()',
+      '        return balance',
+      '    endfunction',
+      'endclass',
+      '',
+      'myAccount = new Account(100)',
+      'myAccount.deposit(50)',
+      'print(myAccount.getBalance())     // 150',
+    ],
+    'exam reference language',
+  ),
+  ul([
+    'Instantiating an object (new Account(100)) allocates memory for that object\'s own copy of its attributes: two Account objects have independent balances.',
+    'Calling a method (myAccount.deposit(50)) is how a program actually USES an object; written procedurally instead, it would just be a function call with an extra parameter for which account.',
+    'The technique pays off once a problem has several interacting instances of the same kind of thing (accounts, sprites, network connections): each object carries its own state and behaviour, so the calling code stays about WHAT should happen, not how each instance stores its data.',
+  ]),
 )
 
 const computationalMethods = chapter(
@@ -774,34 +819,6 @@ const computationalMethods = chapter(
     'A heuristic (head towards the exit if its direction is known) would make it faster but is not needed for correctness.',
   ]),
   p('Problem recognition also includes recognising when a problem is NOT solvable by computation - the halting problem is the classic: no program can decide, for every program and input, whether that program will finish. Knowing the limits is part of the method.'),
-)
-
-const analysisDesign = chapter(
-  h('Analysis in practice'),
-  method('The steps of analysis', [
-    'Establish the problem with the client: what is wrong with the current system, and what must the new one achieve.',
-    'Gather requirements: interviews, questionnaires, observation of the current process, examination of existing documents and data.',
-    'Separate functional from non-functional requirements and get both agreed in writing - this is the standard everything is later tested against.',
-    'Carry out the feasibility study: technical, economic, legal, operational, schedule.',
-    'Produce the requirements specification, which is the contract for design.',
-  ]),
-  h('Design outputs'),
-  ul([
-    'Data design: the data structures, the database tables and their keys, validation rules.',
-    'Process design: decomposition into modules, algorithms in pseudocode or flowcharts, the interfaces between modules.',
-    'Interface design: screens and their flow, accessibility, error messages.',
-    'Test plan: written NOW, from the requirements, with normal, boundary and erroneous data and expected outcomes.',
-  ]),
-  h('Evaluation and maintenance'),
-  table(
-    ['Maintenance type', 'What it is', 'Example'],
-    [
-      ['Corrective', 'Fixing faults found after release', 'A calculation is wrong for leap years'],
-      ['Adaptive', 'Changing the system for a changed environment', 'A new operating system version; new tax rules'],
-      ['Perfective', 'Improving performance or usability without changing function', 'Faster search; a clearer screen'],
-    ],
-  ),
-  p('An evaluation measures the finished system against the ORIGINAL requirements, one by one, with evidence: this requirement was met (test result), this partly (with what remains), this not (and why). It is not an opinion about whether the system is nice.'),
 )
 
 const paradigms = chapter(
@@ -901,7 +918,6 @@ export const CS_EXTRA_DEPTH_2 = {
   'Elements of Computational Thinking': computationalThinking,
   'Programming Techniques': programmingTechniques,
   'Computational Methods': computationalMethods,
-  'Analysis and Design (Systems Life Cycle)': analysisDesign,
   'Programming Paradigms': paradigms,
   'Algorithms: Searching, Sorting & Graph Traversal': algorithms,
 }

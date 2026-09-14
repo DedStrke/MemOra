@@ -1358,68 +1358,6 @@ export const CS_EXTRA_MCQ_2 = [
     topic: "Programming Paradigms",
   },
 
-  // Analysis and Design (Systems Life Cycle)
-  {
-    question: "A systems analyst interviews staff, observes current working practices, and studies existing documentation before any code is written. Which stage of the systems life cycle is this?",
-    options: [
-      "Design",
-      "Analysis",
-      "Implementation",
-      "Maintenance",
-    ],
-    answer: 1,
-    explanation: "Interviewing users, observation and document study are classic fact-finding techniques used during the analysis stage.",
-    topic: "Analysis and Design (Systems Life Cycle)",
-  },
-  {
-    question: "Adaptive maintenance is carried out to",
-    options: [
-      "fix a bug causing incorrect output",
-      "improve a system's performance with no functional change",
-      "modify a system to work correctly in a new/changed environment, e.g. a new operating system",
-      "add entirely new features requested by users",
-    ],
-    answer: 2,
-    explanation: "Adaptive maintenance updates a system so it continues to work correctly as its environment changes, such as new hardware or OS updates.",
-    topic: "Analysis and Design (Systems Life Cycle)",
-  },
-  {
-    question: "A UML use case diagram is primarily used to show",
-    options: [
-      "the internal attributes and methods of a class",
-      "the binary data stored in a database",
-      "the physical network layout of a system",
-      "the interactions between users (actors) and the system's functions",
-    ],
-    answer: 3,
-    explanation: "A use case diagram models how different actors (users/external systems) interact with the functions the system provides.",
-    topic: "Analysis and Design (Systems Life Cycle)",
-  },
-  {
-    question: "Boundary test data is used to check",
-    options: [
-      "values at the very edge of the accepted range, e.g. the minimum and maximum valid values",
-      "values clearly inside the accepted range",
-      "values that should always be rejected",
-      "only string data types",
-    ],
-    answer: 0,
-    explanation: "Boundary data tests the extreme edges of a valid range, where off-by-one errors are most likely to appear.",
-    topic: "Analysis and Design (Systems Life Cycle)",
-  },
-  {
-    question: "Perfective maintenance involves",
-    options: [
-      "fixing an error found after release",
-      "improving or enhancing a system's performance or usability without fixing an error or adapting to new hardware",
-      "making changes so the system works with new hardware",
-      "deleting features no longer used by any customer",
-    ],
-    answer: 1,
-    explanation: "Perfective maintenance enhances a working system, e.g. improving speed or usability, rather than fixing a fault or adapting to a new environment.",
-    topic: "Analysis and Design (Systems Life Cycle)",
-  },
-
   // Legal, Moral, Cultural and Ethical Issues
   {
     question: "A person finds a company's admin password written on a sticky note and uses it to access files they are not authorised to see, without changing or deleting anything. Under the Computer Misuse Act 1990, this is",

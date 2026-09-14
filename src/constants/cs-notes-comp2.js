@@ -416,48 +416,6 @@ const ethics = chapter(
   ]),
 )
 
-/* ========================================= ANALYSIS AND DESIGN */
-
-const analysisDesign = chapter(
-  diagram('waterfall-agile'),
-  h('Analysis'),
-  ul([
-    'Requirements are gathered by INTERVIEW (detailed, but slow), QUESTIONNAIRE (wide reach, but shallow), OBSERVATION (shows what people actually do, but they may behave differently when watched), and examining EXISTING DOCUMENTATION.',
-    'A FEASIBILITY STUDY asks whether the project is possible: technically, economically, legally, operationally, and within the schedule (TELOS).',
-  ]),
-  h('Design'),
-  ul([
-    'Decompose the problem and define the data structures, file structures, algorithms and interface.',
-    'Produce a TEST PLAN at this stage, before any code is written.',
-    'Design the user interface for the actual users, including accessibility.',
-  ]),
-  h('Testing and evaluation'),
-  table(
-    ['Test type', 'Purpose'],
-    [
-      ['Unit', 'Test one module in isolation'],
-      ['Integration', 'Test that modules work together'],
-      ['System', 'Test the complete system against the requirements'],
-      ['Acceptance', 'The customer confirms it meets their needs'],
-    ],
-  ),
-  p('EVALUATION judges the finished system against the ORIGINAL requirements, plus usability, performance, robustness and maintainability.'),
-  h('Maintenance'),
-  table(
-    ['Type', 'Meaning'],
-    [
-      ['Corrective', 'Fixing faults found after release'],
-      ['Adaptive', 'Changing the system for a new environment or requirement'],
-      ['Perfective', 'Improving performance or maintainability without changing function'],
-    ],
-  ),
-  pitfalls([
-    'The test plan belongs to the DESIGN stage, not the testing stage. Writing tests after the code invites tests that only confirm what the code already does.',
-    'Evaluate against the ORIGINAL requirements - that is what makes it an evaluation rather than an opinion.',
-    'Maintenance is the longest phase and the most expensive; design decisions are judged by how much maintenance they cause.',
-  ]),
-)
-
 export const CS_COMP2_NOTES = {
   'Data Types and Number Representation': dataTypes,
   'Data Structures': dataStructures,
@@ -467,6 +425,5 @@ export const CS_COMP2_NOTES = {
   'Computational Methods': computationalMethods,
   'Programming Techniques': programmingTechniques,
   'Programming Paradigms': paradigms,
-  'Analysis and Design (Systems Life Cycle)': analysisDesign,
   'Legal, Moral, Cultural and Ethical Issues': ethics,
 }

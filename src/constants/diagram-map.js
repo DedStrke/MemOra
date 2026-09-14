@@ -96,7 +96,6 @@ export const CS_CHAPTER_DIAGRAMS = {
   'Assembly Language and the Little Man Computer': ['lmc', 'fetch-decode-execute'],
   'Algorithm Complexity (Big O)': ['big-o', 'binary-search'],
   'Object-Oriented Programming': ['class-diagram'],
-  'Analysis and Design (Systems Life Cycle)': ['waterfall-agile'],
   'Legal, Moral, Cultural and Ethical Issues': ['legislation-map'],
 }
 

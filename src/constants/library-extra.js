@@ -35,7 +35,6 @@ export const EXTRA_REVISION = [
       "Programming Techniques",
       "Computational Methods",
       "Programming Paradigms",
-      "Analysis and Design (Systems Life Cycle)",
       "Legal, Moral, Cultural and Ethical Issues",
       "Assembly Language and the Little Man Computer",
       "Algorithm Complexity (Big O)",
@@ -1263,71 +1262,6 @@ export const EXTRA_REVISION = [
         "topic": "Programming Paradigms"
       },
       {
-        "front": "What are the stages of the systems development life cycle?",
-        "back": "Analysis, design, implementation, testing, evaluation, maintenance",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What happens during the analysis stage?",
-        "back": "Investigating the current system and gathering requirements for the new system",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What is a structure chart used for?",
-        "back": "Showing the hierarchical breakdown of a program into modules and their calling relationships",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What is UML?",
-        "back": "Unified Modeling Language: a standard notation for visualising system design",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What does a UML class diagram show?",
-        "back": "Classes, their attributes, methods, and relationships between classes",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What does a UML use case diagram show?",
-        "back": "The interactions between users (actors) and the system's functions",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "Why is testing important in the systems life cycle?",
-        "back": "Ensures the system meets requirements and works correctly before release, catching bugs early",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What happens during corrective maintenance?",
-        "back": "Fixing bugs/errors found after release",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What happens during adaptive maintenance?",
-        "back": "Updating the system for a new environment, e.g. new hardware/OS",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What happens during perfective maintenance?",
-        "back": "Improving or adding new features to the system",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What is boundary test data?",
-        "back": "Data right at the edge of what is valid/invalid for a given input",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What is erroneous test data?",
-        "back": "Invalid data that the system should correctly reject",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "front": "What is normal test data?",
-        "back": "Valid, typical data that the system should correctly accept",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
         "front": "What does the Computer Misuse Act (1990) cover?",
         "back": "Makes unauthorised access, unauthorised modification, and related offences against computer systems/data illegal",
         "topic": "Legal, Moral, Cultural and Ethical Issues"
@@ -2036,42 +1970,6 @@ export const EXTRA_REVISION = [
         "answer": 1,
         "explanation": "Declarative programming states WHAT the outcome should be, leaving the HOW to the underlying system.",
         "topic": "Programming Paradigms"
-      },
-      {
-        "question": "What happens during the analysis stage of the systems life cycle?",
-        "options": [
-          "Building the system",
-          "Investigating the current system and gathering requirements",
-          "Testing the system",
-          "Maintaining the system"
-        ],
-        "answer": 1,
-        "explanation": "Analysis investigates the existing system and gathers requirements for the new one.",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "What is corrective maintenance?",
-        "options": [
-          "Adding new features",
-          "Fixing bugs found after release",
-          "Updating for new hardware",
-          "Improving performance"
-        ],
-        "answer": 1,
-        "explanation": "Corrective maintenance fixes errors/bugs discovered after the system has been released.",
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "What does a UML class diagram show?",
-        "options": [
-          "User interactions with the system",
-          "Classes, their attributes, methods and relationships",
-          "Network topology",
-          "Database records"
-        ],
-        "answer": 1,
-        "explanation": "A UML class diagram shows classes, their attributes, methods, and how classes relate to each other.",
-        "topic": "Analysis and Design (Systems Life Cycle)"
       },
       {
         "question": "What does the Computer Misuse Act make illegal?",
@@ -3697,78 +3595,6 @@ export const EXTRA_REVISION = [
         "topic": "Programming Paradigms"
       },
       {
-        "question": "Describe the purpose of the analysis stage in the systems life cycle",
-        "marks": 2,
-        "markScheme": [
-          "Descriptive recall",
-          "Final answer: To understand the problem, investigate the current system's strengths and weaknesses, and gather clear requirements for the new system"
-        ],
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "Explain the difference between corrective, adaptive and perfective maintenance",
-        "marks": 2,
-        "markScheme": [
-          "Compare and contrast",
-          "Final answer: Corrective maintenance fixes bugs/errors; adaptive maintenance updates the system to work in a new environment (e.g. new OS); perfective maintenance improves the system or adds new features"
-        ],
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "Describe what a UML class diagram would show for a \"Car\" class",
-        "marks": 2,
-        "markScheme": [
-          "Applied example",
-          "Final answer: The class name \"Car\", its attributes (e.g. colour, speed, fuelLevel), and its methods (e.g. accelerate(), brake())"
-        ],
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "Explain why iterative testing throughout development is beneficial rather than only testing at the very end",
-        "marks": 2,
-        "markScheme": [
-          "Conceptual explanation",
-          "Final answer: Catches errors earlier in the process, when they are cheaper and easier to fix, rather than allowing them to compound and become more expensive/complex to resolve in later stages"
-        ],
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "Explain the purpose of a structure chart",
-        "marks": 2,
-        "markScheme": [
-          "Conceptual explanation",
-          "Final answer: Visually shows how a program is broken down into smaller modules/subroutines and the hierarchy and calling relationships between them"
-        ],
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "Explain why gathering requirements accurately during analysis is critical to a project's success",
-        "marks": 2,
-        "markScheme": [
-          "Conceptual explanation",
-          "Final answer: Errors or gaps in the requirements gathered will propagate through every later stage, potentially resulting in a finished system that does not actually solve the client's real problem"
-        ],
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "A form accepts a percentage from 0 to 100. State suitable normal, boundary and erroneous test values",
-        "marks": 2,
-        "markScheme": [
-          "Applied test data selection",
-          "Final answer: Normal: 50. Boundary: 0 and 100 (valid), -1 and 101 (invalid). Erroneous: \"fifty\" (non-numeric)"
-        ],
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
-        "question": "Explain why testing with only normal data is insufficient for a robust system",
-        "marks": 2,
-        "markScheme": [
-          "Conceptual explanation",
-          "Final answer: It fails to check how the system behaves with edge cases or invalid input, which could cause crashes or incorrect behaviour in real use that normal-data testing alone would never reveal"
-        ],
-        "topic": "Analysis and Design (Systems Life Cycle)"
-      },
-      {
         "question": "Explain how the Computer Misuse Act might apply to a student guessing a teacher's password to view school systems, even if they cause no damage",
         "marks": 2,
         "markScheme": [
@@ -3868,7 +3694,9 @@ export const EXTRA_REVISION = [
               "Systems Software",
               "Applications Generation (Translators)",
               "Software Development Methodologies",
-              "Assembly Language and the Little Man Computer"
+              "Assembly Language and the Little Man Computer",
+              "Programming Paradigms",
+              "Object-Oriented Programming"
             ]
           },
           {
@@ -3909,10 +3737,7 @@ export const EXTRA_REVISION = [
             "label": "2.2 Problem Solving and Programming",
             "topics": [
               "Programming Techniques",
-              "Programming Paradigms",
-              "Object-Oriented Programming",
-              "Computational Methods",
-              "Analysis and Design (Systems Life Cycle)"
+              "Computational Methods"
             ]
           },
           {
