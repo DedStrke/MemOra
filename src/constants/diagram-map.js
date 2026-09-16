@@ -69,7 +69,13 @@ export const MATHS_CHAPTER_DIAGRAMS = {
 
 export const CS_CHAPTER_DIAGRAMS = {
   'Structure and Function of the Processor': ['von-neumann', 'fetch-decode-execute'],
-  'Types of Processor': ['pipelining', 'von-neumann'],
+  // von-neumann used to be listed here too, but this chapter's notes never
+  // discuss shared-vs-separate memory architecture - CISC/RISC, pipelining,
+  // GPUs, multicore and co-processors, all Von Neumann machines either way -
+  // so it only ever showed up as an orphaned diagram at the end with no
+  // passage tying it to anything. It belongs to Structure and Function of
+  // the Processor, where it is.
+  'Types of Processor': ['pipelining'],
   'Input, Output and Storage': ['storage-media'],
   'Systems Software': ['scheduling', 'paging'],
   'Applications Generation (Translators)': ['compiler-stages'],

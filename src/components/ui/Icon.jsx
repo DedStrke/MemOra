@@ -523,6 +523,12 @@ const ICONS = {
   ),
   plus: <path d="M12 5v14M5 12h14" />,
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
+  search: (
+    <>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="m20 20-4.8-4.8" />
+    </>
+  ),
   play: <path d="M7 4v16l13-8z" />,
   pause: <path d="M8 5v14M16 5v14" />,
   logo: (

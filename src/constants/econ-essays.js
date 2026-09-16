@@ -237,7 +237,7 @@ export const ECON_ESSAYS = [
   essay(
     'Monopoly',
     'Evaluate the view that monopoly is always against the interests of consumers. (25 marks)',
-    'Paper 3 · Section B',
+    'Paper 1 · Section C',
     [
       'Define monopoly (pure and the 25% legal definition) and identify the consumer interest as price, choice, quality and innovation.',
       'Case FOR: monopoly diagram - MC = MR at Qm, price from AR, P > MC, deadweight loss.',
@@ -267,7 +267,7 @@ export const ECON_ESSAYS = [
   essay(
     'Labour Market Issues',
     'Evaluate the likely impact of a significant increase in the National Living Wage on the UK labour market. (25 marks)',
-    'Paper 3 · Section B',
+    'Paper 1 · Section C',
     [
       'Define the NLW as a statutory minimum, a price floor above equilibrium in the labour market.',
       'Diagram 1: competitive labour market - excess supply of labour at the higher wage.',
@@ -298,7 +298,7 @@ export const ECON_ESSAYS = [
   essay(
     'International Trade',
     'Evaluate the view that free trade is always beneficial for a developing economy. (25 marks)',
-    'Paper 4 · Section B',
+    'Paper 2 · Section C',
     [
       'Define free trade and comparative advantage; identify the developing-economy context.',
       'Case FOR: comparative advantage, gains from specialisation, access to markets and FDI.',
@@ -327,7 +327,7 @@ export const ECON_ESSAYS = [
   essay(
     'Poverty and Inequality',
     'Evaluate the policies a government might use to reduce income inequality. (25 marks)',
-    'Paper 4 · Section B',
+    'Paper 2 · Section C',
     [
       'Distinguish income from wealth inequality and absolute from relative poverty; reference the Lorenz curve and Gini coefficient.',
       'Policy 1: progressive taxation and transfers - mechanism and diagram.',
@@ -357,7 +357,7 @@ export const ECON_ESSAYS = [
   essay(
     'Exchange Rates',
     'Evaluate the likely effects of a significant depreciation of sterling on the UK economy. (25 marks)',
-    'Paper 4 · Section B',
+    'Paper 2 · Section C',
     [
       'Define depreciation under a floating system; state the immediate price effects (SPICED / WPIDEC).',
       'Chain: exports cheaper abroad, imports dearer → net exports → AD → growth and employment.',

@@ -133,6 +133,7 @@ export default function FocusMusic() {
   const mountRef = useRef(null)
   const controllerRef = useRef(null)
   const panelBodyRef = useRef(null)
+  const wrapperRef = useRef(null)
   // Whether the panel's content genuinely needs to scroll - measured
   // rather than assumed. A plain CSS "overflow-y: auto" on a box that
   // sizes itself to its own content is notorious for reporting a
@@ -152,6 +153,20 @@ export default function FocusMusic() {
       /* private mode - nothing to do */
     }
   }, [state])
+
+  // Click (or tap) anywhere outside the panel minimises it, same as any
+  // other popover - only listens while open, and 'pointerdown' rather than
+  // 'click' so it also catches the moment before a drag/selection starts.
+  useEffect(() => {
+    if (!state.open) return
+    const onPointerDown = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setState((s) => ({ ...s, open: false }))
+      }
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => document.removeEventListener('pointerdown', onPointerDown)
+  }, [state.open])
 
   // Build the embed once; swap its uri when the choice changes.
   useEffect(() => {
@@ -281,7 +296,7 @@ export default function FocusMusic() {
   const subLine = track?.title ? track.artist : playing ? 'Playing' : 'Paused'
 
   return (
-    <div className="fixed bottom-4 right-4 z-[55] flex flex-col items-end gap-2 print:hidden">
+    <div ref={wrapperRef} className="fixed bottom-4 right-4 z-[55] flex flex-col items-end gap-2 print:hidden">
       {/* The panel stays mounted so the embed keeps playing when minimised. */}
       <div
         className={`music-panel w-[min(30rem,calc(100vw-2rem))] overflow-hidden rounded-3xl border border-line bg-surface transition-[opacity,transform] duration-200 ${
@@ -289,6 +304,13 @@ export default function FocusMusic() {
         }`}
         aria-hidden={!state.open}
       >
+        {/* The current cover art, heavily blurred, washes the whole panel -
+            not just the header - so Spotify's own embed colours read as
+            part of one "now playing" surface rather than a bright block
+            dropped into an unrelated dark panel. See the CSS comment on
+            .music-panel-ambient for why this sits behind everything. */}
+        {currentThumb && <img src={currentThumb} alt="" aria-hidden="true" className="music-panel-ambient" />}
+        <span aria-hidden="true" className="music-panel-ambient-scrim" />
         {/* A single scroll container for the whole panel, capped well
             below the viewport height. Splitting the panel into its own
             scroll box per-section (the account list used to be its own
@@ -340,74 +362,110 @@ export default function FocusMusic() {
             </p>
           )}
 
-          <div className="border-t border-line px-3 py-2.5">
+          <div className="relative flex flex-col gap-3 border-t border-line px-3 py-3">
             {/* Account */}
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="text-[0.68rem] font-bold uppercase tracking-wide text-muted">Your account</p>
-              {spotifyConfigured() ? (
-                connected ? (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      spotifyLogout()
-                      setConnected(false)
-                      setMine(null)
-                      setTrack(null)
-                    }}
-                    className="text-[0.7rem] font-semibold text-muted hover:text-fg"
-                  >
-                    Disconnect
-                  </button>
+            <div className="music-section">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-[0.68rem] font-bold uppercase tracking-wide text-muted">Your account</p>
+                {spotifyConfigured() ? (
+                  connected ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        spotifyLogout()
+                        setConnected(false)
+                        setMine(null)
+                        setTrack(null)
+                      }}
+                      className="text-[0.7rem] font-semibold text-muted hover:text-fg"
+                    >
+                      Disconnect
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled={connectBusy}
+                      onClick={async () => {
+                        setError(null)
+                        setConnectBusy(true)
+                        try {
+                          await beginSpotifyLogin()
+                        } catch {
+                          setError('Could not open Spotify login - allow cookies/site storage for this site, then try again.')
+                        } finally {
+                          setConnectBusy(false)
+                        }
+                      }}
+                      className="rounded-full bg-brand px-2.5 py-1 text-[0.7rem] font-bold text-on-brand hover:opacity-90 disabled:opacity-60"
+                    >
+                      {connectBusy ? 'Opening…' : 'Connect Spotify'}
+                    </button>
+                  )
                 ) : (
-                  <button
-                    type="button"
-                    disabled={connectBusy}
-                    onClick={async () => {
-                      setError(null)
-                      setConnectBusy(true)
-                      try {
-                        await beginSpotifyLogin()
-                      } catch {
-                        setError('Could not open Spotify login - allow cookies/site storage for this site, then try again.')
-                      } finally {
-                        setConnectBusy(false)
-                      }
-                    }}
-                    className="rounded-full bg-brand px-2.5 py-1 text-[0.7rem] font-bold text-on-brand hover:opacity-90 disabled:opacity-60"
+                  <a
+                    href="https://accounts.spotify.com/login"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full bg-brand px-2.5 py-1 text-[0.7rem] font-bold text-on-brand hover:opacity-90"
                   >
-                    {connectBusy ? 'Opening…' : 'Connect Spotify'}
-                  </button>
-                )
-              ) : (
-                <a
-                  href="https://accounts.spotify.com/login"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full bg-brand px-2.5 py-1 text-[0.7rem] font-bold text-on-brand hover:opacity-90"
-                >
-                  Sign in to Spotify
-                </a>
-              )}
-            </div>
-            <p className="mt-1 text-[0.68rem] leading-snug text-muted">
-              {connected
-                ? 'Connected - pick one of your playlists below. The minimised pill shows the track playing on your account.'
-                : 'Signed in to Spotify in this browser, the player uses your account and plays full tracks; otherwise 30-second previews. Paste any of your playlists below.'}
-            </p>
+                    Sign in to Spotify
+                  </a>
+                )}
+              </div>
+              <p className="mt-1 text-[0.68rem] leading-snug text-muted">
+                {connected
+                  ? 'Connected - pick one of your playlists below. The minimised pill shows the track playing on your account.'
+                  : 'Signed in to Spotify in this browser, the player uses your account and plays full tracks; otherwise 30-second previews. Paste any of your playlists below.'}
+              </p>
 
-            {connected && (
-              <div className="mt-2">
-                {mineError && <p className="text-[0.7rem] text-danger">{mineError}</p>}
-                {!mine && !mineError && <p className="text-[0.7rem] text-muted">Loading your playlists…</p>}
-                {mine && mine.length === 0 && <p className="text-[0.7rem] text-muted">No playlists on this account yet.</p>}
-                {mine && mine.length > 0 && (
-                  <ul className="mt-1 max-h-40 space-y-1 overflow-y-auto pr-1">
-                    {mine.map((pl) => (
-                      <li key={pl.uri}>
+                {connected && (
+                  <div className="mt-2">
+                    {mineError && <p className="text-[0.7rem] text-danger">{mineError}</p>}
+                    {!mine && !mineError && <p className="text-[0.7rem] text-muted">Loading your playlists…</p>}
+                    {mine && mine.length === 0 && <p className="text-[0.7rem] text-muted">No playlists on this account yet.</p>}
+                    {mine && mine.length > 0 && (
+                      <ul className="mt-1 max-h-40 space-y-1 overflow-y-auto pr-1">
+                        {mine.map((pl) => (
+                          <li key={pl.uri}>
+                            <button
+                              type="button"
+                              onClick={() => play(pl.uri)}
+                              className={`flex w-full items-center gap-2 rounded-lg px-1.5 py-1.5 text-left text-xs transition-colors hover:bg-brand-soft ${
+                                state.uri === pl.uri ? 'bg-brand-soft font-bold text-brand-strong' : 'text-fg'
+                              }`}
+                            >
+                              {pl.thumb ? (
+                                <img src={pl.thumb} alt="" className="h-7 w-7 shrink-0 rounded object-cover" />
+                              ) : (
+                                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded bg-line">
+                                  <Icon name="music" className="h-3.5 w-3.5 text-muted" />
+                                </span>
+                              )}
+                              <span className="min-w-0 flex-1 truncate">{pl.title}</span>
+                              <span className="shrink-0 text-[0.65rem] text-muted">{pl.tracks}</span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
+              </div>
+
+            {/* Saved playlists and the paste-a-link form live in one card -
+                pasting a link is how a playlist gets into "Saved", so the
+                two were never really separate ideas. */}
+            <div className="music-section">
+              {state.saved.length > 0 && (
+                <div className="mb-3">
+                  <p className="text-[0.68rem] font-bold uppercase tracking-wide text-muted">Saved</p>
+                  <ul className="mt-1.5 space-y-1">
+                    {state.saved.map((pl) => (
+                      <li key={pl.uri} className="flex items-center gap-1">
                         <button
                           type="button"
                           onClick={() => play(pl.uri)}
-                          className={`flex w-full items-center gap-2 rounded-lg px-1.5 py-1 text-left text-xs hover:bg-brand-soft ${
+                          className={`flex min-w-0 flex-1 items-center gap-2 rounded-lg px-1.5 py-1.5 text-left text-xs transition-colors hover:bg-brand-soft ${
                             state.uri === pl.uri ? 'bg-brand-soft font-bold text-brand-strong' : 'text-fg'
                           }`}
                         >
@@ -418,80 +476,52 @@ export default function FocusMusic() {
                               <Icon name="music" className="h-3.5 w-3.5 text-muted" />
                             </span>
                           )}
-                          <span className="min-w-0 flex-1 truncate">{pl.title}</span>
-                          <span className="shrink-0 text-[0.65rem] text-muted">{pl.tracks}</span>
+                          <span className="truncate">{pl.title}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => forget(pl.uri)}
+                          className="rounded-full p-1.5 text-muted transition-colors hover:bg-danger/10 hover:text-danger"
+                          aria-label={`Remove ${pl.title}`}
+                        >
+                          <Icon name="x" className="h-3.5 w-3.5" />
                         </button>
                       </li>
                     ))}
                   </ul>
-                )}
-              </div>
-            )}
+                </div>
+              )}
 
-            {state.saved.length > 0 && (
-              <div className="mt-3">
-                <p className="text-[0.68rem] font-bold uppercase tracking-wide text-muted">Saved</p>
-                <ul className="mt-1 space-y-1">
-                  {state.saved.map((pl) => (
-                    <li key={pl.uri} className="flex items-center gap-1">
-                      <button
-                        type="button"
-                        onClick={() => play(pl.uri)}
-                        className={`flex min-w-0 flex-1 items-center gap-2 rounded-lg px-1.5 py-1 text-left text-xs hover:bg-brand-soft ${
-                          state.uri === pl.uri ? 'bg-brand-soft font-bold text-brand-strong' : 'text-fg'
-                        }`}
-                      >
-                        {pl.thumb ? (
-                          <img src={pl.thumb} alt="" className="h-7 w-7 shrink-0 rounded object-cover" />
-                        ) : (
-                          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded bg-line">
-                            <Icon name="music" className="h-3.5 w-3.5 text-muted" />
-                          </span>
-                        )}
-                        <span className="truncate">{pl.title}</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => forget(pl.uri)}
-                        className="rounded-full p-1 text-muted hover:text-danger"
-                        aria-label={`Remove ${pl.title}`}
-                      >
-                        <Icon name="x" className="h-3.5 w-3.5" />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+              <p className="text-[0.68rem] font-bold uppercase tracking-wide text-muted">Add a playlist</p>
+              <form onSubmit={submit} className="music-link-form mt-1.5 flex gap-1.5">
+                <input
+                  type="text"
+                  value={draft}
+                  onChange={(e) => setDraft(e.target.value)}
+                  placeholder="Paste a Spotify link"
+                  aria-label="Spotify link"
+                  className="min-w-0 flex-1 rounded-lg border border-line bg-page px-2.5 py-1.5 text-xs text-fg placeholder:text-muted focus:border-brand focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  disabled={busy}
+                  className="rounded-lg bg-brand px-3 py-1.5 text-xs font-bold text-on-brand transition-opacity hover:opacity-90 disabled:opacity-60"
+                >
+                  {busy ? '…' : 'Add'}
+                </button>
+              </form>
+              {error && <p className="mt-1.5 text-[0.7rem] text-danger">{error}</p>}
+            </div>
 
-            <form onSubmit={submit} className="mt-3 flex gap-1.5">
-              <input
-                type="text"
-                value={draft}
-                onChange={(e) => setDraft(e.target.value)}
-                placeholder="Paste a Spotify link"
-                aria-label="Spotify link"
-                className="min-w-0 flex-1 rounded-lg border border-line bg-page px-2.5 py-1.5 text-xs text-fg placeholder:text-muted focus:border-brand focus:outline-none"
-              />
-              <button
-                type="submit"
-                disabled={busy}
-                className="rounded-lg bg-brand px-3 py-1.5 text-xs font-bold text-on-brand hover:opacity-90 disabled:opacity-60"
-              >
-                {busy ? '…' : 'Add'}
-              </button>
-            </form>
-            {error && <p className="mt-1 text-[0.7rem] text-danger">{error}</p>}
-
-            <div className="mt-3">
+            <div className="music-section">
               <p className="text-[0.68rem] font-bold uppercase tracking-wide text-muted">Or a study playlist</p>
-              <div className="mt-1 flex flex-wrap gap-1.5">
+              <div className="mt-1.5 flex flex-wrap gap-1.5">
                 {DEFAULTS.map((d) => (
                   <button
                     key={d.uri}
                     type="button"
                     onClick={() => play(d.uri)}
-                    className={`rounded-full border px-2.5 py-0.5 text-[0.7rem] font-semibold ${
+                    className={`rounded-full border px-2.5 py-1 text-[0.7rem] font-semibold transition-[transform,border-color,background-color] hover:scale-105 ${
                       state.uri === d.uri ? 'border-brand bg-brand text-on-brand' : 'border-line text-fg hover:border-brand'
                     }`}
                   >
@@ -502,7 +532,7 @@ export default function FocusMusic() {
             </div>
 
             {/* The buddy shows up here too - a tap gets a word while the music plays. */}
-            <div className="mt-4 flex items-center gap-2.5 border-t border-line pt-3">
+            <div className="flex items-center gap-2.5 pt-1">
               <div className="h-9 w-9 shrink-0">
                 <Buddy mascot={user.mascot} className="h-full w-full" bubbleSide="right" />
               </div>

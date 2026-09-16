@@ -57,13 +57,16 @@ export default function LeaderboardList({ me, friends, limit, showTabs = true })
           const tier = streakTier(r.streak || 0)
           const banner = usableBanner(r.banner)
           const metric = board === 'week' ? `${r.weekMinutes || 0} min` : `${(r.xp || 0).toLocaleString()} XP`
+          // text-on-brand is tuned for --brand's own lightness only; --paper
+          // and --r1-seen (and the fixed bronze) are lighter tones that read
+          // best in a fixed dark ink in every theme, not --on-brand's white.
           const rankClass =
             r.rank === 1
-              ? 'bg-paper text-white'
+              ? 'bg-paper text-[#0b0f14]'
               : r.rank === 2
-                ? 'bg-r1-seen text-white'
+                ? 'bg-r1-seen text-[#0b0f14]'
                 : r.rank === 3
-                  ? 'bg-[#c9843a] text-white'
+                  ? 'bg-[#c9843a] text-[#0b0f14]'
                   : 'lb-rank-plain'
           return (
             <li

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import FlipCard from '@/components/ui/FlipCard'
@@ -10,6 +10,18 @@ import EssayPlanner from '@/components/ui/EssayPlanner'
 import Diagram from '@/components/diagrams'
 import { diagramsForChapter } from '@/constants/diagram-map'
 import { fadeInUp, popIn } from '@/lib/motion'
+
+/*
+  Advancing to the next card/question used to leave the page exactly where
+  it was scrolled to - if reading a long answer had scrolled the mark
+  scheme into view, "Next" landed on a fresh question you couldn't see
+  without scrolling back up yourself. Every runner now scrolls back to the
+  top of the page when it advances, so the new card always starts in view.
+*/
+const scrollToTop = (reduceMotion) => {
+  if (typeof window === 'undefined') return
+  window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
+}
 
 /*
   Renders real AI-generated revision content for a subject, chosen by technique.
@@ -179,11 +191,13 @@ function NotesBody({ html }) {
 function FlashcardRunner({ cards, recall, empty }) {
   const [i, setI] = useState(0)
   const [flipped, setFlipped] = useState(false)
+  const reduceMotion = useReducedMotion()
   if (!cards.length) return <Empty label="flashcards" {...empty} />
   const total = cards.length
   const go = (n) => {
     setFlipped(false)
     setI((n + total) % total)
+    scrollToTop(reduceMotion)
   }
   return (
     <div>
@@ -223,12 +237,14 @@ const DONT_KNOW = -1
 function McqRunner({ items, onAnswer, empty }) {
   const [i, setI] = useState(0)
   const [picked, setPicked] = useState(null)
+  const reduceMotion = useReducedMotion()
   if (!items.length) return <Empty label="MCQs" {...empty} />
   const q = items[i]
   const total = items.length
   const next = () => {
     setPicked(null)
     setI((i + 1) % total)
+    scrollToTop(reduceMotion)
   }
   const pick = (idx) => {
     setPicked(idx)
@@ -343,6 +359,7 @@ function ExamRunner({ items, onAnswer, empty, subject }) {
   const [revealed, setRevealed] = useState(false)
   const [rated, setRated] = useState(null) // 'right' | 'wrong' | 'dontknow' | null
   const [answer, setAnswer] = useState('')
+  const reduceMotion = useReducedMotion()
   if (!items.length) return <Empty label="exam questions" {...empty} />
   const q = items[i]
   const total = items.length
@@ -351,6 +368,7 @@ function ExamRunner({ items, onAnswer, empty, subject }) {
     setRated(null)
     setAnswer('')
     setI((i + 1) % total)
+    scrollToTop(reduceMotion)
   }
   const rate = (r) => {
     setRated(r)

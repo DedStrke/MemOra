@@ -54,6 +54,10 @@ export const ECON_CHAPTER_DIAGRAMS = {
     { id: 'consumer-producer-surplus' },
     { id: 'surplus-change', after: 'Consumer surplus' },
   ],
+  'Consumer and Producer Surplus': [
+    { id: 'consumer-producer-surplus', after: 'willing to accept' },
+    { id: 'surplus-change', after: 'shifts' },
+  ],
   'Types of Market Failure': [
     { id: 'negative-externality' },
     { id: 'public-goods' },

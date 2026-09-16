@@ -17,6 +17,7 @@ import { CS_EXTRA_MCQ_2, CS_EXTRA_EXAM_2, CS_EXTRA_FLASHCARDS_2 } from './cs-ext
 import { CS_NOTES } from './cs-notes'
 import { CS_ESSAYS } from './cs-essays'
 import { CS_PROGRAMMING } from './cs-programming'
+import { CS_PROGRAMMING_2 } from './cs-programming-2'
 import { mergeNotes } from './notes-merge'
 import { MATHS_EXAM_PURE } from './maths-exams-pure'
 import { MATHS_EXAM_APPLIED } from './maths-exams-applied'
@@ -40,6 +41,7 @@ import { ECON_THEME4_NOTES } from './econ-notes-theme4'
 import { ECON_EXAM_2 } from './econ-exam-2'
 import { ECON_EXAM_3 } from './econ-exam-3'
 import { ECON_ESSAYS } from './econ-essays'
+import { ECON_ESSAYS_2 } from './econ-essays-2'
 import { ECON_ESSAY_BANK } from './econ-essay-bank'
 import { ECON_FIRM_CARDS } from './econ-flashcards-firm'
 import { ECON_FIRM_MASTER_NOTES } from './econ-notes-firm-master'
@@ -47,6 +49,7 @@ import { ECON_MCQ_2 } from './econ-mcq-2'
 import { ECON_EXTRA_DEPTH } from './econ-notes-extra'
 import { ECON_EXTRA_DEPTH_2 } from './econ-notes-extra2'
 import { ECON_GAP_NOTES } from './econ-notes-gaps'
+import { ECON_GAP_NOTES_2, ECON_SURPLUS_FLASHCARDS, ECON_SURPLUS_MCQ, ECON_SURPLUS_EXAM } from './econ-notes-gaps-2'
 import { ECON_EXTRA_FLASHCARDS_4, ECON_EXTRA_MCQ_4, ECON_EXTRA_EXAM_4 } from './econ-extra-4'
 import { withDiagrams } from './econ-diagrams'
 import {
@@ -2302,7 +2305,7 @@ const withExtras = (pack) => {
       ...pack,
       flashcards: tagWithDiagrams([...pack.flashcards, ...CS_EXTRA_FLASHCARDS_2, ...CS_DIAGRAM_CARDS, ...CS_EXTRA_FLASHCARDS_4], 'Computer Science'),
       mcq: tagWithDiagrams([...pack.mcq, ...CS_EXTRA_MCQ, ...CS_EXTRA_MCQ_2, ...CS_MCQ_3, ...CS_EXTRA_MCQ_4], 'Computer Science'),
-      examQuestions: tagWithDiagrams([...pack.examQuestions, ...CS_EXTRA_EXAM, ...CS_EXTRA_EXAM_2, ...CS_EXAM_3, ...CS_ESSAYS, ...CS_PROGRAMMING, ...CS_EXTRA_EXAM_4], 'Computer Science'),
+      examQuestions: tagWithDiagrams([...pack.examQuestions, ...CS_EXTRA_EXAM, ...CS_EXTRA_EXAM_2, ...CS_EXAM_3, ...CS_ESSAYS, ...CS_PROGRAMMING, ...CS_PROGRAMMING_2, ...CS_EXTRA_EXAM_4], 'Computer Science'),
       notes: appendDiagramsToNotes(mergeNotes({ ...CS_NOTES, ...CS_COMP1_NOTES, ...CS_COMP2_NOTES, ...CS_COMP3_NOTES }, CS_EXTRA_DEPTH, CS_EXTRA_DEPTH_2), CS_CHAPTER_DIAGRAMS),
     }
   }
@@ -2312,9 +2315,9 @@ const withExtras = (pack) => {
       // tagWithDiagrams attaches each chapter's diagram to its questions, so
       // every technique can show one - the mark scheme for a "using a
       // diagram" question, and the explanation after a wrong MCQ.
-      examQuestions: tagWithDiagrams([...pack.examQuestions, ...ECON_EXAM_2, ...ECON_EXAM_3, ...ECON_ESSAYS, ...ECON_EXTRA_EXAM_4], 'Economics'),
-      mcq: tagWithDiagrams([...pack.mcq, ...ECON_MCQ_2, ...ECON_EXTRA_MCQ_4], 'Economics'),
-      flashcards: tagWithDiagrams([...pack.flashcards, ...ECON_DIAGRAM_CARDS, ...ECON_FIRM_CARDS, ...ECON_EXTRA_FLASHCARDS_4], 'Economics'),
+      examQuestions: tagWithDiagrams([...pack.examQuestions, ...ECON_EXAM_2, ...ECON_EXAM_3, ...ECON_ESSAYS, ...ECON_ESSAYS_2, ...ECON_EXTRA_EXAM_4, ...ECON_SURPLUS_EXAM], 'Economics'),
+      mcq: tagWithDiagrams([...pack.mcq, ...ECON_MCQ_2, ...ECON_EXTRA_MCQ_4, ...ECON_SURPLUS_MCQ], 'Economics'),
+      flashcards: tagWithDiagrams([...pack.flashcards, ...ECON_DIAGRAM_CARDS, ...ECON_FIRM_CARDS, ...ECON_EXTRA_FLASHCARDS_4, ...ECON_SURPLUS_FLASHCARDS], 'Economics'),
       // A distinct technique from examQuestions: a bank of questions to PLAN
       // answers to, with no model answers - see econ-essay-bank.js. Not
       // filtered by chapter (the bank has its own paper/topic filters) and
@@ -2327,7 +2330,7 @@ const withExtras = (pack) => {
       // untouched until they are rewritten too.
       notes: withDiagrams(
         mergeNotes(
-          { ...ECON_NOTES, ...ECON_THEME2_NOTES, ...ECON_THEME2B_NOTES, ...ECON_THEME2C_NOTES, ...ECON_THEME1A_NOTES, ...ECON_THEME1B_NOTES, ...ECON_THEME3A_NOTES, ...ECON_THEME3B_NOTES, ...ECON_THEME4_NOTES, ...ECON_GAP_NOTES },
+          { ...ECON_NOTES, ...ECON_THEME2_NOTES, ...ECON_THEME2B_NOTES, ...ECON_THEME2C_NOTES, ...ECON_THEME1A_NOTES, ...ECON_THEME1B_NOTES, ...ECON_THEME3A_NOTES, ...ECON_THEME3B_NOTES, ...ECON_THEME4_NOTES, ...ECON_GAP_NOTES, ...ECON_GAP_NOTES_2 },
           ECON_EXTRA_DEPTH,
           ECON_EXTRA_DEPTH_2,
           ECON_FIRM_MASTER_NOTES,

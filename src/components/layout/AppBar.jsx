@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NAV_LINKS } from '@/constants/content'
@@ -32,8 +32,15 @@ export default function AppBar() {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const initial = (user?.name?.[0] || '?').toUpperCase()
+  const menuButtonRef = useRef(null)
 
-  const close = () => setOpen(false)
+  // Closing must hand focus back to the button that opened the menu -
+  // otherwise a keyboard user's focus silently drops onto <body> and they
+  // lose their place on the page (WAI-ARIA menu-button pattern).
+  const close = () => {
+    setOpen(false)
+    menuButtonRef.current?.focus()
+  }
 
   // Signing out has to leave the app - staying on an in-app page after
   // signing out shows a dashboard that is no longer "yours", with a top bar
@@ -49,7 +56,7 @@ export default function AppBar() {
   // Close the menu with Escape.
   useEffect(() => {
     if (!open) return
-    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    const onKey = (e) => e.key === 'Escape' && close()
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
@@ -81,8 +88,8 @@ export default function AppBar() {
       {/* Clipped to the pill shape on its own - the header itself must stay
           overflow-visible so the mobile menu dropdown can pop out below it. */}
       <div
-        className={`glass-strong absolute inset-0 overflow-hidden transition-[opacity,border-radius] duration-300 ease-out ${
-          scrolled ? 'rounded-3xl opacity-100' : 'rounded-none opacity-0'
+        className={`glass-strong absolute inset-0 overflow-hidden opacity-100 transition-[border-radius] duration-300 ease-out ${
+          scrolled ? 'rounded-3xl' : 'rounded-none'
         }`}
       />
       <div
@@ -122,6 +129,7 @@ export default function AppBar() {
           {/* Hamburger menu (shown on every screen size). */}
           <div className="relative">
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setOpen((o) => !o)}
               aria-expanded={open}

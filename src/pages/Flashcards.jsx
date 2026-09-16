@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Section from '@/components/ui/Section'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import Button from '@/components/ui/Button'
@@ -30,6 +30,7 @@ const AI_DECKS = REVISION.map((pack) => ({
 function StudyView({ deck, onExit }) {
   const [i, setI] = useState(0)
   const [flipped, setFlipped] = useState(false)
+  const reduceMotion = useReducedMotion()
   const cards = deck.cards || []
   const total = cards.length
   const card = cards[i]
@@ -37,6 +38,9 @@ function StudyView({ deck, onExit }) {
   const go = (nextIndex) => {
     setFlipped(false)
     setI(nextIndex)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
+    }
   }
   const prev = () => go((i - 1 + total) % total)
   const next = () => go((i + 1) % total)

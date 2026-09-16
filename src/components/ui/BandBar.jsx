@@ -81,18 +81,26 @@ export default function BandBar({ pack, chapterStates, isYear12 = false, color =
       <div className="flex w-full gap-1.5" role="img" aria-label={summary}>
         {segments.map((seg) => (
           <div key={seg.label} className="min-w-0" style={{ flex: `${seg.total} 1 0%` }}>
-            <div className="spec-map-track relative flex w-full overflow-hidden rounded-full" style={{ height }}>
-              {FILL_ORDER.filter((b) => seg.counts[b] > 0).map((band, i, arr) => (
-                <span
-                  key={band}
-                  className={`spec-map-fill relative h-full ${i === arr.length - 1 ? 'spec-map-lead' : ''}`}
-                  style={{
-                    width: `${(seg.counts[band] / seg.total) * 100}%`,
-                    background: BAND_FILL[band],
-                    transition: 'width 600ms cubic-bezier(0.2, 0.8, 0.3, 1)',
-                  }}
-                />
-              ))}
+            <div className="relative" style={{ height }}>
+              {/* Glow effect behind the bar */}
+              <div 
+                className="absolute inset-0 rounded-full opacity-40 blur-sm"
+                style={{ background: 'var(--subject)' }}
+                aria-hidden="true"
+              />
+              <div className="spec-map-track relative flex h-full w-full overflow-hidden rounded-full">
+                {FILL_ORDER.filter((b) => seg.counts[b] > 0).map((band, i, arr) => (
+                  <span
+                    key={band}
+                    className={`spec-map-fill relative h-full ${i === arr.length - 1 ? 'spec-map-lead' : ''}`}
+                    style={{
+                      width: `${(seg.counts[band] / seg.total) * 100}%`,
+                      background: BAND_FILL[band],
+                      transition: 'width 600ms cubic-bezier(0.2, 0.8, 0.3, 1)',
+                    }}
+                  />
+                ))}
+              </div>
             </div>
             <p className="mt-1.5 flex items-baseline justify-between gap-1 text-[0.62rem] font-bold uppercase tracking-[0.08em] text-muted">
               <span className="truncate">{seg.label}</span>

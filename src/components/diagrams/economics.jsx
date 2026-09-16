@@ -183,7 +183,7 @@ function SupplyDemand() {
       <Axes xLabel="Quantity" yLabel="Price" />
       <Curve d={`M ${px(0.05)} ${py(0.9)} L ${px(0.9)} ${py(0.12)}`} colour={DEMAND} label="D" lx={px(0.92)} ly={py(0.14)} />
       <Curve d={`M ${px(0.05)} ${py(0.1)} L ${px(0.9)} ${py(0.88)}`} colour={SUPPLY} label="S" lx={px(0.92)} ly={py(0.88)} />
-      <Guides x={px(0.475)} y={py(0.5)} xText="Qe" yText="Pe" />
+      <Guides x={px(0.486)} y={py(0.5)} xText="Qe" yText="Pe" />
     </Figure>
   )
 }
@@ -199,8 +199,8 @@ function DemandShift() {
       <Curve d={`M ${px(0.03)} ${py(0.78)} L ${px(0.66)} ${py(0.1)}`} colour={DEMAND} label="D₁" lx={px(0.68)} ly={py(0.1)} />
       <Curve d={`M ${px(0.25)} ${py(0.94)} L ${px(0.92)} ${py(0.24)}`} colour={SOCIAL} label="D₂" lx={px(0.94)} ly={py(0.24)} />
       <Curve d={`M ${px(0.05)} ${py(0.08)} L ${px(0.9)} ${py(0.86)}`} colour={SUPPLY} label="S" lx={px(0.92)} ly={py(0.86)} />
-      <Guides x={px(0.35)} y={py(0.36)} xText="Q₁" yText="P₁" />
-      <Guides x={px(0.55)} y={py(0.55)} xText="Q₂" yText="P₂" />
+      <Guides x={px(0.39)} y={py(0.392)} xText="Q₁" yText="P₁" />
+      <Guides x={px(0.595)} y={py(0.58)} xText="Q₂" yText="P₂" />
       <ShiftArrow x1={px(0.36)} y1={py(0.62)} x2={px(0.5)} y2={py(0.66)} colour={SOCIAL} />
     </Figure>
   )
@@ -700,7 +700,7 @@ function BusinessObjectives() {
     >
       <Axes xLabel="Output" yLabel="Price / cost / revenue" />
       <Curve d={`M ${px(0.04)} ${py(0.95)} L ${px(0.94)} ${py(0.12)}`} colour={DEMAND} label="AR" lx={px(0.95)} ly={py(0.1)} />
-      <Curve d={`M ${px(0.04)} ${py(0.95)} L ${px(0.49)} ${py(0.12)}`} colour={SOCIAL} label="MR" lx={px(0.5)} ly={py(0.08)} />
+      <Curve d={`M ${px(0.04)} ${py(0.95)} L ${px(0.555)} ${py(0)}`} colour={SOCIAL} label="MR" lx={px(0.5)} ly={py(0.08)} />
       <Curve d={`M ${px(0.06)} ${py(0.2)} L ${px(0.9)} ${py(0.68)}`} colour={SUPPLY} label="MC" lx={px(0.92)} ly={py(0.68)} />
       <Curve
         d={`M ${px(0.1)} ${py(0.62)} Q ${px(0.45)} ${py(0.3)} ${px(0.9)} ${py(0.56)}`}
@@ -710,9 +710,16 @@ function BusinessObjectives() {
         ly={py(0.52)}
         width="1.8"
       />
-      <Guides x={px(0.26)} y={py(0.72)} xText="Qπ" />
-      <Guides x={px(0.49)} y={py(0.52)} xText="Qr" />
-      <Guides x={px(0.7)} y={py(0.38)} xText="Qs" />
+      {/* Guide points sit exactly on the curves' own intersections (solved
+          algebraically from the paths above), not eyeballed - each dot has
+          to land ON MC/MR/AC/AR or it reads as a diagram error. */}
+      <Guides x={px(0.355)} y={py(0.369)} xText="Qπ" />
+      <Guides x={px(0.555)} y={py(0)} xText="Qr" />
+      {/* Qs sits only 0.03 to the right of Qr - genuinely, per the curves
+          above - so its own xText would print right on top of Qr's.
+          Bumped to its own line instead of moving either point. */}
+      <Guides x={px(0.585)} y={py(0.448)} />
+      <Note x={px(0.585) + 6} y={O.y + 15} anchor="start">Qs</Note>
       {/* Under the x-axis, not inside the plot: at 400 wide these two
           lines ran straight through the AR curve and the Qs guide. */}
       <Note x={200} y={O.y + 34}>Qπ: MC = MR · Qr: MR = 0 · Qs: AR = AC</Note>
@@ -730,8 +737,8 @@ function ConsumptionFunction() {
       <Axes xLabel="Disposable income (Y)" yLabel="Consumption (C)" />
       <Curve d={`M ${px(0)} ${py(0)} L ${px(0.95)} ${py(0.95)}`} colour="var(--muted)" label="45°" lx={px(0.9)} ly={py(0.99)} width="1.4" />
       <Curve d={`M ${px(0)} ${py(0.22)} L ${px(0.95)} ${py(0.8)}`} colour={DEMAND} label="C" lx={px(0.96)} ly={py(0.8)} />
-      <circle cx={px(0.52)} cy={py(0.52)} r="3.4" fill="var(--fg)" />
-      <Note x={px(0.52)} y={py(0.52) - 9}>break-even</Note>
+      <circle cx={px(0.565)} cy={py(0.565)} r="3.4" fill="var(--fg)" />
+      <Note x={px(0.565)} y={py(0.565) - 9}>break-even</Note>
       <Note x={O.x - 6} y={py(0.22) + 4} anchor="end">a</Note>
       <Note x={px(0.78)} y={py(0.94)} colour={SOCIAL}>saving</Note>
       <Note x={px(0.22)} y={py(0.1)} colour={LOSS}>dissaving</Note>
@@ -770,8 +777,8 @@ function LabourMarket() {
       caption="Demand for labour is its marginal revenue product; supply rises with the wage. The market clears at W₁, Q₁. A minimum wage set above W₁ creates excess supply of labour - unemployment."
     >
       <Axes xLabel="Quantity of labour" yLabel="Wage rate" />
-      <Curve d={`M ${px(0.05)} ${py(0.92)} L ${px(0.9)} ${py(0.12)}`} colour={SUPPLY} label="S(L)" lx={px(0.92)} ly={py(0.12)} />
-      <Curve d={`M ${px(0.05)} ${py(0.12)} L ${px(0.9)} ${py(0.9)}`} colour={DEMAND} label="D(L) = MRP" lx={px(0.6)} ly={py(0.9)} />
+      <Curve d={`M ${px(0.05)} ${py(0.12)} L ${px(0.9)} ${py(0.9)}`} colour={SUPPLY} label="S(L)" lx={px(0.92)} ly={py(0.9)} />
+      <Curve d={`M ${px(0.05)} ${py(0.92)} L ${px(0.9)} ${py(0.12)}`} colour={DEMAND} label="D(L) = MRP" lx={px(0.58)} ly={py(0.12)} />
       <Guides x={px(0.475)} y={py(0.5)} xText="Q₁" yText="W₁" />
       <line x1={O.x} y1={py(0.7)} x2={RIGHT - 15} y2={py(0.7)} stroke={LOSS} strokeWidth="1.8" strokeDasharray="5 4" />
       <Note x={RIGHT - 12} y={py(0.7) - 6} anchor="end" colour={LOSS}>minimum wage</Note>
@@ -841,7 +848,10 @@ function LorenzCurve() {
         fill={LOSS}
         opacity="0.25"
       />
-      <Note x={px(0.42)} y={py(0.46)} colour={LOSS}>A</Note>
+      {/* Region A is bounded by the diagonal (y=x=0.42 here) above and the
+          curve (y≈0.179 here) below - 0.46 sat just outside it, above the
+          diagonal. 0.30 sits centred in the (0.179, 0.42) band. */}
+      <Note x={px(0.42)} y={py(0.3)} colour={LOSS}>A</Note>
       <Note x={px(0.66)} y={py(0.12)}>B</Note>
     </Figure>
   )
@@ -856,7 +866,11 @@ function ComparativeAdvantage() {
     >
       <Axes xLabel="Good X" yLabel="Good Y" />
       <Curve d={`M ${px(0.06)} ${py(0.82)} L ${px(0.62)} ${py(0.06)}`} colour={SUPPLY} label="PPF" lx={px(0.36)} ly={py(0.3)} />
-      <Curve d={`M ${px(0.06)} ${py(0.98)} L ${px(0.94)} ${py(0.06)}`} colour={SOCIAL} dashed label="trade line" lx={px(0.78)} ly={py(0.3)} />
+      {/* The trade line has to pass through BOTH the specialisation point
+          and the consumption point below - it is the world-price line the
+          country moves along between the two, so both are its anchors
+          rather than a line eyeballed near them. */}
+      <Curve d={`M ${px(0.416)} ${py(1)} L ${px(0.633)} ${py(0)}`} colour={SOCIAL} dashed label="trade line" lx={px(0.46)} ly={py(0.87)} />
       <circle cx={px(0.62)} cy={py(0.06)} r="3.6" fill="var(--fg)" />
       <circle cx={px(0.52)} cy={py(0.52)} r="3.6" fill={DEMAND} />
       <Note x={px(0.52)} y={py(0.52) - 9} colour={DEMAND}>consumption</Note>

@@ -449,13 +449,9 @@ export const CS_EXTRA_EXAM_4 = [
     'Normalisation gives one unique form and maximum precision, since no leading bits are wasted on zeros',
     'Final answer: 0.1100000 × 2³. Shifting the mantissa left two places and lowering the exponent by two keeps the value the same while putting the leading 1 immediately after the point, which maximises precision and makes the representation unique.',
   ]),
-  q(DS, 'Write pseudocode for a procedure that inserts a new value into a linked list immediately after a node called current. The node has fields value and next.', 4, [
-    'Create a new node and set its value',
-    'newNode.next = current.next (point the new node at what followed current)',
-    'current.next = newNode (then link current to the new node)',
-    'The order of the two pointer assignments matters: reversing them loses the tail of the list',
-    'Final answer: newNode = new Node(value); newNode.next = current.next; current.next = newNode. Linking the new node forward before redirecting current keeps the rest of the list reachable.',
-  ]),
+  // The linked-list insertion question that used to live here now lives in
+  // cs-programming-2.js as a proper code() item, so its pseudocode renders
+  // in a monospace block instead of buried in a mark-scheme bullet.
   q(DS, 'Explain how a hash table stores and retrieves an item, and describe one way of dealing with a collision.', 5, [
     'A hash function converts the key into an index in an array',
     'The item is stored at that index; retrieval hashes the key again and reads the slot, giving O(1) on average',

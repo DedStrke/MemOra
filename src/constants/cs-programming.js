@@ -25,11 +25,11 @@
   or any other consistent language is acceptable on the real paper.
 */
 
-const code = (topic, question, marks, solution, markScheme, pitfalls, starter) => ({
+const code = (topic, question, marks, solution, markScheme, pitfalls, starter, paper = 'Component 02 · programming') => ({
   topic,
   question,
   marks,
-  paper: 'Component 02 · programming',
+  paper,
   kind: 'code',
   starter,
   solution,
@@ -37,11 +37,11 @@ const code = (topic, question, marks, solution, markScheme, pitfalls, starter) =
   pitfalls,
 })
 
-const trace = (topic, question, marks, snippet, headers, rows, markScheme, pitfalls) => ({
+const trace = (topic, question, marks, snippet, headers, rows, markScheme, pitfalls, paper = 'Component 02 · tracing') => ({
   topic,
   question,
   marks,
-  paper: 'Component 02 · tracing',
+  paper,
   kind: 'trace',
   snippet,
   traceHeaders: headers,
@@ -49,6 +49,14 @@ const trace = (topic, question, marks, snippet, headers, rows, markScheme, pitfa
   markScheme,
   pitfalls,
 })
+
+// Data Structures, Databases and Object-Oriented Programming are all
+// Component 01 (Computer Systems) topics in the real spec, even though a
+// question about them here asks the student to write or trace code the
+// same way a Component 02 question does - the skill is examined that way,
+// but the topic itself sits on the other paper, and a student revising
+// from this needs to know which paper to expect it on.
+const SYSTEMS_PAPER = 'Component 01 · systems'
 
 export const CS_PROGRAMMING = [
   /* ------------------------------------------------ writing algorithms */
@@ -157,6 +165,8 @@ endfunction`,
       'Overwriting the item on pop. You do not need to clear it - moving `top` is what removes it - but you must read it before decrementing.',
       'Confusing a stack with a queue: a stack is LIFO and only ever touches one end.',
     ],
+    undefined,
+    SYSTEMS_PAPER,
   ),
 
   code(
@@ -226,10 +236,12 @@ ORDER BY Grade DESC;`,
       'Using `>=` where the question says "above 70". Read the boundary carefully; "above" excludes 70.',
       'Forgetting quotes around the text literal, or using double quotes where the syntax expects single.',
     ],
+    undefined,
+    SYSTEMS_PAPER,
   ),
 
   code(
-    'Programming Paradigms',
+    'Object-Oriented Programming',
     'Define a class `Account` with a private attribute `balance`, a constructor that sets it, a method to deposit, and a method to withdraw that refuses to overdraw. (8 marks)',
     8,
     `class Account
@@ -274,6 +286,8 @@ endclass`,
       'Providing a setter for balance, which reintroduces the problem the private attribute was there to prevent.',
       'Forgetting to guard against negative deposit amounts - a "deposit" of −100 is a withdrawal that bypasses the overdraft check.',
     ],
+    undefined,
+    SYSTEMS_PAPER,
   ),
 
   /* -------------------------------------------------------- tracing */

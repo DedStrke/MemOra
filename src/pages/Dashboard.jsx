@@ -251,7 +251,7 @@ function SetupChecklist({ setupDone, prioritySubject, subjects }) {
             <span className="flex min-w-0 items-center gap-3">
               <span
                 className={`grid h-6 w-6 shrink-0 place-items-center rounded-full ${
-                  s.done ? 'bg-r3-solid text-white' : 'border border-line text-muted'
+                  s.done ? 'bg-r3-solid text-[#0b0f14]' : 'border border-line text-muted'
                 }`}
               >
                 <Icon name={s.done ? 'check' : 'chevronRight'} className="h-3.5 w-3.5" />

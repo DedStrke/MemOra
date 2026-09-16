@@ -82,8 +82,20 @@ const processorTypes = chapter(
     ['Type', 'Characteristics'],
     [
       ['CISC', 'Complex Instruction Set - many specialised instructions, each may take several cycles. Simpler compiler, more complex hardware. Used in desktop x86.'],
-      ['RISC', 'Reduced Instruction Set - few simple instructions, each one cycle. More complex compiler, simpler hardware, easier to pipeline. Used in ARM and mobile.'],
+      ['RISC', 'Reduced Instruction Set - few simple instructions, each one cycle. More complex compiler, simpler hardware, makes greater use of registers, easier to pipeline. Used in ARM and mobile.'],
     ],
+  ),
+  h('GPUs'),
+  p(
+    'A GPU (Graphics Processing Unit) contains a large number of simple processing units that carry out many similar calculations at the same time, rather than the small number of powerful cores a CPU has. A CPU suits a wide range of general-purpose tasks; a GPU is particularly effective when a task can be split into many similar calculations run in parallel. A GPU is not automatically faster than a CPU - its performance advantage depends entirely on whether the task is suitable for parallel processing.',
+  ),
+  ul([
+    'Graphics uses: rendering 2D and 3D graphics, computer games, animation, image processing, video processing.',
+    'Non-graphics uses: artificial intelligence and machine learning, scientific modelling and simulations, processing large amounts of data, general mathematical calculations.',
+  ]),
+  h('Multicore processors'),
+  p(
+    'A multicore processor contains two or more processing cores within the same CPU (e.g. dual-core, quad-core, eight-core), each capable of processing instructions, so more than one task or part of a task can potentially run at the same time. Having twice as many cores does not necessarily mean a program runs twice as fast - the software itself must be designed to make use of the additional cores.',
   ),
   h('Pipelining'),
   diagram('pipelining'),
@@ -106,6 +118,8 @@ const processorTypes = chapter(
   ),
   pitfalls([
     'More cores does not mean proportionally faster. Say why: sequential fraction, coordination overhead, and the difficulty of writing correct concurrent code.',
+    'Splitting a task and combining the results afterwards is not free - that overhead itself takes time, so a problem too small or too fine-grained to divide efficiently can run slower in parallel than it would running on one core alone.',
+    'Not every problem can be split into independent parts: some calculations depend on the result of a previous calculation, and those must stay sequential regardless of how many cores are available.',
     'RISC has FEWER instructions but programs need MORE of them. Both statements are true and both are marked.',
     'Pipelining raises throughput, not the speed of any single instruction.',
   ]),

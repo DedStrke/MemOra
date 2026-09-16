@@ -402,8 +402,11 @@ function ProfitConstraint() {
     for (let q = from; q <= to + 1e-9; q += 0.02) pts.push(`${ax(q)} ${ay(f(q))}`)
     return `M ${pts.join(' L ')}`
   }
-  // sales volume max is where AR = AC (normal profit) - the larger root
-  const qMax = (0.85 - 0.62 * 2 * 0.52 + Math.sqrt((0.62 * 2 * 0.52 - 0.85) ** 2 - 4 * 0.62 * (0.34 + 0.62 * 0.52 ** 2 - 0.92))) / (2 * 0.62)
+  // sales volume max is where AR = AC (normal profit) - the larger root.
+  // Standard quadratic formula is (-b + sqrt(disc)) / 2a; this had +b, which
+  // silently returns the NEGATIVE of the rejected negative root instead of
+  // an actual root of AR = AC, throwing off Q, Q* and the profit segment.
+  const qMax = (0.62 * 2 * 0.52 - 0.85 + Math.sqrt((0.62 * 2 * 0.52 - 0.85) ** 2 - 4 * 0.62 * (0.34 + 0.62 * 0.52 ** 2 - 0.92))) / (2 * 0.62)
   return (
     <Figure
       title="Sales maximisation subject to a minimum profit constraint"

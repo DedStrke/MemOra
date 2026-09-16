@@ -17,6 +17,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between positive and normative economic statements, using an example of each.',
     marks: 4,
+    plan: [
+      'Define positive (testable against evidence) and normative (a value judgement) as two separate ideas.',
+      'Give one clearly labelled example of each - a factual claim, and a claim using "should" or "ought".',
+    ],
     markScheme: [
       'A positive statement is objective and can be tested against evidence as true or false',
       'e.g. "a rise in the minimum wage increases unemployment among 18-24 year olds"',
@@ -29,6 +33,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain why the concept of opportunity cost is relevant to governments as well as to individual consumers.',
     marks: 4,
+    plan: [
+      'Define opportunity cost as the value of the next best alternative forgone.',
+      'Apply it directly to a government spending choice (name two competing areas) the same way you would for a consumer.',
+    ],
     markScheme: [
       'Opportunity cost is the value of the next best alternative forgone',
       'Government budgets are finite, so spending on one area means forgoing another',
@@ -41,6 +49,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse, using a PPF diagram, the effect of a significant improvement in a country’s education system on its production possibility frontier.',
     marks: 8,
+    plan: [
+      'Draw the PPF shifting outward from the origin - not a movement along it.',
+      'Explain the mechanism in a chain: better education → higher human capital → higher productivity → more of both goods producible.',
+      'Add depth: note the shift may be non-parallel (education benefits some sectors more) and that it appears only with a time lag.',
+    ],
     markScheme: [
       'Diagram: PPF shifting outwards (to the right) from the origin',
       'Better education raises the quality of human capital, so labour becomes more productive',
@@ -55,6 +68,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between a movement along a PPF and a shift of the PPF.',
     marks: 4,
+    plan: [
+      'State that a movement along reallocates existing resources between two goods, so it carries an opportunity cost.',
+      'State that a shift changes total productive capacity, and name one genuine cause (investment, immigration, technology).',
+    ],
     markScheme: [
       'A movement along the PPF is a reallocation of existing resources between two goods',
       'It involves an opportunity cost: more of one good means less of the other',
@@ -67,6 +84,12 @@ export const ECON_EXAM_2 = [
   {
     question: 'Evaluate the view that a mixed economy allocates resources more effectively than a free market economy.',
     marks: 12,
+    plan: [
+      'Define a mixed economy and state the case for markets: price mechanism, incentives, consumer sovereignty.',
+      'Explain at least two market failures (externalities, public goods, monopoly, inequality) a mixed economy corrects that a pure free market cannot.',
+      'Evaluate: government intervention can itself fail (information gaps, administrative cost, capture) - the comparison is not markets-versus-perfection.',
+      'Judgement: it depends on the quality of institutions and the degree of intervention, not a blanket verdict either way.',
+    ],
     markScheme: [
       'Free markets use the price mechanism: signalling, incentives and rationing allocate resources without central direction',
       'Advantages: efficiency incentives, consumer sovereignty, innovation driven by the profit motive',
@@ -81,6 +104,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain two limitations of a command economy as a way of allocating resources.',
     marks: 4,
+    plan: [
+      'Give the information-problem limitation (planners can\'t replicate what prices convey) with its consequence - shortages and surpluses.',
+      'Give a second, DISTINCT limitation (weak incentives without profit/competition) with its own consequence - low innovation.',
+    ],
     markScheme: [
       'Information problem: central planners cannot gather and process the information the price mechanism conveys automatically',
       'This leads to persistent surpluses and shortages as plans do not match actual preferences',
@@ -93,6 +120,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain, using an example, how the assumption of rational decision making may not hold in reality.',
     marks: 4,
+    plan: [
+      'State the standard assumption being challenged: full information, utility/profit maximisation.',
+      'Give one concrete real-world example of deviation (habit, bounded rationality, social norms) and explain exactly why it breaks the assumption.',
+    ],
     markScheme: [
       'Traditional theory assumes consumers maximise utility and firms maximise profit using full information',
       'In reality: habitual behaviour, e.g. buying the same brand without comparing prices',
@@ -105,6 +136,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse how behavioural economics can be used by governments to influence consumer choice.',
     marks: 8,
+    plan: [
+      'Explain choice architecture: changing how options are presented WITHOUT removing any option.',
+      'Give two distinct mechanisms with a real example each - default options (pension auto-enrolment) and framing/salience (calorie labelling).',
+      'Briefly evaluate: effects can be small or fade, and there are ethical concerns about manipulation.',
+    ],
     markScheme: [
       'Behavioural economics recognises consumers are not fully rational: they use heuristics and are influenced by framing',
       'Choice architecture: changing how options are presented without removing any option',
@@ -120,6 +156,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse two factors, other than price, that would cause the demand curve for a good to shift to the right.',
     marks: 8,
+    plan: [
+      'Pick two DISTINCT non-price determinants (e.g. income, price of a substitute) - do not drift into a movement along the curve.',
+      'For each: state the mechanism, then the direction of the shift and its diagrammatic effect on equilibrium price and quantity.',
+      'Use a real example for at least one factor.',
+    ],
     markScheme: [
       'Rise in real incomes: for a normal good, higher purchasing power raises demand at every price',
       'Diagram: demand curve shifts right, raising equilibrium price and quantity',
@@ -134,6 +175,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between a shift in demand and a movement along the demand curve.',
     marks: 4,
+    plan: [
+      'State that only a change in the good\'s OWN price moves you along the curve.',
+      'State that any other determinant (name 2-3: income, related prices, tastes) shifts the whole curve, and flag this as the topic\'s most common error.',
+    ],
     markScheme: [
       'A movement along the curve (extension or contraction) is caused only by a change in the price of the good itself',
       'A shift of the whole curve is caused by any other determinant of demand',
@@ -146,6 +191,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'A firm cuts its price by 10% and total revenue falls by 4%. Calculate the price elasticity of demand and explain what this means for the firm’s pricing strategy.',
     marks: 6,
+    plan: [
+      'Work out from the revenue and price both falling that demand must be INELASTIC.',
+      'Calculate PED numerically from the implied %ΔQ and the given %ΔP.',
+      'State the pricing implication directly: for inelastic demand the firm should have raised price, not cut it.',
+    ],
     markScheme: [
       'Revenue falling when price falls means demand is price inelastic',
       'Quantity demanded must have risen by roughly 6.7% (since revenue change ≈ %ΔP + %ΔQ)',
@@ -159,6 +209,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain what the sign and size of cross elasticity of demand (XED) tell you about the relationship between two goods.',
     marks: 4,
+    plan: [
+      'State the formula and what a POSITIVE value means (substitutes), with why.',
+      'State what a NEGATIVE value means (complements), with why, and note that magnitude shows the strength of the relationship.',
+    ],
     markScheme: [
       'XED = %ΔQd of good A / %ΔP of good B',
       'Positive XED means the goods are substitutes: a rise in B’s price raises demand for A',
@@ -171,6 +225,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse the factors that determine the price elasticity of supply of a good.',
     marks: 8,
+    plan: [
+      'Pick 2-3 distinct determinants (time period, spare capacity, ability to store stock, factor mobility).',
+      'For each, explain the mechanism linking it to how fast supply can respond to a price change.',
+      'Give a concrete contrast - e.g. an agricultural good versus a manufactured good with idle capacity.',
+    ],
     markScheme: [
       'Time period: supply is more elastic in the long run when all factors are variable',
       'In the very short run supply may be perfectly inelastic (fixed stock)',
@@ -185,6 +244,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain two factors that would cause the supply curve for wheat to shift to the left.',
     marks: 4,
+    plan: [
+      'Give one cost-side factor (e.g. higher input costs) and explain why it shifts supply left.',
+      'Give a second, distinct factor (e.g. adverse weather cutting yield) and state the shared effect: higher price, lower quantity.',
+    ],
     markScheme: [
       'A rise in costs of production, e.g. higher fertiliser or fuel prices, makes supply less profitable at every price',
       'Adverse weather or crop disease reduces yields, cutting the quantity supplied at every price',
@@ -197,6 +260,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the three functions of the price mechanism in a market economy.',
     marks: 6,
+    plan: [
+      'Name and explain SIGNALLING - prices convey information about relative scarcity.',
+      'Name and explain INCENTIVE - rewards producers to supply more, discourages consumers from using more.',
+      'Name and explain RATIONING - allocates a scarce good to whoever is willing and able to pay most, and note together they replace central planning.',
+    ],
     markScheme: [
       'Signalling: prices convey information about relative scarcity to buyers and sellers',
       'A rising price signals shortage; a falling price signals surplus',
@@ -210,6 +278,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse, using a diagram, the effect on the market for new-build housing of a fall in mortgage interest rates.',
     marks: 8,
+    plan: [
+      'Explain the mechanism: cheaper mortgages make housing more affordable, so demand shifts right.',
+      'Describe the diagram: D1 to D2, with both equilibrium price and quantity rising.',
+      'Bring in that new-housing SUPPLY is price inelastic in the short run (planning delays, build time), so most of the adjustment falls on price.',
+    ],
     markScheme: [
       'Lower interest rates reduce the cost of borrowing, so mortgages become more affordable',
       'This raises effective demand for housing: the demand curve shifts right',
@@ -223,6 +296,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain, using examples, the difference between complete market failure and partial market failure.',
     marks: 4,
+    plan: [
+      'Define complete failure as a MISSING market, and give a public-good example.',
+      'Define partial failure as a market that exists but at the WRONG quantity, and give a merit-good example.',
+    ],
     markScheme: [
       'Complete market failure: a missing market - the free market provides none of the good',
       'e.g. pure public goods such as national defence or street lighting, due to the free rider problem',
@@ -235,6 +312,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse how the immobility of labour can cause market failure.',
     marks: 8,
+    plan: [
+      'Distinguish GEOGRAPHICAL immobility (can\'t move) from OCCUPATIONAL immobility (lacks transferable skills), with an example of each.',
+      'Explain the resulting misallocation: unemployment coexisting with unfilled vacancies elsewhere, output inside the PPF.',
+      'Link to a policy response (retraining, housing policy) as the justification for intervention.',
+    ],
     markScheme: [
       'Geographical immobility: workers cannot move to where jobs are, due to housing costs, family ties, or regional house price differences',
       'Occupational immobility: workers lack the skills to move between industries, e.g. former miners cannot become software engineers',
@@ -249,6 +331,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse, using a diagram, the welfare loss arising from a negative externality of production.',
     marks: 8,
+    plan: [
+      'Draw MPC below MSC with a shared MPB=MSB curve, and mark the free-market output where MPC=MPB.',
+      'Identify the social optimum where MSC=MSB, and shade the deadweight loss triangle between the two outputs.',
+      'Give a real example (e.g. factory pollution) naming the specific external cost.',
+    ],
     markScheme: [
       'Diagram: MPC below MSC, with MSB = MPB; free market equilibrium at MPC = MPB',
       'Marginal external cost is the vertical gap between MPC and MSC',
@@ -263,6 +350,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain why a positive consumption externality leads to under-consumption in a free market.',
     marks: 4,
+    plan: [
+      'State MSB > MPB for this externality, and that consumers act on MPB only.',
+      'Explain why the market settles below the social optimum, with a named example (e.g. vaccination) and the specific ignored benefit.',
+    ],
     markScheme: [
       'A positive consumption externality means MSB > MPB - third parties gain from the consumption',
       'Consumers base their decision only on their own private benefit',
@@ -275,6 +366,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the two characteristics of a pure public good and why they cause the free rider problem.',
     marks: 4,
+    plan: [
+      'Define non-excludability and non-rivalry precisely, not just by example.',
+      'Explain the causal chain from non-excludability to free-riding to a missing market.',
+    ],
     markScheme: [
       'Non-excludable: it is impossible to prevent someone who has not paid from consuming it',
       'Non-rival: one person’s consumption does not reduce the amount available to others',
@@ -287,6 +382,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse how asymmetric information can cause market failure in the second-hand car market.',
     marks: 8,
+    plan: [
+      'Explain the information gap (seller knows condition, buyer doesn\'t) and its immediate consequence - buyers offer only an average price.',
+      'Trace the adverse-selection spiral: good cars withdrawn → average quality falls → offers fall further.',
+      'State the resource-misallocation conclusion: mutually beneficial trades in good cars don\'t happen.',
+    ],
     markScheme: [
       'Asymmetric information: the seller knows the car’s true condition, the buyer does not',
       'Buyers cannot distinguish good cars from "lemons", so they offer only an average price',
@@ -301,6 +401,12 @@ export const ECON_EXAM_2 = [
   {
     question: 'Evaluate the use of indirect taxation as a method of correcting the market failure caused by carbon emissions.',
     marks: 12,
+    plan: [
+      'Explain the mechanism: the tax shifts MPC toward MSC; diagram showing supply shifting left and the welfare loss shrinking.',
+      'Give two advantages: uses the price mechanism, raises revenue for green spending, incentivises innovation.',
+      'Evaluate at least three limitations: inelastic energy demand, regressive incidence, difficulty valuing the externality, carbon leakage.',
+      'Judgement: compare to an alternative instrument (tradable permits or regulation) and say when each dominates.',
+    ],
     markScheme: [
       'A carbon tax internalises the externality: it shifts MPC up towards MSC',
       'Diagram: supply shifts left, output falls towards the social optimum, welfare loss is reduced',
@@ -317,6 +423,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain, using a diagram, the effect of a minimum price set above equilibrium in the market for alcohol.',
     marks: 6,
+    plan: [
+      'Draw the horizontal minimum-price line above equilibrium and identify the resulting excess supply.',
+      'State the intended effect: consumption falls to Qd, addressing the negative externality.',
+      'Note the limitation: heavy drinkers\' demand is inelastic, which limits the fall.',
+    ],
     markScheme: [
       'Diagram: horizontal minimum price line above the equilibrium price',
       'At the minimum price, quantity supplied exceeds quantity demanded - an excess supply',
@@ -330,6 +441,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse two causes of government failure.',
     marks: 8,
+    plan: [
+      'Pick two distinct causes (e.g. information gaps, unintended consequences) - don\'t just list without explaining each.',
+      'For each, give the mechanism AND a real/plausible example (e.g. a landfill tax causing fly-tipping).',
+      'State the shared conclusion: welfare can end up lower than with no intervention at all.',
+    ],
     markScheme: [
       'Information gaps: government lacks the information to value externalities or set a tax at the right level',
       'Result: over- or under-correction, potentially leaving welfare lower than before',
@@ -343,6 +459,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain what is meant by regulatory capture and why it leads to government failure.',
     marks: 4,
+    plan: [
+      'Define regulatory capture precisely: the regulator ends up serving the industry it oversees.',
+      'Explain why it happens (information/lobbying asymmetry) and its consequence - regulation too weak, market failure persists.',
+    ],
     markScheme: [
       'Regulatory capture is where a regulator comes to act in the interests of the firms it regulates',
       'Occurs because the industry holds the technical information and lobbies intensively',
@@ -357,6 +477,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain two limitations of using real GDP per capita to compare living standards between countries.',
     marks: 4,
+    plan: [
+      'Give one limitation about what the average hides (distribution/inequality).',
+      'Give a second, DISTINCT limitation (informal economy, externalities, or non-material welfare) - don\'t repeat the same point twice.',
+    ],
     markScheme: [
       'It is a mean, so says nothing about distribution - high inequality means the typical person may be far poorer',
       'It excludes the informal economy and unpaid work, which is a larger share of output in developing countries',
@@ -369,6 +493,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between nominal and real GDP, and why real GDP is used to measure economic growth.',
     marks: 4,
+    plan: [
+      'Define nominal GDP (current prices) and real GDP (inflation-adjusted).',
+      'Explain why real GDP is the correct growth measure, with a mini-example of GDP appearing to rise from inflation alone.',
+    ],
     markScheme: [
       'Nominal GDP measures output at current prices, so it rises when prices rise as well as when output rises',
       'Real GDP is adjusted for inflation, valuing output at constant base-year prices',
@@ -381,6 +509,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse, using an AD/AS diagram, how a large rise in world oil prices affects the UK price level and output.',
     marks: 8,
+    plan: [
+      'Draw the diagram: SRAS shifts left as a cost shock.',
+      'State both effects together: the price level rises AND output falls (name this stagflation).',
+      'Bring in the policy dilemma: raising interest rates to fight the inflation would deepen the fall in output.',
+    ],
     markScheme: [
       'Oil is an input into almost all production, so costs of production rise across the economy',
       'Diagram: SRAS shifts left, from SRAS1 to SRAS2',
@@ -395,6 +528,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between demand-pull and cost-push inflation.',
     marks: 4,
+    plan: [
+      'Define demand-pull (AD shifting right, near capacity) and its effect on output.',
+      'Define cost-push (SRAS shifting left) and its effect on output - contrast the two directly.',
+    ],
     markScheme: [
       'Demand-pull: caused by AD rising faster than the economy’s capacity to supply',
       'Shown as AD shifting right along an upward-sloping or vertical AS curve; output tends to rise too',
@@ -407,6 +544,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse two economic costs of high and persistent unemployment.',
     marks: 8,
+    plan: [
+      'Pick two distinct costs (lost output/PPF, fiscal cost, hysteresis, social costs).',
+      'For each, explain the mechanism, not just name it.',
+      'Consider using hysteresis specifically - it shows depth, a cost that outlasts the unemployment itself.',
+    ],
     markScheme: [
       'Lost output: the economy operates inside its PPF, so real GDP is below potential permanently forgone',
       'Fiscal cost: higher welfare spending combined with lower income tax and VAT receipts widens the budget deficit',
@@ -419,6 +561,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between structural, frictional and cyclical unemployment.',
     marks: 6,
+    plan: [
+      'Define each of the three types in turn, with what specifically causes it.',
+      'Give one example that clearly distinguishes structural (skills/location mismatch) from the other two.',
+      'Note frictional is short-term and largely unavoidable, unlike the other two.',
+    ],
     markScheme: [
       'Structural: a mismatch between workers’ skills or location and available jobs, caused by long-term change in the pattern of demand',
       'e.g. decline of coal mining leaving workers without transferable skills',
@@ -431,6 +578,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain what is meant by a current account deficit and identify two of its possible causes.',
     marks: 4,
+    plan: [
+      'Define a current account deficit as outflows exceeding inflows on trade, income and transfers.',
+      'Give two distinct causes (e.g. weak competitiveness, a strong exchange rate, faster domestic growth).',
+    ],
     markScheme: [
       'A current account deficit means the value of imports of goods, services, income and transfers exceeds exports',
       'Cause: poor international competitiveness - high relative unit labour costs or low productivity',
@@ -443,6 +594,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain why a current account deficit is not necessarily a problem for an economy.',
     marks: 4,
+    plan: [
+      'Explain how a deficit can reflect something positive (strong growth, capital-goods imports raising future capacity).',
+      'State the financing side: name what makes a deficit genuinely risky (short-term "hot money" versus stable FDI).',
+    ],
     markScheme: [
       'A deficit may reflect strong economic growth and high consumer confidence, which are desirable',
       'It may be financed by a financial account surplus - inward FDI that raises future productive capacity',
@@ -455,6 +610,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the four components of aggregate demand and state which is normally the largest in the UK.',
     marks: 4,
+    plan: [
+      'State AD = C + I + G + (X - M) and define each term briefly.',
+      'State which is largest in the UK and roughly what share of AD it is.',
+    ],
     markScheme: [
       'AD = C + I + G + (X - M)',
       'C is household consumption; I is gross investment by firms; G is government spending',
@@ -467,6 +626,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse how a fall in interest rates affects each component of aggregate demand.',
     marks: 8,
+    plan: [
+      'Go through C, I and net trade in turn, explaining the MECHANISM for each rather than just asserting the direction.',
+      'Note G is largely unaffected directly.',
+      'State the combined effect (AD shifts right) and flag that the SIZE depends on confidence and existing debt levels.',
+    ],
     markScheme: [
       'Consumption rises: cheaper borrowing, lower mortgage repayments raise disposable income, saving less attractive',
       'Investment rises: more projects become profitable as the cost of borrowing falls',
@@ -481,6 +645,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between the average propensity to consume and the marginal propensity to consume.',
     marks: 4,
+    plan: [
+      'Define APC (share of total income consumed) and MPC (share of extra income consumed) precisely - don\'t use them interchangeably.',
+      'State why MPC specifically is the one that determines the multiplier.',
+    ],
     markScheme: [
       'APC = total consumption / total disposable income - the proportion of all income spent',
       'MPC = change in consumption / change in disposable income - the proportion of extra income spent',
@@ -493,6 +661,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse the factors that influence business investment.',
     marks: 8,
+    plan: [
+      'Pick 2-3 distinct factors (interest rates, business confidence, retained profit, tax treatment).',
+      'Explain the mechanism for each rather than just naming it.',
+      'Make the evaluative point that confidence/spare capacity can dominate even when borrowing is very cheap.',
+    ],
     markScheme: [
       'Interest rates: the cost of borrowing and the opportunity cost of using retained profit',
       'Business confidence and "animal spirits": expectations of future demand may matter more than rates',
@@ -507,6 +680,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain why the short-run aggregate supply curve slopes upwards while the long-run curve (Classical view) is vertical.',
     marks: 6,
+    plan: [
+      'Explain SRAS: wages are sticky in the short run, so a higher price level raises margins and firms expand output.',
+      'Explain LRAS (Classical): all prices/wages adjust fully in the long run, so output depends only on factors of production.',
+      'State the conclusion directly: this is why LRAS is drawn vertical at full-employment output.',
+    ],
     markScheme: [
       'SRAS: in the short run some costs, especially nominal wages, are fixed by contract',
       'A higher price level therefore raises profit margins, so firms expand output - upward slope',
@@ -520,6 +698,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain two factors that would shift the long-run aggregate supply curve to the right.',
     marks: 4,
+    plan: [
+      'Give one factor raising the quantity or quality of factors of production (e.g. investment, education).',
+      'Give a second, distinct factor, and state the shared effect: LRAS shifts right, raising potential output.',
+    ],
     markScheme: [
       'Investment in new capital raises the capital stock and productive capacity',
       'Improved education and training raises human capital and labour productivity',
@@ -532,6 +714,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'The marginal propensity to consume is 0.6, with an MPT of 0.2 and an MPM of 0.1. Calculate the multiplier and explain what it means for a £10bn increase in government spending.',
     marks: 6,
+    plan: [
+      'Calculate MPS from MPC, then sum the three withdrawals (MPS + MPT + MPM).',
+      'Calculate the multiplier as 1 divided by that sum.',
+      'Apply it to the £10bn injection and state the final change in national income, explaining WHY it multiplies (re-spending round the circular flow).',
+    ],
     markScheme: [
       'MPS = 1 - MPC = 1 - 0.6 = 0.1',
       'Total withdrawals: MPS + MPT + MPM = 0.1 + 0.2 + 0.1 = 0.4',
@@ -545,6 +732,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain why the size of the multiplier is smaller in an open economy with high taxation.',
     marks: 4,
+    plan: [
+      'State the multiplier formula and identify which two terms rise (MPT from taxation, MPM from openness).',
+      'Explain why larger withdrawals mean less is re-spent each round, shrinking the multiplier.',
+    ],
     markScheme: [
       'The multiplier = 1 / (MPS + MPT + MPM)',
       'High taxation raises MPT, so more of each round of income is withdrawn',
@@ -557,6 +748,12 @@ export const ECON_EXAM_2 = [
   {
     question: 'Evaluate the view that economic growth always improves living standards.',
     marks: 12,
+    plan: [
+      'State the case for: higher incomes, lower unemployment, more tax revenue for public services, reduced absolute poverty.',
+      'Evaluate on distribution: growth\'s gains may not be shared evenly.',
+      'Evaluate on externalities and sustainability: pollution, congestion, resource depletion, borrowing from the future.',
+      'Judgement: depends critically on the TYPE of growth - who gains, how it\'s financed, environmental cost - not growth per se.',
+    ],
     markScheme: [
       'Benefits: higher real incomes, more consumption, lower unemployment, higher tax revenue funding public services',
       'Growth can reduce absolute poverty and fund healthcare and education',
@@ -572,6 +769,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain what is meant by an output gap and how a negative output gap would be identified.',
     marks: 4,
+    plan: [
+      'Define an output gap as actual minus potential output.',
+      'State what a NEGATIVE gap means and give two real-world indicators used to identify one (unemployment, inflation, capacity utilisation).',
+    ],
     markScheme: [
       'An output gap is the difference between actual real GDP and potential (trend) output',
       'A negative output gap means actual output is below potential - spare capacity exists',
@@ -584,6 +785,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain two possible conflicts between macroeconomic objectives.',
     marks: 6,
+    plan: [
+      'Pick two distinct conflicts (e.g. growth vs inflation, growth vs current account, unemployment vs inflation).',
+      'For each, explain the causal mechanism linking pursuing one objective to worsening the other.',
+    ],
     markScheme: [
       'Growth vs inflation: rising AD to boost growth can generate demand-pull inflation as the economy nears capacity',
       'Growth vs the current account: faster growth raises import demand, worsening the current account deficit',
@@ -596,6 +801,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain why price stability is defined as low positive inflation rather than zero inflation.',
     marks: 4,
+    plan: [
+      'State the actual UK target (2%, not 0%).',
+      'Explain one specific danger of deflation (delayed spending, or rising real debt burdens) that a small positive rate avoids.',
+    ],
     markScheme: [
       'The UK target is 2% CPI, not 0%',
       'Deflation is damaging: consumers delay purchases expecting lower prices, so AD falls further',
@@ -609,6 +818,12 @@ export const ECON_EXAM_2 = [
   {
     question: 'Evaluate the effectiveness of expansionary fiscal policy in closing a large negative output gap.',
     marks: 12,
+    plan: [
+      'Explain the mechanism: higher G or lower T raises AD, magnified by the multiplier, closing the gap.',
+      'Describe the AD/AS diagram showing the gap closing.',
+      'Evaluate at least three limitations: time lags, crowding out, worsening the deficit/debt, import leakage.',
+      'Judgement: effectiveness is strongest with genuine spare capacity and weakest as the economy nears capacity.',
+    ],
     markScheme: [
       'Higher G or lower T raises AD directly; G has the larger immediate effect as it is spending, not partly saved',
       'Diagram: AD shifts right, closing the output gap, raising real output and reducing cyclical unemployment',
@@ -625,6 +840,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between a structural and a cyclical budget deficit.',
     marks: 4,
+    plan: [
+      'Define cyclical deficit and explain why it self-corrects with the economic cycle.',
+      'Define structural deficit and explain why it needs deliberate policy change to remove.',
+    ],
     markScheme: [
       'A cyclical deficit is the part caused by the economic cycle',
       'In a recession, tax receipts fall and benefit spending rises automatically - it disappears as the economy recovers',
@@ -637,6 +856,11 @@ export const ECON_EXAM_2 = [
   {
     question: 'Analyse the transmission mechanism by which a rise in the Bank Rate reduces inflation.',
     marks: 8,
+    plan: [
+      'Trace the chain through at least two channels: consumption (cost of borrowing/saving) and investment (cost of capital).',
+      'Add the exchange rate channel: appreciation, and its effect on both trade AND imported inflation.',
+      'Note the transmission lag (up to two years) as part of the evaluation.',
+    ],
     markScheme: [
       'Higher Bank Rate raises commercial bank lending and saving rates',
       'Consumption falls: borrowing is dearer, mortgage repayments rise reducing disposable income, saving becomes more attractive',
@@ -652,6 +876,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain what quantitative easing is and why a central bank would use it.',
     marks: 4,
+    plan: [
+      'Define QE as central-bank-created money used to buy assets, mainly government bonds.',
+      'Explain the mechanism to lower long-term yields, and state WHEN a central bank resorts to it (Bank Rate near zero).',
+    ],
     markScheme: [
       'QE is the central bank creating money electronically to buy financial assets, mainly government bonds',
       'This raises bond prices and lowers their yields, reducing long-term interest rates across the economy',
@@ -664,6 +892,12 @@ export const ECON_EXAM_2 = [
   {
     question: 'Evaluate the view that supply-side policies are more effective than demand-side policies in raising long-run economic growth.',
     marks: 12,
+    plan: [
+      'Explain why only supply-side policy shifts LRAS and can raise growth without inflation.',
+      'Distinguish market-based from interventionist supply-side policy with an example of each.',
+      'Evaluate: long time lags, high cost, and that supply-side policy is useless against a demand-deficient recession.',
+      'Judgement: frame demand-side and supply-side as complements addressing different problems, not substitutes.',
+    ],
     markScheme: [
       'Supply-side policies raise productive capacity, shifting LRAS right - this is the only source of sustainable long-run growth',
       'Market-based: tax cuts, deregulation, trade union reform, privatisation - improve incentives and efficiency',
@@ -680,6 +914,10 @@ export const ECON_EXAM_2 = [
   {
     question: 'Explain the difference between market-based and interventionist supply-side policies, with one example of each.',
     marks: 4,
+    plan: [
+      'Define market-based policy (removes barriers, sharpens incentives) with an example.',
+      'Define interventionist policy (government directly corrects a failure) with an example.',
+    ],
     markScheme: [
       'Market-based policies remove barriers to the free operation of markets and improve incentives',
       'e.g. cutting income tax to increase the incentive to work, or deregulating an industry',

@@ -11,9 +11,9 @@ import Icon from './Icon'
 */
 const ACCENTS = {
   brand: { chip: 'bg-brand-soft text-brand-strong', on: 'border-brand ring-2 ring-brand', dot: 'bg-brand text-on-brand' },
-  flash: { chip: 'bg-flash-soft text-flash', on: 'border-flash ring-2 ring-flash', dot: 'bg-flash text-on-brand' },
-  quiz: { chip: 'bg-quiz-soft text-quiz', on: 'border-quiz ring-2 ring-quiz', dot: 'bg-quiz text-on-brand' },
-  paper: { chip: 'bg-paper-soft text-paper', on: 'border-paper ring-2 ring-paper', dot: 'bg-paper text-on-brand' },
+  flash: { chip: 'bg-flash-soft text-flash', on: 'border-flash ring-2 ring-flash', dot: 'bg-flash text-on-flash' },
+  quiz: { chip: 'bg-quiz-soft text-quiz', on: 'border-quiz ring-2 ring-quiz', dot: 'bg-quiz text-on-quiz' },
+  paper: { chip: 'bg-paper-soft text-paper', on: 'border-paper ring-2 ring-paper', dot: 'bg-paper text-[#0b0f14]' },
 }
 
 export default function OptionCard({

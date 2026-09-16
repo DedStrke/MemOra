@@ -47,6 +47,13 @@
   --quiz-soft: #d7f5e9;
   --paper: #dd8109;
   --paper-soft: #fdeecf;
+  /* --on-brand is tuned for --brand's own lightness only - it goes wrong
+     when reused on these other saturated tokens (each has its own
+     lightness curve across themes, see the dark/high-contrast blocks
+     below), so each gets its own on-color, picked for actual contrast. */
+  --on-danger: #ffffff;
+  --on-flash: #ffffff;
+  --on-quiz: #0b0f14;
   /* Readiness scale (§5.3) - deliberately its own ramp, not the accent and
      not reused from --success/--quiz/--warning above: those collide with
      each other in cream and high-contrast (quiz and success are literally
@@ -100,6 +107,11 @@
   --quiz-soft: #0f3a2e;
   --paper: #f0a93a;
   --paper-soft: #3c2c0d;
+  /* Dark mode lightens these for visibility on a dark ground, which flips
+     which ink reads best on them - see the light theme's on-* comment. */
+  --on-danger: #0b0f14;
+  --on-flash: #0b0f14;
+  --on-quiz: #0b0f14;
   /* Same five hues as light, lifted lighter and slightly desaturated for a
      dark ground - never inverted, so "which band is which" stays learnable
      across a theme switch. */
@@ -134,6 +146,9 @@
   --quiz-soft: #dcf0e2;
   --paper: #b7770c;
   --paper-soft: #f6e8c9;
+  --on-danger: #ffffff;
+  --on-flash: #ffffff;
+  --on-quiz: #ffffff;
   /* Same five hues as light, warmed slightly to sit on the sepia page. */
   --r0-not-started: #d6c9ae;
   --r1-seen: #a99872;
@@ -219,6 +234,9 @@
   --quiz-soft: #002914;
   --paper: #ffd24d;
   --paper-soft: #241c00;
+  --on-danger: #0b0f14;
+  --on-flash: #0b0f14;
+  --on-quiz: #0b0f14;
   /* High-contrast needs function over subtlety: five fully saturated,
      maximally distinct hues against pure black, none of them the brand
      yellow (so a readiness segment is never mistaken for something
@@ -254,6 +272,9 @@
   --color-quiz-soft: var(--quiz-soft);
   --color-paper: var(--paper);
   --color-paper-soft: var(--paper-soft);
+  --color-on-danger: var(--on-danger);
+  --color-on-flash: var(--on-flash);
+  --color-on-quiz: var(--on-quiz);
   --color-r0-not-started: var(--r0-not-started);
   --color-r1-seen: var(--r1-seen);
   --color-r2-shaky: var(--r2-shaky);
@@ -904,12 +925,16 @@
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #fff;
 }
-.hero-type-brand { background: var(--brand); }
-.hero-type-paper { background: var(--paper); }
-.hero-type-shaky { background: var(--r2-shaky); }
-.hero-type-danger { background: var(--danger); }
+/* Each background is its own shade per theme (see the on-* token comment
+   at the top of the file) - a single shared white would go unreadable on
+   --paper/--r2-shaky (always light) and on --danger in dark/high-contrast
+   (also lightened there). --paper and --r2-shaky read best in a fixed dark
+   ink in every theme, so they skip a token and go straight to that ink. */
+.hero-type-brand { background: var(--brand); color: var(--on-brand); }
+.hero-type-paper { background: var(--paper); color: #0b0f14; }
+.hero-type-shaky { background: var(--r2-shaky); color: #0b0f14; }
+.hero-type-danger { background: var(--danger); color: var(--on-danger); }
 @media (prefers-reduced-motion: reduce) {
   .hero-banner-wash, .hero-mascot { animation: none; }
 }
@@ -1319,6 +1344,20 @@ h2 {
 ::selection {
   background: var(--brand);
   color: var(--on-brand);
+}
+
+/* Every password field in this app draws its own "Show/Hide" control
+   (e.g. pages/SignIn.jsx) positioned at the input's right edge. Chromium's
+   own built-in eye-reveal icon and Edge's clear ("x") button sit in that
+   exact spot too, so left alone the browser draws a second, overlapping
+   control on top of ours - two eyes, functionally identical, fighting for
+   the same pixels. Suppress the native ones everywhere; ours is the only
+   toggle a user should ever see. */
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear,
+input[type='password']::-webkit-textfield-decoration-container,
+input[type='password']::-webkit-credentials-auto-fill-button {
+  display: none;
 }
 
 /* Skip-to-content link: hidden until focused. */
@@ -1984,7 +2023,35 @@ h2 {
   blurred and scrimmed, so the player takes the colour of whatever is
   playing rather than a flat surface.
 */
-.music-panel { box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45), var(--shadow-sm); }
+.music-panel {
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45), var(--shadow-sm);
+  position: relative;
+}
+/*
+  Spotify's own embed is themed from the cover art it is showing, not from
+  us - a bright, saturated block that used to sit in a flat --surface
+  panel like a browser tab pasted in from another site. Blurring the same
+  cover art into a soft wash behind the WHOLE panel (header, embed and the
+  account/playlist chrome below it) means that colour reads as the room
+  the embed is standing in, so the panel feels like one "now playing"
+  surface instead of a brand-coloured header bolted onto Spotify's UI.
+*/
+.music-panel-ambient {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  filter: blur(60px) saturate(1.3);
+  opacity: 0.4;
+}
+.music-panel-ambient-scrim {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+}
+[data-theme='high-contrast'] .music-panel-ambient,
+[data-theme='high-contrast'] .music-panel-ambient-scrim { display: none; }
 .music-hero { background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 80%, black), color-mix(in srgb, var(--brand) 45%, black)); }
 .music-hero-bg,
 .music-pill-bg {
@@ -2040,3 +2107,26 @@ h2 {
 
 /* Cover art in the minimised music pill glows softly while playing. */
 .music-spin-glow { box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 55%, transparent), 0 0 14px color-mix(in srgb, var(--brand) 45%, transparent); }
+
+/*
+  The account/saved/playlist chrome below the embed used to be one long
+  flat list with no separation - a form, then a list, then more buttons,
+  all the same weight. Each block is now its own softly-tinted card, so
+  the panel reads as a few distinct, scannable groups rather than a
+  single undifferentiated settings dump.
+*/
+.music-section {
+  position: relative;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  padding: 0.75rem 0.875rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.music-link-form input {
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.music-link-form input:focus {
+  background: var(--surface);
+}

@@ -91,13 +91,16 @@ function PesElasticity() {
       <Curve d={`M ${px(0.33)} ${py(0.2)} L ${px(0.47)} ${py(0.8)}`} colour={SUPPLY} label="S (inelastic)" lx={px(0.5)} ly={py(0.84)} />
       <Curve d={`M ${px(0.29)} ${py(0.26)} L ${px(0.93)} ${py(0.74)}`} colour={SOCIAL} label="S (elastic)" lx={px(0.86)} ly={py(0.8)} />
 
-      <Seg x1={O.x} y1={py(0.34)} x2={px(0.95)} y2={py(0.34)} colour="var(--muted)" width={1} dashed />
+      <Seg x1={O.x} y1={py(0.309)} x2={px(0.95)} y2={py(0.309)} colour="var(--muted)" width={1} dashed />
       <Seg x1={O.x} y1={py(0.66)} x2={px(0.95)} y2={py(0.66)} colour="var(--muted)" width={1} dashed />
-      <Note x={O.x - 6} y={py(0.34) + 4} anchor="end">P₁</Note>
+      <Note x={O.x - 6} y={py(0.309) + 4} anchor="end">P₁</Note>
       <Note x={O.x - 6} y={py(0.66) + 4} anchor="end">P₂</Note>
 
+      {/* Q1/P1 is where the two curves actually cross (solved from their
+          own equations), not the eyeballed value this used to carry - the
+          diagram's whole point is that both start from the SAME point. */}
       {[
-        [0.363, 0.34, 'Q₁'],
+        [0.355, 0.309, 'Q₁'],
         [0.437, 0.66, 'Q₂'],
         [0.823, 0.66, 'Q₃'],
       ].map(([q, p, label]) => (
@@ -125,11 +128,13 @@ function ConsumerProducerSurplus() {
       caption="CONSUMER surplus is the area above the price and below demand - what buyers would have paid, minus what they did. PRODUCER surplus is below the price and above supply. Together they are total welfare, which the free market maximises only when there is no market failure."
     >
       <Axes xLabel="Quantity" yLabel="Price" />
-      <Shade points={`${px(0.05)},${py(0.9)} ${px(0.475)},${py(0.5)} ${px(0.05)},${py(0.5)}`} fill={DEMAND} opacity="0.3" />
-      <Shade points={`${px(0.05)},${py(0.1)} ${px(0.475)},${py(0.5)} ${px(0.05)},${py(0.5)}`} fill={SUPPLY} opacity="0.3" />
+      {/* Equilibrium at (0.486, 0.5), solved from the D and S lines below,
+          not the eyeballed 0.475 this used to shade to. */}
+      <Shade points={`${px(0.05)},${py(0.9)} ${px(0.486)},${py(0.5)} ${px(0.05)},${py(0.5)}`} fill={DEMAND} opacity="0.3" />
+      <Shade points={`${px(0.05)},${py(0.1)} ${px(0.486)},${py(0.5)} ${px(0.05)},${py(0.5)}`} fill={SUPPLY} opacity="0.3" />
       <Curve d={`M ${px(0.05)} ${py(0.9)} L ${px(0.9)} ${py(0.12)}`} colour={DEMAND} label="D" lx={px(0.92)} ly={py(0.14)} />
       <Curve d={`M ${px(0.05)} ${py(0.1)} L ${px(0.9)} ${py(0.88)}`} colour={SUPPLY} label="S" lx={px(0.92)} ly={py(0.88)} />
-      <Guides x={px(0.475)} y={py(0.5)} xText="Q₁" yText="P₁" />
+      <Guides x={px(0.486)} y={py(0.5)} xText="Q₁" yText="P₁" />
       <Note x={px(0.22)} y={py(0.7)} colour={DEMAND}>consumer surplus</Note>
       <Note x={px(0.22)} y={py(0.28)} colour={SUPPLY}>producer surplus</Note>
     </Figure>
@@ -195,8 +200,11 @@ function BufferStock() {
     >
       <Axes xLabel="Quantity" yLabel="Price" />
       <Curve d={`M ${px(0.05)} ${py(0.92)} L ${px(0.92)} ${py(0.1)}`} colour={DEMAND} label="D" lx={px(0.94)} ly={py(0.08)} />
-      <Curve d={`M ${px(0.2)} ${py(0.06)} L ${px(0.4)} ${py(0.98)}`} colour={SUPPLY} label="S good harvest" lx={px(0.24)} ly={py(1.04)} />
-      <Curve d={`M ${px(0.54)} ${py(0.06)} L ${px(0.74)} ${py(0.98)}`} colour={SOCIAL} label="S poor" lx={px(0.8)} ly={py(1.02)} />
+      {/* A good harvest means MORE supplied at every price - the rightward
+          (higher-quantity) curve - not the leftward one; these two labels
+          were swapped relative to their positions. */}
+      <Curve d={`M ${px(0.2)} ${py(0.06)} L ${px(0.4)} ${py(0.98)}`} colour={SUPPLY} label="S poor" lx={px(0.24)} ly={py(1.04)} />
+      <Curve d={`M ${px(0.54)} ${py(0.06)} L ${px(0.74)} ${py(0.98)}`} colour={SOCIAL} label="S good harvest" lx={px(0.8)} ly={py(1.02)} />
       <Seg x1={O.x} y1={py(0.72)} x2={px(0.94)} y2={py(0.72)} colour={LOSS} width={1.8} />
       <Seg x1={O.x} y1={py(0.34)} x2={px(0.94)} y2={py(0.34)} colour={LOSS} width={1.8} />
       <Note x={px(0.94)} y={py(0.72) - 6} anchor="end" colour={LOSS}>ceiling - sell stock</Note>
@@ -218,8 +226,8 @@ function TradablePermits() {
       <Seg x1={px(0.38)} y1={TOP} x2={px(0.38)} y2={O.y} colour={LOSS} width={2} dashed />
       <Text x={px(0.34)} y={TOP - 6} colour={LOSS} anchor="end">tighter cap</Text>
       <Curve d={`M ${px(0.06)} ${py(0.95)} L ${px(0.92)} ${py(0.12)}`} colour={DEMAND} label="D (firms)" lx={px(0.84)} ly={py(0.22)} />
-      <Guides x={px(0.62)} y={py(0.38)} yText="P₁" />
-      <Guides x={px(0.38)} y={py(0.62)} yText="P₂" />
+      <Guides x={px(0.62)} y={py(0.41)} yText="P₁" />
+      <Guides x={px(0.38)} y={py(0.641)} yText="P₂" />
     </Figure>
   )
 }
@@ -489,7 +497,12 @@ function NaturalMonopoly() {
       <Curve d={`M ${px(0.08)} ${py(0.95)} Q ${px(0.5)} ${py(0.36)} ${px(0.96)} ${py(0.24)}`} colour={SUPPLY} label="AC" lx={px(0.9)} ly={py(0.34)} />
       <Curve d={`M ${px(0.08)} ${py(0.6)} Q ${px(0.5)} ${py(0.16)} ${px(0.96)} ${py(0.12)}`} colour={LOSS} label="MC" lx={px(0.88)} ly={py(0.04)} />
       <Curve d={`M ${px(0.06)} ${py(0.9)} L ${px(0.92)} ${py(0.1)}`} colour={DEMAND} label="D = AR" lx={px(0.76)} ly={py(0.26)} />
-      <Guides x={px(0.62)} y={py(0.35)} xText="Q" yText="P(AC)" />
+      {/* Where the AC curve above actually meets the demand line, solved
+          from the two paths rather than eyeballed - AC and this straight
+          demand line cross twice given AC's curvature; this is the first
+          (lower-output, higher-price) crossing, matching the falling-AC
+          story the note beside it tells. */}
+      <Guides x={px(0.297)} y={py(0.68)} xText="Q" yText="P(AC)" />
       <Note x={px(0.26)} y={py(0.18)} anchor="start">AC still falling where it meets D</Note>
       <Note x={px(0.26)} y={py(0.08)} anchor="start" colour={LOSS}>P = MC would make a loss</Note>
     </Figure>

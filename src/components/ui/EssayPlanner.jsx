@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
 import Chip from '@/components/ui/Chip'
@@ -140,7 +140,7 @@ function FilterGroup({ label, children, className = '' }) {
   )
 }
 
-function Bank({ items, filtered, drafts, filters, setFilters, strand, setStrand, onOpen, onRandom }) {
+function Bank({ items, filtered, drafts, filters, setFilters, search, setSearch, strand, setStrand, onOpen, onRandom }) {
   const inStrand = useMemo(() => items.filter(STRANDS.find((s) => s.id === strand).test), [items, strand])
   const levels = useMemo(() => [...new Set(inStrand.map((q) => q.level))], [inStrand])
   const papers = useMemo(() => {
@@ -174,8 +174,12 @@ function Bank({ items, filtered, drafts, filters, setFilters, strand, setStrand,
     return out
   }, [filtered])
 
-  const anyFilter = Object.values(filters).some(Boolean)
+  const anyFilter = Object.values(filters).some(Boolean) || Boolean(search)
   const toggle = (k, v) => setFilters((f) => ({ ...f, [k]: f[k] === v ? null : v }))
+  const clearAll = () => {
+    setFilters(EMPTY_FILTERS)
+    setSearch('')
+  }
   const planned = filtered.filter((q) => drafts[q.id]).length
   const plannedAll = items.filter((q) => drafts[q.id]).length
 
@@ -246,13 +250,44 @@ function Bank({ items, filtered, drafts, filters, setFilters, strand, setStrand,
           {anyFilter && (
             <button
               type="button"
-              onClick={() => setFilters(EMPTY_FILTERS)}
+              onClick={clearAll}
               className="text-xs font-semibold text-brand-strong hover:underline"
             >
               Clear filters
             </button>
           )}
         </div>
+
+        <div className="mt-4">
+          <label htmlFor="essay-search" className="sr-only">
+            Search questions
+          </label>
+          <div className="relative">
+            <Icon
+              name="search"
+              className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
+            />
+            <input
+              id="essay-search"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search questions by keyword, e.g. &ldquo;monopoly&rdquo; or &ldquo;exchange rate&rdquo;"
+              className="w-full rounded-xl border border-line bg-page py-2.5 pl-10 pr-3 text-sm font-medium text-fg placeholder:text-muted focus:border-brand focus:outline-none"
+            />
+            {search && (
+              <button
+                type="button"
+                onClick={() => setSearch('')}
+                aria-label="Clear search"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-lg p-1 text-muted transition-colors hover:bg-danger/10 hover:text-danger"
+              >
+                <Icon name="x" className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+        </div>
+
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <FilterGroup label="Level">
             {levels.map((l) => (
@@ -852,10 +887,13 @@ function DevelopedAnswer({ q, split, answer, onHide }) {
 export default function EssayPlanner({ items }) {
   const { essayPlanDrafts } = useApp()
   const [filters, setFilters] = useState(EMPTY_FILTERS)
+  const [search, setSearch] = useState('')
   const [strand, setStrand] = useState('micro') // micro | macro | synoptic | all
   const [current, setCurrent] = useState(null) // question id, or null for the bank
   const [mode, setMode] = useState('browse') // browse | random
+  const reduceMotion = useReducedMotion()
 
+  const query = search.trim().toLowerCase()
   const filtered = useMemo(
     () =>
       items.filter(
@@ -865,15 +903,19 @@ export default function EssayPlanner({ items }) {
           (!filters.paper || q.paperCode === filters.paper) &&
           (!filters.section || q.section === filters.section) &&
           (!filters.marks || q.marks === filters.marks) &&
-          (!filters.topic || `${q.topicCode}|${q.topicName}` === filters.topic),
+          (!filters.topic || `${q.topicCode}|${q.topicName}` === filters.topic) &&
+          (!query ||
+            q.question.toLowerCase().includes(query) ||
+            q.topicName.toLowerCase().includes(query) ||
+            q.topicCode.toLowerCase().includes(query)),
       ),
-    [items, filters, strand],
+    [items, filters, strand, query],
   )
 
   const open = (id) => {
     setMode('browse')
     setCurrent(id)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
   }
 
   const random = () => {
@@ -882,7 +924,7 @@ export default function EssayPlanner({ items }) {
     if (!pick) return
     setMode('random')
     setCurrent(pick.id)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
   }
 
   const index = filtered.findIndex((q) => q.id === current)
@@ -890,7 +932,7 @@ export default function EssayPlanner({ items }) {
   const step = (d) => {
     if (index < 0 || filtered.length < 2) return
     setCurrent(filtered[(index + d + filtered.length) % filtered.length].id)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
   }
 
   return (
@@ -916,6 +958,8 @@ export default function EssayPlanner({ items }) {
             drafts={essayPlanDrafts}
             filters={filters}
             setFilters={setFilters}
+            search={search}
+            setSearch={setSearch}
             strand={strand}
             setStrand={setStrand}
             onOpen={open}
