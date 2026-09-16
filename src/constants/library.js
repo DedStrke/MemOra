@@ -29,6 +29,7 @@ import { CS_COMP2_NOTES } from './cs-notes-comp2'
 import { CS_COMP3_NOTES } from './cs-notes-comp3'
 import { CS_EXTRA_DEPTH_2 } from './cs-notes-depth-2'
 import { CS_EXTRA_FLASHCARDS_4, CS_EXTRA_MCQ_4, CS_EXTRA_EXAM_4 } from './cs-extra-4'
+import { CS_EXTRA_FLASHCARDS_5 } from './cs-extra-5'
 import { ECON_NOTES } from './econ-full'
 import { ECON_THEME2_NOTES } from './econ-notes-theme2'
 import { ECON_THEME2B_NOTES } from './econ-notes-theme2b'
@@ -2303,7 +2304,7 @@ const withExtras = (pack) => {
   if (pack.id === 'computer-science') {
     return {
       ...pack,
-      flashcards: tagWithDiagrams([...pack.flashcards, ...CS_EXTRA_FLASHCARDS_2, ...CS_DIAGRAM_CARDS, ...CS_EXTRA_FLASHCARDS_4], 'Computer Science'),
+      flashcards: tagWithDiagrams([...pack.flashcards, ...CS_EXTRA_FLASHCARDS_2, ...CS_DIAGRAM_CARDS, ...CS_EXTRA_FLASHCARDS_4, ...CS_EXTRA_FLASHCARDS_5], 'Computer Science'),
       mcq: tagWithDiagrams([...pack.mcq, ...CS_EXTRA_MCQ, ...CS_EXTRA_MCQ_2, ...CS_MCQ_3, ...CS_EXTRA_MCQ_4], 'Computer Science'),
       examQuestions: tagWithDiagrams([...pack.examQuestions, ...CS_EXTRA_EXAM, ...CS_EXTRA_EXAM_2, ...CS_EXAM_3, ...CS_ESSAYS, ...CS_PROGRAMMING, ...CS_PROGRAMMING_2, ...CS_EXTRA_EXAM_4], 'Computer Science'),
       notes: appendDiagramsToNotes(mergeNotes({ ...CS_NOTES, ...CS_COMP1_NOTES, ...CS_COMP2_NOTES, ...CS_COMP3_NOTES }, CS_EXTRA_DEPTH, CS_EXTRA_DEPTH_2), CS_CHAPTER_DIAGRAMS),
