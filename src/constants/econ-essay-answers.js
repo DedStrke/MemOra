@@ -2,9 +2,12 @@ import { ECON_ESSAY_ANSWERS_AS } from './econ-essay-answers-as'
 import { ECON_ESSAY_ANSWERS_P1 } from './econ-essay-answers-p1'
 import { ECON_ESSAY_ANSWERS_P2 } from './econ-essay-answers-p2'
 import { ECON_ESSAY_ANSWERS_P3 } from './econ-essay-answers-p3'
+import { ECON_ESSAY_ANSWERS_3 } from './econ-essay-answers-3'
+import { ECON_ESSAY_ANSWERS_4 } from './econ-essay-answers-4'
 import { ECON_ESSAY_ANNOTATIONS } from './econ-essay-annotations'
 import { ECON_ESSAY_ANNOTATIONS_EVAL } from './econ-essay-annotations-eval'
 import { ECON_ESSAY_PLACEMENT } from './econ-essay-placement'
+import { ECON_ESSAY_PLACEMENT_2 } from './econ-essay-placement-2'
 
 /*
   One developed answer for every question in the essay bank, keyed by the
@@ -36,7 +39,10 @@ const RAW = {
   ...ECON_ESSAY_ANSWERS_P1,
   ...ECON_ESSAY_ANSWERS_P2,
   ...ECON_ESSAY_ANSWERS_P3,
+  ...ECON_ESSAY_ANSWERS_3,
+  ...ECON_ESSAY_ANSWERS_4,
 }
+const PLACEMENT = { ...ECON_ESSAY_PLACEMENT, ...ECON_ESSAY_PLACEMENT_2 }
 
 const stepsFor = (id, d) => ECON_ESSAY_ANNOTATIONS_EVAL[id]?.[d] || ECON_ESSAY_ANNOTATIONS[id]?.[d] || []
 
@@ -49,7 +55,7 @@ export const ECON_ESSAY_ANSWERS = Object.fromEntries(
         placed.add(d)
         return { id: d, note: notes[d] || null, steps: stepsFor(id, d) }
       })
-    const placement = ECON_ESSAY_PLACEMENT[id] || []
+    const placement = PLACEMENT[id] || []
     const rows = a.rows.map(([analysis, evaluation], i) => ({
       analysis,
       evaluation,
