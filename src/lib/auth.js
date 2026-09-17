@@ -1,116 +1,32 @@
 /*
-  DEVICE-LOCAL ACCOUNTS.
+  REAL ACCOUNTS, via Firebase Authentication.
 
-  This app has no backend by design, so "signing in" here means unlocking a
-  profile stored in this browser - it is NOT real authentication. Anyone with
-  devtools can read the store, and accounts do not follow you to another
-  device or browser. Treat it as a profile picker with a password on it.
+  Signing in here creates or unlocks an actual account on Firebase's
+  servers - the same email and password work from any device or browser,
+  which is the whole point over the device-local scheme this replaced.
+  Firebase stores and hashes the password; this module never sees or
+  keeps one.
 
-  What it does do properly: passwords are never stored. Each account keeps a
-  random salt and a PBKDF2-SHA256 derivation (210k iterations, matching OWASP's
-  current guidance), and sign-in re-derives and compares. So a shared or
-  reused password isn't sitting in localStorage in the clear. Repeated wrong
-  passwords against the same email lock it out with exponential backoff, and
-  the session itself is a plain localStorage key with no expiry, so signing
-  in once keeps you in until you explicitly sign out - closing the tab or
-  restarting the browser does not.
+  What does NOT follow the account across devices: everything under the
+  app's own `user` state (mascot, XP, saved decks, notes progress, essay
+  plans, and so on) still lives only in this browser's localStorage - see
+  context/AppProvider.jsx. Only the ACCOUNT itself (identity + being able
+  to sign back in) is on Firebase; there is no data sync yet.
 
-  If this ever needs real accounts, replace this module with a backend auth
-  call - the surface (signUp/signIn/signOut/currentAccount) is what the rest
-  of the app consumes, so the swap stays contained.
+  The surface below (signUp/signIn/signOut/currentAccount/onAccountChange)
+  is what the rest of the app consumes, matching the module this replaced
+  so nothing else needed to change shape.
 */
-
-const ACCOUNTS_KEY = 'memora:accounts:v1'
-const SESSION_KEY = 'memora:session:v1'
-const ATTEMPTS_KEY = 'memora:signin-attempts:v1'
-const ITERATIONS = 210000
-
-// Failed sign-ins lock the EMAIL out with exponential backoff, not the
-// device or the account's existence - so this can't be used to enumerate
-// which emails have accounts (a failed attempt against a non-existent email
-// locks out identically). First 4 misses are free (typos happen); the 5th
-// starts a 30s lock that doubles each further miss, capped at 15 minutes.
-const FREE_ATTEMPTS = 4
-const BASE_LOCK_MS = 30 * 1000
-const MAX_LOCK_MS = 15 * 60 * 1000
-
-function readJson(key, fallback) {
-  try {
-    const raw = localStorage.getItem(key)
-    return raw ? JSON.parse(raw) : fallback
-  } catch {
-    return fallback
-  }
-}
-
-function writeJson(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value))
-  } catch {
-    /* storage unavailable (private mode, quota) - non-fatal */
-  }
-}
-
-function lockRemainingMs(key) {
-  const rec = readJson(ATTEMPTS_KEY, {})[key]
-  if (!rec || !rec.lockUntil) return 0
-  return Math.max(0, rec.lockUntil - Date.now())
-}
-
-function recordFailure(key) {
-  const attempts = readJson(ATTEMPTS_KEY, {})
-  const count = (attempts[key]?.count || 0) + 1
-  const over = count - FREE_ATTEMPTS
-  const lockUntil = over > 0 ? Date.now() + Math.min(BASE_LOCK_MS * 2 ** (over - 1), MAX_LOCK_MS) : 0
-  writeJson(ATTEMPTS_KEY, { ...attempts, [key]: { count, lockUntil } })
-}
-
-function clearFailures(key) {
-  const attempts = readJson(ATTEMPTS_KEY, {})
-  if (!(key in attempts)) return
-  const next = { ...attempts }
-  delete next[key]
-  writeJson(ATTEMPTS_KEY, next)
-}
-
-const lockMessage = (ms) => {
-  const mins = Math.ceil(ms / 60000)
-  const secs = Math.ceil(ms / 1000)
-  return `Too many attempts. Try again in ${mins > 1 ? `${mins} minutes` : `${secs}s`}.`
-}
-
-const toHex = (buf) =>
-  Array.from(new Uint8Array(buf))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
-
-async function derive(password, saltHex) {
-  const enc = new TextEncoder()
-  const salt = Uint8Array.from(saltHex.match(/.{2}/g).map((b) => parseInt(b, 16)))
-  const key = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits'])
-  const bits = await crypto.subtle.deriveBits(
-    { name: 'PBKDF2', salt, iterations: ITERATIONS, hash: 'SHA-256' },
-    key,
-    256,
-  )
-  return toHex(bits)
-}
-
-// Constant-time-ish compare, so a wrong password can't be narrowed down by
-// how quickly the comparison bails out.
-function safeEqual(a, b) {
-  if (a.length !== b.length) return false
-  let diff = 0
-  for (let i = 0; i < a.length; i += 1) diff |= a.charCodeAt(i) ^ b.charCodeAt(i)
-  return diff === 0
-}
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut,
+  updateProfile,
+} from 'firebase/auth'
+import { firebaseAuth } from './firebase'
 
 const normalise = (email) => String(email || '').trim().toLowerCase()
-
-// Used only when no account exists, so a sign-in against an unknown email
-// still pays the same PBKDF2 cost as a real one - otherwise the response
-// time itself would leak which emails have accounts on this device.
-const DUMMY_SALT = '00'.repeat(16)
 
 export const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalise(email))
 
@@ -122,62 +38,68 @@ export function passwordProblem(password) {
   return null
 }
 
-const publicShape = ({ email, name, createdAt }) => ({ email, name, createdAt })
+const publicShape = (user) => ({
+  email: user.email,
+  name: user.displayName || user.email.split('@')[0],
+  createdAt: user.metadata?.creationTime ? Date.parse(user.metadata.creationTime) : Date.now(),
+})
+
+// One friendly message per Firebase error code actually reachable from
+// this form. Deliberately vague about WHICH of email/password is wrong
+// on sign-in - same reasoning the device-local version had: naming the
+// mistake would let someone enumerate which emails have accounts.
+const ERROR_MESSAGES = {
+  'auth/email-already-in-use': 'An account already exists for that email. Try signing in instead.',
+  'auth/invalid-email': 'Enter a valid email address.',
+  'auth/weak-password': 'Use at least 8 characters, with a letter and a number.',
+  'auth/invalid-credential': 'That email and password do not match an account.',
+  'auth/user-not-found': 'That email and password do not match an account.',
+  'auth/wrong-password': 'That email and password do not match an account.',
+  'auth/too-many-requests': 'Too many attempts. Wait a few minutes and try again.',
+  'auth/network-request-failed': 'Could not reach the server - check your connection and try again.',
+  'auth/user-disabled': 'This account has been disabled.',
+  'auth/operation-not-allowed': 'Sign-in is not turned on for this app yet.',
+  'auth/configuration-not-found': 'Sign-in is not set up yet for this app.',
+}
+
+function friendly(err) {
+  return new Error(ERROR_MESSAGES[err?.code] || 'Something went wrong. Please try again.')
+}
 
 export function currentAccount() {
-  const email = readJson(SESSION_KEY, null)
-  if (!email) return null
-  const account = readJson(ACCOUNTS_KEY, {})[email]
-  return account ? publicShape(account) : null
+  const user = firebaseAuth.currentUser
+  return user ? publicShape(user) : null
+}
+
+// Fires once Firebase has restored (or confirmed there is no) persisted
+// session, and again on every subsequent sign-in/sign-out - see the
+// currentAccount() doc comment above for why a synchronous read alone
+// cannot be trusted on first load.
+export function onAccountChange(callback) {
+  return onAuthStateChanged(firebaseAuth, (user) => callback(user ? publicShape(user) : null))
 }
 
 export async function signUp({ name, email, password }) {
-  const key = normalise(email)
-  const accounts = readJson(ACCOUNTS_KEY, {})
-  if (accounts[key]) throw new Error('An account already exists for that email on this device.')
-
-  const saltHex = toHex(crypto.getRandomValues(new Uint8Array(16)))
-  const account = {
-    email: key,
-    name: String(name || '').trim() || key.split('@')[0],
-    salt: saltHex,
-    hash: await derive(password, saltHex),
-    createdAt: Date.now(),
+  try {
+    const key = normalise(email)
+    const credential = await createUserWithEmailAndPassword(firebaseAuth, key, password)
+    const trimmedName = String(name || '').trim() || key.split('@')[0]
+    await updateProfile(credential.user, { displayName: trimmedName })
+    return publicShape({ ...credential.user, displayName: trimmedName })
+  } catch (err) {
+    throw friendly(err)
   }
-  writeJson(ACCOUNTS_KEY, { ...accounts, [key]: account })
-  writeJson(SESSION_KEY, key)
-  clearFailures(key)
-  return publicShape(account)
 }
 
 export async function signIn({ email, password }) {
-  const key = normalise(email)
-
-  const locked = lockRemainingMs(key)
-  if (locked > 0) throw new Error(lockMessage(locked))
-
-  const account = readJson(ACCOUNTS_KEY, {})[key]
-  // Same message either way - saying "no such account" would let someone
-  // enumerate which emails exist on the device. Deriving against a dummy
-  // salt when there's no account means an unknown email takes the same
-  // time to reject as a wrong password does, so the response time itself
-  // can't be used for that enumeration either.
-  const rejection = new Error('That email and password do not match an account on this device.')
-  const derived = await derive(password, account?.salt || DUMMY_SALT)
-  if (!account || !safeEqual(derived, account.hash)) {
-    recordFailure(key)
-    throw rejection
+  try {
+    const credential = await signInWithEmailAndPassword(firebaseAuth, normalise(email), password)
+    return publicShape(credential.user)
+  } catch (err) {
+    throw friendly(err)
   }
-
-  clearFailures(key)
-  writeJson(SESSION_KEY, key)
-  return publicShape(account)
 }
 
-export function signOut() {
-  try {
-    localStorage.removeItem(SESSION_KEY)
-  } catch {
-    /* non-fatal */
-  }
+export async function signOut() {
+  await firebaseSignOut(firebaseAuth)
 }

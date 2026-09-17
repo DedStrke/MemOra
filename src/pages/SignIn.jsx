@@ -374,8 +374,8 @@ export default function SignIn() {
               </form>
 
               <p className="mt-6 border-t border-line pt-4 text-xs leading-relaxed text-muted">
-                Accounts are stored only in this browser, nothing is uploaded, and your revision
-                won't follow you to another device.{' '}
+                Your account works on any device - sign in with the same email and password
+                elsewhere. Your revision progress itself is still saved only on this device.{' '}
                 <Link to="/dashboard" className="font-semibold text-brand-strong hover:underline">
                   Skip and just study
                 </Link>

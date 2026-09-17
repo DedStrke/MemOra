@@ -633,7 +633,7 @@ export default function Profile() {
           )}
 
           {section === 'account' && (
-            <Panel key="account" title="Account" blurb="Accounts live in this browser only - nothing is uploaded and your revision does not follow you to another device.">
+            <Panel key="account" title="Account" blurb="Your account works from any device - sign in with the same email and password. Your revision progress itself (decks, notes, essay plans) is still saved only on this device.">
               <dl className="space-y-4">
                 <div>
                   <dt className="text-sm font-semibold text-muted">Signed in as</dt>

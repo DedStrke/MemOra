@@ -17,8 +17,10 @@ student's mood before and during each study session and shapes the session
 around it: a goal-tuned motivational line, real practice content, a mid-session
 check-in, and a nudge to take a break when they are struggling.
 
-It is a client-only demo: all state persists to `localStorage`, so it runs with
-no backend and ships as a static site to Firebase Hosting.
+It ships as a static site to Firebase Hosting. Accounts are real (Firebase
+Authentication, email/password - see `lib/auth.js`), but everything else -
+mascot, XP, saved decks, notes progress, essay plans - persists only to this
+browser's `localStorage`; none of it syncs to a backend or another device.
 
 ## Stack
 

@@ -354,6 +354,12 @@ const AppContext = createContext(null)
 export default function AppProvider({ children }) {
   const [state, setState] = useState(load)
   const [account, setAccount] = useState(auth.currentAccount)
+  // Firebase restores a persisted session asynchronously - auth.currentAccount()
+  // above is only a same-tick best guess (usually null on a fresh load even
+  // when a session exists) and this is what actually confirms it, moments
+  // later. Also keeps `account` correct if sign-in/out happens in another
+  // tab, and on every future sign-in/sign-up/sign-out in this one.
+  useEffect(() => auth.onAccountChange(setAccount), [])
   // Transient confirmation pill (see ui/Toast.jsx). Deliberately NOT part of
   // `state` - it must never be persisted or restored on reload.
   const [toast, setToast] = useState(null)
@@ -476,8 +482,8 @@ export default function AppProvider({ children }) {
         patch((s) => ({ profile: { ...s.profile, name: next.name } }))
         return next
       },
-      signOut: () => {
-        auth.signOut()
+      signOut: async () => {
+        await auth.signOut()
         setAccount(null)
       },
 
