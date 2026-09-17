@@ -359,7 +359,7 @@ export default function FocusMusic() {
             </div>
           </div>
 
-          <div ref={mountRef} className="shrink-0 bg-page" style={{ minHeight: EMBED_HEIGHT }} />
+          <div ref={mountRef} className="relative shrink-0 bg-page" style={{ minHeight: EMBED_HEIGHT }} />
           {embedFailed && (
             <p className="px-3 py-2 text-[0.7rem] text-danger">
               The Spotify player could not load - an ad blocker may be stopping it.
