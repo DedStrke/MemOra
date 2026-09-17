@@ -2026,6 +2026,14 @@ input[type='password']::-webkit-credentials-auto-fill-button {
 .music-panel {
   box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45), var(--shadow-sm);
   position: relative;
+  /* Isolates the panel into its own compositing layer up front. Without
+     this, the FIRST frame the ambient image's blur filter (below) is
+     painted in can composite before the panel's own opaque background
+     does, which briefly shows the page behind the panel through it -
+     looking exactly like a broken, see-through panel for a beat right
+     when it opens, on a real phone. Establishing the layer in advance
+     removes that race entirely rather than trying to outrun it. */
+  will-change: transform;
 }
 /*
   Spotify's own embed is themed from the cover art it is showing, not from
@@ -2042,8 +2050,12 @@ input[type='password']::-webkit-credentials-auto-fill-button {
   width: 130%;
   height: 130%;
   object-fit: cover;
-  filter: blur(60px) saturate(1.3);
+  /* 60px was heavy enough on a real phone to be the actual cause of the
+     glitch above, not just a cosmetic choice - 36px reads almost as soft
+     but is far cheaper to composite the instant the image loads in. */
+  filter: blur(36px) saturate(1.3);
   opacity: 0.4;
+  transform: translateZ(0);
 }
 .music-panel-ambient-scrim {
   position: absolute;
@@ -2052,7 +2064,7 @@ input[type='password']::-webkit-credentials-auto-fill-button {
 }
 [data-theme='high-contrast'] .music-panel-ambient,
 [data-theme='high-contrast'] .music-panel-ambient-scrim { display: none; }
-.music-hero { background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 80%, black), color-mix(in srgb, var(--brand) 45%, black)); }
+.music-hero { background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 80%, black), color-mix(in srgb, var(--brand) 45%, black)); position: relative; will-change: transform; }
 .music-hero-bg,
 .music-pill-bg {
   position: absolute;
@@ -2069,6 +2081,7 @@ input[type='password']::-webkit-credentials-auto-fill-button {
   background: var(--surface);
   color: var(--fg);
   box-shadow: 0 14px 40px -16px rgba(0, 0, 0, 0.45), var(--shadow-sm);
+  will-change: transform;
 }
 .music-pill-bg { opacity: 0.55; }
 .music-pill-scrim { background: linear-gradient(90deg, color-mix(in srgb, var(--surface) 82%, transparent), color-mix(in srgb, var(--surface) 62%, transparent)); }

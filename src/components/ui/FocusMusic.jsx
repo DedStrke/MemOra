@@ -309,7 +309,9 @@ export default function FocusMusic() {
             part of one "now playing" surface rather than a bright block
             dropped into an unrelated dark panel. See the CSS comment on
             .music-panel-ambient for why this sits behind everything. */}
-        {currentThumb && <img src={currentThumb} alt="" aria-hidden="true" className="music-panel-ambient" />}
+        {currentThumb && (
+          <img src={currentThumb} alt="" aria-hidden="true" decoding="async" className="music-panel-ambient" />
+        )}
         <span aria-hidden="true" className="music-panel-ambient-scrim" />
         {/* A single scroll container for the whole panel, capped well
             below the viewport height. Splitting the panel into its own
@@ -326,7 +328,9 @@ export default function FocusMusic() {
               already shows the cover, the title and the controls, so this
               deliberately repeats none of them. */}
           <div className="music-hero relative overflow-hidden px-3 py-2">
-            {currentThumb && <img src={currentThumb} alt="" aria-hidden="true" className="music-hero-bg" />}
+            {currentThumb && (
+              <img src={currentThumb} alt="" aria-hidden="true" decoding="async" className="music-hero-bg" />
+            )}
             <span aria-hidden="true" className="music-hero-scrim absolute inset-0" />
             <div className="relative flex items-center justify-between gap-2">
               <p className="flex min-w-0 items-center gap-1.5 text-[0.66rem] font-extrabold uppercase tracking-[0.14em] text-white/85">
@@ -547,7 +551,9 @@ export default function FocusMusic() {
           rather than a 40px smudge. */}
       {!state.open && (
         <div className="music-pill relative flex w-[min(24rem,calc(100vw-2rem))] items-center gap-2 overflow-hidden rounded-2xl border border-line p-2">
-          {currentThumb && <img src={currentThumb} alt="" aria-hidden="true" className="music-pill-bg" />}
+          {currentThumb && (
+            <img src={currentThumb} alt="" aria-hidden="true" decoding="async" className="music-pill-bg" />
+          )}
           <span aria-hidden="true" className="music-pill-scrim absolute inset-0" />
           <button
             type="button"
