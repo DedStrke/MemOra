@@ -44,6 +44,7 @@ import { ECON_EXAM_3 } from './econ-exam-3'
 import { ECON_ESSAYS } from './econ-essays'
 import { ECON_ESSAYS_2 } from './econ-essays-2'
 import { ECON_ESSAY_BANK } from './econ-essay-bank'
+import { ECON_ESSAY_BANK_2 } from './econ-essay-bank-2'
 import { ECON_FIRM_CARDS } from './econ-flashcards-firm'
 import { ECON_FIRM_MASTER_NOTES } from './econ-notes-firm-master'
 import { ECON_MCQ_2 } from './econ-mcq-2'
@@ -2324,7 +2325,7 @@ const withExtras = (pack) => {
       // filtered by chapter (the bank has its own paper/topic filters) and
       // not run through tagWithDiagrams: which diagram a plan needs is part
       // of the plan the student writes, not something handed to them.
-      essayBank: ECON_ESSAY_BANK,
+      essayBank: [...ECON_ESSAY_BANK, ...ECON_ESSAY_BANK_2],
       // Diagrams spliced into the notes at the passage that describes
       // them - see econ-diagrams.js.
       // Rewritten chapters replace their thin originals; the rest are

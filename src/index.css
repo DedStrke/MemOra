@@ -2118,11 +2118,16 @@ input[type='password']::-webkit-credentials-auto-fill-button {
 .music-section {
   position: relative;
   border-radius: 1rem;
-  background: color-mix(in srgb, var(--surface) 55%, transparent);
-  border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  /* Solid, not tinted-translucent: this card sits on top of the ambient
+     album-art wash, and that wash's colour is whatever the current cover
+     art happens to be. A translucent card let that unpredictable colour
+     bleed through and wash out the text on top of it - readable against
+     some covers, illegible against others. Full --surface guarantees the
+     same contrast every time; the wash still shows in the gaps around
+     and between cards, which is enough to read as one surface. */
+  background: var(--surface);
+  border: 1px solid var(--line);
   padding: 0.75rem 0.875rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
 }
 .music-link-form input {
   transition: border-color 0.15s ease, background-color 0.15s ease;
