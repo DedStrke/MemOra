@@ -303,7 +303,18 @@ function Bank({ items, filtered, drafts, filters, setFilters, search, setSearch,
               id="essay-search"
               type="search"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value
+                setSearch(value)
+                // Typing a search is a request to look everywhere - the
+                // micro/macro/synoptic tabs above are strand filters, not
+                // part of the question text, so a query like "globalisation"
+                // typed while "Microeconomics" happened to be selected
+                // silently found nothing even though the question exists,
+                // just in Paper 2. A real search box shouldn't need the
+                // right tab picked first.
+                if (value.trim() && strand !== 'all') setStrand('all')
+              }}
               placeholder="Search questions by keyword, e.g. &ldquo;monopoly&rdquo; or &ldquo;exchange rate&rdquo;"
               className="w-full rounded-xl border border-line bg-page py-2.5 pl-10 pr-3 text-sm font-medium text-fg placeholder:text-muted focus:border-brand focus:outline-none"
             />
