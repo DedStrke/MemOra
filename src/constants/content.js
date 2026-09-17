@@ -306,34 +306,34 @@ export const FOOTER_COLUMNS = [
 export const LEGAL = {
   privacy: {
     title: 'Privacy',
-    updated: 'August 2026',
-    intro: "The short version: Memora doesn't collect anything, because there's nowhere for it to go. Everything below explains exactly what that means.",
+    updated: 'September 2026',
+    intro: "The short version: almost nothing about you is collected. Your account (an email and a password) is handled by Firebase, the sign-in service Memora uses; everything else - your profile, progress and revision - never leaves this browser.",
     sections: [
       {
         heading: 'What Memora stores',
-        body: "Your profile, subjects, exam dates, study sessions, and any account you create are saved with the browser's localStorage, on the device you're using. None of it is uploaded, and Memora has no server to upload it to.",
+        body: "Your profile, subjects, exam dates, study sessions, and revision progress (decks, notes, essay plans, everything you answer) are saved with this browser's localStorage, on the device you're using. None of that is uploaded anywhere. The one exception is your account: your name, email and password go to Firebase (a Google service) to create a real sign-in - Memora's own code never sees or stores your password, and doesn't have a server of its own for the rest of your data to go to either.",
       },
       {
         heading: 'What that means in practice',
-        body: "Your data doesn't sync between devices or browsers. Clearing your browser's site data, using private/incognito mode, or switching computers all mean starting fresh. There is no way for Memora, or anyone else, to see your data remotely, because it never leaves your device.",
+        body: "Your account follows you: sign in with the same email and password on another device or browser and you're back in. Your revision itself does not - it doesn't sync between devices, so clearing this browser's site data, using private/incognito mode, or switching computers all mean starting your progress fresh, even though your account still exists and still works.",
       },
       {
         heading: 'Accounts and passwords',
-        body: 'Creating an account stores a name, email, and a salted, hashed password (never the password itself) in that same local storage. It exists to keep separate profiles apart on a shared device, not to identify you to a server, because there is no server.',
+        body: "Creating an account sends your name, email and password to Firebase to create a real, sign-in-anywhere account. Firebase hashes and stores the password; Memora never sees it in plain text and never stores it at all. This is the one part of Memora that isn't purely local - an account that only worked on the one device you made it on wasn't worth having.",
       },
       {
         heading: 'Analytics and tracking',
-        body: 'None. No analytics scripts, no third-party trackers, no advertising, no cookies used for tracking. Fonts and other assets are bundled with the site rather than loaded from an external service.',
+        body: 'None. No analytics scripts, no third-party trackers, no advertising, no cookies used for tracking. Fonts and other assets are bundled with the site rather than loaded from an external service. Firebase is used only for sign-in, not for tracking you.',
       },
       {
         heading: 'Changes',
-        body: "If Memora ever changes how it handles data, for example by adding real accounts that sync, this page gets updated first and the change is explained plainly, not buried.",
+        body: "If Memora ever changes how it handles data again, for example by syncing revision progress across devices, this page gets updated first and the change is explained plainly, not buried.",
       },
     ],
   },
   terms: {
     title: 'Terms',
-    updated: 'August 2026',
+    updated: 'September 2026',
     intro: 'Plain-language terms for a free, personal study tool.',
     sections: [
       {
@@ -346,7 +346,7 @@ export const LEGAL = {
       },
       {
         heading: 'Your data, your device',
-        body: "Since everything lives in your browser's local storage, you're responsible for it. Clearing site data or switching devices deletes it permanently, with no way to recover it. There's no backup to restore from.",
+        body: "Your revision - profile, progress, decks, notes, essay plans - lives only in this browser's local storage, and you're responsible for it: clearing site data deletes it permanently, with no way to recover it, and there's no backup to restore from. Your account is different: it lives with Firebase, so it survives clearing site data or switching devices, but none of your revision data comes with it.",
       },
       {
         heading: 'Acceptable use',

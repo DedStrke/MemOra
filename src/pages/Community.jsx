@@ -368,9 +368,9 @@ export default function Community() {
       >
         <Icon name="access" className="mt-0.5 h-4 w-4 shrink-0 text-brand-strong" />
         <p className="readable">
-          This board is private to this device right now - your account signs you in here, not
-          into a shared server. Posts won't be visible to anyone else until real multi-device
-          sync is added.
+          This board is private to this device right now - your account is real, but posts
+          themselves aren't synced anywhere yet, so nobody else will see what you post here
+          until that's added.
         </p>
       </motion.div>
 
