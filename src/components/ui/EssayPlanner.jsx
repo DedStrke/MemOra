@@ -65,6 +65,38 @@ const relative = (ts) => {
 
 const EMPTY_FILTERS = { level: null, paper: null, section: null, marks: null, topic: null }
 
+/*
+  Search matches word by word, not as one literal phrase - "trade wto",
+  "wto trade" and "trading blocs" all find the same question, which a
+  plain .includes(search) never could once the words are in a different
+  order or a different inflection. Every query word has to match SOME word
+  in the question/topic (a shared prefix either direction, or the same
+  crude stem: -ies/-es/-s stripped), so "tariffs" finds "tariff" and
+  "oligopolies" finds "Oligopoly" without a real dictionary or a search
+  index - the bank is a few hundred short strings, not a corpus.
+*/
+const stem = (w) => w.replace(/ies$/, 'y').replace(/es$/, '').replace(/s$/, '')
+const tokenize = (s) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    // Drop 1-letter fragments - mostly the "s" an apostrophe leaves behind
+    // ("economy's" -> "economy", "s"). Left in, a single character is a
+    // substring of almost every query word, so it silently matched
+    // anything: searching "oligopolies" was one apostrophe away from also
+    // matching every question containing an unrelated possessive.
+    .filter((w) => w.length > 1)
+const wordsMatch = (queryWord, targetWord) =>
+  targetWord.includes(queryWord) ||
+  (queryWord.length >= 3 && targetWord.length >= 3 && queryWord.includes(targetWord)) ||
+  stem(targetWord) === stem(queryWord)
+const questionMatchesSearch = (q, queryWords) => {
+  if (!queryWords.length) return true
+  const targetWords = tokenize(`${q.question} ${q.topicName} ${q.topicCode}`)
+  return queryWords.every((qw) => targetWords.some((tw) => wordsMatch(qw, tw)))
+}
+
 // Micro / macro / synoptic, read off the paper code: Paper 1 (AS and
 // A-level) is Themes 1 and 3, Paper 2 is Themes 2 and 4, Paper 3 is both.
 const STRANDS = [
@@ -893,7 +925,7 @@ export default function EssayPlanner({ items }) {
   const [mode, setMode] = useState('browse') // browse | random
   const reduceMotion = useReducedMotion()
 
-  const query = search.trim().toLowerCase()
+  const queryWords = useMemo(() => tokenize(search), [search])
   const filtered = useMemo(
     () =>
       items.filter(
@@ -904,12 +936,9 @@ export default function EssayPlanner({ items }) {
           (!filters.section || q.section === filters.section) &&
           (!filters.marks || q.marks === filters.marks) &&
           (!filters.topic || `${q.topicCode}|${q.topicName}` === filters.topic) &&
-          (!query ||
-            q.question.toLowerCase().includes(query) ||
-            q.topicName.toLowerCase().includes(query) ||
-            q.topicCode.toLowerCase().includes(query)),
+          questionMatchesSearch(q, queryWords),
       ),
-    [items, filters, strand, query],
+    [items, filters, strand, queryWords],
   )
 
   const open = (id) => {

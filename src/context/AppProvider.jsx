@@ -4,6 +4,7 @@ import { normalizeAttempt } from '@/lib/attempts'
 import { PRIORITISED_COURSES, ADVANCED_YEAR_GROUPS } from '@/constants/content'
 import { claimDailyReward } from '@/lib/daily'
 import { getBlob, deleteBlob } from '@/lib/blobStore'
+import { isValidHex, normaliseHex, clampBrandLightness, brandStrongFor, onBrandFor } from '@/lib/color'
 
 // A profile picture or banner that is a GIF lives in IndexedDB, not in
 // the JSON blob below - state.profile.avatar/banner then holds the
@@ -182,6 +183,10 @@ const LEGACY_EXAMS_KEY = 'memora:exams'
 const DEFAULTS = {
   theme: 'light',
   accent: 'blue',
+  // Set only when accent === 'custom' - a hex string from the colour wheel
+  // in Settings > Appearance. See lib/color.js for how it becomes --brand
+  // et al; ignored (and left as dead data, harmlessly) for a named accent.
+  customAccent: null,
   a11y: A11Y_DEFAULT,
   recentTopic: null,
   decks: [],
@@ -327,7 +332,8 @@ function load() {
       })),
     }
     if (!THEMES.includes(merged.theme)) merged.theme = systemTheme()
-    if (!ACCENTS.includes(merged.accent)) merged.accent = DEFAULTS.accent
+    if (!ACCENTS.includes(merged.accent) && merged.accent !== 'custom') merged.accent = DEFAULTS.accent
+    if (merged.accent === 'custom' && !isValidHex(merged.customAccent || '')) merged.accent = DEFAULTS.accent
 
     // Migration: year group narrows to Year 12 / Year 13 for the two-year
     // advanced course types (§4). A returning user sitting on a GCSE-era
@@ -431,8 +437,28 @@ export default function AppProvider({ children }) {
     el.setAttribute('data-letter', a.letter || 'normal')
     el.setAttribute('data-focus', a.focus ? 'true' : 'false')
     el.style.setProperty('--text-scale', String(a.textScale || 1))
+
+    // Custom accent: computed, not a stylesheet rule (see lib/color.js) -
+    // cleared first so switching BACK to a named accent doesn't leave a
+    // stale inline override sitting on top of that accent's own rule
+    // (inline styles win over any selector, so a leftover value here would
+    // silently survive a real accent change). High contrast keeps its own
+    // fixed, WCAG-driven palette regardless of accent - same as it already
+    // does for the named ones - so a custom colour is never applied there.
+    ;['--brand', '--brand-strong', '--brand-soft', '--ring', '--on-brand'].forEach((prop) =>
+      el.style.removeProperty(prop),
+    )
+    if (state.accent === 'custom' && state.theme !== 'high-contrast' && isValidHex(state.customAccent || '')) {
+      const mode = state.theme === 'dark' ? 'dark' : 'light'
+      const brand = clampBrandLightness(normaliseHex(state.customAccent), mode)
+      el.style.setProperty('--brand', brand)
+      el.style.setProperty('--brand-strong', brandStrongFor(brand, mode))
+      el.style.setProperty('--brand-soft', 'color-mix(in srgb, var(--brand) 16%, var(--surface))')
+      el.style.setProperty('--ring', brand)
+      el.style.setProperty('--on-brand', onBrandFor(brand))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.theme, state.accent, state.a11y])
+  }, [state.theme, state.accent, state.customAccent, state.a11y])
 
   const value = useMemo(
     () => ({
@@ -491,7 +517,15 @@ export default function AppProvider({ children }) {
       setTheme: (theme) => patch({ theme }),
       cycleTheme: () => patch((s) => ({ theme: THEMES[(THEMES.indexOf(s.theme) + 1) % THEMES.length] })),
       accent: state.accent,
+      customAccent: state.customAccent,
       setAccent: (accent) => patch({ accent }),
+      // A wheel-picked hex becomes the accent - see lib/color.js for the
+      // derived tokens this produces, applied in the effect above.
+      setCustomAccent: (hex) => {
+        const normalised = normaliseHex(hex)
+        if (!isValidHex(normalised)) return
+        patch({ accent: 'custom', customAccent: normalised })
+      },
       setA11y: (p) => patch((s) => ({ a11y: { ...s.a11y, ...p } })),
 
       // ---- profile ----
@@ -615,7 +649,11 @@ export default function AppProvider({ children }) {
       setBannerPos: (bannerPos) => patch((s) => ({ profile: { ...s.profile, bannerPos } })),
       // A buddy's recommended theme + accent, applied together.
       applyLook: ({ theme, accent }) =>
-        patch({ theme: THEMES.includes(theme) ? theme : 'dark', accent: ACCENTS.includes(accent) ? accent : 'blue' }),
+        patch({
+          theme: THEMES.includes(theme) ? theme : 'dark',
+          accent: ACCENTS.includes(accent) ? accent : 'blue',
+          customAccent: null,
+        }),
       addFriend: (entry) =>
         patch((s) => ({
           friends: [entry, ...s.friends.filter((f) => f.id !== entry.id)].slice(0, 50),
