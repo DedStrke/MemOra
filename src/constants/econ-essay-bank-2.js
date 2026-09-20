@@ -182,4 +182,8 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain how money, by acting as a medium of exchange, allows an economy to benefit from specialisation and the division of labour.'),
   q('Q120', 'A-Level', ...P1, '1.1', 'Specialisation and the Division of Labour', 'C', 25,
     'Discuss the extent to which specialisation and the division of labour are beneficial to a modern economy.'),
+  q('Q121', 'A-Level', ...P1, '3.3', 'Normal Profit, Supernormal Profit and Losses', 'B', 10,
+    'Explain why a loss-making firm might continue to produce in the short run but not in the long run.'),
+  q('Q122', 'A-Level', ...P1, '3.3', 'Normal Profit, Supernormal Profit and Losses', 'C', 25,
+    'Evaluate the extent to which the shut-down decision facing a loss-making firm depends on whether its costs are fixed or variable.'),
 ]

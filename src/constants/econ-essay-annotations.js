@@ -753,6 +753,19 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'MC = MR, where the firm actually produces, sits to the left of where AR would meet MC - price above marginal cost is the allocative inefficiency',
     ],
   },
+  Q121: {
+    'cost-curves': [
+      'min AVC is the SHORT-RUN shut-down price: above it, revenue still contributes towards the fixed costs the firm pays either way',
+      'min AC is the LONG-RUN shut-down price: once every factor is variable there are no unavoidable fixed costs left to contribute towards',
+      'The gap between AC and AVC is AFC - exactly the cost that is unavoidable in the short run, and the whole reason the two shut-down points differ',
+    ],
+  },
+  Q122: {
+    'cost-curves': [
+      'The AC-AVC gap is average fixed cost: the wider it is, the further price can fall below AC before shutting down beats producing',
+      'A capital-intensive firm has a wide gap and keeps trading through a deep downturn; a labour-intensive firm’s AVC sits close to AC, so it hits min AVC almost as soon as it becomes unprofitable',
+    ],
+  },
   Q099: {
     'terms-of-trade': [
       'Export prices rising faster than import prices in the early years is an IMPROVING terms of trade - the ratio, printed along the bottom, rises',

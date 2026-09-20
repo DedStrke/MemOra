@@ -654,7 +654,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
         'A monopsonist facing an upward-sloping labour supply (ACL) with MCL above it, employing where MRP = MCL and paying the wage on the supply curve at that employment. Then add a minimum wage above the monopsony wage but below the competitive wage: MCL becomes horizontal at the minimum wage up to the supply curve, and employment rises to where MRP equals the minimum wage.',
       ],
     ],
-    'A monopsony is a labour market with a single or dominant employer, such as the NHS for nurses or a large employer in a small town. The firm faces the whole upward-sloping labour supply curve, so hiring an extra worker means raising the wage for everyone, and the marginal cost of labour lies above the supply curve. The monopsonist employs where MRP equals MCL and pays the lower wage on the supply curve. A minimum wage set correctly can raise both the wage and employment in this market, which reverses the usual prediction.',
+    'Demand for labour is a DERIVED demand: a firm hires workers not for their own sake but for the output they produce, so the demand curve for labour is the marginal revenue product (MRP) - the extra revenue each additional worker generates. A monopsony is a labour market with a single or dominant employer, such as the NHS for nurses or a large employer in a small town. The firm faces the whole upward-sloping labour supply curve, so hiring an extra worker means raising the wage for everyone, and the marginal cost of labour lies above the supply curve. The monopsonist employs where MRP equals MCL and pays the lower wage on the supply curve. A minimum wage set correctly can raise both the wage and employment in this market, which reverses the usual prediction.',
     [
       [
         'Without a minimum wage, the monopsonist hires up to the point where the marginal revenue product of labour equals the marginal cost of labour, at employment Lm, and pays the wage on the supply curve at that level, Wm, which is below both MRP and the competitive wage. Employment and wages are both lower than a competitive market would produce, and the gap between MRP and the wage is the employer’s monopsony profit. When a minimum wage is set between Wm and the competitive wage, the firm can hire any number of workers up to the supply curve at that wage without raising it, so MCL becomes horizontal at the minimum wage over that range. The firm now employs where MRP equals the minimum wage, which is a higher level of employment than Lm. The minimum wage raises pay and employment at the same time, at the expense of the employer’s surplus.',
@@ -667,6 +667,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
     ],
     null,
     [
+      'Labour as a derived demand: the demand curve for labour is its marginal revenue product (MRP)',
       'Definition of monopsony and of the marginal cost of labour above the supply curve',
       'Monopsony equilibrium: employment where MRP = MCL, wage on the supply curve',
       'Diagram showing the minimum wage making MCL horizontal and employment rising',

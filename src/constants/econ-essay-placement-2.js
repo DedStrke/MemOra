@@ -36,4 +36,6 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q105: [{ a: 'exchange-rate' }],
   Q106: [{ a: 'fixed-exchange-rate' }, {}, {}],
   Q111: [{ a: 'monetary-transmission' }],
+  Q121: [{ a: 'cost-curves' }, {}],
+  Q122: [{ a: 'cost-curves' }, {}, {}],
 }

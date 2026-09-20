@@ -938,4 +938,68 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Judgement: a real but usually modest technical inefficiency, arguably a reasonable trade-off for consumer choice',
     ],
   ),
+
+  /* ------------------- Normal Profit, Supernormal Profit and Losses */
+  Q121: A(
+    [['cost-curves', 'Short-run cost curves with AC, AVC, AFC and MC. The two shut-down points are read straight off this diagram: min AVC is the short-run shut-down price, min AC the long-run one, and the vertical gap between AC and AVC is the average fixed cost the firm cannot escape in the short run.']],
+    'Normal profit is the minimum return needed to keep a firm in its current line of business, and is counted as a cost; supernormal profit is anything above that; a loss is anything below it. A loss-making firm faces a genuine decision about whether to keep producing, and the answer differs between the short run and the long run because of what happens to fixed costs.',
+    [
+      [
+        'In the short run, at least one factor of production is fixed, so the firm has fixed costs it must pay whether it produces or not - rent on a lease it cannot exit, interest on borrowing already taken on. If the firm shuts down it loses its entire fixed cost; if it keeps producing it loses the fixed cost too, but any revenue above variable cost makes a contribution towards covering it. So as long as price is at or above average variable cost - at or above min AVC on the diagram - the firm loses less by producing than by closing, even though it is still making an overall loss.',
+        'This only holds while the fixed cost genuinely cannot be avoided. A firm able to sublet its premises or sell equipment quickly converts what looked like a sunk fixed cost into a recoverable one, which raises the price at which continuing to trade stops being worthwhile and brings the short-run decision closer to the long-run one.',
+      ],
+      [
+        'In the long run every factor is variable: leases expire, equipment reaches the end of its life, and contracts come up for renewal, so there are no unavoidable fixed costs left to contribute towards. The firm must therefore cover its full average cost, not just its variable cost, and the shut-down price rises from min AVC to min AC. A firm persistently unable to cover average cost is earning below normal profit, so its owners can do better deploying their capital elsewhere, and it leaves the industry - which is precisely the exit process that competes losses away and restores long-run equilibrium.',
+        'How quickly this happens depends on how long the "long run" actually is in that industry: in a business with short leases and easily resold equipment, exit can take months, while a firm with decades-long infrastructure commitments may keep trading at a loss far longer simply because its fixed costs take that long to become variable.',
+      ],
+    ],
+    null,
+    [
+      'Definitions of normal profit (a cost), supernormal profit and loss',
+      'Short run: fixed costs are unavoidable, so any revenue above variable cost contributes towards them',
+      'Short-run shut-down point at min AVC: produce while price is at or above average variable cost',
+      'Long run: all factors variable, so the firm must cover average total cost',
+      'Long-run shut-down point at min AC; persistent losses trigger exit from the industry',
+      'Diagram: AC, AVC and MC with both shut-down points marked',
+    ],
+    [
+      'The short-run rule only holds while fixed costs are genuinely unavoidable - subletting or resale changes the calculation',
+      'How long the "long run" takes varies hugely by industry, so firms with long-lived assets can trade at a loss much longer',
+    ],
+  ),
+
+  Q122: A(
+    [['cost-curves', 'AC, AVC, AFC and MC on one set of axes. The vertical gap between AC and AVC is average fixed cost - the part of cost that is unavoidable in the short run and therefore the whole reason the shut-down decision differs between the short run and the long run.']],
+    'A loss-making firm deciding whether to keep producing compares price against cost - but which cost matters depends entirely on which of its costs it can actually avoid by closing. The division between fixed and variable cost is therefore the centre of the shut-down decision, though it is not the only thing that determines it.',
+    [
+      [
+        'The fixed/variable split drives the short-run rule directly. Fixed costs are incurred whether or not the firm produces, so they are irrelevant to the decision at the margin: what matters is whether revenue covers the variable cost of actually producing. If price is above average variable cost, every unit sold makes a contribution towards the fixed costs the firm would otherwise pay for nothing, so producing at a loss beats closing. If price falls below average variable cost, each unit adds more to cost than to revenue and closing immediately is the smaller loss. The larger the share of fixed costs in a firm’s cost structure - the wider the gap between AC and AVC on the diagram - the wider the price range over which a loss-making firm rationally keeps trading.',
+        'This is why capital-intensive industries with very high fixed costs, such as airlines, steel or hotels, often keep operating through deep downturns at prices that clearly do not cover full costs, while a business whose costs are mostly variable, such as a small contractor paying mainly for labour and materials, hits its shut-down point almost as soon as it becomes unprofitable.',
+      ],
+      [
+        'The split matters less than it appears, however, once the distinction between fixed and SUNK costs is drawn. A fixed cost that is recoverable - equipment with a resale market, a lease that can be assigned to another tenant - is not really a reason to keep trading, because closing recovers it. It is specifically SUNK costs, which cannot be recovered whatever the firm does, that make continuing worthwhile. Two firms with identical fixed costs can therefore face completely different shut-down decisions depending on how much of that cost is genuinely sunk.',
+        'This also means the same firm’s decision changes over time without its cost structure changing at all: as leases approach expiry and equipment approaches replacement, previously sunk costs become avoidable again, and a firm that rationally traded through a loss last year may rationally exit this year on identical prices and costs.',
+      ],
+      [
+        'Other factors can override the cost calculation entirely. A firm expecting the downturn to be temporary may absorb losses below AVC to retain skilled staff it would struggle to rehire, preserve customer relationships, or avoid the reputational damage and re-entry costs of closing and reopening. Conversely, a firm covering its variable costs may still close if it cannot obtain the working capital to fund continued trading - losses have to be financed, and a business without access to credit can be forced out at a price the textbook rule says it should survive.',
+        'These considerations point in opposite directions, so they do not simply strengthen or weaken the cost-based rule: expectations about recovery and the value of retaining staff push the effective shut-down price below min AVC, while financing constraints push it above. Which dominates depends on the firm’s access to finance and on how confident it is about the duration of the downturn.',
+      ],
+    ],
+    'The fixed/variable split is genuinely central to the shut-down decision: it is the existence of costs that must be paid regardless of output that makes producing at a loss rational at all, and it explains why capital-intensive firms trade through downturns that would close a labour-intensive one. But it is not the whole story. What matters more precisely is how much of the fixed cost is genuinely SUNK rather than recoverable, since a recoverable fixed cost is no reason to continue; and the textbook rule can be overridden in both directions by expectations about the downturn’s length, the cost of losing and rehiring skilled staff, and above all by whether the firm can finance its losses at all. The cost structure sets the boundaries of the decision; expectations and access to finance decide where within those boundaries a particular firm actually lands.',
+    [
+      'Fixed costs are unavoidable in the short run and therefore irrelevant at the margin',
+      'Short-run rule: produce while price is at or above AVC, because revenue above variable cost contributes to fixed costs',
+      'Diagram: the AC-AVC gap is average fixed cost, and its size sets how far price can fall before shutting down',
+      'Capital-intensive versus labour-intensive cost structures give very different shut-down prices',
+      'Fixed versus SUNK costs: only genuinely unrecoverable costs justify continuing',
+      'Non-cost factors: expected duration of the downturn, retaining skilled staff, and access to working capital',
+    ],
+    [
+      'A recoverable fixed cost is no reason to continue - the sunk element is what matters',
+      'The same firm’s decision changes over time as fixed costs become avoidable, with no change in its cost structure',
+      'Expectations and staff-retention concerns push the effective shut-down price below min AVC',
+      'Financing constraints can force closure above min AVC, overriding the cost rule in the opposite direction',
+      'Judgement: the fixed/variable split sets the boundaries, but sunk costs, expectations and finance decide the outcome within them',
+    ],
+  ),
 }
