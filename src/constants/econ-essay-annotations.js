@@ -42,10 +42,6 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'The consumer burden (P₁ to Pc) is far larger than the producer burden (Pp to P₁): smokers pay most of the duty',
       'Revenue = tax × Q₂, the whole rectangle - large because Q₂ barely falls',
     ],
-    'positive-externality': [
-      'Read it in reverse for a demerit good: the private benefit curve sits ABOVE the social one, so the market over-consumes at Qm',
-      'The optimum Q* is where social benefit meets cost; the gap Qm − Q* is the over-consumption the tax is meant to close',
-    ],
   },
   Q005: {
     'output-gap': [

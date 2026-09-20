@@ -110,9 +110,9 @@ export const ECON_ESSAY_ANNOTATIONS_EVAL = {
       'Inelastic market: steep D → high price P₁; elastic market: shallow D → low price P₂',
       'MR = MC in each; without an estimate of PED for each group the firm cannot set the two prices',
     ],
-    'kinked-demand': [
-      'Above P₁ demand is elastic (rivals do not follow a rise), below it inelastic (they match a cut)',
-      'The kink means rivals’ reactions, not market PED, decide the price - MC can shift within the gap with no price change',
+    'game-theory': [
+      'If both firms hold a stable price (collude), each keeps a predictable revenue at (5, 5)',
+      'A price cut only pays off if the rival does not match it - since rivals usually do, the actual revenue outcome depends on their reaction, not on market PED alone',
     ],
   },
   Q016: {

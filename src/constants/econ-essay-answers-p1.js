@@ -149,7 +149,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
         'Price discrimination requires market power, identifiable segments and no resale, so PED is useful in this way only to firms that meet the conditions. Where consumers can arbitrage, or where the firm cannot tell segments apart, the knowledge cannot be acted on. Regulation may also limit the practice.',
       ],
       [
-        'PED is not the only or always the main consideration in setting price. In perfect competition firms are price takers and PED is irrelevant. In oligopoly, interdependence dominates: the kinked demand curve shows that a firm’s effective PED depends on whether rivals follow a price change, so the reaction of competitors matters more than the elasticity of market demand. Costs set a floor beneath price, and firms with objectives other than profit maximisation - sales maximisation, market share, limit pricing to deter entry - will choose prices that PED alone would not suggest. Many firms in practice use cost-plus pricing and adjust by trial and error rather than estimating elasticities.',
+        'PED is not the only or always the main consideration in setting price. In perfect competition firms are price takers and PED is irrelevant. In oligopoly, interdependence dominates: game theory shows that whether a price change actually raises a firm’s revenue depends on whether rivals are expected to match it, not on the market elasticity of demand alone, so the reaction of competitors matters more than PED by itself. Costs set a floor beneath price, and firms with objectives other than profit maximisation - sales maximisation, market share, limit pricing to deter entry - will choose prices that PED alone would not suggest. Many firms in practice use cost-plus pricing and adjust by trial and error rather than estimating elasticities.',
         'Even where firms use cost-plus rules, the mark-up they apply is implicitly an elasticity judgement, and firms that consistently misjudge demand lose out to those that do not. Modern firms, especially online retailers, have far better data on price responsiveness than in the past and can test prices in real time, which makes PED more useful than it once was.',
       ],
     ],
@@ -159,7 +159,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
       'Relationship between PED and total revenue, with a diagram',
       'Application to pricing decisions and passing on cost increases',
       'Third-degree price discrimination based on different elasticities',
-      'Market structure: price takers, oligopoly interdependence and the kinked demand curve',
+      'Market structure: price takers, oligopoly interdependence and game theory',
       'Other pricing considerations: costs, objectives, competitors',
     ],
     [

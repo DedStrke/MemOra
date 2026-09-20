@@ -154,10 +154,6 @@ export const ECON_ESSAY_ANSWERS_AS = {
         'indirect-tax',
         'A specific tax on cigarettes shifting supply vertically upwards by the amount of the tax, drawn against steep, inelastic demand. Show the large rise in price and the small fall in quantity, and mark the consumer and producer shares of the tax - the consumer share is the larger one because demand is inelastic.',
       ],
-      [
-        'positive-externality',
-        'Use the externality framework in reverse: for a demerit good, MPB lies above MSB, the market over-consumes at Q1, and the tax is meant to raise the price so consumption falls back towards the social optimum where MSB meets MSC.',
-      ],
     ],
     'Tobacco is a demerit good with a negative externality of consumption: the private benefit to the smoker exceeds the social benefit once the costs to the NHS, passive smokers and lost productivity are included, so the market over-consumes. An indirect tax raises the price, aiming to cut consumption to the social optimum and to raise revenue. Whether it is the most effective method depends on how responsive smokers are to price and on what the alternatives - regulation, information and bans - can achieve.',
     [
