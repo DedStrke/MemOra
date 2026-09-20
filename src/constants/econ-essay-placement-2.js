@@ -61,6 +61,15 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q146: [{ a: 'ad-shift' }, {}, {}],
   Q147: [{ a: 'output-gap' }, {}],
   Q148: [{ a: 'output-gap' }, {}, {}],
+  // 1.2.3 (income and cross elasticity), 3.1.1 (sizes and types of firms)
+  // and 4.5.1 (public expenditure) - the remaining uncovered sub-points.
+  Q149: [{ a: 'demand-shift' }, {}],
+  Q150: [{ a: 'demand-shift' }, {}, {}],
+  Q151: [{ a: 'economies-of-scale' }, {}],
+  Q152: [{ a: 'business-objectives' }, {}, {}],
+  Q154: [{ a: 'lras-shift' }, {}, {}],
+  Q155: [{ a: 'labour-market' }, {}],
+  Q156: [{ a: 'labour-market' }, {}, {}],
   // Diagrams added to questions that already argued exactly what these show.
   Q080: [{ a: 'phillips' }, {}, {}],
   Q102: [{}, { a: 'tariff' }, {}],

@@ -245,4 +245,35 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain two characteristics of an economy experiencing a boom.'),
   q('Q148', 'A-Level', ...P2, '2.5', 'The Trade (Business) Cycle', 'C', 25,
     'Discuss the extent to which government policy can smooth the fluctuations of the trade cycle.'),
+  /*
+    Three more sub-points the same dedicated-coverage probe turned up.
+    1.2.3 names price, income AND cross elasticity; only PED had questions
+    of its own. 3.1.1 asks why some firms stay small and distinguishes
+    public from private and profit from not-for-profit - only the divorce
+    of ownership from control (3.1.1b) was examined, by Q022. 4.5.1 had no
+    question at all, so capital against current spending, transfer
+    payments and crowding out were never asked directly.
+  */
+  q('Q149', 'A-Level', ...P1, '1.2', 'Income and Cross Elasticity of Demand', 'B', 10,
+    'Explain, using cross elasticity of demand, how a rise in the price of one good can affect the demand for another.'),
+  q('Q150', 'A-Level', ...P1, '1.2', 'Income and Cross Elasticity of Demand', 'C', 25,
+    'Discuss the extent to which knowledge of income and cross elasticities of demand is useful to a supermarket chain deciding which products to stock.'),
+  q('Q151', 'A-Level', ...P1, '3.1', 'Sizes and Types of Firms', 'B', 8,
+    'Explain two reasons why some firms tend to remain small.'),
+  q('Q152', 'A-Level', ...P1, '3.1', 'Sizes and Types of Firms', 'C', 25,
+    'Discuss the extent to which the objectives of a not-for-profit organisation are likely to differ from those of a private sector firm.'),
+  q('Q153', 'A-Level', ...P2, '4.5', 'Public Expenditure', 'B', 10,
+    'Explain the distinction between capital expenditure, current expenditure and transfer payments.'),
+  q('Q154', 'A-Level', ...P2, '4.5', 'Public Expenditure', 'C', 25,
+    'Evaluate the likely significance of a sustained rise in public expenditure as a proportion of GDP for an economy’s productivity and growth.'),
+  /*
+    3.5.3 lists maximum wages, public sector wage setting and the elasticity
+    of SUPPLY of labour. The minimum wage (Q027, Q094), immobility (Q028)
+    and the elasticity of DEMAND for labour (Q136) were all examined; these
+    three had no coverage anywhere in the bank, not even in passing.
+  */
+  q('Q155', 'A-Level', ...P1, '3.5', 'Wage Determination', 'B', 10,
+    'Explain how the elasticity of supply of labour affects the impact of an increase in the demand for labour on wages and employment.'),
+  q('Q156', 'A-Level', ...P1, '3.5', 'Wage Determination', 'C', 25,
+    'Discuss the extent to which government intervention in wage setting is likely to improve outcomes in the labour market.'),
 ]

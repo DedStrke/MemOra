@@ -1233,4 +1233,67 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: significant but incomplete smoothing, depending on the source of the shock and on structural measures',
     ],
   ),
+
+  /* ------------------------------------------ Public Expenditure (4.5.1) */
+  Q153: A(
+    [],
+    'Public expenditure is total government spending. The specification divides it three ways, and the distinction matters because the three categories have quite different effects on the economy’s productive capacity.',
+    [
+      [
+        'Capital expenditure is spending on assets that will deliver a stream of services over many years: building a hospital, a railway or a school, or buying equipment that lasts. It adds directly to the economy’s stock of physical capital and therefore to its productive capacity, shifting long-run aggregate supply outward. Current expenditure, by contrast, is spending on the day-to-day running of public services - salaries for nurses and teachers, the medicines a hospital uses, the maintenance of an existing road - and it is consumed within the year in which it is spent rather than creating a lasting asset. Both are genuine government spending and both count as an injection into the circular flow.',
+        'The line between them is less clean than it looks in the accounts. Spending classified as current, such as teachers’ salaries, builds human capital that raises productive capacity just as surely as a new building does, while a capital project that is poorly chosen adds an asset without adding capacity. The classification follows whether a physical asset results, not whether the spending raises the economy’s potential output, and those two things do not always coincide.',
+      ],
+      [
+        'Transfer payments are different in kind from both. They are payments from the government to individuals for which no good or service is received in return - the state pension, Universal Credit, child benefit. Because nothing is produced in exchange, they are NOT counted in government spending in the national income accounts and do not directly add to aggregate demand as G. They redistribute purchasing power from taxpayers to recipients rather than creating output, and their effect on aggregate demand is indirect, coming through the consumption of those who receive them.',
+        'That indirect effect can nonetheless be large, because recipients of transfers typically have a high marginal propensity to consume: money transferred to a low-income household is largely spent rather than saved, so the multiplier on a transfer payment can exceed that on some direct government spending. Transfers also act as automatic stabilisers, rising in a downturn without any decision being taken, which is a role neither capital nor current spending performs automatically.',
+      ],
+    ],
+    null,
+    [
+      'Definition of public expenditure and the three-way distinction',
+      'Capital expenditure: assets delivering services over many years, adding to productive capacity and shifting LRAS',
+      'Current expenditure: day-to-day running of services, consumed within the year',
+      'Transfer payments: payments with no good or service received in return, excluded from G in the national accounts',
+      'Transfers redistribute purchasing power; their effect on AD is indirect, through recipients’ consumption',
+    ],
+    [
+      'The capital/current line follows whether a physical asset results, not whether capacity rises - current spending on teachers builds human capital too',
+      'Transfers can have a large multiplier because recipients have a high marginal propensity to consume, and act as automatic stabilisers',
+    ],
+  ),
+
+  Q154: A(
+    [['lras-shift', 'Long-run aggregate supply shifting right as public investment in infrastructure, education and health raises the economy’s productive capacity. Pair it with the point that the same spending has to be financed, so the diagram shows the potential benefit and the essay supplies the cost.']],
+    'Public expenditure as a proportion of GDP measures the share of national output passing through government. A sustained rise in that share can raise productivity and growth where the spending addresses genuine gaps the market leaves, or reduce them where it displaces more productive private activity or requires distortionary taxation to fund. Which effect dominates depends on what the money is spent on and how it is financed.',
+    [
+      [
+        'The case for a rising share rests on the things the market under-provides. Infrastructure, education, health and basic research all have long payback periods, diffuse benefits or positive externalities that stop private investors funding them at the socially optimal level, and government spending on them raises the quantity and quality of the factors of production - shifting LRAS outward and raising the sustainable rate of growth. A healthier, better-educated workforce is more productive; a functioning transport network lowers costs for every firm using it. The evidence broadly supports this at lower levels of provision: economies with weak infrastructure and low educational attainment see high returns from public investment in both.',
+        'These returns depend entirely on the COMPOSITION of the spending, not its level. A rise in the public expenditure share driven by capital investment in infrastructure and skills has a plausible productivity effect; one driven by rising transfer payments to an ageing population, or by the interest bill on accumulated debt, has very little, since neither adds to productive capacity. Much of the observed long-run rise in public spending shares across developed economies has been of the second kind, which is why the level alone predicts so little.',
+      ],
+      [
+        'Against this, the spending has to be financed, and both routes carry costs. Funding through taxation reduces the private return to working, saving and investing: higher marginal income tax weakens work incentives, higher corporation tax lowers the after-tax return on investment, and the resulting distortions represent a real efficiency loss. Funding through borrowing risks crowding out, where government demand for loanable funds raises interest rates and displaces private investment that would itself have raised capacity, so the net effect on productive capacity may be far smaller than the gross spending suggests, or negative if the displaced private investment was more productive than the public spending replacing it.',
+        'How strong crowding out actually is depends on the state of the economy. With substantial spare capacity and interest rates at the lower bound, as after 2008 and during 2020, there is little private investment to crowd out and government borrowing can raise output without displacing anything - the argument for the fiscal response in both episodes. Near full capacity the constraint binds and crowding out is a genuine risk. The same rise in the spending share therefore has opposite effects depending on where in the cycle it happens.',
+      ],
+      [
+        'There is also a plausible non-linearity in the relationship. At low levels of public spending, the state is not providing the basic public goods, rule of law and infrastructure that markets need to function, so raising the share improves growth substantially. Beyond some point the marginal project is worth less while the marginal tax needed to fund it distorts more, so further increases reduce growth. This would explain why both very small and very large public sectors are associated with weaker performance, and why the Nordic economies sustain high spending shares alongside strong productivity - their spending is concentrated on education, childcare and active labour market policy, which raise participation and capacity, rather than being large for its own sake.',
+        'The location of that turning point is contested and not reliably measurable, and the correlation is hard to read causally: a rising public spending share can be the CONSEQUENCE of weak growth rather than its cause, since a recession raises welfare spending while shrinking GDP, which mechanically raises the ratio without any policy decision. Studies disagree on the threshold partly because they are measuring different compositions of spending under the same headline number.',
+      ],
+    ],
+    'A sustained rise in public expenditure as a proportion of GDP is significant for productivity and growth, but the direction of the effect depends on composition and financing rather than on the level itself. Where the increase funds capital investment in infrastructure, education and health that the market under-provides, it raises productive capacity and shifts LRAS outward, and the Nordic economies show a high spending share coexisting with strong productivity when it is composed that way. Where it funds transfers, debt interest or poorly chosen projects, and is financed by distortionary taxation or by borrowing near full capacity, it can displace more productive private activity and lower growth. The most defensible judgement is that the headline ratio is close to uninformative on its own: what matters is whether the marginal pound is buying capacity or consumption, and whether the economy has the spare capacity to absorb the borrowing that funds it.',
+    [
+      'Definition of public expenditure as a proportion of GDP',
+      'The case for: infrastructure, education, health and research the market under-provides; LRAS shifting right',
+      'Diagram showing public investment raising productive capacity',
+      'Financing through taxation: distortion of work, saving and investment incentives',
+      'Financing through borrowing: crowding out of private investment',
+      'Non-linearity: low spending shares under-provide public goods, high ones face diminishing returns and rising distortion',
+    ],
+    [
+      'Composition matters far more than level - capital investment against transfers and debt interest',
+      'Crowding out depends on spare capacity; it is weak at the lower bound, as after 2008 and in 2020',
+      'The turning point is contested and hard to measure; studies differ because compositions differ',
+      'Reverse causation: a recession raises the ratio mechanically without any policy decision',
+      'Judgement: the headline ratio is close to uninformative; composition and financing determine the effect',
+    ],
+  ),
 }

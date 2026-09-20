@@ -961,4 +961,60 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'Lags mean a policy aimed at the negative gap can arrive in time to deepen the positive one',
     ],
   },
+  Q149: {
+    'demand-shift': [
+      'The price of good B has NOT changed - so this is a shift of D, never a movement along it',
+      'A rise in the price of a SUBSTITUTE shifts D right: positive XED',
+      'A rise in the price of a COMPLEMENT shifts D left: negative XED',
+      'The size of the shift is what the magnitude of XED measures; a zero shift means unrelated goods',
+    ],
+  },
+  Q150: {
+    'demand-shift': [
+      'Both YED and XED describe a SHIFT caused by something other than the good’s own price',
+      'A fall in real income shifts D left for a luxury (YED > 1) and RIGHT for an inferior good (YED < 0)',
+      'A rival cutting its price shifts D left for a close substitute - the exposure a stocking decision has to price in',
+      'This is why the two are forecasting tools, not pricing tools: PED is what governs your own price',
+    ],
+  },
+  Q151: {
+    'economies-of-scale': [
+      'LRAC reaches its minimum at MES - the smallest output that achieves the lowest average cost',
+      'Where MES is small RELATIVE TO THE MARKET, a small firm sits at that minimum just as a large one does',
+      'With no cost penalty to staying small, many small firms can coexist profitably',
+      'Standardisation or franchising pushes MES right - and the independents start losing out',
+    ],
+  },
+  Q152: {
+    'business-objectives': [
+      'The profit maximiser produces at MC = MR - output restricted, price above cost',
+      'Break-even (AR = AC) is further right: more output, no surplus - the not-for-profit’s constraint',
+      'That extra output is why a not-for-profit serves users a commercial firm would turn away',
+      'It is a CONSTRAINT, not the absence of a financial objective: below it the organisation closes',
+    ],
+  },
+  Q154: {
+    'lras-shift': [
+      'Public investment in infrastructure, education and health shifts LRAS right: capacity has risen',
+      'Only CAPITAL spending plausibly does this - transfers and debt interest do not shift the curve',
+      'The diagram shows the benefit; the financing cost (tax distortion, crowding out) is not on it',
+      'Near full capacity the borrowing that funds the shift can displace private investment that would have shifted it anyway',
+    ],
+  },
+  Q155: {
+    'labour-market': [
+      'D(L) = MRP shifts RIGHT - the same increase in demand in both cases',
+      'Against a STEEP (inelastic) supply curve the wage jumps and employment barely moves',
+      'Against a SHALLOW (elastic) one employment jumps and the wage barely moves',
+      'Which you get is a property of the SUPPLY side, not of the size of the demand shift',
+    ],
+  },
+  Q156: {
+    'labour-market': [
+      'Start from the competitive equilibrium W₁, Q₁',
+      'A minimum wage ABOVE it: quantity supplied exceeds quantity demanded - the gap is unemployment',
+      'A maximum wage BELOW it: quantity demanded exceeds quantity supplied - shortages and unfilled vacancies',
+      'Under monopsony the floor result reverses: between the monopsony wage and the competitive wage, employment RISES',
+    ],
+  },
 }

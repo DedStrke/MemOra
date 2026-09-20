@@ -1368,4 +1368,191 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Judgement: effective where the externality is well evidenced and demand responsive, best combined with provision and information',
     ],
   ),
+
+  /* --------------------- Income and Cross Elasticity of Demand (1.2.3) */
+  Q149: A(
+    [['demand-shift', 'The demand curve for good B shifting after a change in the price of good A. A rise in the price of a SUBSTITUTE shifts demand for B to the right; a rise in the price of a COMPLEMENT shifts it left. The shift, not a movement along the curve, is the whole point: the price of B has not changed.']],
+    'Cross elasticity of demand (XED) measures the responsiveness of quantity demanded of one good to a change in the price of another: the percentage change in quantity demanded of good B divided by the percentage change in the price of good A. Its SIGN identifies the relationship between the two goods, and its size measures how strong that relationship is.',
+    [
+      [
+        'Where XED is POSITIVE, the two goods are substitutes. A rise in the price of good A makes it less attractive relative to good B, so some consumers switch and demand for B rises even though B’s own price has not changed - which is why this is shown as a rightward SHIFT of B’s demand curve rather than a movement along it. Butter and margarine, or two competing coffee brands, behave this way. The larger the positive value, the closer the substitutes: a value near zero means consumers barely switch, while a large positive value means they switch readily.',
+        'The size of the value depends on how close the substitute genuinely is in the consumer’s judgement, which brand loyalty and habit can weaken considerably. It also depends on the time period, since consumers may take time to discover an alternative and change their buying habits, so a short-run XED is typically smaller than the long-run one.',
+      ],
+      [
+        'Where XED is NEGATIVE, the two goods are complements, bought and used together. A rise in the price of good A reduces the quantity of A demanded, and because B is consumed alongside it, demand for B falls too - a leftward shift of B’s demand curve. Petrol and cars, printers and ink cartridges, or games consoles and the games written for them all behave this way, and the stronger the complementary relationship the larger the negative value. A value at or close to zero means the two goods are unrelated, and a change in the price of one leaves demand for the other unaffected.',
+        'Firms act on this directly: a firm selling a complement pair can price one low to drive demand for the other, which is why printers are often sold at close to cost and the cartridges are not. That only works where the complementary relationship is strong and the firm can capture the second sale, so knowing the size of XED, not just its sign, is what makes the strategy work.',
+      ],
+    ],
+    null,
+    [
+      'Definition and formula of cross elasticity of demand',
+      'Positive XED means substitutes: a rise in the price of A shifts demand for B RIGHT',
+      'Negative XED means complements: a rise in the price of A shifts demand for B LEFT',
+      'Diagram showing a shift of the demand curve, not a movement along it',
+      'A value at or near zero means the goods are unrelated; the size measures the strength of the relationship',
+    ],
+    [
+      'The value depends on how close the substitute is judged to be, and on brand loyalty',
+      'XED is usually larger in the long run than the short run, as habits take time to change',
+    ],
+  ),
+
+  Q150: A(
+    [['demand-shift', 'Demand for a product shifting as real incomes change or as a rival’s price changes. Use it to show that both elasticities describe a SHIFT of the demand curve caused by something other than the good’s own price, which is what makes them useful for forecasting rather than for pricing.']],
+    'Income elasticity of demand (YED) measures the responsiveness of demand to a change in real income: positive for normal goods, above one for luxuries, and negative for inferior goods. Cross elasticity of demand (XED) measures the responsiveness of demand for one good to a change in the price of another: positive for substitutes, negative for complements. For a supermarket chain deciding what to stock, both describe how demand will move for reasons other than its own pricing, which is exactly what a stocking decision has to anticipate.',
+    [
+      [
+        'Income elasticity is directly useful for planning the product range across the economic cycle. A supermarket that knows which of its lines are luxuries (YED above one) and which are inferior goods (YED negative) can predict what a recession will do to each: demand for premium ranges falls more than proportionately while demand for value ranges actually RISES as households trade down. The major UK supermarkets act on this visibly, expanding value own-label ranges when incomes are squeezed and pushing premium ranges when they recover, and the growth of Aldi and Lidl during periods of falling real income is the same effect at the level of the whole store. Knowing YED lets the chain shift shelf space before the change in demand arrives rather than after.',
+        'YED estimates come from past data during which many other things were also changing - competitor behaviour, advertising, tastes - so a value taken from one period may not hold in the next. Tastes shift for reasons unrelated to income, and a product’s YED itself changes as it moves from being a luxury to a normal good over time, so the figure needs continual re-estimation rather than being treated as a fixed property of the product.',
+      ],
+      [
+        'Cross elasticity is useful in two distinct ways. Between its OWN lines, a supermarket wants to know whether adding a product cannibalises an existing one (a high positive XED means the new line mostly takes sales from a line it already stocks, so the gain is smaller than it appears) or complements it (a negative XED means stocking both raises sales of each). Against RIVALS, XED against a competitor’s price tells the chain how exposed a line is to being undercut: a product with high positive XED against a rival’s equivalent will lose volume quickly if that rival discounts, so it must be price-matched, while a product with low XED can hold its price. Loss-leading works on exactly this logic, discounting a line with strong complements to raise the value of the whole basket.',
+        'XED against a rival is only actionable if the chain can observe rivals’ prices quickly and respond, which is realistic for large chains with price-monitoring systems but much less so for a small independent. It also assumes the rival does not respond in turn: in a concentrated market the reaction of competitors may matter more than the measured elasticity, since a price cut that is immediately matched changes relative prices not at all.',
+      ],
+      [
+        'Neither elasticity is the main determinant of a stocking decision on its own. Shelf space is physically limited, so the binding question is usually profit per unit of space rather than responsiveness of demand, and that depends on margin, turnover rate, wastage and supplier terms as much as on elasticity. Perishability rules some products out regardless of demand, supply reliability matters for a chain that cannot afford gaps, and a supermarket also stocks lines that lose money in themselves because they bring customers through the door. Price elasticity of demand matters too, since it governs what happens when the chain changes its own price, which YED and XED say nothing about.',
+        'That said, the elasticities are inputs into those very calculations rather than alternatives to them: expected turnover, which drives profit per unit of shelf space, is itself a forecast of demand, and YED and XED are how that forecast responds to incomes and to rivals. Modern loyalty-card data also gives large chains far better elasticity estimates than the historic sales data firms once relied on, which makes both measures considerably more usable than the textbook critique implies.',
+      ],
+    ],
+    'Knowledge of income and cross elasticities is genuinely useful to a supermarket chain, because both describe how demand will move for reasons the chain does not control - the state of the economy and the pricing of rivals - and a stocking decision is precisely a bet on future demand. YED lets the chain rebalance value and premium ranges ahead of the cycle; XED tells it which lines cannibalise each other, which complement each other and which are exposed to a rival’s discounting. Neither is sufficient on its own: shelf space is allocated on profit per unit of space, which also depends on margin, wastage and supplier terms, and the estimates themselves are drawn from noisy historic data. The realistic judgement is that these elasticities are necessary inputs to a stocking decision rather than the decision rule itself, and that loyalty-card data has made them markedly more reliable inputs than they used to be.',
+    [
+      'Definitions of YED (normal, inferior, luxury) and XED (substitutes, complements, unrelated)',
+      'YED and the economic cycle: rebalancing premium and value ranges as real incomes change',
+      'Diagram: both elasticities describe a shift of demand, not a movement along it',
+      'XED between own lines: cannibalisation against complementarity; loss-leading',
+      'XED against rivals: exposure to being undercut, and the price-matching decision',
+      'Other determinants of stocking: profit per unit of shelf space, margin, wastage, supply reliability',
+    ],
+    [
+      'Estimates come from noisy historic data and change over time as tastes and product positioning shift',
+      'XED against a rival assumes the rival does not respond, which is unlikely in a concentrated market',
+      'Shelf space is allocated on profit per unit of space, of which elasticity is only one input',
+      'Judgement: necessary inputs rather than a decision rule, and more reliable now given loyalty-card data',
+    ],
+  ),
+
+  /* ------------------------------------ Sizes and Types of Firms (3.1.1) */
+  Q151: A(
+    [['economies-of-scale', 'The long-run average cost curve with minimum efficient scale marked. Where MES is reached at a small output relative to the size of the market, a small firm sits at the bottom of LRAC just as a large one does, so there is no cost penalty to remaining small - which is the central reason small firms survive.']],
+    'Firms differ enormously in size within the same economy, and remaining small is often a rational choice rather than a failure to grow. Two of the clearest reasons are the limited scope for economies of scale in some industries, and the deliberate objectives of the owners.',
+    [
+      [
+        'The first reason is that economies of scale are exhausted at a low output in some industries. Minimum efficient scale is the output at which long-run average cost reaches its minimum; where MES is small relative to the total size of the market, a small firm can produce at the same average cost as a large one, so growing brings no cost advantage at all. This is typical of personal and craft services - hairdressing, plumbing, independent restaurants - where the service is produced individually for each customer and cannot be mass-produced. Many small firms can therefore coexist profitably, which is why these industries have not consolidated the way manufacturing has.',
+        'This holds only while the product genuinely resists standardisation. Where a large firm can systematise the service, franchising or chain operation reintroduces scale economies in purchasing, branding and administration, which is how national chains have displaced independents in parts of catering and retail that once looked immune to it.',
+      ],
+      [
+        'The second reason is the objectives of the owners themselves. An owner-manager frequently values independence, control over the work and a manageable workload more than maximum profit, and growth threatens all three: it means borrowing, taking on partners or shareholders, and managing staff rather than doing the work. A firm satisficing in this way stays small deliberately. Access to finance reinforces the choice, since a small firm without a long trading record or substantial assets to offer as security finds external finance expensive or unavailable, so growth would have to be funded from retained profit, which is slow.',
+        'These two constraints pull in the same direction but are not the same thing: a firm staying small by choice could grow and does not, while one constrained by finance would grow and cannot. The distinction matters for policy, because government support such as loan guarantees or grants helps only the second kind, and a scheme that assumes every small firm wants to grow will reach far fewer of them than its designers expect.',
+      ],
+    ],
+    null,
+    [
+      'Definition of minimum efficient scale',
+      'Reason 1: MES reached at a low output relative to market size, so no cost penalty to staying small',
+      'Diagram showing LRAC reaching its minimum at a small output',
+      'Reason 2: owner objectives - independence and control over maximum profit; satisficing',
+      'Access to finance as a constraint on growth for firms without a trading record or security',
+    ],
+    [
+      'The MES argument holds only while the product resists standardisation - franchising reintroduces scale',
+      'Staying small by choice and being unable to grow are different, and only the second responds to policy support',
+    ],
+  ),
+
+  Q152: A(
+    [['business-objectives', 'The standard objectives diagram with profit maximisation at MC = MR, revenue maximisation at MR = 0 and sales maximisation where AR = AC. A not-for-profit organisation is not choosing between these at all: its constraint is to cover cost, which is the AR = AC point, while its objective is the scale of provision rather than the surplus.']],
+    'A private sector firm is owned by shareholders or proprietors who have a claim on its profits, and its objectives are usually framed around profit, revenue, growth or market share. A not-for-profit organisation - a charity, a mutual, a social enterprise - has no owners with a claim on a surplus, and any surplus it makes must be reinvested in its stated purpose. That difference in ownership is what drives the difference in objectives, but it is narrower in practice than the labels suggest.',
+    [
+      [
+        'The clearest difference is what the organisation is trying to maximise. A private firm treats profit as the objective and output as the means; a not-for-profit treats its mission as the objective and any surplus as the means. A charity providing a service will therefore push provision towards the point where it just covers its costs, closer to the allocatively efficient output than a profit maximiser restricting output to where MC = MR, and will serve users a commercial firm would reject as unprofitable - which is precisely why not-for-profits concentrate in areas the market under-provides, such as care for people who cannot pay and support for those the private sector finds too costly to serve.',
+        'The distinction is sharper in theory than in operation. A not-for-profit that fails to cover its costs ceases to exist, so it must watch revenue and cost as closely as any firm, and one dependent on donations or grants faces a funder whose priorities can shape its behaviour as firmly as shareholders shape a company’s. Its constraint is a break-even one rather than the absence of a financial objective.',
+      ],
+      [
+        'Time horizon and risk differ too. A plc reporting to shareholders every quarter faces pressure to deliver returns on a short cycle, which can push it away from investment whose payoff lies years out, whereas a not-for-profit answering to trustees against a long-term mission can pursue work that would never survive a commercial appraisal. It can also accept activity that is permanently loss-making, cross-subsidised from elsewhere, where a firm would close it. A mutual or a co-operative, owned by its members rather than external investors, sits between the two, pursuing member benefit - lower prices, better service, job security - rather than a return on outside capital.',
+        'Against this, the absence of a profit measure removes a discipline as well as a pressure. Profit gives a firm a single, unambiguous signal about whether it is using resources well; an organisation without one can find X-inefficiency harder to detect, since costs above the minimum show up as a smaller surplus rather than as a loss anyone is accountable for. This is the principal-agent problem in a different form: with no owners watching a profit figure, monitoring depends on trustees and regulators who may have neither the information nor the incentive to do it closely.',
+      ],
+      [
+        'How far objectives actually diverge depends heavily on the competitive conditions both face. Where a not-for-profit competes directly with commercial firms for the same customers - a charity shop, a mutual insurer, a housing association letting at market rents - competition forces it towards the same cost control and pricing behaviour as its rivals, and the observable difference narrows to what happens to the surplus. Where it operates in a field commercial firms have left alone, the difference is at its widest, because nothing external is pushing its behaviour towards the commercial pattern.',
+        'Private firms have also moved towards objectives that look less purely commercial, under pressure from customers, employees and regulators: corporate social responsibility commitments, environmental targets and B Corp certification all represent firms adopting goals beyond profit. Some of this is genuine and some is presentational, but either way it narrows the gap from the other direction, so the two categories increasingly shade into one another rather than dividing cleanly.',
+      ],
+    ],
+    'The objectives of a not-for-profit organisation do differ from those of a private sector firm, and the difference is real rather than nominal: with no owners entitled to a surplus, the organisation maximises provision subject to covering cost rather than maximising profit, which lets it serve users and pursue time horizons no commercial appraisal would justify. The extent of the difference is narrower than the labels imply, though. A not-for-profit still has to break even, still answers to funders whose priorities constrain it, and loses the clear efficiency signal that profit provides. Where the two compete in the same market, competition drives their behaviour together, and private firms adopting social and environmental objectives narrow the gap further. The difference is therefore largest where the not-for-profit operates in a field the market has left alone, and smallest where the two compete directly.',
+    [
+      'Definition of a not-for-profit organisation and the distinction from private sector ownership',
+      'Objective: provision subject to covering cost, against profit maximisation at MC = MR',
+      'Diagram contrasting the profit-maximising output with the break-even (AR = AC) position',
+      'Serving users a commercial firm would reject; concentration in under-provided areas',
+      'Time horizon and risk: trustees and a long-term mission against quarterly shareholder reporting',
+      'Mutuals and co-operatives pursuing member benefit as an intermediate case',
+    ],
+    [
+      'The break-even constraint and funder priorities are financial disciplines of their own',
+      'No profit measure means X-inefficiency is harder to detect - the principal-agent problem in another form',
+      'Direct competition drives a not-for-profit’s behaviour towards the commercial pattern',
+      'CSR and environmental targets narrow the gap from the private sector side',
+      'Judgement: a real difference, widest where the market has left the field alone, narrowest in direct competition',
+    ],
+  ),
+
+  /* ------------------------------------------ Wage Determination (3.5.3) */
+  Q155: A(
+    [['labour-market', 'The same rightward shift of labour demand (D(L) = MRP) drawn against a steep, inelastic labour supply curve and against a shallow, elastic one. With inelastic supply the adjustment falls almost entirely on the WAGE; with elastic supply it falls almost entirely on EMPLOYMENT. Two supply curves, one demand shift, is the cleanest way to show it.']],
+    'The elasticity of supply of labour measures how responsive the number of workers willing to work in an occupation is to a change in the wage. When demand for labour rises - because the price of the output has risen, or productivity has improved, raising the marginal revenue product - how that increase splits between a higher wage and higher employment depends almost entirely on this elasticity.',
+    [
+      [
+        'Where labour supply is INELASTIC, few extra workers can be attracted into the occupation even by a substantially higher wage, so the rightward shift in demand raises the wage sharply while employment rises only slightly. Supply is inelastic where the job requires lengthy, specific training that cannot be acquired quickly - doctors, airline pilots, specialist engineers - because the pool of qualified people is effectively fixed in the short run no matter what the wage does. Vocational attachment works the same way, where people are drawn to the work itself rather than the pay, as do professional licensing and entry requirements that restrict who is legally permitted to do the job.',
+        'Almost all of these constraints loosen with time, so labour supply is far more elastic in the long run than the short run: a sustained rise in the wage for a skilled occupation draws people into training for it, and several years later the supply curve is much flatter. The sharp wage rise is therefore a short-run phenomenon that partly reverses as the new entrants qualify, which is why persistent shortages usually reflect a training pipeline problem rather than a permanently fixed supply.',
+      ],
+      [
+        'Where labour supply is ELASTIC, many additional workers are available at close to the going wage, so the same increase in demand raises employment substantially while the wage barely moves. This is typical of occupations needing little specific training, where the potential workforce is large and mobile between jobs - general warehouse, hospitality and retail work - and it is made more elastic still by the availability of part-time workers who can increase their hours and by migration, which effectively widens the pool a rise in demand can draw on.',
+        'The practical significance is that identical increases in demand produce opposite-looking outcomes in different labour markets, so a policy aimed at raising pay in a low-wage sector by stimulating demand for its output will largely raise employment instead. Raising pay in an elastic-supply market requires acting on the wage directly, through a minimum wage, rather than working through demand - which is exactly why wage floors exist in those sectors and not in the ones where supply is inelastic.',
+      ],
+    ],
+    null,
+    [
+      'Definition of the elasticity of supply of labour, and of labour demand as MRP',
+      'Inelastic supply: a rise in demand raises the WAGE sharply, employment little',
+      'Diagram: the same demand shift against a steep and a shallow labour supply curve',
+      'Causes of inelastic supply: lengthy specific training, licensing, vocational attachment',
+      'Elastic supply: a rise in demand raises EMPLOYMENT, wage little; low training requirements, part-time hours, migration',
+    ],
+    [
+      'Supply is far more elastic in the long run as training pipelines respond, so the wage effect partly reverses',
+      'Identical demand increases produce opposite outcomes across markets, which is why wage floors target elastic-supply sectors',
+    ],
+  ),
+
+  Q156: A(
+    [['labour-market', 'A competitive labour market with the equilibrium wage marked, then a wage FLOOR above it (excess supply - unemployment) and a wage CEILING below it (excess demand - shortages and vacancies). One diagram carries both interventions, and pairing it with the monopsony case shows why the floor result is not universal.']],
+    'Government intervention in wage setting covers a national minimum wage, a maximum wage or pay cap, and the government’s own decisions as an employer through public sector pay policy. Whether intervention improves labour market outcomes depends on what is wrong with the market in the first place: where wages are set competitively the standard objections apply, but where employers hold wage-setting power the same intervention can raise pay and employment together.',
+    [
+      [
+        'In a competitive labour market the textbook objection to a minimum wage holds. A wage floor set above the equilibrium leaves quantity supplied of labour exceeding quantity demanded, and the horizontal gap between them is unemployment created by the intervention - workers willing to work at the going rate who now cannot find a job. Against this, a minimum wage raises the incomes of those who stay employed, reduces in-work poverty and the benefit bill that subsidises low pay, and can raise productivity through better motivation and lower staff turnover, which cuts recruitment and training costs and offsets part of the higher wage bill.',
+        'The empirical record has been far kinder to the minimum wage than the competitive model predicts. The UK’s National Minimum Wage, introduced in 1999 and since raised substantially as the National Living Wage, has been monitored closely by the Low Pay Commission without the significant employment losses the competitive analysis anticipated. The standard explanation is that many low-wage labour markets are not competitive but MONOPSONISTIC: a dominant local employer facing the whole labour supply curve already sets a wage below marginal revenue product, and a wage floor between that wage and the competitive level raises employment as well as pay. The intervention improves outcomes precisely because it is correcting an existing failure rather than distorting a working market.',
+      ],
+      [
+        'A maximum wage works in the opposite direction and has a much weaker case. A ceiling set below the equilibrium wage leaves quantity demanded exceeding quantity supplied, producing shortages and unfilled vacancies in exactly the occupations where the cap binds - which will be the highest-paid and typically the most specialised, where supply is inelastic and the shortage therefore hardest to resolve. The arguments for one are mainly distributional rather than allocative: capping executive pay, or setting it as a multiple of the lowest paid within the organisation, addresses inequality and the perception that top pay has become detached from performance, which the RBS and Persimmon cases illustrate.',
+        'The practical objections are severe. In an open economy with mobile senior staff, a national cap invites relocation to jurisdictions without one, so the policy loses the revenue and the talent without reducing the pay itself. Firms also substitute towards forms of reward the cap does not reach - share options, pensions, benefits in kind - so a cap on salary alone changes the composition of pay more than its level. Most countries that have debated maximum wages have instead used progressive taxation and disclosure requirements, which pursue the same distributional aim without the shortage or the avoidance.',
+      ],
+      [
+        'Public sector pay policy is the intervention with the widest reach, because the state employs a large share of the workforce directly. Restraining public sector pay controls a major component of current expenditure and can be defended as reducing the need for distortionary taxation, but it is a wage set administratively rather than by the market, so it can drift out of line with the private sector wage for equivalent skills. When it does, the result is recruitment and retention difficulty concentrated in exactly the occupations where labour supply is inelastic and the training pipeline long - nursing, teaching, specialist medicine - so shortages persist for years after pay is corrected, because the supply response takes that long.',
+        'Public sector pay also functions as a signal to the wider labour market, so restraint can moderate wage growth generally and ease a wage-price spiral, which is a genuine macroeconomic argument for it during an inflationary episode. The difficulty is distinguishing a temporary restraint used as a stabiliser from a sustained real-terms erosion that becomes a structural staffing problem, and governments have a clear short-run incentive to present the second as the first.',
+      ],
+    ],
+    'Government intervention in wage setting improves labour market outcomes where it corrects an identifiable failure, and worsens them where it overrides a market that was working. The minimum wage has the strongest case, because the low-wage labour markets it targets are frequently monopsonistic rather than competitive, which is why the UK experience since 1999 has not produced the unemployment the competitive model predicts. A maximum wage has the weakest, since the shortage it creates falls on inelastic-supply occupations while mobile staff and non-salary reward let it be avoided, and progressive taxation achieves the same distributional aim more reliably. Public sector pay policy sits between the two: defensible as a temporary stabiliser, damaging when sustained restraint opens a gap against private sector pay in occupations whose supply takes years to respond. The extent of improvement therefore depends on the structure of the specific labour market and on whether the intervention is targeted at a failure or merely at a price.',
+    [
+      'The three forms of intervention: minimum wage, maximum wage, public sector pay policy',
+      'Diagram: a wage floor above equilibrium (excess supply) and a ceiling below it (excess demand)',
+      'Competitive analysis of a minimum wage: unemployment against higher incomes, lower turnover, reduced in-work poverty',
+      'Monopsony: a floor between the monopsony wage and the competitive wage raises pay AND employment',
+      'Maximum wage: shortages concentrated where supply is inelastic; distributional rather than allocative case',
+      'Public sector pay: control of current expenditure against recruitment and retention where supply is inelastic',
+    ],
+    [
+      'The UK evidence since 1999 has not shown the predicted employment losses - monopsony is the standard explanation',
+      'A maximum wage is avoidable through relocation and non-salary reward; tax achieves the aim more reliably',
+      'Public sector restraint is defensible as a temporary stabiliser, damaging when sustained',
+      'Judgement: improves outcomes where it corrects a failure such as monopsony, worsens them where it overrides a working market',
+    ],
+  ),
 }
