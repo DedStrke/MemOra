@@ -27,7 +27,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
   /* ------------------------------------------- Balance of Payments (2.1) */
   Q077: A(
     [],
-    'The current account of the balance of payments records a country’s trade in goods and services, income flows and transfers with the rest of the world. A deficit means more is flowing out (spent on imports, income paid abroad) than is flowing in.',
+    'The balance of payments has three parts: the current account, recording trade in goods and services, income flows and transfers; the capital account, covering transfers of capital assets; and the financial account, recording flows of investment and other financial claims. A current account deficit means more is flowing out (spent on imports, income paid abroad) than is flowing in, and it must be matched by a corresponding surplus on the financial account, since the two balance by construction.',
     [
       [
         'A lack of international competitiveness is a common cause: if domestic inflation runs persistently higher than that of trading partners, or if productivity growth lags behind competitors, domestic goods become relatively more expensive abroad and imports become relatively cheaper at home, widening the trade deficit as exports fall and imports rise.',
@@ -386,7 +386,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
   /* ------------------------------------------------ Trading Blocs and the WTO */
   Q101: A(
     [],
-    'A regional trading bloc is a group of countries that agree to reduce or remove trade barriers between themselves, with the degree of integration increasing through several recognised stages: a free trade area removes tariffs between members while each keeps its own external tariff; a customs union adds a common external tariff on non-members; a common market goes further still, adding free movement of capital and labour between members; and a monetary union, such as the eurozone, shares a single currency and monetary policy on top of all of this. Joining a bloc at any of these stages offers a member country several potential economic benefits.',
+    'A regional trading bloc is a group of countries that agree to reduce or remove trade barriers between themselves, with the degree of integration increasing through several recognised stages: a free trade area removes tariffs between members while each keeps its own external tariff; a customs union adds a common external tariff on non-members; a common market goes further still, adding free movement of capital and labour between members; and a monetary union, such as the eurozone, shares a single currency and monetary policy on top of all of this. Countries can also liberalise trade through bilateral agreements with a single partner rather than joining a bloc at all. Joining a bloc at any of these stages offers a member country several potential economic benefits.',
     [
       [
         'Joining a trading bloc gives a country’s firms preferential, often tariff-free, access to a much larger combined market than its domestic market alone, allowing firms to achieve economies of scale from selling to a wider customer base that they could not reach as easily, or as cheaply, if they faced tariffs or other barriers in each individual foreign market.',
