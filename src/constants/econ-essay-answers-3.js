@@ -1306,4 +1306,66 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Judgement: design and information matter more than the extent of intervention',
     ],
   ),
+
+  /* ------------------------------------------------------------ Subsidies */
+  Q141: A(
+    [['subsidy', 'Supply shifting DOWN by the subsidy per unit, from S to S + subsidy. Quantity rises from Q₁ to Q₂; consumers pay only Pc while producers receive Pp = Pc + subsidy. The shaded rectangle, subsidy × Q₂, is the cost to the government.']],
+    'A subsidy is a payment from government to producers to lower their costs of production and encourage output. Because it reduces the cost of supplying each unit, it shifts the supply curve vertically downwards by the amount of the subsidy, and the effect splits between a lower price for consumers and a higher revenue for producers.',
+    [
+      [
+        'The subsidy lowers the cost of producing each unit, so at every price firms are willing to supply more: supply shifts down from S to S + subsidy by the per-unit amount. The new equilibrium is at a higher quantity Q₂, where the price consumers actually pay, Pc, is LOWER than the original P₁ - the consumer benefit - while the total revenue producers receive per unit, Pp, is HIGHER than P₁, because they collect Pc from the buyer plus the subsidy from the government. The vertical distance between Pp and Pc is exactly the subsidy per unit, and the shaded rectangle Pp to Pc across Q₂ is what it costs the government.',
+        'The two benefits are not equal, and how the subsidy splits between them depends on the relative elasticities of demand and supply. Where demand is inelastic - consumers will buy the good almost regardless of price - most of the subsidy is retained by producers as higher revenue rather than passed on as a lower price; where demand is elastic, more of it reaches the consumer. A government aiming to cut the price consumers face gets poor value from subsidising a good with inelastic demand.',
+      ],
+      [
+        'The higher quantity Q₂ is usually the real objective rather than the price change itself. Where the good generates positive externalities - vaccination, public transport, insulation - the free market under-consumes it because private buyers ignore the benefit to third parties, and the subsidy raises consumption towards the socially optimal level by making the private cost better reflect the social benefit.',
+        'Whether Q₂ is actually the social optimum depends on the subsidy being sized to the external benefit, which governments cannot measure precisely. Too small and under-consumption persists; too large and consumption is pushed past the optimum, so resources are drawn into the subsidised good that were worth more elsewhere - a new misallocation replacing the old one, funded by taxpayers.',
+      ],
+    ],
+    null,
+    [
+      'Definition of a subsidy as a per-unit payment to producers lowering their costs',
+      'Diagram: supply shifting down by the subsidy, quantity rising from Q₁ to Q₂',
+      'Consumers pay Pc (below P₁); producers receive Pp = Pc + subsidy (above P₁)',
+      'The subsidy per unit is the vertical gap Pp to Pc; total cost to government is that gap × Q₂',
+      'Raising quantity towards the social optimum where the good has positive externalities',
+    ],
+    [
+      'How the benefit splits between consumers and producers depends on the relative elasticities of demand and supply',
+      'Sizing the subsidy to the external benefit is imprecise - too large pushes consumption past the optimum at taxpayers’ expense',
+    ],
+  ),
+
+  Q142: A(
+    [['subsidy', 'Supply shifting down by the subsidy, raising quantity from Q₁ to Q₂ while consumers pay Pc and producers receive Pp. Use the shaded government-cost rectangle as the thing being weighed against the welfare gain from the extra consumption.']],
+    'A good with a positive externality is under-consumed by the free market, because buyers weigh only their private benefit and ignore the benefit their consumption confers on third parties. A subsidy lowers the price they face, raising consumption towards the social optimum - but whether it is the most effective way of doing so depends on measurement, on who captures the benefit, and on what the alternatives could achieve for the same money.',
+    [
+      [
+        'The mechanism is sound and its effect is direct. Lowering the effective price from P₁ to Pc raises quantity from Q₁ to Q₂, and if the subsidy equals the marginal external benefit at the optimum, private consumption decisions now internalise the external benefit and the welfare loss from under-consumption is eliminated. The approach works with the price mechanism rather than against it - consumers still choose freely, they simply face a price that reflects social rather than merely private benefit - so it avoids the distortions that rationing or compulsion introduce.',
+        'The subsidy only delivers this if it is sized to an external benefit that governments cannot observe directly. There is no market price for the reduced transmission of disease or the civic value of an educated population, so the figure is an estimate, and an estimate that is politically convenient to inflate. A subsidy set on the wrong estimate lands at the wrong quantity, which is a new misallocation funded by taxpayers rather than a correction of the old one.',
+      ],
+      [
+        'Who captures the subsidy also determines whether consumption actually rises. The split between a lower consumer price and higher producer revenue depends on elasticities, and where demand is inelastic most of the money is retained by producers without much extra consumption - exactly the criticism made of subsidies to rail operators and to housing demand, where the subsidy raised prices and producer revenue more than it raised the quantity consumed. A subsidy aimed at raising consumption of a good whose demand is inelastic is close to a transfer to producers.',
+        'This can be designed around rather than accepted: paying the subsidy directly to consumers as a voucher, or making it conditional on the provider holding price down, changes who captures it. The effectiveness of a subsidy therefore depends heavily on its design, not simply on its existence, and blanket per-unit subsidies are the form most vulnerable to being absorbed by producers.',
+      ],
+      [
+        'The alternatives have to be weighed against it, because the subsidy has a real opportunity cost: the money spent is not available for anything else, and it must be raised through taxation that carries its own distortions. Information provision and advertising shift demand itself rather than merely its price, and cost far less - though they act slowly and unreliably. Regulation or compulsion guarantees the quantity, as with compulsory schooling or mandatory vaccination for certain settings, which a subsidy never can, but removes consumer choice entirely. Direct state provision guarantees availability regardless of willingness to pay.',
+        'Which is most effective depends on the size of the external benefit and how far consumption falls short. For a large, well-evidenced externality where the shortfall is severe, provision or compulsion delivers certainty a subsidy cannot; for a moderate shortfall where preserving choice matters, a subsidy is the better-targeted instrument. In practice the strongest results come from combining them - free provision of a baseline with subsidies encouraging take-up beyond it, which is how most countries treat both education and healthcare.',
+      ],
+    ],
+    'A subsidy is an effective instrument for raising consumption of a good with positive externalities, and it has the real advantage of working through the price mechanism while leaving consumers free to choose. Its effectiveness is limited by three things: the external benefit it is meant to match cannot be measured precisely, so the quantity it reaches is unlikely to be exactly optimal; where demand is inelastic much of the money is captured by producers rather than raising consumption; and the funds have an opportunity cost against alternatives that may achieve more per pound. The judgement is that a subsidy is most effective where the external benefit is reasonably well evidenced, demand is responsive to price, and the subsidy is designed so that consumers rather than producers capture it - and that it works best as part of a package with provision and information rather than as a stand-alone answer.',
+    [
+      'Positive externality means private benefit is below social benefit, so the market under-consumes',
+      'Diagram: a subsidy shifting supply down, raising quantity from Q₁ to Q₂, consumers paying Pc',
+      'A subsidy set equal to the marginal external benefit internalises it while preserving consumer choice',
+      'Elasticity determines whether consumers or producers capture the subsidy',
+      'Alternatives: information provision, regulation or compulsion, direct state provision',
+      'The opportunity cost of the money and the distortion of the taxation raising it',
+    ],
+    [
+      'The external benefit cannot be measured precisely, so the subsidy is unlikely to land exactly at the optimum',
+      'With inelastic demand the subsidy is largely captured by producers and raises consumption little',
+      'Design matters - vouchers or price conditions change who captures it',
+      'Judgement: effective where the externality is well evidenced and demand responsive, best combined with provision and information',
+    ],
+  ),
 }

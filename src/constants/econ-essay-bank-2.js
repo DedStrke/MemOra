@@ -222,4 +222,12 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain two factors that have changed the pattern of global trade over the last thirty years.'),
   q('Q140', 'A-Level', ...P2, '4.1', 'The Pattern of Trade', 'C', 25,
     'Discuss the extent to which comparative advantage still explains the pattern of trade between countries.'),
+  q('Q141', 'A-Level', ...P1, '1.2', 'Subsidies', 'B', 10,
+    'Explain, using a diagram, how a government subsidy affects the price consumers pay and the revenue producers receive.'),
+  q('Q142', 'A-Level', ...P1, '1.4', 'Subsidies', 'C', 25,
+    'Evaluate the effectiveness of a subsidy as a method of increasing consumption of a good that generates positive externalities.'),
+  q('Q143', 'A-Level', ...P2, '4.3', 'Buffer Stock Schemes', 'B', 10,
+    'Explain, using a diagram, how a buffer stock scheme is intended to stabilise the price of an agricultural commodity.'),
+  q('Q144', 'A-Level', ...P2, '4.3', 'Buffer Stock Schemes', 'C', 25,
+    'Evaluate the likely effectiveness of a buffer stock scheme in supporting the incomes of primary commodity producers in a developing economy.'),
 ]

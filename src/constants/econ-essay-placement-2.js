@@ -45,4 +45,8 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q135: [{ a: 'labour-market' }, {}],
   Q136: [{ a: 'labour-market' }, {}, {}],
   Q140: [{ a: 'comparative-advantage' }, {}, {}],
+  Q141: [{ a: 'subsidy' }, {}],
+  Q142: [{ a: 'subsidy' }, {}, {}],
+  Q143: [{ a: 'buffer-stock' }, {}],
+  Q144: [{ a: 'buffer-stock' }, {}, {}],
 }

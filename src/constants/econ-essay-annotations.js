@@ -760,6 +760,34 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'The gap between AC and AVC is AFC - exactly the cost that is unavoidable in the short run, and the whole reason the two shut-down points differ',
     ],
   },
+  Q141: {
+    subsidy: [
+      'The subsidy shifts supply DOWN by the payment per unit, from S to S + subsidy - it lowers the cost of supplying each unit',
+      'Quantity rises from Q₁ to Q₂; consumers pay only Pc, BELOW the original P₁',
+      'Producers receive Pp = Pc + subsidy, ABOVE P₁ - the vertical gap Pp to Pc is the subsidy, and that gap × Q₂ is the cost to government',
+    ],
+  },
+  Q142: {
+    subsidy: [
+      'The welfare gain is the extra consumption Q₁ to Q₂ moving towards the social optimum',
+      'The shaded rectangle is what taxpayers pay for it - the two are what the evaluation weighs against each other',
+      'How much of the gap reaches Pc rather than Pp decides whether consumers or producers captured the money',
+    ],
+  },
+  Q143: {
+    'buffer-stock': [
+      'A good harvest shifts supply right; without intervention price falls below the FLOOR, so the agency BUYS the surplus into store',
+      'A poor harvest shifts supply left; price would rise above the CEILING, so the agency SELLS from store',
+      'Price stays inside the band either way - the agency is trading against the market in both directions',
+    ],
+  },
+  Q144: {
+    'buffer-stock': [
+      'The band is what the scheme promises: price held between floor and ceiling whatever the harvest',
+      'It only self-finances if the band straddles the long-run average - a floor set above it means buying in most years and selling in few',
+      'That is the failure mode: the store fills, the money runs out, and the scheme collapses',
+    ],
+  },
   Q131: {
     'demand-shift': [
       'A CONDITION of demand changed, so the whole curve moves from D₁ to D₂ - this is not a movement along the curve',

@@ -1042,4 +1042,67 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: still necessary and still explains the direction of change, but no longer sufficient on its own',
     ],
   ),
+
+  /* ------------------------------------------------- Buffer Stock Schemes */
+  Q143: A(
+    [['buffer-stock', 'A price band with a floor and a ceiling against a demand curve and two supply curves - one for a good harvest, one for a poor one. A good harvest that would drive price below the FLOOR is met by buying the surplus into store; a poor harvest that would drive it above the CEILING is met by selling from store.']],
+    'Agricultural commodity prices are volatile because supply is both price-inelastic in the short run and subject to large, weather-driven swings, while demand is inelastic too. A buffer stock scheme is an interventionist attempt to stabilise that price by holding a store of the commodity and trading against the swings.',
+    [
+      [
+        'The agency sets a price band with a floor and a ceiling. In a year of good harvest, supply shifts right and the free-market price would fall below the floor, so the agency BUYS the surplus into storage, adding to demand and holding the price up at the floor. In a year of poor harvest, supply shifts left and the price would rise above the ceiling, so the agency SELLS from its store, adding to supply and holding the price down at the ceiling. In both directions the agency trades against the market, and the price stays within the band instead of swinging with the weather.',
+        'This works only if the band is set close to the long-run average market price. Set the floor too high and the agency buys in most years, accumulating stock it cannot afford to store and eventually running out of money; set the ceiling too low and it sells in most years, running out of stock and losing the ability to defend the band at all. The scheme is self-financing in principle - buying cheap and selling dear - but only if the band straddles the true average.',
+      ],
+      [
+        'The intended benefit runs in both directions. Producers gain from stable, predictable revenue, which makes it possible to plan and to invest in the next season rather than lurching between windfall and ruin, and it protects them from the paradox that a bumper harvest can leave farmers worse off overall, since inelastic demand means the price falls proportionately more than the quantity rises. Consumers gain from a stable price too, avoiding the spikes that make a staple unaffordable after a bad harvest.',
+        'The scheme carries substantial running costs that the diagram does not show: storage, insurance, spoilage of a perishable commodity, and the working capital tied up in stock. A guaranteed floor also encourages farmers to produce more than the market wants, since the downside risk has been removed, which makes surpluses larger and the scheme more expensive to operate in exactly the years it is already buying.',
+      ],
+    ],
+    null,
+    [
+      'Why commodity prices are volatile: inelastic supply and demand, weather-driven supply shifts',
+      'The price band: a floor and a ceiling set by the agency',
+      'Diagram: buying surplus into store at the floor, selling from store at the ceiling',
+      'The agency trades against the market in both directions to hold price within the band',
+      'Benefits: stable producer incomes allowing investment, stable consumer prices',
+    ],
+    [
+      'The band must straddle the long-run average price or the scheme runs out of either money or stock',
+      'Storage, spoilage and working capital are real costs, and a guaranteed floor encourages over-production',
+    ],
+  ),
+
+  Q144: A(
+    [['buffer-stock', 'The price band against a good and a poor harvest. Use it to show what the scheme promises - a price held between floor and ceiling - and then judge that promise against what happens when the floor is set above the long-run average and the store fills up permanently.']],
+    'Many developing economies depend on a narrow range of primary commodities whose prices swing sharply, so producer incomes are volatile and hard to plan around. A buffer stock scheme aims to stabilise those incomes by holding price within a band. The theory is sound; the record of actual schemes is poor, and the gap between the two is where the answer lies.',
+    [
+      [
+        'The case for the scheme is real. Because both supply and demand for primary commodities are price-inelastic, a weather-driven shift in supply produces a large price swing, and a good harvest can leave farmers collectively worse off because price falls proportionately more than output rises. Stabilising price within a band removes that perverse outcome, gives producers a predictable income they can borrow and invest against, and protects them from the volatility that keeps commodity-dependent economies from diversifying. In principle the scheme also pays for itself, buying at the floor in surplus years and selling at the ceiling in shortage years.',
+        'That self-financing claim holds only if the band is centred on the long-run equilibrium price, and governments face constant political pressure to set the floor above it, because the floor is what producers - an organised, visible constituency - actually care about. Once the floor sits above the average, the agency buys in most years and sells in few, which turns a self-financing stabiliser into a permanent, growing subsidy.',
+      ],
+      [
+        'The operational costs are what has historically destroyed these schemes. Storage, insurance and the working capital tied up in stock are substantial, and many agricultural commodities are perishable, so the store deteriorates and must be rotated or written off. A floor that removes downside risk also encourages farmers to expand output beyond what the market will absorb, so surpluses grow year on year - the accumulation that produced the European Union’s butter mountains and wine lakes under a comparable guaranteed-price system.',
+        'The international commodity agreements of the 1970s and 1980s - for tin, coffee, cocoa and sugar - failed for exactly this combination of reasons, exhausting their funds defending prices above the market level and then collapsing, after which prices fell further and faster than they would have without the scheme. This is not a theoretical objection but the observed history of the policy.',
+      ],
+      [
+        'The alternatives address the same problem differently and often more cheaply. Diversifying the economy away from commodity dependence tackles the cause rather than the symptom, though it is slow and requires investment the country may lack. Futures markets and hedging let individual producers fix a price for a future harvest without any agency holding physical stock at all, and Fairtrade schemes guarantee a minimum price to participating farmers funded by consumers willing to pay for it rather than by the state. Direct income support paid to farmers stabilises incomes without distorting the price signal or accumulating stock.',
+        'Each of these has its own limits - hedging requires financial infrastructure and literacy that smallholders often lack, Fairtrade reaches only a fraction of producers, and income support still costs money - so the comparison is not between a flawed scheme and a clean alternative. The realistic judgement is that buffer stocks address a genuine problem with the wrong instrument, and that the same budget spent on diversification or direct income support achieves more per pound.',
+      ],
+    ],
+    'A buffer stock scheme addresses a genuine problem: primary commodity prices are volatile for structural reasons, and that volatility genuinely damages producer incomes and the prospects of commodity-dependent economies. In principle the scheme is self-financing and stabilises both incomes and consumer prices. In practice its effectiveness has been poor, and for reasons that recur rather than being accidental - political pressure sets the floor above the market-clearing average, storage and spoilage costs mount, guaranteed prices encourage over-production, and the agency eventually exhausts its funds and collapses, as the international commodity agreements of the 1970s and 1980s did. The extent to which it supports producer incomes is therefore limited and usually temporary, and the same resources directed at diversification, direct income support or access to hedging are likely to achieve more.',
+    [
+      'Why commodity prices are volatile and why that harms producer incomes in developing economies',
+      'Diagram: the price band, buying into store at the floor and selling from store at the ceiling',
+      'The self-financing claim, valid only where the band straddles the long-run average price',
+      'Operating costs: storage, insurance, spoilage, working capital',
+      'A guaranteed floor encourages over-production and growing surpluses',
+      'Historical failure of the 1970s-80s international commodity agreements',
+      'Alternatives: diversification, futures and hedging, Fairtrade, direct income support',
+    ],
+    [
+      'Political pressure pushes the floor above the market average, turning a stabiliser into a permanent subsidy',
+      'Perishability and storage costs make the stock expensive to hold and to rotate',
+      'The alternatives have real limits too - hedging needs financial infrastructure, Fairtrade reaches few producers',
+      'Judgement: a genuine problem addressed with the wrong instrument; diversification or income support achieves more per pound',
+    ],
+  ),
 }
