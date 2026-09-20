@@ -75,7 +75,32 @@ const EMPTY_FILTERS = { level: null, paper: null, section: null, marks: null, to
   "oligopolies" finds "Oligopoly" without a real dictionary or a search
   index - the bank is a few hundred short strings, not a corpus.
 */
-const stem = (w) => w.replace(/ies$/, 'y').replace(/es$/, '').replace(/s$/, '')
+/*
+  Ordinary English words carry no search signal, and leaving them in the
+  target list was actively harmful: every question contains "and", so the
+  reverse rule below matched "demand" against it and a search for demand
+  returned 58 of 140 questions, 47 of which never mention demand at all.
+  "the" was worse - it made "theory" return 122 questions.
+*/
+const STOPWORDS = new Set([
+  'a','i','is','in','on','at','to','of','as','by','or','an','if','so','no','do','be','we','he','my','me','us','it',
+  'the','and','for','are','but','not','you','all','can','her','was','one','our','out','has','had','how','its','who',
+  'did','his','she','him','use','two','way','new','any','see','say','get','got','put','set','may','per','via','off',
+  'been','have','this','that','with','from','they','will','more','over','also','back','when','make','like','time',
+  'just','know','take','into','year','your','some','them','than','then','look','only','come','even','want','give',
+  'most','such','both','each','same','down','very','much','many','made','does','done','were','must','upon','onto',
+  'what','which','their','there','would','could','shall','these','being','doing','under','while','about','after',
+  'above','below','since','until','other','using',
+  'because','through','against','between','during','without','before','within','across','having','should','might',
+])
+const stem = (w) =>
+  w
+    .replace(/ies$/, 'y')
+    // Only strip "es" where it is a real plural ending (boxes, taxes,
+    // churches). Stripping it unconditionally turned "prices" into "pric"
+    // while "price" stayed "price", so the two never stemmed alike.
+    .replace(/(s|x|z|ch|sh)es$/, '$1')
+    .replace(/s$/, '')
 const tokenize = (s) =>
   s
     .toLowerCase()
@@ -86,10 +111,17 @@ const tokenize = (s) =>
     // substring of almost every query word, so it silently matched
     // anything: searching "oligopolies" was one apostrophe away from also
     // matching every question containing an unrelated possessive.
-    .filter((w) => w.length > 1)
+    .filter((w) => w.length > 1 && !STOPWORDS.has(w))
 const wordsMatch = (queryWord, targetWord) =>
+  // The typed word appears inside a word in the question: "employment"
+  // finds "unemployment", "rate" finds "rates".
   targetWord.includes(queryWord) ||
-  (queryWord.length >= 3 && targetWord.length >= 3 && queryWord.includes(targetWord)) ||
+  // The typed word is a longer form of a word in the question, so it has
+  // to START with it: "taxation" finds "tax", "globalisation" finds
+  // "global". This was plain .includes(), which also matched any short
+  // word buried anywhere inside the query - "corporate" contains "rate",
+  // so searching it returned every question about exchange rates.
+  (queryWord.length >= 3 && targetWord.length >= 3 && queryWord.startsWith(targetWord)) ||
   stem(targetWord) === stem(queryWord)
 const questionMatchesSearch = (q, queryWords) => {
   if (!queryWords.length) return true

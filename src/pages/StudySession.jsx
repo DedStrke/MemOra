@@ -89,19 +89,33 @@ function ChapterPicker({ pack, technique, techniqueLabel, states, recs, topics, 
   const [query, setQuery] = useState('')
   const color = subjectColor(pack.name)
   const q = query.trim().toLowerCase()
+  // Split on whitespace so "competition perfect" and a stray double space
+  // both work; as one literal string neither did.
+  const queryWords = q.split(/\s+/).filter(Boolean)
   const allowed = new Set(topics)
   const recRank = new Map(recs.map((r, i) => [r.topic, i]))
-  const matches = (t) => allowed.has(t) && (!q || t.toLowerCase().includes(q))
+  // Match against the headings a chapter sits under as well as its own
+  // name. Searching "Market Structures", "How Markets Work" or "3.4" -
+  // all of them headings visible on this very screen - used to return
+  // nothing at all, because no individual chapter is called any of those.
+  const matches = (t, ...labels) => {
+    if (!allowed.has(t)) return false
+    if (!queryWords.length) return true
+    const haystack = [t, ...labels].filter(Boolean).join(' ').toLowerCase()
+    return queryWords.every((w) => haystack.includes(w))
+  }
   const bandOf = (t) => states.get(`${pack.name}␟${t}`)?.band || 'not_started'
 
   const groups = pack.groups?.length
     ? pack.groups
         .map((g) => ({
           ...g,
-          subgroups: g.subgroups.map((sg) => ({ ...sg, topics: sg.topics.filter(matches) })).filter((sg) => sg.topics.length),
+          subgroups: g.subgroups
+            .map((sg) => ({ ...sg, topics: sg.topics.filter((t) => matches(t, sg.label, g.label)) }))
+            .filter((sg) => sg.topics.length),
         }))
         .filter((g) => g.subgroups.length)
-    : [{ label: null, subgroups: [{ label: null, topics: pack.topics.filter(matches) }] }]
+    : [{ label: null, subgroups: [{ label: null, topics: pack.topics.filter((t) => matches(t)) }] }]
   const shown = groups.reduce((n, g) => n + g.subgroups.reduce((m, sg) => m + sg.topics.length, 0), 0)
 
   const Card = ({ topic }) => {
