@@ -706,7 +706,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
 
   Q112: A(
     [],
-    'Because economies are linked through trade and financial flows, a shock in one economy can transmit to others, and the policies one government adopts can have effects - positive or negative - beyond its own borders. This raises the question of whether managing the global economy successfully requires countries to cooperate rather than act alone.',
+    'Because economies are linked through trade and financial flows, an external shock in one economy can transmit to others, and the policies one government adopts can have effects - positive or negative - beyond its own borders. Some problems are unavoidably international: a transnational corporation can shift declared profits between jurisdictions through transfer pricing, charging its own subsidiaries artificial prices so that profit appears where tax is lowest, which no single government can regulate alone. This raises the question of whether managing the global economy successfully requires countries to cooperate rather than act alone.',
     [
       [
         'Without cooperation, a country facing a domestic recession might be tempted to pursue policies that shift the burden onto trading partners - deliberately weakening its currency to boost exports at their expense ("competitive devaluation"), or raising tariffs to protect domestic industry - and if every country pursues such policies simultaneously in response to a shared global downturn, the combined effect can be a contraction in world trade that leaves every country worse off than a coordinated response would have, a dynamic widely blamed for deepening the Great Depression of the 1930s.',

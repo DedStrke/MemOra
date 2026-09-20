@@ -186,4 +186,8 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain why a loss-making firm might continue to produce in the short run but not in the long run.'),
   q('Q122', 'A-Level', ...P1, '3.3', 'Normal Profit, Supernormal Profit and Losses', 'C', 25,
     'Evaluate the extent to which the shut-down decision facing a loss-making firm depends on whether its costs are fixed or variable.'),
+  q('Q123', 'A-Level', ...P1, '3.1', 'Vertical and Conglomerate Integration', 'B', 10,
+    'Explain the difference between backward and forward vertical integration, using an example of each.'),
+  q('Q124', 'A-Level', ...P1, '3.1', 'Vertical and Conglomerate Integration', 'C', 25,
+    'Evaluate the likely benefits to a firm of growing through vertical integration rather than conglomerate integration.'),
 ]
