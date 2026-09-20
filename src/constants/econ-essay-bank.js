@@ -167,11 +167,11 @@ export const ECON_ESSAY_BANK = [
   q('Q004', 'AS', ...AS1, '1.4', 'Government intervention', 'B', 20,
     'Discuss whether a tax on a good with a negative externality of consumption, such as tobacco, is the most effective way for a government to correct that market failure.'),
   q('Q005', 'AS', ...AS2, '2.1', 'Measures of economic performance', 'B', 20,
-    "Assess the extent to which a fall in a country's rate of unemployment is evidence of an improvement in its economic performance."),
+    "Assess the extent to which a fall in a country’s rate of unemployment is evidence of an improvement in its economic performance."),
   q('Q006', 'AS', ...AS2, '2.2', 'Aggregate demand', 'B', 20,
     'Discuss the likely impact of a rise in interest rates on the level of aggregate demand in the UK economy.'),
   q('Q007', 'AS', ...AS2, '2.3', 'Aggregate supply', 'B', 20,
-    "Evaluate the extent to which an increase in net investment by firms is likely to increase an economy's long-run aggregate supply."),
+    "Evaluate the extent to which an increase in net investment by firms is likely to increase an economy’s long-run aggregate supply."),
   q('Q008', 'AS', ...AS2, '2.4', 'National income', 'B', 20,
     'Assess the likely impact of an increase in government spending on the level of national income, with reference to the multiplier effect.'),
   q('Q009', 'AS', ...AS2, '2.5', 'Economic growth', 'B', 20,
@@ -181,7 +181,7 @@ export const ECON_ESSAY_BANK = [
 
   /* ------------------------------------------------ A-LEVEL PAPER 1 */
   q('Q011', 'A-Level', ...P1, '1.1', 'Nature of economics', 'B', 10,
-    "Explain, using a production possibility frontier diagram, how a sustained increase in net investment might affect an economy's future productive potential."),
+    "Explain, using a production possibility frontier diagram, how a sustained increase in net investment might affect an economy’s future productive potential."),
   q('Q012', 'A-Level', ...P1, '1.1', 'Nature of economics', 'C', 25,
     'Evaluate the extent to which the price mechanism alone can be relied upon to solve the economic problem of scarcity in a market economy.'),
   q('Q013', 'A-Level', ...P1, '1.2', 'How markets work', 'B', 12,
@@ -223,7 +223,7 @@ export const ECON_ESSAY_BANK = [
 
   /* ------------------------------------------------ A-LEVEL PAPER 2 */
   q('Q031', 'A-Level', ...P2, '2.1', 'Measures of economic performance', 'B', 10,
-    "Explain two limitations of using real GDP as a measure of a country's standard of living."),
+    "Explain two limitations of using real GDP as a measure of a country’s standard of living."),
   q('Q032', 'A-Level', ...P2, '2.1', 'Measures of economic performance', 'C', 25,
     'Evaluate the extent to which a fall in the rate of inflation is always beneficial to an economy.'),
   q('Q033', 'A-Level', ...P2, '2.2', 'Aggregate demand', 'B', 12,
@@ -231,9 +231,9 @@ export const ECON_ESSAY_BANK = [
   q('Q034', 'A-Level', ...P2, '2.2', 'Aggregate demand', 'C', 25,
     'Discuss the extent to which changes in business confidence are the most significant determinant of the level of investment in an economy.'),
   q('Q035', 'A-Level', ...P2, '2.3', 'Aggregate supply', 'B', 8,
-    "Explain how an increase in labour productivity might affect an economy's long-run aggregate supply."),
+    "Explain how an increase in labour productivity might affect an economy’s long-run aggregate supply."),
   q('Q036', 'A-Level', ...P2, '2.3', 'Aggregate supply', 'C', 25,
-    "Evaluate the view that supply-side policies are the most effective way of increasing an economy's rate of economic growth."),
+    "Evaluate the view that supply-side policies are the most effective way of increasing an economy’s rate of economic growth."),
   q('Q037', 'A-Level', ...P2, '2.4', 'National income', 'B', 10,
     'Explain, using the concept of the multiplier, how a fall in the marginal propensity to save might affect the level of national income.'),
   q('Q038', 'A-Level', ...P2, '2.4', 'National income', 'C', 25,

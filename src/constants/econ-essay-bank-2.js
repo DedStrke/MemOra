@@ -86,9 +86,9 @@ export const ECON_ESSAY_BANK_2 = [
     'Discuss the extent to which it is possible for a government to achieve all of its macroeconomic objectives simultaneously.'),
 
   q('Q081', 'A-Level', ...P2, '2.6', 'Supply-Side Policy', 'B', 12,
-    "Explain how an increase in government spending on education and training might affect an economy's long-run aggregate supply."),
+    "Explain how an increase in government spending on education and training might affect an economy’s long-run aggregate supply."),
   q('Q082', 'A-Level', ...P2, '2.6', 'Supply-Side Policy', 'C', 25,
-    "Evaluate the extent to which market-based supply-side policies are more effective than interventionist supply-side policies in increasing an economy's long-run rate of economic growth."),
+    "Evaluate the extent to which market-based supply-side policies are more effective than interventionist supply-side policies in increasing an economy’s long-run rate of economic growth."),
 
   q('Q083', 'A-Level', ...P2, '2.6', 'Conflicts Between Objectives and the Phillips Curve', 'B', 10,
     'Explain, using the Phillips curve, the relationship between the rate of unemployment and the rate of inflation in the short run.'),
@@ -141,9 +141,9 @@ export const ECON_ESSAY_BANK_2 = [
     'Evaluate the extent to which globalisation has benefited developing economies more than developed economies such as the UK.'),
 
   q('Q099', 'A-Level', ...P2, '4.1', 'Terms of Trade', 'B', 10,
-    "Explain, using a diagram, the likely effect of an improvement in a country's terms of trade on its balance of trade."),
+    "Explain, using a diagram, the likely effect of an improvement in a country’s terms of trade on its balance of trade."),
   q('Q100', 'A-Level', ...P2, '4.1', 'Terms of Trade', 'C', 25,
-    "Discuss the extent to which a deterioration in a developing economy's terms of trade is likely to harm its rate of economic development."),
+    "Discuss the extent to which a deterioration in a developing economy’s terms of trade is likely to harm its rate of economic development."),
 
   q('Q101', 'A-Level', ...P2, '4.1', 'Trading Blocs and the WTO', 'B', 10,
     'Explain two economic benefits to a country of joining a regional trading bloc such as the European Union.'),
@@ -153,7 +153,7 @@ export const ECON_ESSAY_BANK_2 = [
   q('Q103', 'A-Level', ...P2, '4.1', 'The Balance of Payments', 'B', 12,
     'Explain two policies a government might use to reduce a large deficit on the current account of the balance of payments.'),
   q('Q104', 'A-Level', ...P2, '4.1', 'The Balance of Payments', 'C', 25,
-    "Discuss the extent to which a depreciation of a country's currency is the most effective way of correcting a current account deficit."),
+    "Discuss the extent to which a depreciation of a country’s currency is the most effective way of correcting a current account deficit."),
 
   q('Q105', 'A-Level', ...P2, '4.1', 'Exchange Rates', 'B', 10,
     'Explain, using a diagram, how an increase in UK interest rates relative to those in the rest of the world might affect the exchange rate of the pound sterling.'),
@@ -161,12 +161,12 @@ export const ECON_ESSAY_BANK_2 = [
     'Evaluate the extent to which a fixed exchange rate system is more beneficial for an economy than a freely floating exchange rate system.'),
 
   q('Q107', 'A-Level', ...P2, '4.1', 'International Competitiveness', 'B', 8,
-    "Explain two factors, other than the exchange rate, that might affect a country's international competitiveness."),
+    "Explain two factors, other than the exchange rate, that might affect a country’s international competitiveness."),
   q('Q108', 'A-Level', ...P2, '4.1', 'International Competitiveness', 'C', 25,
-    "Discuss the extent to which a fall in labour productivity is the most significant cause of a decline in a country's international competitiveness."),
+    "Discuss the extent to which a fall in labour productivity is the most significant cause of a decline in a country’s international competitiveness."),
 
   q('Q109', 'A-Level', ...P2, '4.5', 'The National Debt', 'B', 10,
-    "Explain the difference between a government's budget deficit and the national debt."),
+    "Explain the difference between a government’s budget deficit and the national debt."),
   q('Q110', 'A-Level', ...P2, '4.5', 'The National Debt', 'C', 25,
     'Evaluate the extent to which a rising national debt is always a serious problem for an economy such as the UK.'),
 
