@@ -57,7 +57,7 @@ export const ECON_ESSAY_ANSWERS_P2 = {
         'The short-run Phillips curve: moving to lower inflation by squeezing demand means moving to higher unemployment. Use it to show the cost of disinflation.',
       ],
     ],
-    'Inflation is a sustained rise in the general price level; a fall in the rate of inflation means prices are rising more slowly, not falling. Lower inflation protects real incomes, improves competitiveness and reduces uncertainty, which is why the Bank of England targets 2%. But whether a fall is beneficial depends on why it happened, on where inflation started and on how far it falls - a slide towards deflation carries costs of its own.',
+    'Inflation is a sustained rise in the general price level, measured in the UK mainly by the Consumer Prices Index (CPI): the cost of a fixed, weighted basket of goods and services bought by a typical household, tracked over time and reported as a percentage change. The Retail Prices Index (RPI) is an older alternative that also includes housing costs such as mortgage interest and council tax, which tends to make it run higher than CPI, and it is still used for some index-linked payments even though it is no longer the Bank of England’s target measure. A fall in the RATE of inflation means prices are rising more slowly, not falling. Lower inflation protects real incomes, improves competitiveness and reduces uncertainty, which is why the Bank of England targets 2% on the CPI measure. But whether a fall is beneficial depends on why it happened, on where inflation started and on how far it falls - a slide towards deflation carries costs of its own.',
     [
       [
         'Lower inflation brings clear gains. Real incomes are protected, particularly for those on fixed incomes and savers whose interest no longer lags prices. Firms face lower menu costs and less uncertainty, so they can plan investment with more confidence, and lower inflation relative to trading partners improves the price competitiveness of exports. Inflation expectations fall, which reduces wage demands and makes future inflation easier to control, and the central bank can hold interest rates lower, supporting growth. The fall in UK inflation from over 11% in late 2022 to around target by 2024 restored real wage growth after two years of decline.',
@@ -74,7 +74,7 @@ export const ECON_ESSAY_ANSWERS_P2 = {
     ],
     'A fall in inflation is beneficial when inflation was above target and the fall comes from lower costs or a credible policy that does not sacrifice much output: real incomes, competitiveness and certainty all improve. It is not always beneficial. A fall caused by collapsing demand signals recession, a fall achieved through severe monetary tightening costs jobs, and a fall below target towards deflation raises real debt burdens and delays spending. The judgement depends on the starting rate, the cause and the size of the fall: from high inflation towards target, yes; from low inflation towards zero, no.',
     [
-      'Definition of inflation and of a fall in its rate; the 2% target',
+      'Definition of inflation, measured by the CPI (a weighted basket of goods and services) with RPI as an older alternative; a fall in its rate and the 2% target',
       'Benefits: real incomes, competitiveness, certainty, investment, expectations',
       'AD/AS diagram distinguishing cost-driven from demand-driven falls',
       'Costs of disinflation: Phillips curve, unemployment, lost output',

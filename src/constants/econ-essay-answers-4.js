@@ -386,7 +386,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
   /* ------------------------------------------------ Trading Blocs and the WTO */
   Q101: A(
     [],
-    'A regional trading bloc is a group of countries that agree to reduce or remove trade barriers between themselves, sometimes going further to allow free movement of capital and labour. Joining one offers a member country several potential economic benefits.',
+    'A regional trading bloc is a group of countries that agree to reduce or remove trade barriers between themselves, with the degree of integration increasing through several recognised stages: a free trade area removes tariffs between members while each keeps its own external tariff; a customs union adds a common external tariff on non-members; a common market goes further still, adding free movement of capital and labour between members; and a monetary union, such as the eurozone, shares a single currency and monetary policy on top of all of this. Joining a bloc at any of these stages offers a member country several potential economic benefits.',
     [
       [
         'Joining a trading bloc gives a country’s firms preferential, often tariff-free, access to a much larger combined market than its domestic market alone, allowing firms to achieve economies of scale from selling to a wider customer base that they could not reach as easily, or as cheaply, if they faced tariffs or other barriers in each individual foreign market.',
@@ -399,7 +399,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
     ],
     null,
     [
-      'Definition of a regional trading bloc',
+      'Definition of a regional trading bloc, and the stages of integration: free trade area, customs union, common market, monetary union (e.g. the eurozone)',
       'Access to a larger market and the resulting economies of scale for domestic firms',
       'Attracting foreign direct investment seeking tariff-free access to the whole bloc',
       'Trade creation: switching to a more efficient partner-country producer once the internal tariff is removed',
