@@ -178,4 +178,8 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain two limitations of using the Human Development Index (HDI) as a measure of a country’s economic development.'),
   q('Q118', 'A-Level', ...P2, '4.3', 'Measures of Development', 'C', 25,
     'Evaluate the extent to which the Human Development Index is a better measure of economic development than real GDP per capita.'),
+  q('Q119', 'A-Level', ...P1, '1.1', 'Specialisation and the Division of Labour', 'B', 10,
+    'Explain how money, by acting as a medium of exchange, allows an economy to benefit from specialisation and the division of labour.'),
+  q('Q120', 'A-Level', ...P1, '1.1', 'Specialisation and the Division of Labour', 'C', 25,
+    'Discuss the extent to which specialisation and the division of labour are beneficial to a modern economy.'),
 ]

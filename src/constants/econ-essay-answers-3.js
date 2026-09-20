@@ -87,6 +87,67 @@ export const ECON_ESSAY_ANSWERS_3 = {
     ],
   ),
 
+  /* --------------------------------- Specialisation and the Division of Labour */
+  Q119: A(
+    [],
+    'Specialisation and the division of labour let workers, firms and countries concentrate on a narrow range of tasks rather than producing everything they need themselves. Money, acting as a medium of exchange, is what makes an economy built on this kind of specialisation actually workable.',
+    [
+      [
+        'Without money, a highly specialised economy would rely on barter, which requires a "double coincidence of wants": a baker needing shoes must find a shoemaker who specifically wants bread, in the right quantity, at the same time. This becomes almost impossible once workers are divided into narrow, specific occupations, since each specialist produces only one thing and needs many different things in return. Money, as a medium of exchange, removes this problem entirely: a specialist sells their output for money and then uses that money to buy whatever they need from anyone else, without ever needing the other party to want their specific product back.',
+        'This benefit is largest exactly where specialisation is most extreme - a modern economy with millions of highly specific occupations - and would matter far less in a simple, largely self-sufficient economy where each household already produces most of what it consumes itself.',
+      ],
+      [
+        'Money’s other functions reinforce the same benefit. As a unit of account, it lets the specialised output of completely different occupations - an hour of a solicitor’s time, a tonne of steel, a haircut - be compared on a single scale, so resources flow to their most valuable use exactly as the price mechanism requires. As a store of value, it lets a specialist who earns now and wants to spend later hold the proceeds of their labour without them perishing, and as a method of deferred payment it lets specialised trade happen on credit, before payment is actually made.',
+        'These functions work well only if money is genuinely trusted to hold its value: during a period of high or hyperinflation, money’s usefulness as a store of value and a method of deferred payment breaks down, and economies have been known to partially revert towards barter or a more stable foreign currency in extreme cases, showing that these functions are not automatic but depend on monetary stability.',
+      ],
+    ],
+    null,
+    [
+      'Definition of specialisation and the division of labour',
+      'The double coincidence of wants problem that barter creates once workers are highly specialised',
+      'Money as a medium of exchange solves this, letting specialists trade without needing a matching want',
+      'Money’s other functions (unit of account, store of value, method of deferred payment) reinforce the benefit',
+    ],
+    [
+      'The benefit is largest where specialisation is most extreme; smaller in a largely self-sufficient economy',
+      'These functions depend on monetary stability - high inflation undermines money as a store of value and method of deferred payment',
+    ],
+  ),
+
+  Q120: A(
+    [],
+    'Specialisation means concentrating on producing a narrow range of goods or services; the division of labour breaks a production process into smaller, repeated tasks performed by different workers. Both are central to how a modern economy achieves the output it does, but neither is beneficial without limit.',
+    [
+      [
+        'Adam Smith’s pin factory is the classic illustration: dividing a complex task into many simple, repeated steps massively raises output per worker compared with each worker making a whole pin from start to finish, because repetition builds skill and speed, workers avoid the time lost switching between tasks, and machinery can be designed around one narrow, repeated step. This is the foundation of virtually all modern mass production, from car assembly lines to modern service-sector call centres organised around specific, narrow roles.',
+        'The productivity gain from further dividing labour eventually runs into diminishing returns: beyond a certain point, tasks become so narrow that coordinating an ever-larger number of specialised workers becomes costly in itself, and the extra output gained from dividing the process still further shrinks.',
+      ],
+      [
+        'The same logic applies at the level of a whole economy through international trade: a country that specialises according to its comparative advantage can trade for the goods it does not produce itself, raising total output and living standards beyond what self-sufficiency could achieve, exactly as the theory of comparative advantage predicts.',
+        'Over-specialisation carries a real risk at this level too: an economy or region that specialises very narrowly - a single export commodity, a single industry town - becomes highly exposed to a demand shock or a shift in comparative advantage, and workers whose skills are narrowly specific to a declining industry face exactly the occupational immobility that is a genuine, persistent cause of unemployment.',
+      ],
+      [
+        'Extreme division of labour also carries a human cost: highly repetitive, narrowly-divided work can be monotonous and demotivating, which can reduce job satisfaction and, over time, the quality of output if workers disengage from work they find meaningless - part of why many modern employers have moved towards job rotation, enrichment and teamwork rather than the most extreme, assembly-line division of labour that early twentieth-century mass production pursued.',
+        'Whether this human cost outweighs the productivity benefit depends on the specific job and how it is managed: modern automation has taken over many of the most repetitive, dehumanising tasks that used to define extreme division of labour, shifting human workers towards higher-skilled, more varied roles, which can raise both productivity and worker satisfaction together rather than trading one off against the other.',
+      ],
+    ],
+    'Specialisation and the division of labour are, on balance, highly beneficial to a modern economy: they underpin the productivity gains behind mass production and the gains from trade that a self-sufficient economy could never achieve on its own. The benefit is not unlimited - coordination costs eventually offset further division within a single production process, and over-specialisation exposes workers, firms, regions and countries to real risk when a narrow skill or export becomes obsolete or its market shifts, which is exactly the case for a genuinely diversified economy rather than one dependent on a single specialism. The extent of the benefit therefore depends on being specialised enough to capture the productivity and trade gains without being so narrowly specialised that a single shock threatens the whole basis of that specialism.',
+    [
+      'Definition of specialisation and the division of labour, with Adam Smith’s pin factory example',
+      'Division of labour raises productivity through repetition, skill-building and avoiding time lost switching tasks',
+      'Diminishing returns to further division as coordination costs rise',
+      'Specialisation and comparative advantage raise output and living standards through trade',
+      'Over-specialisation risk: exposure to demand shocks, and occupational immobility when a narrow skill becomes obsolete',
+      'Human/social cost of extreme division of labour: monotony, disengagement, and the role of automation in offsetting it',
+    ],
+    [
+      'Coordination costs eventually offset further gains from dividing a single production process further',
+      'Over-specialisation risk depends on how narrowly a worker, firm, region or country has specialised',
+      'The human cost of monotonous work depends on how the job is managed and how far automation has reduced repetitive tasks',
+      'Judgement: beneficial while specialisation captures productivity and trade gains without excessive concentration risk',
+    ],
+  ),
+
   /* --------------------------------------------- Rational Decision Making */
   Q067: A(
     [],
