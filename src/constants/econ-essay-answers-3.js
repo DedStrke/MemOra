@@ -720,7 +720,8 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Hit-and-run entry and the role of the mere threat of entry rather than actual entry',
     ],
     [
-      'Contestability is a matter of degree, not an all-or-nothing property of a market',
+      'Low sunk costs alone do not guarantee contestability if some other barrier (a licence, control of an essential input) blocks entry regardless',
+      'Hit-and-run entry only disciplines price if the incumbent cannot respond faster than the entrant can exit',
     ],
   ),
 
