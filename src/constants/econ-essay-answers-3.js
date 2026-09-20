@@ -96,6 +96,10 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'A consumer choosing a mobile phone contract, for example, faces dozens of tariffs combining different prices, data allowances, contract lengths and hidden fees. Rather than comparing every option’s total cost precisely, a consumer under bounded rationality is likely to use a mental shortcut - a rule of thumb such as "pick whichever headline monthly price is lowest" - because working out the true best deal would take more time and effort than the decision is worth to them.',
         'The result is a choice that is reasonable given the effort the consumer was willing to spend, but which is not actually utility-maximising: they may end up paying more overall than a fully informed, fully rational comparison would have produced, because the shortcut ignored information (the hidden fees, the true cost over the whole contract) that a perfectly rational agent would have processed.',
       ],
+      [
+        'Bounded rationality also shows up as "satisficing" - Herbert Simon’s term for choosing the first option that clears an acceptable threshold rather than continuing to search for the genuinely best one. A shopper buying breakfast cereal is unlikely to compare the price per 100g and nutritional content of every brand on the shelf; once one option looks "good enough" on the one or two things they actually care about, such as a familiar brand within a rough price limit, they buy it and move on, even though a fuller comparison might have found a better deal.',
+        'Satisficing is not necessarily irrational once the cost of searching further is counted: for a low-value, frequently repeated purchase such as a box of cereal, the time and effort spent finding the genuinely optimal choice would likely cost the consumer more than the saving it might reveal. Bounded rationality can therefore itself be a reasonable response to a decision that is not worth the effort of optimising fully, rather than simply a failure of rationality.',
+      ],
     ],
     null,
     [
@@ -103,10 +107,11 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Definition of bounded rationality (limited information, time and processing power)',
       'Worked example of a rule-of-thumb decision (e.g. a mobile contract, a supermarket choice)',
       'Explanation of why the shortcut produces a reasonable, but not utility-maximising, outcome',
+      '"Satisficing" (Herbert Simon): choosing the first acceptable option rather than the optimal one',
     ],
     [
       'Depends on the complexity of the decision and the cost of gathering full information',
-      'The gap between the shortcut and the truly optimal choice may be small or large depending on the case',
+      'Satisficing can be a rational response to a low-value decision once search costs are counted, not simply irrational',
     ],
   ),
 
@@ -120,7 +125,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
       ],
       [
         'For larger, less frequent or more complex decisions - a mortgage, a pension, an energy tariff - real consumers show bounded rationality (mental shortcuts substituting for full calculation), bounded self-control (a well-documented tendency to over-value the present against the future, seen in under-saving for retirement), and altruism (choices, such as buying fair-trade goods, that a purely self-interested utility-maximiser would not make if it cost more for no personal benefit).',
-        'These are not occasional errors but systematic, predictable biases - which is precisely why behavioural economics can be used constructively: a government "nudge", such as auto-enrolment into a pension scheme, works by anticipating a specific, well-evidenced departure from full rationality (inertia) rather than assuming it away.',
+        'These are not occasional errors but systematic, predictable biases - which is precisely why behavioural economics can be used constructively: a government "nudge", such as auto-enrolment into a pension scheme, works by anticipating a specific, well-evidenced departure from full rationality (inertia) rather than assuming it away. The UK’s workplace pension auto-enrolment, introduced from 2012, raised the proportion of eligible employees saving into a private pension from around 55% to over 88% within a decade, simply by changing the default from opting IN to opting OUT - the underlying incentive to save for retirement had not changed at all.',
       ],
       [
         'The realism of the assumption therefore depends heavily on the stakes and complexity of the decision, and on whether the model is being used to predict AGGREGATE market behaviour or to design a POLICY aimed at an individual’s decision. Aggregated over a whole market, individual biases can partly cancel out and demand/supply analysis built on the rational assumption still predicts direction of change reasonably well.',
@@ -306,7 +311,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'The subsidy’s effectiveness depends on accurately sizing it to the marginal external benefit: too small a subsidy leaves consumption below the social optimum, while too large a subsidy pushes consumption beyond it, creating a new welfare loss in the opposite direction, and either error requires the government to correctly estimate an external benefit that is inherently hard to measure precisely.',
       ],
       [
-        'An alternative is direct government provision - state-funded schooling - which guarantees the socially optimal quantity is available regardless of individual willingness to pay, and avoids leaving the decision to a subsidy that still depends on households choosing to take it up.',
+        'An alternative is direct government provision - state-funded schooling - which guarantees the socially optimal quantity is available regardless of individual willingness to pay, and avoids leaving the decision to a subsidy that still depends on households choosing to take it up. The UK applies exactly this distinction in practice: primary and secondary education is provided directly, free at the point of use and compulsory, while post-16 and higher education rely more on subsidised tuition loans and means-tested maintenance grants - a sign that the case for guaranteeing the social optimum through direct provision is judged to weaken once education is no longer compulsory.',
         'Direct provision has its own costs: it removes the price signal and competitive pressure that might otherwise drive up quality or efficiency in provision, and it is funded through general taxation rather than being targeted specifically at correcting the externality, so its opportunity cost falls on whatever else that tax revenue could have funded.',
       ],
       [
@@ -340,6 +345,10 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'A government introducing a subsidy to support a specific industry, for example, may misjudge the size of the subsidy needed because it lacks the information the market itself would have revealed through prices, resulting in an over-subsidised industry that produces beyond the level that maximises social welfare, wasting public money on units of output whose cost exceeds their benefit.',
         'The subsidy may also become politically difficult to remove once industry jobs and lobbying depend on it, so even once the original justification for the intervention has weakened, the government failure persists because political incentives, rather than economic ones, now determine the policy.',
       ],
+      [
+        'A different route to government failure is a price control that creates an unintended consequence in the very market it targets. A maximum price set below equilibrium - rent controls intended to keep housing affordable, for example - creates excess demand: landlords have less incentive to maintain or expand the rented housing stock at the capped rent, so the resulting shortage can leave many of the renters the policy was meant to help worse off, and pushes some activity into an unregulated market where the legal price ceiling is evaded entirely.',
+        'Whether this counts as a genuine failure, rather than simply an acceptable cost of the policy, depends on how the gain to those who do secure housing at the capped rent compares with the loss to those excluded by the resulting shortage - a normative judgement about who the intervention is meant to protect, not a purely technical one.',
+      ],
     ],
     null,
     [
@@ -347,10 +356,11 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Worked example: a subsidy poorly sized due to imperfect government information',
       'Explanation of the resulting welfare loss (over- or under-correction)',
       'Political economy point: intervention can persist beyond its economic justification',
+      'A second mechanism: a price control creating excess demand/supply and an unintended black market',
     ],
     [
       'Severity depends on how far the intervention departs from the socially optimal level',
-      'Depends on whether the intervention can realistically be reversed once introduced',
+      'Whether a price-control side effect is a "failure" depends on a normative judgement about who intervention is meant to protect',
     ],
   ),
 
