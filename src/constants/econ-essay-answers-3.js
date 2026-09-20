@@ -579,7 +579,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
   /* -------------------------------------------------------------- Oligopoly */
   Q091: A(
     [['game-theory', 'The prisoner’s dilemma payoff matrix for two firms choosing to collude or cheat on price. Show that mutual cheating is the dominant-strategy outcome for a single interaction, and use it to explain why the collusive outcome, though better for both, is hard to sustain without repeated interaction.']],
-    'An oligopoly is a market dominated by a small number of large, interdependent firms, where each firm’s pricing decision has to account for how rivals are likely to react. Game theory - specifically the prisoner’s dilemma - is the tool economists use to model this interdependence and to explain why prices can still stay relatively stable even without any explicit agreement between firms.',
+    'An oligopoly is a market dominated by a small number of large, interdependent firms, measured formally by the n-firm concentration ratio - the combined market share of the largest n firms, such as the UK supermarket sector’s 4-firm concentration ratio of roughly 65-70% held by Tesco, Sainsbury’s, Asda and Morrisons. Above this level of concentration, each firm’s pricing decision has to account for how rivals are likely to react. Game theory - specifically the prisoner’s dilemma - is the tool economists use to model this interdependence and to explain why prices can still stay relatively stable even without any explicit agreement between firms.',
     [
       [
         'In a payoff matrix where two firms can either collude (both hold a high price) or cheat (undercut the agreed price), colluding gives both firms a good, shared payoff, but each firm can do even better by secretly cheating while the other holds the high price, capturing extra market share. Because both firms reason this way at once, and neither can be sure the other will not cheat, cheating is each firm’s DOMINANT strategy regardless of what the rival chooses - both end up cheating, landing on an outcome that is worse for both of them than if they had simply colluded.',
@@ -592,7 +592,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     ],
     null,
     [
-      'Definition of oligopoly and interdependence between firms',
+      'Definition of oligopoly, measured by the n-firm concentration ratio, and interdependence between firms',
       'The prisoner’s dilemma payoff matrix: colluding gives both firms a good outcome, but cheating is individually tempting',
       'Cheating is the dominant strategy in a single interaction, so both firms cheat and both are worse off than if they had colluded',
       'Repeated interaction changes this: the threat of retaliation (a price war) can sustain tacit collusion over many periods',

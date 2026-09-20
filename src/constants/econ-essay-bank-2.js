@@ -174,4 +174,8 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain how a global recession originating in one major economy might be transmitted to other economies around the world.'),
   q('Q112', 'A-Level', ...P2, '4.5', 'Macroeconomic Policies in a Global Context', 'C', 25,
     'Discuss the extent to which international cooperation between governments is necessary to successfully manage the global economy.'),
+  q('Q117', 'A-Level', ...P2, '4.3', 'Measures of Development', 'B', 10,
+    'Explain two limitations of using the Human Development Index (HDI) as a measure of a country’s economic development.'),
+  q('Q118', 'A-Level', ...P2, '4.3', 'Measures of Development', 'C', 25,
+    'Evaluate the extent to which the Human Development Index is a better measure of economic development than real GDP per capita.'),
 ]

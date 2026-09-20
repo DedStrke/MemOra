@@ -735,4 +735,64 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: necessary in proportion to how global and how prone to unilateral, mutually destructive responses the shock is',
     ],
   ),
+
+  /* --------------------------------------------- Measures of Development */
+  Q117: A(
+    [],
+    'The Human Development Index (HDI) is a composite measure of economic development, combining income (GNI per capita), education (mean and expected years of schooling) and health (life expectancy at birth) into a single score between 0 and 1, specifically to capture more of development than income alone can.',
+    [
+      [
+        'The HDI is a national average, so it says nothing about how income, education and health are actually distributed within a country: two countries can post an identical HDI score while one has those gains spread broadly across the population and the other concentrates them in a small, wealthy minority, with most people living far below the national average on all three dimensions.',
+        'The United Nations addresses this specifically with the Inequality-adjusted HDI (IHDI), which discounts each dimension by the degree of inequality within it, but this adjusted figure is reported and used far less often than the plain, unadjusted HDI headline score, so the limitation persists in most everyday comparisons even though a technical fix for it already exists.',
+      ],
+      [
+        'The HDI leaves out dimensions of development that plainly matter but cannot easily be reduced to its three chosen indicators: political freedom and human rights, environmental sustainability, gender equality, and subjective wellbeing or happiness are all absent from the calculation entirely, so two countries with the same HDI score could differ enormously in how free, equal or environmentally sustainable they actually are.',
+        'This is a reason to use the HDI alongside complementary indices - such as the Gender Development Index or measures of environmental performance - rather than a reason to reject it outright, since even the United Nations Development Programme, which publishes the HDI, has always presented it as one part of a wider picture of development rather than a complete, stand-alone measure.',
+      ],
+    ],
+    null,
+    [
+      'Definition of the HDI and its three dimensions: income, education, health',
+      'Limitation: a national average that masks inequality in its distribution within a country',
+      'The Inequality-adjusted HDI (IHDI) as a technical fix, though rarely the headline figure reported',
+      'Limitation: excludes political freedom, environmental sustainability, gender equality and subjective wellbeing entirely',
+    ],
+    [
+      'The IHDI corrects the distributional limitation, but is reported far less often than the plain HDI',
+      'Complementary indices exist precisely because the UNDP itself treats the HDI as part of a wider picture, not a complete measure on its own',
+    ],
+  ),
+
+  Q118: A(
+    [],
+    'The Human Development Index (HDI) was designed specifically to correct a well-known limitation of using real GDP per capita alone: that a rising income does not automatically mean rising health or education. Whether it is a genuinely better measure of development depends on weighing this advantage against the limitations the HDI carries of its own.',
+    [
+      [
+        'The HDI’s central advantage is that it captures dimensions of development that GDP per capita misses entirely: two countries can have very similar income per head while differing sharply in life expectancy and years of schooling, and only the HDI, by explicitly including health and education alongside income, would correctly show the second country as less developed despite its comparable GDP figure.',
+        'This advantage depends on the quality and comparability of the underlying health and education data feeding into the HDI, which can be measured less reliably than GDP itself in countries with weaker statistical systems, so part of the theoretical improvement the HDI offers can be undermined in practice by the data it actually has available to work with.',
+      ],
+      [
+        'The HDI still shares one of GDP per capita’s central weaknesses: both are national averages that can mask severe inequality in how income, education or healthcare are actually distributed within a country, so simply switching from GDP per capita to the plain HDI does not by itself solve the distributional blind spot the two measures share.',
+        'Where the Inequality-adjusted HDI (IHDI) is used instead of the plain headline figure, this specific weakness is corrected, since the IHDI explicitly discounts the score by the degree of inequality across all three dimensions - so the HDI’s advantage over GDP per capita on distribution is real only when the adjusted version is actually the one being used, which is not the common case.',
+      ],
+      [
+        'The HDI is also a deliberately narrow composite - three dimensions chosen for international comparability and data availability - and excludes political freedom, environmental sustainability, gender equality and subjective wellbeing entirely, so it is not a complete measure of development in the broadest sense either, only an improvement on income alone specifically.',
+        'Whether the HDI is "better" therefore depends on what the comparison is actually for: for tracking material output and living standards narrowly, GDP per capita remains simpler, more frequently updated and more widely comparable across countries; for judging development in the broader sense the HDI was built for, it is unambiguously the better measure, precisely because it corrects GDP’s specific, well-documented blind spots on health and education, even though it introduces measurement and inequality-masking limitations of its own.',
+      ],
+    ],
+    'The HDI is a better measure of economic development than real GDP per capita specifically because it captures health and education outcomes that income alone misses entirely, which is exactly the gap it was designed to close. It is not a complete or perfect substitute: it still masks within-country inequality unless the adjusted (IHDI) version is used, its education and health data can be less reliable than GDP data in developing countries, and it excludes other dimensions of development - freedom, environment, gender equality - altogether. The extent to which it is "better" depends on the purpose: for a rounded picture of development it clearly improves on GDP per capita alone, but for many purposes the two measures are best used together rather than one simply replacing the other.',
+    [
+      'HDI’s advantage: captures health and education outcomes that GDP per capita alone misses',
+      'Reliability of the underlying health/education data can be weaker than GDP data, especially in developing economies',
+      'Shared weakness: both are national averages that mask within-country inequality',
+      'The Inequality-adjusted HDI (IHDI) corrects the distributional weakness, but is not the commonly-reported headline figure',
+      'HDI still excludes political freedom, environmental sustainability, gender equality and subjective wellbeing',
+    ],
+    [
+      'Depends on the reliability of the health/education data available for the country being measured',
+      'The distributional advantage over GDP per capita depends on whether the adjusted (IHDI) figure is actually used',
+      'Depends on the purpose of the comparison: narrow income tracking versus a broader picture of development',
+      'Judgement: better for a rounded view of development; the two measures are often best used together',
+    ],
+  ),
 }
