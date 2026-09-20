@@ -426,7 +426,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
   ),
 
   Q076: A(
-    [],
+    [['minimum-price', 'A guaranteed minimum price set above the market equilibrium, as the Common Agricultural Policy did. Quantity supplied exceeds quantity demanded and the state has to buy and store the surplus: the intervention has not removed a welfare loss, it has created one of its own, which is government failure shown on a diagram.']],
     'Government failure is the risk that intervention meant to correct a market failure ends up creating a net welfare loss of its own, through poor information, unintended consequences, excessive administrative cost, or political rather than economic motivation.',
     [
       [
@@ -485,7 +485,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
   ),
 
   Q086: A(
-    [],
+    [['economies-of-scale', 'The long-run average cost curve with minimum efficient scale marked and the diseconomies section beyond it. A conglomerate that has grown past MES sits on the rising part of LRAC; a demerger moves each resulting business back down towards it, which is the productive efficiency case for splitting up.']],
     'A demerger splits a single company into two or more separate, independently operating companies. Its effect on efficiency depends on whether the benefits of sharper managerial focus and a clearer market valuation outweigh the loss of whatever genuine synergies existed between the parts.',
     [
       [

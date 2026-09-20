@@ -683,7 +683,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
   ),
 
   Q028: A(
-    [],
+    [['labour-market', 'A competitive labour market with a wage floor held above the market-clearing wage. Show quantity supplied of labour exceeding quantity demanded at that wage: the horizontal gap is unemployment caused by real wage inflexibility rather than by any mismatch of skills or location, which is what makes it a separate cause from immobility.']],
     'Geographical immobility of labour occurs where a worker cannot or will not move to where a job is available; occupational immobility occurs where a worker’s existing skills do not match what an available vacancy requires. Both are forms of market failure that leave unemployment and unfilled vacancies coexisting side by side - a mismatch between where and what the jobs are, not a simple shortage of jobs overall.',
     [
       [

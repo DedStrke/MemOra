@@ -43,6 +43,10 @@ export const ECON_ESSAY_PLACEMENT = {
   Q025: [{ a: 'monopoly', e: 'natural-monopoly' }, { a: 'monopolistic-competition' }, { e: 'limit-pricing' }],
   Q026: [{ a: 'price-discrimination' }, { e: 'surplus-change' }, { a: 'natural-monopoly' }],
   Q027: [{ a: 'monopsony' }, { e: 'labour-market' }],
+  // The third row is where the answer raises real wage inflexibility as a
+  // cause of unemployment separate from immobility - that is the one part
+  // of this question a diagram actually settles.
+  Q028: [{}, {}, { a: 'labour-market' }],
   Q029: [{ a: 'monopoly' }, { a: 'natural-monopoly' }],
   Q030: [{ a: 'business-objectives', e: 'natural-monopoly' }, {}, { a: 'limit-pricing' }],
   Q031: [{ a: 'lorenz-curve' }, {}],

@@ -265,6 +265,14 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'Employment RISES with the wage - the reverse of the competitive case',
     ],
   },
+  Q028: {
+    'labour-market': [
+      'Competitive equilibrium at W₁, Q₁: everyone willing to work at that wage has a job',
+      'Hold the wage above W₁ and quantity supplied exceeds quantity demanded',
+      'The horizontal gap is real wage unemployment - the workers and the jobs match, the wage is what does not',
+      'Immobility is a different failure: it shifts nothing here, it stops workers reaching the market at all',
+    ],
+  },
   Q029: {
     monopoly: [
       'Abuse of dominance looks like this: output restricted to Qm, price raised to Pm above cost',
@@ -670,6 +678,14 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'Expanding demand moves the economy from A up to B along SRPC₁ - lower unemployment, higher inflation, exactly as the short-run trade-off predicts',
       'Once expectations adjust, SRPC₁ shifts up to SRPC₂ and unemployment returns to the NAIRU at C - but now on a higher inflation curve',
       'Repeating this traces out the vertical LRPC at the NAIRU: only a policy that lowers the NAIRU itself, not demand stimulus, cuts unemployment permanently',
+    ],
+  },
+  Q086: {
+    'economies-of-scale': [
+      'LRAC falls through the economies section and reaches its minimum at MES',
+      'A conglomerate that kept acquiring sits to the RIGHT of MES, on the rising part - management diseconomies',
+      'The demerger moves each resulting business back down towards MES: lower average cost, same output',
+      'The gain only exists if the group was past MES in the first place - a firm still to the left of it loses by splitting',
     ],
   },
   Q087: {

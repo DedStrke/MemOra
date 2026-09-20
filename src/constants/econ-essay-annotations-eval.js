@@ -416,4 +416,12 @@ export const ECON_ESSAY_ANNOTATIONS_EVAL = {
       'Abatement becomes the dominant strategy - the payoff matrix flipped by policy',
     ],
   },
+  Q076: {
+    'minimum-price': [
+      'The guaranteed price sits ABOVE the free-market equilibrium',
+      'Quantity supplied Qs exceeds quantity demanded Qd: the gap is the surplus',
+      'Under the CAP the state bought and stored that surplus - the butter mountains',
+      'This is government failure on a diagram: a welfare loss created by the intervention, not removed by it',
+    ],
+  },
 }

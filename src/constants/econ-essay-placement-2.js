@@ -13,7 +13,14 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q072: [{ a: 'maximum-price' }, {}, {}],
   Q073: [{ a: 'negative-externality' }],
   Q074: [{ a: 'positive-externality' }, {}],
+  // The CAP price floor the answer describes IS the minimum price diagram,
+  // and it sits on the evaluation side because that is where the surplus is
+  // used as the evidence of government failure.
+  Q076: [{ e: 'minimum-price' }, {}, {}],
   Q081: [{ a: 'lras-shift' }],
+  // The answer's first row argues management diseconomies of scale, which is
+  // the rising section of LRAC beyond minimum efficient scale.
+  Q086: [{ a: 'economies-of-scale' }, {}, {}],
   Q082: [{ a: 'lras-shift' }, {}, {}],
   Q083: [{ a: 'phillips' }],
   Q084: [{ a: 'long-run-phillips' }, {}, {}],
