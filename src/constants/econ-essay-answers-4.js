@@ -564,22 +564,28 @@ export const ECON_ESSAY_ANSWERS_4 = {
   /* ------------------------------------------------ International Competitiveness */
   Q107: A(
     [],
-    'International competitiveness measures a country’s ability to sell its goods and services in world markets relative to other countries. The exchange rate is only one influence on this; several other factors matter just as much.',
+    'International competitiveness measures a country’s ability to sell its goods and services in world markets relative to other countries. The exchange rate is only one influence on this: relative productivity and relative inflation both change a country’s competitive position independently of what its currency is doing.',
     [
       [
-        'Relative productivity is a central factor: if UK workers produce more output per hour worked than workers in a competitor country, unit labour costs can stay lower even at similar wage rates, making UK goods more price-competitive without any change in the exchange rate at all. A sustained productivity gap, in either direction, changes competitiveness independently of currency movements.',
-        'Relative inflation rates matter just as much: if UK inflation runs persistently higher than that of trading partners, domestic costs and prices rise faster than those abroad, eroding price competitiveness over time even if the exchange rate itself does not move, since foreign buyers face a steadily rising price for UK goods relative to alternatives from lower-inflation countries.',
+        'The first factor is relative productivity. Competitiveness depends on unit labour cost, which is the wage bill divided by output, not on the wage rate on its own. If UK workers produce more output per hour than workers in a competitor country, unit labour costs can stay lower even at similar wage rates, so UK goods remain price-competitive with no change in the exchange rate at all. This is why a country can pay high wages and still compete: Germany sustains some of the highest manufacturing wages in Europe while remaining a major exporter, because output per hour is high enough to keep unit costs down. The UK’s position is the reverse case, with output per hour persistently below the French and German level, which raises unit costs for any given wage.',
+        'The size of this effect depends on how labour-intensive the industry is. In a highly automated industry where labour is a small share of total cost, even a large productivity gap moves unit costs only slightly, so energy prices or capital costs may matter more to competitiveness than productivity does.',
+      ],
+      [
+        'The second factor is the relative rate of inflation. If UK inflation runs persistently above that of its trading partners, domestic costs and prices rise faster than those abroad, so foreign buyers face a steadily rising price for UK goods against alternatives from lower-inflation countries, and competitiveness erodes even with a completely fixed exchange rate. Members of the eurozone show this most clearly, because they have no exchange rate to adjust against each other at all: in the decade after the euro was introduced, prices and wages in Greece, Portugal and Italy rose considerably faster than in Germany, and those economies lost competitiveness against Germany purely through the inflation differential.',
+        'This matters more for price-sensitive goods than for differentiated ones. Where a product competes on quality, design, reliability or brand rather than price, as much of the UK’s pharmaceutical, aerospace and financial services exports do, demand is less price-elastic and a period of higher relative inflation does less damage to export volumes than the price figures alone would suggest.',
       ],
     ],
     null,
     [
-      'Definition of international competitiveness',
+      'Definition of international competitiveness, and of unit labour cost',
       'Relative productivity affecting unit labour costs independently of the exchange rate',
-      'Relative inflation rates eroding price competitiveness over time',
-      'Other acceptable factors: non-price competitiveness (quality, design, reliability, branding), infrastructure',
+      'Relative inflation rates eroding price competitiveness over time, clearest within a currency union',
+      'Other acceptable factors: non-price competitiveness (quality, design, reliability, branding), infrastructure, regulation',
     ],
     [
-      'These factors interact with, but are distinct from, the exchange rate',
+      'The productivity effect depends on how labour-intensive the industry is',
+      'The inflation effect depends on how price-elastic demand for the exports is',
+      'Both factors interact with, but are distinct from, the exchange rate',
     ],
   ),
 
