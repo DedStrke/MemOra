@@ -215,7 +215,7 @@ export const ECON_ESSAY_BANK = [
   q('Q027', 'A-Level', ...P1, '3.5', 'Labour market', 'B', 10,
     'Explain how an increase in the National Minimum Wage might affect the level of employment in a labour market characterised by monopsony power.'),
   q('Q028', 'A-Level', ...P1, '3.5', 'Labour market', 'C', 25,
-    'Evaluate the view that trade unions no longer have a significant impact on wage determination in the UK labour market.'),
+    'Discuss the extent to which geographical and occupational immobility of labour is the most significant cause of unemployment in the UK.'),
   q('Q029', 'A-Level', ...P1, '3.6', 'Government intervention in business and labour markets', 'B', 8,
     'Explain one way in which competition policy can be used to prevent firms from abusing a dominant position in a market.'),
   q('Q030', 'A-Level', ...P1, '3.6', 'Government intervention in business and labour markets', 'C', 25,

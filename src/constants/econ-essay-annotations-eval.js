@@ -221,12 +221,6 @@ export const ECON_ESSAY_ANNOTATIONS_EVAL = {
       'Employment falls below Q₁ - the opposite result to the monopsony diagram, which is why the level of the wage matters',
     ],
   },
-  Q028: {
-    'labour-market': [
-      'The National Living Wage is the minimum wage line above W₁',
-      'It sets the floor for millions of workers unions never reached - the statutory floor doing what collective bargaining used to',
-    ],
-  },
   Q029: {
     'natural-monopoly': [
       'Where AC still falls where it meets D, dominance cannot be broken up',

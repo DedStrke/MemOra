@@ -112,7 +112,7 @@ export const ECON_ESSAY_BANK_2 = [
     'Evaluate the extent to which perfect competition is likely to lead to a better outcome for consumers than a market structure such as monopoly.'),
 
   q('Q091', 'A-Level', ...P1, '3.4', 'Oligopoly', 'B', 12,
-    'Using a kinked demand curve diagram, explain why prices in an oligopolistic market might be relatively stable, even when the costs of production change.'),
+    'Using game theory, explain why prices in an oligopolistic market might stay relatively stable, even without an explicit agreement between firms.'),
   q('Q092', 'A-Level', ...P1, '3.4', 'Oligopoly', 'C', 25,
     'Discuss the extent to which firms operating in an oligopoly are more likely to compete on price than through non-price competition.'),
 
@@ -125,6 +125,14 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain two characteristics of a highly contestable market.'),
   q('Q096', 'A-Level', ...P1, '3.4', 'Contestability', 'C', 25,
     'Discuss the extent to which increasing the contestability of a market is likely to lead to lower prices for consumers, even if the number of firms in the market does not change.'),
+  q('Q113', 'A-Level', ...P1, '3.4', 'Monopoly', 'B', 10,
+    'Explain how barriers to entry allow a profit-maximising monopolist to earn supernormal profit even in the long run.'),
+  q('Q114', 'A-Level', ...P1, '3.4', 'Monopoly', 'C', 25,
+    'Discuss the extent to which a monopoly is harmful to consumers.'),
+  q('Q115', 'A-Level', ...P1, '3.4', 'Monopolistic Competition', 'B', 8,
+    'Explain two characteristics of a market operating under monopolistic competition.'),
+  q('Q116', 'A-Level', ...P1, '3.4', 'Monopolistic Competition', 'C', 25,
+    'Evaluate the extent to which firms in a monopolistically competitive market are likely to achieve economic efficiency in the long run.'),
 
   /* ------------------------------------------------------- THEME 4 */
   q('Q097', 'A-Level', ...P2, '4.1', 'Globalisation', 'B', 10,

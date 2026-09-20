@@ -544,7 +544,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
   ),
 
   Q090: A(
-    [['perfect-competition', 'Side by side, a perfectly competitive firm’s long-run equilibrium (P = MC = minimum AC, zero economic profit, output Qpc) and a monopolist’s profit-maximising equilibrium (MC = MR, price above MC, output Qm restricted below Qpc, and a welfare loss triangle between the two).']],
+    [['monopoly', 'One combined diagram with a shared MC curve: the competitive/allocatively-efficient outcome where demand meets MC (labelled Qc), and the monopolist’s profit-maximising outcome where MC = MR (labelled Qm, priced off AR above MC), with the deadweight welfare loss triangle shaded between Qm and Qc. This is the standard way Edexcel answers compare the two structures - one diagram, not two separate ones.']],
     'Perfect competition and monopoly sit at opposite ends of the spectrum of market structures, and comparing their outcomes for consumers requires weighing price, output, static efficiency and the incentive to innovate against one another rather than assuming one is unambiguously better.',
     [
       [
@@ -578,62 +578,62 @@ export const ECON_ESSAY_ANSWERS_3 = {
 
   /* -------------------------------------------------------------- Oligopoly */
   Q091: A(
-    [['kinked-demand', 'A kinked demand curve at the current price: demand relatively elastic above the kink (rivals do not follow a price rise) and relatively inelastic below it (rivals match a price cut). Show the resulting discontinuity (vertical gap) in the marginal revenue curve, and mark a range of marginal cost positions that all still intersect within that gap at the same price and output.']],
-    'An oligopoly is a market dominated by a small number of large, interdependent firms, where each firm’s pricing decision has to account for how rivals are likely to react. The kinked demand curve model explains why prices in such a market can stay stable even when costs change.',
+    [['game-theory', 'The prisoner’s dilemma payoff matrix for two firms choosing to collude or cheat on price. Show that mutual cheating is the dominant-strategy outcome for a single interaction, and use it to explain why the collusive outcome, though better for both, is hard to sustain without repeated interaction.']],
+    'An oligopoly is a market dominated by a small number of large, interdependent firms, where each firm’s pricing decision has to account for how rivals are likely to react. Game theory - specifically the prisoner’s dilemma - is the tool economists use to model this interdependence and to explain why prices can still stay relatively stable even without any explicit agreement between firms.',
     [
       [
-        'The model assumes that if a firm in an oligopoly raises its price above the current level, rivals will not follow, hoping to win over its customers by keeping their own price unchanged - this makes demand relatively elastic above the current price, since the firm would lose a large amount of custom to competitors by raising price alone.',
-        'If the same firm cuts its price below the current level, the model assumes rivals will match the cut to avoid losing market share, so demand is relatively inelastic below the current price, since a price cut gains the firm very little extra quantity once rivals respond by cutting their own prices too.',
+        'In a payoff matrix where two firms can either collude (both hold a high price) or cheat (undercut the agreed price), colluding gives both firms a good, shared payoff, but each firm can do even better by secretly cheating while the other holds the high price, capturing extra market share. Because both firms reason this way at once, and neither can be sure the other will not cheat, cheating is each firm’s DOMINANT strategy regardless of what the rival chooses - both end up cheating, landing on an outcome that is worse for both of them than if they had simply colluded.',
+        'This is the defining feature of oligopoly: the FIRM cannot choose its best outcome in isolation, because the best move depends entirely on what the rival is expected to do. This mutual dependence, not a mechanical rule about demand curves, is what economists mean by interdependence in oligopoly.',
       ],
       [
-        'This asymmetry creates a kink in the demand curve at the current price, and because marginal revenue must fall sharply where demand elasticity changes this abruptly, there is a vertical discontinuity - a gap - in the marginal revenue curve directly below the kink. As long as a firm’s marginal cost curve passes through anywhere within that gap, the profit-maximising price and output (where MC = MR) stay exactly the same, even if marginal cost rises or falls by a moderate amount.',
-        'This is why oligopoly prices are often observed to be "sticky", or unusually stable, compared with prices in more competitive markets: a firm has little incentive to change its price in response to a cost change, because it expects any price change to be met asymmetrically by rivals in a way that would make it worse off either way.',
+        'In a single, one-off interaction, the dominant-strategy logic above means collusion should always break down. But real oligopolists interact repeatedly, period after period, and this changes the incentives: if Firm A cheats this period, Firm B can retaliate by cutting its own price next period, triggering a damaging price war that costs both firms for many periods afterwards. The credible threat of this retaliation can make sustaining a stable, higher price - tacit collusion, with no explicit illegal agreement - a rational strategy after all, which is a genuinely different, and better-supported, explanation for observed price stability in oligopoly than any single-period model can offer.',
+        'This discipline depends on firms being able to observe a rival’s pricing quickly and reliably: in transparent markets (identical, widely-advertised prices, as at the petrol pump) cheating is spotted and punished almost immediately, which sustains the stable outcome; in markets with opaque or individually-negotiated pricing, cheating is harder to detect, so the threat of retaliation is weaker and the discipline is correspondingly less reliable.',
       ],
     ],
     null,
     [
       'Definition of oligopoly and interdependence between firms',
-      'Kinked demand curve: elastic above the current price (rivals do not follow a rise), inelastic below it (rivals match a cut)',
-      'Diagram showing the kink and the resulting discontinuity in the marginal revenue curve',
-      'Explanation of why a range of marginal cost positions all give the same profit-maximising price',
-      'Conclusion: this explains observed price rigidity ("stickiness") in oligopolistic markets',
+      'The prisoner’s dilemma payoff matrix: colluding gives both firms a good outcome, but cheating is individually tempting',
+      'Cheating is the dominant strategy in a single interaction, so both firms cheat and both are worse off than if they had colluded',
+      'Repeated interaction changes this: the threat of retaliation (a price war) can sustain tacit collusion over many periods',
+      'Diagram: the payoff matrix showing the collusive outcome and the worse, mutual-cheat dominant-strategy outcome',
     ],
     [
-      'The model assumes a specific, asymmetric reaction from rivals that may not always hold in practice',
-      'Does not explain how the current price was originally arrived at, only why it tends to persist',
+      'The dominant-strategy result applies most cleanly to a single, one-off interaction',
+      'Sustaining tacit collusion in practice depends on how easily and quickly a rival’s cheating can be observed and punished',
     ],
   ),
 
   Q092: A(
-    [['kinked-demand', 'A kinked demand curve showing why a price change is unattractive to an oligopolist (asymmetric rival reactions above and below the current price), set alongside the observation that firms instead compete through advertising, branding and product differentiation without moving the price at all.']],
-    'Firms in an oligopoly are interdependent: each must consider how its rivals will react before changing its price or output. This interdependence shapes a genuine choice between competing on price and competing through non-price methods such as advertising, branding, loyalty schemes and product development.',
+    [['game-theory', 'The prisoner’s dilemma payoff matrix, used to show why an oligopolist’s incentive to secretly undercut a rival’s price makes open price competition mutually destructive and cartels inherently unstable - set alongside the alternative of non-price competition, which does not carry the same risk of an immediate, matching response.']],
+    'Firms in an oligopoly are interdependent: each must consider how its rivals will react before changing its price or output. This interdependence, modelled through game theory, shapes a genuine choice between competing on price, coordinating to avoid price competition altogether, and competing through non-price methods such as advertising, branding, loyalty schemes and product development.',
     [
       [
-        'Price competition in an oligopoly, once one firm cuts its price, is very likely to be matched almost immediately by rivals defending their market share, as the kinked demand curve model predicts. Because the resulting price war raises quantity sold by only a little for any single firm - since rivals matched the cut - while lowering the margin earned on every unit for all firms simultaneously, a price cut can leave every firm in the industry worse off with little change in relative market share, which is exactly the outcome oligopolists have a strong incentive to avoid.',
-        'This risk is not merely theoretical: real-world price wars, such as periodic fuel or supermarket price-cutting episodes, tend to be short-lived precisely because all firms involved suffer margin erosion, after which prices often return towards their previous level once firms recognise that competing on price achieves little beyond bidding down everyone’s profit.',
+        'Price competition in an oligopoly carries the same risk the prisoner’s dilemma identifies: a firm that cuts its price can capture a large amount of custom only if rivals do not respond, but because every rival faces the identical temptation and can usually match a cut almost immediately, in practice a price cut is met, and a price war follows in which every firm earns less on every unit sold with little lasting gain in market share. Real-world price wars - periodic fuel or supermarket price-cutting episodes - tend to be short-lived precisely because all firms suffer this margin erosion, after which prices drift back up once firms recognise that competing on price alone achieves little beyond bidding down everyone’s profit.',
+        'Because both cheating on price and matching a cut are individually rational moves within this game, sustained price competition tends to persist only where firms genuinely cannot coordinate to avoid it - a market with many firms and low concentration - or where one firm has a durable cost advantage letting it profitably hold a lower price that rivals cannot match without a loss.',
       ],
       [
-        'Non-price competition - advertising, branding, loyalty schemes, product innovation and quality improvements - lets a firm try to win customers and build market share without directly threatening industry-wide pricing or profitability, since a rival cannot "match" a rebranding or a new product feature in the same instantaneous, ruinous way it can match a price cut. This is why oligopolistic markets - supermarkets, mobile networks, airlines - are so often characterised by extensive advertising and loyalty programmes rather than sustained price competition.',
-        'Non-price competition still carries a cost - advertising and research and development both consume resources that could otherwise have funded lower prices - and it can be a slower, less certain way of gaining market share than a price cut would be, since building brand loyalty or developing a genuinely differentiated product takes time and is not guaranteed to succeed.',
+        'The alternative to destructive price competition is coordination: firms may collude overtly, through an illegal cartel agreement to fix prices or restrict output, or tacitly, through price leadership, where a dominant firm sets the price and others simply follow without any direct communication, avoiding the legal risk an explicit agreement carries. Either route lets firms reach something closer to the jointly better, collusive outcome the payoff matrix identifies, rather than the mutually damaging outcome of both undercutting each other.',
+        'Collusion of either kind is inherently fragile for exactly the reason the prisoner’s dilemma predicts: each member still has an individual incentive to secretly cheat by undercutting the agreed price to capture extra market share, so a cartel tends to break down over time unless deviation can be detected and punished quickly - which is also why competition authorities such as the UK’s Competition and Markets Authority actively investigate and fine firms for cartel behaviour, since without ongoing active reinforcement the arrangement is naturally unstable.',
       ],
       [
-        'Whether firms in a specific oligopoly are more likely to compete on price or through non-price methods depends on how easily the product can be differentiated and on how symmetric and well-informed rivals are about each other’s costs and intentions. Where the product is largely homogeneous (petrol, some raw materials) there is less scope for non-price competition, and firms may compete more directly on price, sometimes tacitly colluding on price instead to avoid mutually destructive price wars.',
-        'Where the product can be meaningfully differentiated (mobile phones, breakfast cereals, airlines with different route networks and service levels) non-price competition is far more attractive precisely because it avoids the near-certain retaliation a price cut invites, which is why these markets tend to show extensive advertising and product differentiation rather than sustained price wars.',
+        'Non-price competition - advertising, branding, loyalty schemes, product innovation and quality improvements - offers a third route that avoids both the instability of collusion and the mutual damage of a price war, since a rival cannot "match" a rebranding or a new product feature in the same instantaneous way it can match a price cut. This is why oligopolistic markets - supermarkets, mobile networks, airlines - are so often characterised by extensive advertising and loyalty programmes rather than sustained price competition or visible collusion.',
+        'Non-price competition still carries a cost - advertising and research and development both consume resources that could otherwise have funded lower prices - and it is a slower, less certain way of gaining market share than a price cut would be, since building brand loyalty or developing a genuinely differentiated product takes time and is not guaranteed to succeed.',
       ],
     ],
-    'Firms in an oligopoly are, in general, more likely to compete through non-price methods than through price, precisely because the interdependence the kinked demand curve model captures makes price competition mutually destructive and easily matched, while non-price competition offers a way to build market share without inviting the same immediate retaliation. The extent to which this holds depends on how differentiable the product actually is: for near-homogeneous goods the case for price competition (or tacit collusion to avoid it) is stronger, while for differentiable goods non-price competition dominates, which matches the pattern observed across most real oligopolistic markets.',
+    'Firms in an oligopoly are more likely to avoid open price competition than to rely on it, precisely because the game-theoretic incentive to undercut a rival makes sustained price competition mutually destructive and any collusive alternative to it fragile without active reinforcement. Whether the result is a fragile cartel, stable tacit price leadership, or a shift to non-price competition depends on how easily the product can be differentiated and how easily rivals can observe and punish deviation: near-homogeneous goods (fuel, some raw materials) see the sharpest price wars and the strongest pressure towards tacit collusion or price leadership, while differentiable goods (mobile phones, breakfast cereals) see firms shift the competition towards branding and product development instead, which matches the pattern observed across most real oligopolistic markets.',
     [
-      'Interdependence between oligopolists and the kinked demand curve model',
-      'Price competition risks being matched, eroding margins for all firms with little gain in market share',
-      'Non-price competition (advertising, branding, loyalty, product development) avoids direct retaliation',
+      'Interdependence and the prisoner’s dilemma: price competition risks being matched, eroding margins for all firms',
+      'Overt collusion (cartels) and tacit collusion (price leadership) as coordination routes to avoid a price war',
+      'Collusion is inherently unstable - each member retains an individual incentive to cheat - unless deviation is detected and punished quickly',
+      'Non-price competition (advertising, branding, loyalty, product development) as a third route avoiding both risks',
       'Cost of non-price competition and the time it takes to build brand loyalty or differentiation',
-      'Homogeneous versus differentiated products affect which form of competition dominates',
     ],
     [
       'Depends on how easily the specific product can be differentiated',
-      'Depends on the symmetry of information and cost structures between rivals',
-      'Tacit collusion is an alternative to price competition for near-homogeneous goods',
-      'Judgement: non-price competition dominates for differentiable goods; price competition or tacit collusion more likely for homogeneous ones',
+      'Depends on how easily rivals can observe and punish a deviation from an agreed or expected price',
+      'Cartels are actively investigated and fined by competition authorities, adding a further real-world constraint on collusion',
+      'Judgement: non-price competition or tacit coordination dominate for most real oligopolies; open price competition is rare and short-lived',
     ],
   ),
 
@@ -753,6 +753,128 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Depends on whether the credible threat of entry is genuinely believed by potential entrants',
       'Ineffective where the true barrier is a natural, scale-based cost advantage rather than a removable regulatory one',
       'Judgement: contestability usually lowers prices, but only where it addresses the barrier that was actually binding',
+    ],
+  ),
+
+  /* --------------------------------------------------------- Monopoly */
+  Q113: A(
+    [['monopoly', 'A profit-maximising monopolist at MC = MR, priced off AR at Pm and output Qm - above cost, below the competitive output Qc - with the supernormal profit rectangle shaded. Use it to show the profit a barrier to entry is protecting.']],
+    'A monopoly is a market dominated by a single firm with significant market power. Unlike a firm in perfect competition, a monopolist protected by barriers to entry can go on earning supernormal profit in the long run rather than having it competed away.',
+    [
+      [
+        'A profit-maximising monopolist produces where MC = MR, at Qm, and charges the price read off its AR curve at that output, Pm - above average cost, so it earns the shaded supernormal profit rectangle. In a competitive market this profit would attract new entrants, whose extra supply would drive the price down until only normal profit remained, exactly as it does under perfect competition. A monopolist avoids this because barriers to entry - a patent or licence, control of an essential input, or economies of scale large enough that only one firm can operate efficiently - stop rival firms entering to compete the profit away.',
+        'How long the profit persists depends on how durable the specific barrier actually is: a patent expires after a fixed term (twenty years for a UK or EU patent), after which the profit is competed away once rivals can legally enter and copy the product, whereas a barrier built on genuine economies of scale - a natural monopoly - can persist indefinitely, for as long as the minimum efficient scale of production remains large relative to the size of the market.',
+      ],
+      [
+        'A different route to the same outcome is where the barrier is not legal or cost-based but built on consumer behaviour: control of a scarce, essential input, or sufficiently strong brand loyalty, can keep a market effectively closed to new entrants even where sunk costs are genuinely low and entry would otherwise be easy, because a new entrant cannot simply match an established brand’s reputation or an incumbent’s exclusive access to the input it depends on.',
+        'A barrier built purely on brand loyalty is arguably the least durable of all: it depends on the incumbent continuing to deserve that loyalty, and can erode if quality or service declines relative to a genuinely differentiated new entrant, or if a disruptive new technology changes what consumers value, in a way a patent’s fixed legal term or a natural monopoly’s cost structure does not.',
+      ],
+    ],
+    null,
+    [
+      'Definition of monopoly and of a barrier to entry',
+      'Profit-maximising output where MC = MR, priced off AR above average cost - the supernormal profit rectangle',
+      'Diagram showing Qm/Pm and the supernormal profit that a barrier to entry protects',
+      'Barriers protecting the profit: patents/licences, control of an essential input, economies of scale (natural monopoly)',
+      'A second route: brand loyalty or control of a scarce input, distinct from a legal or cost-based barrier',
+    ],
+    [
+      'Persistence depends on the durability of the specific barrier - a patent expires; a natural monopoly’s cost advantage need not',
+      'A barrier built on brand loyalty alone is the least durable, since it depends on the incumbent continuing to deserve it',
+    ],
+  ),
+
+  Q114: A(
+    [['monopoly', 'One diagram with a shared MC curve: the allocatively efficient, competitive outcome where demand meets MC (Qc), and the monopolist’s profit-maximising outcome where MC = MR (Qm, priced off AR above MC), with the deadweight welfare loss shaded between Qm and Qc, and the supernormal profit rectangle shaded above cost at Qm.']],
+    'A monopoly is a market dominated by a single firm with significant market power, protected by barriers to entry. Whether this harms consumers depends on weighing the static loss from restricted output and higher prices against any efficiency the same market power might also make possible.',
+    [
+      [
+        'A profit-maximising monopolist restricts output to Qm, below the allocatively efficient competitive output Qc, and charges Pm, above marginal cost. Consumers therefore pay more and buy less than a competitive market serving the same demand would deliver, and the shaded deadweight welfare loss between Qm and Qc represents genuine trades - units a competitive market would have supplied, at a price equal to their true cost - that the monopolist deliberately withholds to protect its price.',
+        'The size of this harm depends on how price-inelastic demand for the good is: the more essential the good and the fewer the substitutes available - a life-saving drug still under patent, or a monopoly water supplier - the larger the harm to consumer welfare from the same proportional restriction in output, since consumers have nowhere else to turn and must simply pay the higher price or go without.',
+      ],
+      [
+        'Beyond the static price and output effect, a firm protected from competitive pressure has weaker pressure to keep its own costs down or maintain quality and service standards, a form of organisational slack known as X-inefficiency that a firm facing constant competitive discipline could not as easily afford. This compounds the harm to consumers beyond what the diagram alone shows, since costs - and therefore, potentially, prices - are higher than they need to be even before the monopoly mark-up is added.',
+        'This depends on whether the monopoly faces any competitive discipline at all: a monopoly that remains genuinely contestable, with low sunk costs and a credible threat of entry, still has an incentive to keep its costs down even without an actual rival present, which limits how much X-inefficiency can develop; an uncontested monopoly, protected by high barriers on every side, faces much weaker such discipline.',
+      ],
+      [
+        'A monopoly is not always harmful, however. Significant economies of scale - a natural monopoly - can let a single large firm produce at a genuinely lower average cost than many small, competing firms could sustain, and part of this saving can be passed on to consumers as a price lower than a fragmented market would achieve. Sustained supernormal profit can also fund research and development that a competitive firm, earning only normal profit in the long run, could not afford, potentially delivering dynamic efficiency - better products and falling costs over time - that benefits consumers even where the static picture looks worse.',
+        'Whether this offsets the static harm depends on the specific industry and on regulation: the case is strongest where economies of scale are large relative to the market and continuous innovation genuinely matters, such as pharmaceuticals or network infrastructure, and weakest where the good is simple and homogeneous and could easily be supplied competitively. Effective regulation - price capping such as an RPI-X formula, a windfall tax on excess profit, or ongoing competition-authority scrutiny - can also capture much of the potential harm without needing to break the monopoly up at all.',
+      ],
+    ],
+    'A monopoly is often harmful to consumers in the static sense the diagram shows: higher prices, lower output, a real deadweight welfare loss, and the risk of X-inefficiency on top, with the harm largest for essential goods with few substitutes. It is not always harmful: where genuine economies of scale or the funding needs of research and development make a single large firm more efficient than fragmented competition would be, and where regulation constrains the worst pricing or quality abuses, consumers can be no worse off, or even better off, than under a costlier but more fragmented alternative. The right test is case by case - the scale of the potential efficiency gain and the strength of the regulation applied - rather than a blanket rule that monopoly always harms consumers.',
+    [
+      'Definition of monopoly and the profit-maximising equilibrium (MC = MR, price above cost)',
+      'Diagram showing Qm/Pm against the competitive benchmark Qc, and the deadweight welfare loss between them',
+      'Static harm: higher prices, restricted output, deadweight loss - larger where demand is more inelastic',
+      'X-inefficiency: weaker cost discipline without competitive pressure, though contestability can limit this',
+      'Counter-case: economies of scale (natural monopoly) and profit-funded dynamic efficiency/innovation',
+      'Regulation (price capping, windfall taxes, competition-authority scrutiny) as a way of capturing the harm without a break-up',
+    ],
+    [
+      'Harm from restricted output/higher prices depends on how price-inelastic demand for the good is',
+      'X-inefficiency depends on whether the monopoly remains at least contestable',
+      'The efficiency counter-case is strongest where economies of scale and innovation genuinely matter',
+      'Judgement: harmful case by case, depending on the scale of potential efficiency gains and the strength of regulation, not automatically',
+    ],
+  ),
+
+  /* ----------------------------------------------- Monopolistic Competition */
+  Q115: A(
+    [['monopolistic-competition', 'A monopolistically competitive firm’s long-run equilibrium: AR = D tangent to AC, but on the falling section of the AC curve rather than at its minimum - normal profit only, and the gap between this output and min AC labelled as excess capacity.']],
+    'A monopolistically competitive market has many firms selling differentiated products, with free entry and exit, sitting between perfect competition and monopoly on the spectrum of market structures.',
+    [
+      [
+        'The first characteristic is product differentiation: each firm’s product is a close, but not perfect, substitute for its rivals’ - through branding, features, quality or location - which gives the firm a downward-sloping demand curve (AR = D) rather than perfect competition’s horizontal one, since it can raise its price a little without losing every customer, some of whom prefer its particular version of the product.',
+        'How much pricing power this actually gives a firm varies hugely by market: a hairdresser or a local café can differentiate significantly through location and personal service, while a market for a near-identical commodity leaves little genuine room for differentiation regardless of how much a firm spends on branding.',
+      ],
+      [
+        'The second characteristic is free entry and exit: because there are no significant barriers, any supernormal profit earned by existing firms in the short run attracts new entrants offering their own differentiated variant, which shifts demand for each existing firm’s product to the left until, in the long run, price settles at average cost and only normal profit remains - the same zero-economic-profit outcome as perfect competition, but reached while the firm still faces a downward-sloping demand curve rather than a horizontal one.',
+        'Because this tangency between AR and AC falls on the downward-sloping part of the AC curve rather than at its minimum, the firm produces at a smaller scale than would minimise its own costs - a form of productive inefficiency known as excess capacity that a genuinely homogeneous, perfectly competitive market would not show.',
+      ],
+    ],
+    null,
+    [
+      'Definition of monopolistic competition: many firms, differentiated products, free entry and exit',
+      'Product differentiation gives each firm a downward-sloping demand curve, unlike perfect competition',
+      'Free entry drives economic profit to zero in the long run, as in perfect competition',
+      'Diagram showing the long-run tangency of AR and AC on the falling section of AC - excess capacity',
+    ],
+    [
+      'The degree of differentiation, and therefore pricing power, varies hugely between markets',
+      'The tangency falling short of minimum AC is a genuine, though usually modest, productive inefficiency (excess capacity)',
+    ],
+  ),
+
+  Q116: A(
+    [['monopolistic-competition', 'The long-run equilibrium: AR = D tangent to AC on its falling section (excess capacity, productive inefficiency) and the profit-maximising output where MC = MR sitting to the left of where AR would meet MC (price above marginal cost, allocative inefficiency) - both inefficiencies on one diagram.']],
+    'Firms in a monopolistically competitive market reach a long-run equilibrium through free entry and exit, but whether that equilibrium is economically efficient depends on comparing it against the productive and allocative efficiency benchmarks a perfectly competitive market would achieve.',
+    [
+      [
+        'In the long run, free entry drives economic profit to zero, so AR becomes tangent to AC - but because AR is downward-sloping rather than horizontal, this tangency occurs on the falling section of the AC curve, to the left of its minimum point. The firm therefore produces less than the output that would minimise its average cost: excess capacity, and a genuine form of productive inefficiency that would not arise in perfect competition, where free entry drives the tangency to exactly the minimum of AC.',
+        'How large this inefficiency is depends on how steeply downward-sloping the firm’s own demand curve actually is: the more differentiated the product, the steeper and less elastic its demand, and the further the tangency point sits from AC’s minimum - a market with only mild differentiation ends up looking almost as productively efficient as perfect competition.',
+      ],
+      [
+        'The same equilibrium is also allocatively inefficient: because AR is downward-sloping and MR sits below it, the profit-maximising output where MC = MR occurs at a lower quantity than where AR would meet MC, so price ends up above marginal cost at equilibrium - resources are under-allocated to this good relative to what consumers would be willing to pay for one more unit at its true cost of production.',
+        'This allocative inefficiency is nonetheless smaller than under monopoly: free entry means the firm earns only normal profit in the long run rather than a monopolist’s persistent supernormal profit, and the presence of many close substitutes keeps the firm’s own demand relatively elastic, since it cannot push price far above marginal cost without losing significant custom to a rival’s close substitute.',
+      ],
+      [
+        'This technical inefficiency has to be weighed against the genuine benefit of product variety that a more narrowly efficient, homogeneous, perfectly competitive market would not provide: real markets such as restaurants, hairdressers and high-street retail thrive on exactly the differentiation that causes the excess capacity and allocative gap, and consumers evidently value the resulting choice enough to sustain these industries rather than all switching to a single, cheaper, undifferentiated alternative.',
+        'Whether this trade-off is worthwhile is ultimately a normative judgement about how much consumers value variety relative to the efficiency loss it causes: for a good where consumers place little value on differentiation, the inefficiency looks like pure waste, while for a good where variety is itself part of what is being bought, it is better understood as the real cost of providing something consumers genuinely want than as a market failure needing correction.',
+      ],
+    ],
+    'Firms in a monopolistically competitive market are not productively or allocatively efficient in the long run in the strict, textbook sense: free entry only drives profit to normal, not price down to minimum average cost or marginal cost, leaving both excess capacity and a price-above-marginal-cost gap. The extent of this inefficiency is usually modest, since a large number of close substitutes keeps demand relatively elastic and limits how far any one firm’s price can rise above its costs, and it has to be weighed against the genuine value consumers place on product variety, which a more narrowly efficient homogeneous market could not supply. The technical inefficiency is real, but it may be a reasonable price for genuine consumer choice rather than a market failure calling for correction.',
+    [
+      'Long-run equilibrium: free entry drives economic profit to zero (AR tangent to AC)',
+      'Productive inefficiency: the tangency falls short of minimum AC because AR is downward-sloping - excess capacity',
+      'Allocative inefficiency: profit-maximising output (MC = MR) leaves price above marginal cost',
+      'Diagram showing both the productive and allocative inefficiency on one set of axes',
+      'Comparison with monopoly: the allocative gap is smaller here, since entry limits profit and rivals keep demand elastic',
+    ],
+    [
+      'Size of the productive inefficiency depends on how steeply downward-sloping the firm’s own demand curve is',
+      'Size of the allocative inefficiency is limited by free entry and the presence of close substitutes',
+      'The inefficiency has to be weighed against the genuine consumer value of product variety',
+      'Judgement: a real but usually modest technical inefficiency, arguably a reasonable trade-off for consumer choice',
     ],
   ),
 }

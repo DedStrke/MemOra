@@ -269,17 +269,6 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'Employment RISES with the wage - the reverse of the competitive case',
     ],
   },
-  Q028: {
-    'trade-union': [
-      'The union wage sits above the competitive W₁',
-      'Quantity demanded falls to Qd, quantity supplied rises to Qs - the gap is unemployment',
-      'Those still employed (Qd) earn more; the trade-off is smaller when D(L) = MRP is inelastic',
-    ],
-    monopsony: [
-      'Where the employer has power, the union wage floor between W₁ and the competitive wage raises BOTH pay and employment',
-      'This is why unions still matter in the NHS, education and rail even as they fade in the private sector',
-    ],
-  },
   Q029: {
     monopoly: [
       'Abuse of dominance looks like this: output restricted to Qm, price raised to Pm above cost',
@@ -706,21 +695,23 @@ export const ECON_ESSAY_ANNOTATIONS = {
     ],
   },
   Q090: {
-    'perfect-competition': [
-      'This is the competitive benchmark: P = MC = min AC at Q*, with only normal profit',
-      'A monopolist restricts output below Q* and prices above MC - the gap between the two outcomes is the static efficiency loss competition removes',
+    monopoly: [
+      'Qc is where AR = D meets MC - the allocatively efficient, competitive benchmark output',
+      'The monopolist instead produces where MC = MR, at the smaller output Qm, pricing at Pm off the AR curve - well above MC',
+      'The shaded deadweight loss sits between Qm and Qc: exactly the output a competitive market would supply, at a price equal to its true cost, that the monopolist deliberately withholds',
     ],
   },
   Q091: {
-    'kinked-demand': [
-      'AR = D is elastic above P₁ (rivals do not follow a rise) and inelastic below it (rivals match a cut) - the kink sits exactly at P₁, Q₁',
-      'MR has a vertical gap directly under the kink - "MC can shift within the gap" without changing the profit-maximising price at all',
+    'game-theory': [
+      'If both collude (top-left), each scores 5 - better for both than any other cell in the matrix',
+      'But either firm can score 8 by cheating while the other still colludes - the temptation that undermines the collusive outcome',
+      'Since both firms reason this way at once, both cheat: the shaded (2, 2) cell is the dominant-strategy outcome in a single interaction - worse for both than colluding, but individually rational',
     ],
   },
   Q092: {
-    'kinked-demand': [
-      'A price CUT moves the firm down the inelastic part of AR = D below P₁ - little extra quantity, once rivals match it',
-      'MR’s gap under the kink is exactly why moving price is unattractive - which is why firms compete elsewhere instead',
+    'game-theory': [
+      'The shaded (2, 2) cell - both cheat - is what a single price cut leads to once a rival matches it: worse for both firms than holding a stable price',
+      'This is exactly why firms look for a way out of this matrix altogether: collusion (still unstable, since cheating tempts each side) or non-price competition, which a rival cannot simply "match" the way it can match a price cut',
     ],
   },
   Q093: {
@@ -739,6 +730,31 @@ export const ECON_ESSAY_ANNOTATIONS = {
     'limit-pricing': [
       'The incumbent sets price at "limit price" - below profit-maximising, but still above its own AC (incumbent)',
       'This sits just under the entrant’s AC, so entering would be unprofitable - contestability disciplines price without a single new firm actually entering',
+    ],
+  },
+  Q113: {
+    monopoly: [
+      'Qm is where MC = MR; the price Pm is read off AR above it - the shaded supernormal profit is (Pm - AC) × Qm',
+      'Without a barrier, that profit would attract entrants exactly as it does under perfect competition - a barrier is what stops that process here',
+    ],
+  },
+  Q114: {
+    monopoly: [
+      'Qc is where AR = D meets MC - the competitive, allocatively efficient benchmark output',
+      'The monopolist instead produces the smaller Qm, pricing at Pm off AR - well above MC',
+      'The shaded deadweight loss between Qm and Qc is the harm: exactly the output a competitive market would supply, at a price equal to its true cost, that the monopolist withholds',
+    ],
+  },
+  Q115: {
+    'monopolistic-competition': [
+      'AR = D slopes down - unlike perfect competition’s horizontal line - because the product is differentiated',
+      'Free entry pushes AR down until it is tangent to AC at Q₁, P₁ - but that tangency sits on the FALLING part of AC, not at min AC',
+    ],
+  },
+  Q116: {
+    'monopolistic-competition': [
+      'The tangency of AR and AC at Q₁ sits short of min AC - that gap is excess capacity, the productive inefficiency',
+      'MC = MR, where the firm actually produces, sits to the left of where AR would meet MC - price above marginal cost is the allocative inefficiency',
     ],
   },
   Q099: {

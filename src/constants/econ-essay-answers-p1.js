@@ -682,46 +682,35 @@ export const ECON_ESSAY_ANSWERS_P1 = {
   ),
 
   Q028: A(
+    [],
+    'Geographical immobility of labour occurs where a worker cannot or will not move to where a job is available; occupational immobility occurs where a worker’s existing skills do not match what an available vacancy requires. Both are forms of market failure that leave unemployment and unfilled vacancies coexisting side by side - a mismatch between where and what the jobs are, not a simple shortage of jobs overall.',
     [
       [
-        'trade-union',
-        'A union wage above the competitive equilibrium in a competitive labour market: employment falls from Le to Lu and the excess supply of labour is the unemployment created. Then contrast with a monopsony, where a union can raise both wage and employment.',
+        'Geographical immobility arises because moving to a job in another region is costly and disruptive: house prices and rents in high-vacancy regions such as London and the South East are often far above those in high-unemployment regions, family and social ties make relocating personally costly, and imperfect information about vacancies elsewhere means a worker may not even know a suitable job exists in another area. The result is persistent REGIONAL unemployment even in periods when aggregate vacancies nationally are plentiful, since the workers and the jobs are simply not in the same place.',
+        'The scale of this effect depends on how large the regional cost-of-living and house-price gap actually is, and on how portable the job itself is: the growth of remote and hybrid working since the pandemic has let some workers take a job in a high-wage region without physically relocating at all, which weakens this cause of unemployment for roles that can be done remotely, though it does nothing for the many jobs - retail, care work, construction, manufacturing - that still require a physical presence.',
       ],
       [
-        'monopsony',
-        'The monopsony diagram with a union wage floor between the monopsony wage and the competitive wage, raising employment. Use it for the chain that argues unions still matter where employers have power.',
+        'Occupational immobility arises because skills built up in one industry frequently do not transfer directly to another: a worker made redundant from a declining industry, such as coal mining, steel or traditional retail, may lack the specific technical or digital skills that growing industries such as healthcare, logistics or green energy actually require, and retraining takes time, costs money, and is not always available at the moment a worker is made redundant. This structural mismatch between the skills the unemployed have and the skills vacancies need is a form of market failure, since neither the worker nor the employer necessarily has the incentive or the resources to fund the retraining on their own.',
+        'How large this effect is depends on how transferable a worker’s existing skills genuinely are and on how accessible and affordable retraining actually is: government-funded retraining schemes, apprenticeships and further-education bursaries can narrow the gap, but if such schemes are underfunded, slow to enrol people, or mismatched to the vacancies actually available locally, the skills mismatch persists regardless of how many training places exist on paper.',
+      ],
+      [
+        'Immobility is not the only, and is not always the largest, cause of unemployment. In a recession, a fall in aggregate demand can create demand-deficient (cyclical) unemployment across the whole economy simultaneously, regardless of how mobile labour is - a worker with perfectly transferable skills in a fully mobile national labour market can still be made redundant if there simply is not enough demand anywhere in the economy to employ them. Frictional unemployment (workers between jobs, searching for a suitable match) and real-wage unemployment (a wage floor set above the market-clearing wage) are further causes entirely unrelated to geographical or occupational mismatch.',
+        'Whether immobility is the MOST significant cause therefore depends heavily on the state of the economic cycle: in a deep recession, cyclical demand-deficient unemployment typically dwarfs the number of jobs lost to skills or location mismatch alone. In an economy closer to full employment, where cyclical unemployment has already been addressed, the residual unemployment that remains - the gap between recorded vacancies and recorded unemployment in different regions and sectors - is disproportionately explained by exactly this geographical and occupational immobility, since it is the component demand management alone cannot fix.',
       ],
     ],
-    'Trade unions are organisations of workers that bargain collectively with employers over pay and conditions. In a competitive labour market a union that pushes the wage above the equilibrium raises pay for those in work but reduces employment; in a monopsony it can raise both wage and employment. Union membership in the UK has roughly halved since its 1979 peak of over 13 million and is now concentrated in the public sector, so the question is whether unions still influence wage determination or whether market forces, legislation and the minimum wage have replaced them.',
+    'Geographical and occupational immobility is a genuine and persistent cause of UK unemployment, and it specifically explains why unemployment and unfilled vacancies can coexist even when the economy is not obviously in a downturn - a mismatch rather than an overall shortage of jobs. It is not always the MOST significant cause: in a period of weak aggregate demand, cyclical unemployment from a negative output gap typically outweighs it by far. The extent to which immobility dominates therefore depends on where the economy sits in the trade cycle - it is the structural, harder-to-fix residual that persists once demand-side unemployment has already been addressed, rather than the largest single cause at every point in the cycle.',
     [
-      [
-        'Union power over wages has fallen substantially. Membership has dropped to around six million and density to roughly a fifth of employees, with the private sector well below that. Legislation since the 1980s - ballots before strikes, the end of closed shops, limits on picketing, and more recent minimum-service rules - has raised the cost of industrial action. Structural change has done the rest: manufacturing and mining, where unions were strongest, have shrunk, while services, small firms, self-employment and the gig economy, where organising is hard, have grown. Wages for most private-sector workers are now set by individual negotiation, employer pay scales and the market, with no union involvement at all. On the competitive-market diagram the union wage floor has simply disappeared for most of the economy.',
-        'Decline is not disappearance. Collective agreements still cover a substantial share of employees, far more than the membership figure suggests, because agreements apply to whole workplaces. And the union wage premium - the gap between union and comparable non-union pay - remains positive, so where unions bargain they still raise wages. The fall in influence is concentrated in the private sector; it does not describe the public sector.',
-      ],
-      [
-        'In the public sector and in monopsonistic labour markets unions remain significant. The NHS, schools, rail, the civil service and local government are largely unionised, and the 2022-23 wave of strikes by nurses, junior doctors, teachers and rail workers produced pay awards well above what employers first offered. Where the employer is a monopsonist - the NHS is close to the only buyer of nurses’ labour - a union acts as a countervailing power, and on the monopsony diagram a negotiated wage floor between the monopsony wage and the competitive wage raises both pay and employment. Unions also influence wages indirectly, through pay review bodies, the campaign for the Living Wage and pressure on the government over the National Living Wage.',
-        'Public-sector pay is ultimately set by the Treasury, and strikes succeeded partly because of acute labour shortages that would have raised pay anyway. Unions’ leverage in 2022-23 was as much a symptom of a tight labour market as a cause of the settlements. Outside the public sector the monopsony argument applies to relatively few employers.',
-      ],
-      [
-        'Other determinants of wages now dominate. The National Living Wage, at over £12 an hour from 2025, sets a floor for around two million workers that unions never reached; skills, education and productivity determine relative pay across occupations; migration and demographics shift labour supply; and technology changes the demand for particular skills. Wage determination in the UK has moved from collective bargaining towards a mix of statutory minima, market forces and individual contracts. Even where unions bargain, they bargain within limits set by these forces, so their independent impact on the wage structure is smaller than in the past.',
-        'Unions affect these determinants as well as working within them: they lobby for the minimum wage, negotiate training and shape working conditions that affect labour supply. And the decline of collective bargaining is itself one explanation offered for the stagnation of real wages and the rise in inequality since the 1980s, which suggests that union influence on wages was significant when it was removed.',
-      ],
-    ],
-    'The view is largely correct for the private sector, where union membership, collective bargaining and strike activity have declined so far that wages are set by the market, employer policy and the statutory minimum rather than by unions. It is wrong for the public sector and for monopsonistic labour markets, where unions remain the main channel through which wages are negotiated and, as the 2022-23 strikes showed, can still shift settlements substantially. Unions no longer determine the overall wage structure of the UK economy, but “no significant impact” overstates the decline; their impact is now concentrated rather than absent.',
-    [
-      'Definition of a trade union and collective bargaining',
-      'Union wage above equilibrium in a competitive market: higher pay, lower employment, with a diagram',
-      'Union as countervailing power in a monopsony, with a diagram',
-      'Decline in membership, density and coverage; legislation and structural change',
-      'Continued influence in the public sector; the 2022-23 strikes',
-      'Other determinants of wages: minimum wage, skills, migration, technology',
+      'Definition of geographical and occupational immobility of labour',
+      'Geographical immobility: cost-of-living/house-price gaps between regions, family ties, imperfect information about vacancies',
+      'Occupational immobility: skills built in a declining industry not matching what growing industries require',
+      'Both cause structural unemployment: unemployment and unfilled vacancies coexisting, a mismatch rather than a shortage',
+      'Contrast with demand-deficient (cyclical), frictional and real-wage unemployment as causes unrelated to immobility',
     ],
     [
-      'Coverage exceeds membership; the union wage premium persists',
-      'Public-sector leverage partly reflects labour shortages',
-      'Monopsony argument applies to a limited number of employers',
-      'Unions influence the other determinants through lobbying',
-      'Judgement: declined in the private sector, still significant in the public sector',
+      'Remote/hybrid working can reduce geographical immobility for roles that do not require a physical presence',
+      'The effectiveness of retraining schemes determines how much occupational immobility narrows in practice',
+      'Depends on the state of the economic cycle: cyclical unemployment usually dominates in a recession',
+      'Judgement: immobility is the persistent structural residual, most significant once demand-side unemployment is addressed, not necessarily the largest cause at every point in the cycle',
     ],
   ),
 
