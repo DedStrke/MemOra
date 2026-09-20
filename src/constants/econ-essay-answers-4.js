@@ -111,7 +111,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
 
   Q080: A(
     [],
-    'A government typically holds several macroeconomic objectives simultaneously - economic growth, low unemployment, low and stable inflation, and a sustainable balance of payments among them - and achieving all of them at once is often difficult because the policy tools used to pursue one objective can work against another.',
+    'A government typically holds several macroeconomic objectives simultaneously - economic growth, low unemployment, low and stable inflation, a sustainable balance of payments, a balanced budget, environmental protection and greater income equality among them - and achieving all of them at once is often difficult because the policy tools used to pursue one objective can work against another.',
     [
       [
         'Policies to boost growth and reduce unemployment - lower interest rates, higher government spending, tax cuts - increase aggregate demand, but if the economy is already close to full capacity, this extra demand is more likely to raise the general price level than to raise real output further, conflicting with the objective of low and stable inflation. This is the classic short-run trade-off the Phillips curve describes between unemployment and inflation.',
@@ -123,7 +123,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
       ],
       [
         'Whether it is possible to achieve all objectives simultaneously therefore depends on the state of the economy and the time horizon considered. In an economy operating with significant spare capacity (a negative output gap), demand-side stimulus can raise growth and reduce unemployment with little inflationary or import cost, since idle resources can be brought into use without straining capacity - here, several objectives can be achieved together in the short run, as in the UK’s gradual recovery from the mid-2010s, when growth and falling unemployment coincided with inflation close to target.',
-        'In an economy already near full capacity, the classic trade-offs re-emerge in the short run - the UK’s post-pandemic recovery from 2021 is a clear recent case, where demand-side stimulus met a supply-constrained economy and growth was accompanied by inflation reaching double digits rather than a smooth, cost-free expansion. Reconciling all objectives then depends on supply-side policy gradually raising capacity over the medium to long run, alongside careful demand management in the interim - genuinely achieving every objective simultaneously, indefinitely, is rare, but a government can reduce the SIZE of the conflicts through well-targeted supply-side policy even if it cannot eliminate them entirely.',
+        'In an economy already near full capacity, the classic trade-offs re-emerge in the short run - the UK’s post-pandemic recovery from 2021 is a clear recent case, where demand-side stimulus met a supply-constrained economy and growth was accompanied by inflation reaching double digits rather than a smooth, cost-free expansion. Reconciling all objectives then depends on supply-side policy gradually raising capacity over the medium to long run, alongside careful demand management in the interim - genuinely achieving every objective simultaneously, indefinitely, is rare, but a government can reduce the SIZE of the conflicts through well-targeted supply-side policy even if it cannot eliminate them entirely. Even a balanced budget and greater income equality can conflict with the others: closing a deficit through higher taxation or lower spending can itself reduce growth and raise unemployment in the short run, and redistributive policy funded by higher taxes on the highest earners can weaken the incentive to work or invest that the growth objective ultimately depends on.',
       ],
     ],
     'It is difficult, though not always impossible, for a government to achieve all of its macroeconomic objectives simultaneously. Where an economy has significant spare capacity, demand-side policy can advance growth, employment and the balance of payments together with limited inflationary cost. Where an economy is close to full capacity, the classic short-run trade-offs between growth, unemployment, inflation and the balance of payments re-emerge, and only supply-side policy - which works with a considerable time lag - can genuinely reduce these conflicts over the medium to long run rather than resolve them immediately.',
@@ -132,6 +132,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Supply-side policy can raise capacity, potentially achieving growth without the same inflationary pressure',
       'Supply-side policy works with a considerable time lag',
       'The output gap (spare capacity versus an economy near full capacity) determines how severe the trade-offs are',
+      'A balanced budget and greater income equality can also conflict with growth: deficit reduction and redistributive taxation both risk weakening growth or work incentives',
     ],
     [
       'Depends on the size of the output gap at the time',
