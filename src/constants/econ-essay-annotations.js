@@ -613,4 +613,168 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'A sector that grows faster than its ability to screen misallocates instead - lending past Q* into property and speculation',
     ],
   },
+
+  /*
+    Q065-Q112 (econ-essay-answers-3/4.js) had no on-diagram annotations at
+    all until this pass - every diagram rendered bare while every diagram
+    in the original 64 had numbered steps. Added here for the 25 questions
+    that actually carry a diagram, keyed to the exact labels each diagram
+    component draws (checked against economics.jsx / economicsExtra.jsx /
+    economicsGaps.jsx directly, not guessed).
+  */
+  Q069: {
+    'pes-elasticity': [
+      'Both curves start from the same point (P₁, Q₁) - only the price response differs, not the starting position',
+      'S (inelastic) is the short-run curve: a rise to P₂ only lifts quantity to Q₂ - spare capacity and stock are limited',
+      'S (elastic) is the long-run curve: the same rise to P₂ lifts quantity all the way to Q₃ - capacity and factors have had time to adjust',
+    ],
+  },
+  Q070: {
+    'pes-elasticity': [
+      'Read a tax the same way as any price change: compare Q₁ before against Q₂ (inelastic) or Q₃ (elastic) after',
+      'S (inelastic) barely moves - Q₁ to Q₂ - so a tax here raises predictable revenue with little effect on output',
+      'S (elastic) moves much further - Q₁ to Q₃ - so the same tax cuts quantity more, and more of it is avoided rather than paid',
+    ],
+  },
+  Q071: {
+    'consumer-producer-surplus': [
+      'At equilibrium P₁, Q₁: consumer surplus is everything above P₁ and below D; producer surplus is everything below P₁ and above S',
+      'A maximum price below P₁ would force quantity down along S, below Q₁ - both shaded areas shrink',
+    ],
+  },
+  Q072: {
+    'maximum-price': [
+      'Below Max price, quantity supplied falls to Qs while quantity demanded rises to Qd - the shortage is the gap between them',
+      'Consumers who still buy at Qs pay less (a gain), but every unit between Qs and the free-market quantity is a trade that no longer happens at all - deadweight loss, not a transfer',
+    ],
+  },
+  Q073: {
+    'negative-externality': [
+      'The firm decides using MPC = S, ignoring the external cost, and settles at Qm where MPC meets MSB',
+      'MSC sits above MPC by the external cost - the true social optimum Q* is to the LEFT of Qm, so the market over-produces',
+      'Every unit between Q* and Qm costs society more than it is worth - the shaded welfare loss is the case for a tax that lifts MPC onto MSC',
+    ],
+  },
+  Q074: {
+    'positive-externality': [
+      'Consumers decide using MPB = D, ignoring the benefit to others, and settle at Qm where MPB meets MSC = MPC = S',
+      'MSB sits above MPB by the external benefit - the social optimum Q* is to the RIGHT of Qm, so the market under-consumes',
+      'The shaded welfare loss is the units between Qm and Q* worth making at their true social benefit but not made - a subsidy that lifts MPB towards MSB closes exactly this gap',
+    ],
+  },
+  Q081: {
+    'lras-shift': [
+      'LRAS₁ shifts right to LRAS₂ as capacity rises - full capacity moves from Yf₁ to Yf₂',
+      'With AD unchanged, output rises from Y₁ to Y₂ while the price level falls from P₁ to P₂ - capacity-led growth is non-inflationary',
+    ],
+  },
+  Q082: {
+    'lras-shift': [
+      'LRAS₁ to LRAS₂ is the SAME rightward shift whichever route gets there - market-based incentives or interventionist spending',
+      'Output rises from Y₁ to Y₂ and the price level falls from P₁ to P₂ either way - the diagram shows THAT the shift happened, not HOW',
+    ],
+  },
+  Q083: {
+    phillips: [
+      'SRPC slopes down: moving left along it (lower unemployment) means moving up it (higher inflation) - a genuine short-run trade-off',
+      'LRPC is vertical at the natural rate - in the long run, demand stimulus cannot hold unemployment below it',
+    ],
+  },
+  Q084: {
+    'long-run-phillips': [
+      'Expanding demand moves the economy from A up to B along SRPC₁ - lower unemployment, higher inflation, exactly as the short-run trade-off predicts',
+      'Once expectations adjust, SRPC₁ shifts up to SRPC₂ and unemployment returns to the NAIRU at C - but now on a higher inflation curve',
+      'Repeating this traces out the vertical LRPC at the NAIRU: only a policy that lowers the NAIRU itself, not demand stimulus, cuts unemployment permanently',
+    ],
+  },
+  Q087: {
+    efficiency: [
+      'Productive efficiency is at the bottom of AC, where MC cuts it - no resources wasted per unit',
+      'Allocative efficiency is where price (demand) equals MC - the value of the last unit equals its true cost to make',
+    ],
+  },
+  Q088: {
+    'perfect-competition': [
+      'AR = MR = D = P is tangent to the bottom of AC, where MC also cuts it - P = MC = min AC, both conditions at once',
+      'A small number of large firms sets price above this line and output short of Q* - the static efficiency this diagram shows is lost',
+    ],
+  },
+  Q089: {
+    'perfect-competition': [
+      'AR = MR = D = P sits exactly at the bottom of AC, where MC also crosses it - normal profit only, no incentive left for entry',
+      'Entry from supernormal profit pushes this line DOWN until it reaches this exact point; exit from a loss pushes it back UP - either way, the market settles here',
+    ],
+  },
+  Q090: {
+    'perfect-competition': [
+      'This is the competitive benchmark: P = MC = min AC at Q*, with only normal profit',
+      'A monopolist restricts output below Q* and prices above MC - the gap between the two outcomes is the static efficiency loss competition removes',
+    ],
+  },
+  Q091: {
+    'kinked-demand': [
+      'AR = D is elastic above P₁ (rivals do not follow a rise) and inelastic below it (rivals match a cut) - the kink sits exactly at P₁, Q₁',
+      'MR has a vertical gap directly under the kink - "MC can shift within the gap" without changing the profit-maximising price at all',
+    ],
+  },
+  Q092: {
+    'kinked-demand': [
+      'A price CUT moves the firm down the inelastic part of AR = D below P₁ - little extra quantity, once rivals match it',
+      'MR’s gap under the kink is exactly why moving price is unattractive - which is why firms compete elsewhere instead',
+    ],
+  },
+  Q093: {
+    monopsony: [
+      'MCL sits above S = ACL, because a higher wage must be paid to every existing worker too, not just the new one',
+      'The firm hires where MCL meets MRP, at Q₁ - but only has to PAY the wage read off S = ACL at that quantity, W₁',
+    ],
+  },
+  Q094: {
+    monopsony: [
+      'Without intervention the firm hires at Q₁, paying only W₁ off S = ACL - both below the competitive level',
+      'A minimum wage set between W₁ and the competitive wage flattens MCL at that level up to where it meets MRP - hiring can rise past Q₁ before the standard trade-off returns',
+    ],
+  },
+  Q096: {
+    'limit-pricing': [
+      'The incumbent sets price at "limit price" - below profit-maximising, but still above its own AC (incumbent)',
+      'This sits just under the entrant’s AC, so entering would be unprofitable - contestability disciplines price without a single new firm actually entering',
+    ],
+  },
+  Q099: {
+    'terms-of-trade': [
+      'Export prices rising faster than import prices in the early years is an IMPROVING terms of trade - the ratio, printed along the bottom, rises',
+      'Once import prices overtake export prices, the terms of trade DETERIORATE - the ratio falls',
+    ],
+  },
+  Q100: {
+    'terms-of-trade': [
+      'A commodity exporter is the case where import prices persistently overtake export prices - the deteriorating pattern in the later years',
+      'The ratio falling is the Prebisch-Singer worry: the same volume of commodity exports buys fewer imports each year',
+    ],
+  },
+  Q104: {
+    'j-curve': [
+      'The balance dips BELOW zero immediately after depreciation - short-run demand is too inelastic for volumes to respond yet',
+      'It only rises above its starting level once demand becomes elastic enough to satisfy Marshall-Lerner - tracing the J shape',
+    ],
+  },
+  Q105: {
+    'exchange-rate': [
+      'D₁ shifting right to D₂ is what higher UK interest rates or stronger competitiveness look like on this market',
+      'The exchange rate rises from e₁ to e₂ - sterling appreciates - purely because demand for it has risen relative to supply',
+    ],
+  },
+  Q106: {
+    'fixed-exchange-rate': [
+      'A fall in demand from D₁ to D₂ would push the rate down to where D₂ meets S - below the fixed peg',
+      'To hold the peg, the central bank buys its own currency with reserves, pushing effective demand back up to the peg - a policy with a finite limit, since reserves are finite',
+    ],
+  },
+  Q111: {
+    'monetary-transmission': [
+      'A change works through four separate channels - saving, borrowing, mortgages, exchange rate - not directly on spending',
+      'Naming which channel is operating is what earns the analysis marks, not just asserting that demand has changed',
+    ],
+  },
 }
