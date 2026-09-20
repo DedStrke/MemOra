@@ -760,6 +760,20 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'The gap between AC and AVC is AFC - exactly the cost that is unavoidable in the short run, and the whole reason the two shut-down points differ',
     ],
   },
+  Q125: {
+    'cost-push': [
+      'Higher input costs shift AS left, from AS₁ to AS₂ - the whole curve moves, this is not a movement along it',
+      'AD is unchanged, so the new equilibrium sits at a HIGHER price level P₂ and a LOWER output Y₂',
+      'Both macroeconomic objectives worsen at once - that simultaneity is what makes a supply shock different from a demand shock',
+    ],
+  },
+  Q126: {
+    'cost-push': [
+      'AS₁ to AS₂ raises prices to P₂ and cuts output to Y₂ - inflation and falling growth together',
+      'Shifting AD left to fight the inflation would push output below Y₂; shifting it right to protect output pushes the price level above P₂ - the policy trade-off is visible on the diagram',
+      'Only a rightward shift of AS itself restores both, which is why the effective answers are supply-side and take time',
+    ],
+  },
   Q122: {
     'cost-curves': [
       'The AC-AVC gap is average fixed cost: the wider it is, the further price can fall below AC before shutting down beats producing',

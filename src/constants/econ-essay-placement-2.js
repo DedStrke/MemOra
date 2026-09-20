@@ -38,4 +38,6 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q111: [{ a: 'monetary-transmission' }],
   Q121: [{ a: 'cost-curves' }, {}],
   Q122: [{ a: 'cost-curves' }, {}, {}],
+  Q125: [{ a: 'cost-push' }, {}],
+  Q126: [{ a: 'cost-push' }, {}, {}],
 }

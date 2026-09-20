@@ -190,4 +190,12 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain the difference between backward and forward vertical integration, using an example of each.'),
   q('Q124', 'A-Level', ...P1, '3.1', 'Vertical and Conglomerate Integration', 'C', 25,
     'Evaluate the likely benefits to a firm of growing through vertical integration rather than conglomerate integration.'),
+  q('Q125', 'A-Level', ...P2, '2.3', 'Short-Run Aggregate Supply', 'B', 10,
+    'Explain how a sustained rise in world energy prices is likely to affect an economy’s short-run aggregate supply.'),
+  q('Q126', 'A-Level', ...P2, '2.3', 'Short-Run Aggregate Supply', 'C', 25,
+    'Evaluate the likely macroeconomic effects of a sustained rise in the costs faced by firms across an economy.'),
+  q('Q127', 'A-Level', ...P2, '4.4', 'The Role of Financial Markets', 'B', 10,
+    'Explain two roles performed by financial markets in a modern economy.'),
+  q('Q128', 'A-Level', ...P2, '4.4', 'The Role of Financial Markets', 'C', 25,
+    'Discuss the extent to which financial markets allocate capital efficiently in an economy.'),
 ]

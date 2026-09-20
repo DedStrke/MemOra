@@ -795,4 +795,127 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: better for a rounded view of development; the two measures are often best used together',
     ],
   ),
+
+  /* ----------------------------------------- Short-Run Aggregate Supply */
+  Q125: A(
+    [['cost-push', 'AS shifting up and left from AS₁ to AS₂ with AD unchanged: the price level rises from P₁ to P₂ while real output falls from Y₁ to Y₂. Use it to show that a cost shock moves the economy to a worse position on BOTH objectives at once.']],
+    'Short-run aggregate supply shows the total output firms are willing to produce at each price level when at least one factor cost is fixed. Its position depends on firms’ costs of production - raw material and energy prices, wages, the exchange rate and indirect tax rates - so a change in any of these shifts the whole SRAS curve.',
+    [
+      [
+        'Energy is an input into almost every firm’s production, either directly as fuel and electricity or indirectly through transport and the goods it buys in. A sustained rise in world energy prices therefore raises unit costs across the economy simultaneously. At every price level, producing any given quantity is now less profitable, so firms supply less: SRAS shifts up and to the left, from AS₁ to AS₂ on the diagram. With aggregate demand unchanged, the new equilibrium has a higher price level (P₁ to P₂) and lower real output (Y₁ to Y₂) - cost-push inflation and falling output together.',
+        'The size of the shift depends on how energy-intensive the economy actually is: a manufacturing-heavy economy with energy-hungry industries such as steel, chemicals or glass sees a far larger cost increase per unit of output than a services-dominated economy where energy is a small share of total costs, so the same world price rise moves SRAS much further in the first case than the second.',
+      ],
+      [
+        'The exchange rate determines how much of a world price rise is actually felt domestically. Energy is priced in dollars on world markets, so a country whose currency appreciates against the dollar at the same time absorbs part of the increase, and the rise in its domestic-currency energy cost is smaller than the headline world price change suggests. A depreciating currency does the opposite, amplifying the shift in SRAS.',
+        'How long the shift persists also matters. If the price rise proves temporary and firms have hedged or hold contracts at older prices, SRAS returns towards its original position as those contracts expire and prices fall back. If the rise is sustained, it feeds into wage demands as workers seek to protect real incomes, which raises costs again and can shift SRAS left a second time - the second-round effect that turns a one-off price shock into persistent inflation.',
+      ],
+    ],
+    null,
+    [
+      'Definition of short-run aggregate supply and the costs that determine its position',
+      'Energy as an input to almost all production, so a price rise raises unit costs economy-wide',
+      'Diagram: SRAS shifting up and left, raising the price level and reducing real output',
+      'Cost-push inflation and falling output occurring together',
+      'The exchange rate as a determinant of how much of a dollar-priced world rise is felt domestically',
+    ],
+    [
+      'The size of the shift depends on how energy-intensive the economy is - manufacturing versus services',
+      'A temporary rise reverses as contracts expire; a sustained one feeds into wages, causing a second-round shift',
+    ],
+  ),
+
+  Q126: A(
+    [['cost-push', 'AS shifting left from AS₁ to AS₂ against an unchanged AD: the price level rises to P₂ while output falls to Y₂. This single diagram carries the whole answer - it shows why a cost shock worsens inflation and growth simultaneously, which is what makes the policy response so difficult.']],
+    'A sustained rise in firms’ costs - energy, imported raw materials, wages or indirect taxes - shifts short-run aggregate supply to the left. Because this raises the price level while reducing real output, it worsens two macroeconomic objectives at once, which is what distinguishes a supply shock from a demand shock and makes it so difficult to respond to.',
+    [
+      [
+        'The immediate effect is stagflation: the leftward shift in SRAS raises the price level from P₁ to P₂ and cuts real output from Y₁ to Y₂, so inflation rises and growth falls together. Unemployment rises as firms cut output and shed labour, and real incomes fall twice over - once because prices are higher, and again because the weaker labour market restrains wage growth. The UK’s experience after the 2022 energy shock, with inflation above 11% alongside stagnant output, is a clear recent example.',
+        'The scale depends on how large the cost rise is relative to firms’ total costs and on how much of it firms actually pass through to prices rather than absorbing in margins. In competitive markets with price-sensitive customers, firms may absorb a substantial share, which limits the inflation but concentrates the damage in profits and therefore in investment, shifting the cost from consumers to future productive capacity rather than removing it.',
+      ],
+      [
+        'The external position also worsens. Higher domestic costs make exports less price-competitive, so export volumes fall, while the higher cost of imported inputs raises the import bill directly, both worsening the current account. If the cost rise is an imported one - energy or raw materials priced on world markets - the deterioration is immediate and largely outside domestic control, since the country must pay the world price whatever its own policy does.',
+        'This effect is smaller for an economy that produces the commodity in question domestically: an energy exporter gains on some of what it loses, since higher world prices raise its export earnings even as they raise its domestic costs, so the net effect on its current account can be positive rather than negative. The damage is concentrated in economies that import the input and export goods made with it.',
+      ],
+      [
+        'The policy response is genuinely constrained, which is the heart of the problem. Demand-side policy can address either the inflation or the lost output, but not both: tightening monetary policy to bring inflation down shifts AD left, deepening the fall in output and raising unemployment further, while loosening policy to protect output shifts AD right and worsens the inflation. Neither instrument can shift SRAS back to where it was, because neither changes the underlying cost that moved it.',
+        'What can work operates on the supply side or on expectations. Supply-side measures - improving energy efficiency, diversifying supply, raising productivity so that higher input costs are offset by more output per unit - shift SRAS back right, though slowly. In the meantime, a credible central bank can at least prevent the second-round effects, anchoring inflation expectations so that a one-off cost rise does not become a persistent wage-price spiral, which is the difference between the UK’s response in the 1970s and in 2022.',
+      ],
+    ],
+    'A sustained economy-wide rise in costs worsens inflation, growth, unemployment and the current account simultaneously, which makes it far more damaging than a demand shock of equivalent size and far harder to respond to. Demand-side policy faces a genuine trade-off rather than a solution, since it can only choose which of the two problems to make worse. The extent of the damage depends on how large the cost rise is relative to total costs, how much is passed through to prices, and whether the economy produces or imports the input in question. The most that policy can reliably do in the short run is prevent second-round effects by keeping inflation expectations anchored, while supply-side measures work on the underlying cost over a longer horizon.',
+    [
+      'A cost rise shifts SRAS left, raising the price level and reducing real output - stagflation',
+      'Diagram showing the leftward shift and the effect on both the price level and output',
+      'Rising unemployment and falling real incomes as firms cut output',
+      'Worsening current account: exports less competitive, imported inputs dearer',
+      'The demand-side policy trade-off: tightening worsens output, loosening worsens inflation',
+      'Supply-side measures and anchored expectations as the more effective responses',
+    ],
+    [
+      'The scale depends on the size of the cost rise relative to total costs and on the degree of pass-through to prices',
+      'An economy that produces the commodity domestically can gain on exports what it loses on costs',
+      'Demand-side policy can only choose which objective to sacrifice, not restore both',
+      'Judgement: more damaging and harder to treat than a demand shock; expectations management and supply-side measures matter most',
+    ],
+  ),
+
+  /* --------------------------------------- The Role of Financial Markets */
+  Q127: A(
+    [],
+    'Financial markets are the institutions and mechanisms through which funds are channelled between savers and borrowers. They perform several distinct roles in a modern economy, and an economy without them would be restricted to whatever investment each household or firm could finance from its own resources.',
+    [
+      [
+        'The first role is to facilitate saving and to lend those savings to businesses and individuals. Banks and other institutions pool many small deposits into sums large enough to fund a factory, a mortgage or a government’s borrowing, and they perform maturity transformation, lending long while borrowing short, so that savers keep access to their money while borrowers get the long-term funding investment requires. Without this, savings would sit idle and investment would be limited to what each firm could self-finance.',
+        'This role depends on the institutions being able to judge who they lend to. Because borrowers know more about their own prospects than lenders do, screening and monitoring are what banks are really selling, and where they do this badly - as with sub-prime lending before 2008 - the same institutions that channel savings into productive investment channel them into losses instead.',
+      ],
+      [
+        'A second role is to provide markets that let firms and households manage risk and raise capital directly. Forward markets in currencies and commodities let an importer fix the exchange rate or an airline fix the fuel price for a future delivery, removing a risk that might otherwise deter the trade altogether. Equity markets let firms raise capital by selling shares rather than borrowing, spreading the risk of a venture across many investors, and give those investors a liquid market in which to sell. Financial markets also operate the payments system that lets goods and services be exchanged at all.',
+        'These markets serve the real economy only to the extent that the trading in them reflects genuine hedging and investment rather than speculation for its own sake: the same forward market that lets an airline hedge fuel costs also allows purely speculative positions, which can amplify price volatility rather than dampening it, so the role is a genuine one but not unambiguously stabilising.',
+      ],
+    ],
+    null,
+    [
+      'Definition of financial markets as the channel between savers and borrowers',
+      'Facilitating saving and lending to businesses and individuals; pooling and maturity transformation',
+      'Providing forward markets in currencies and commodities so firms can hedge future price risk',
+      'Providing a market for equities, letting firms raise capital and spreading risk across investors',
+      'Operating the payments system that allows the exchange of goods and services',
+    ],
+    [
+      'The lending role depends on banks screening and monitoring borrowers well - sub-prime lending shows the cost when they do not',
+      'Forward and equity markets serve the real economy only where trading reflects genuine hedging rather than pure speculation',
+    ],
+  ),
+
+  Q128: A(
+    [],
+    'Financial markets allocate capital efficiently when funds flow to the investments offering the highest risk-adjusted return, so that society’s savings end up funding the most productive uses. This is what the financial sector exists to do, and it succeeds at it substantially - but a series of well-documented market failures mean the allocation is far from perfect.',
+    [
+      [
+        'The efficiency case is strong and largely borne out. Competing lenders and investors have a direct financial incentive to identify the most promising projects, since backing a better one earns a better return, and prices in liquid markets aggregate the judgements of many participants into a single signal about where capital is worth deploying. Banks specialise in the screening and monitoring that individual savers could not do for themselves, and countries with deeper financial systems have historically grown faster than those without, which is consistent with capital being channelled more productively where these markets work.',
+        'This depends on the information available being reasonably good. Where lenders cannot distinguish good risks from bad - asymmetric information - they either ration credit or price it for the average borrower, which drives the best borrowers out of the market and leaves capital allocated to worse projects than the lender intended, a misallocation that follows directly from the information problem rather than from any failure of incentive.',
+      ],
+      [
+        'Several further failures push allocation away from the efficient outcome. Moral hazard means an institution that expects to be rescued takes risks it would otherwise avoid, so capital flows towards excessive risk rather than productive return. Speculation can detach asset prices from the fundamentals they are supposed to reflect, generating bubbles in which capital floods into an overvalued asset - housing before 2008, dot-com equities before 2000 - and is destroyed when the bubble bursts. Market rigging, such as the manipulation of benchmark rates in the LIBOR scandal, corrupts the price signal that allocation depends on.',
+        'These failures are not evenly distributed: they cluster in markets with poor information, weak supervision and strong short-term incentives, and are far less severe in, for example, routine business lending against tangible collateral. The allocation problem is therefore concentrated in specific parts of the financial system rather than being a general property of it.',
+      ],
+      [
+        'Regulation exists precisely to correct these failures, and how well it does so determines how efficient the allocation actually is. Capital and liquidity requirements limit the risk an institution can take with other people’s money, disclosure rules reduce the information asymmetry, and supervision counters both moral hazard and rigging. Since 2008, higher capital ratios, ring-fencing and stress testing have made a repeat of that specific failure less likely.',
+        'But regulation is itself imperfect and carries a cost: capital held as a buffer is capital not lent to a business, so tighter rules reduce the volume of lending as well as its riskiness, and activity can migrate to less-regulated shadow banking where the same failures recur beyond supervisors’ reach. Regulation improves the allocation without perfecting it, and each tightening trades some allocative efficiency for stability.',
+      ],
+    ],
+    'Financial markets allocate capital efficiently to a substantial extent: competing lenders have every incentive to fund the best projects, specialised screening does work individual savers could not, and deeper financial systems are associated with faster growth. But the allocation is systematically distorted by asymmetric information, moral hazard, speculation and outright rigging, and these failures are largest precisely where the sums involved are greatest. Regulation meaningfully improves the outcome without perfecting it, and does so at some cost to the volume of lending. The honest judgement is that financial markets allocate capital better than any alternative mechanism yet devised, and considerably worse than the efficient ideal - which is why they are simultaneously indispensable and among the most heavily regulated markets in the economy.',
+    [
+      'Efficient allocation means funds flowing to the highest risk-adjusted returns',
+      'The efficiency case: competing lenders’ incentives, price signals, specialised screening, evidence linking financial depth to growth',
+      'Asymmetric information causing credit rationing and adverse selection',
+      'Moral hazard, speculation and bubbles, and market rigging as further sources of misallocation',
+      'Regulation - capital requirements, disclosure, supervision - as the corrective',
+    ],
+    [
+      'The efficiency case depends on the quality of information available to lenders',
+      'The failures cluster in specific markets rather than being general to the whole sector',
+      'Regulation trades some lending volume for stability, and activity can migrate to shadow banking',
+      'Judgement: better than any alternative mechanism, considerably worse than the efficient ideal',
+    ],
+  ),
 }
