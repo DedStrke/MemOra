@@ -56,6 +56,11 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q142: [{ a: 'subsidy' }, {}, {}],
   Q143: [{ a: 'buffer-stock' }, {}],
   Q144: [{ a: 'buffer-stock' }, {}, {}],
+  // 2.5.1 and 2.5.3, the two sub-points that had no question of their own.
+  Q145: [{ a: 'ppf-shift' }, {}],
+  Q146: [{ a: 'ad-shift' }, {}, {}],
+  Q147: [{ a: 'output-gap' }, {}],
+  Q148: [{ a: 'output-gap' }, {}, {}],
   // Diagrams added to questions that already argued exactly what these show.
   Q080: [{ a: 'phillips' }, {}, {}],
   Q102: [{}, { a: 'tariff' }, {}],

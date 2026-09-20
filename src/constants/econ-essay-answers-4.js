@@ -1111,4 +1111,126 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: a genuine problem addressed with the wrong instrument; diversification or income support achieves more per pound',
     ],
   ),
+
+  /* ------------------------------ Causes of Economic Growth (2.5.1) */
+  Q145: A(
+    [['ppf-shift', 'A production possibility frontier with a point inside it and the frontier itself shifting outward. Actual growth is the movement from the interior point towards the frontier - using existing capacity more fully. Potential growth is the outward shift of the frontier itself - an increase in the capacity available to be used. Both are needed to show the distinction clearly.']],
+    'Economic growth is an increase in the real output of an economy. The specification distinguishes actual growth, a rise in real GDP actually produced, from potential growth, a rise in the maximum output the economy is capable of producing. The distinction matters because the two have different causes and call for different policies.',
+    [
+      [
+        'Actual growth is an increase in real output from where the economy currently is, and it is shown on a production possibility frontier as a movement from a point INSIDE the frontier towards it. An economy at such a point has spare capacity: unemployed workers, idle machinery, factories running below their potential. Actual growth here comes from using those existing resources more fully, which in practice means an increase in aggregate demand - higher consumption, investment, government spending or net exports - drawing the unemployed resources into use. This is why recovery from a recession produces rapid measured growth rates without any new capacity being created at all.',
+        'The limit on this kind of growth is the frontier itself. Once the economy reaches the frontier, further increases in demand cannot raise output because there are no idle resources left to bring in, so the effect falls on the price level instead. Actual growth is therefore only available while a negative output gap exists, which is what makes it a short-run phenomenon rather than a route to sustained growth.',
+      ],
+      [
+        'Potential growth is an increase in the economy’s productive capacity, shown as the frontier itself shifting outward, so that combinations of output previously unattainable become attainable. Its causes are the quantity and quality of the factors of production: net investment adding to the capital stock, a larger workforce through population growth or immigration, better education and training raising human capital, technological advance raising output per unit of input, and the discovery of new natural resources. International trade contributes here too, since access to export markets lets a country specialise according to comparative advantage and lets it import capital equipment and technology it could not produce itself, which is the basis of export-led growth.',
+        'Potential growth is slower and harder to generate than actual growth, because it depends on investment and structural change whose effects appear over years rather than quarters. It is also the only kind that can be sustained indefinitely: an economy can only close its output gap once, so long-run growth in living standards depends entirely on the frontier moving outward, not on the economy moving towards it.',
+      ],
+    ],
+    null,
+    [
+      'Definition of economic growth, and of actual and potential growth',
+      'Actual growth: movement from inside the PPF towards it, using spare capacity, driven by aggregate demand',
+      'Potential growth: an outward shift of the PPF, driven by the quantity and quality of factors of production',
+      'Diagram distinguishing the movement towards the frontier from the shift of the frontier',
+      'Causes of potential growth: net investment, workforce, human capital, technology, resources, trade',
+    ],
+    [
+      'Actual growth is limited by the frontier - available only while a negative output gap exists',
+      'Potential growth is slower to generate but is the only kind that can be sustained',
+    ],
+  ),
+
+  Q146: A(
+    [['ad-shift', 'Aggregate demand shifting right as export demand rises, raising real output from Y₁ to Y₂. Use it to show that the initial effect of export-led growth is a demand-side one, and pair it with the point that sustained growth needs the LRAS curve to move as well.']],
+    'Export-led growth is a strategy of expanding output by selling into world markets rather than relying on domestic demand, usually by building a competitive advantage in particular sectors. It is set against alternatives such as import substitution, resource extraction, or growth driven by domestic consumption and investment. Whether it is the MOST effective route depends on the size of the domestic market, the sectors available and the external conditions the economy faces.',
+    [
+      [
+        'The case for export-led growth is that it escapes the limits of a small domestic market. A developing economy whose population is poor cannot generate enough domestic demand to support production at an efficient scale, so producing for world markets lets firms reach a scale their own country never could, moving them down their long-run average cost curve and making them more competitive still. Export earnings also relieve the foreign exchange constraint that holds many developing economies back, funding the imported capital equipment and technology that raise productive capacity. The east Asian economies are the standard evidence: South Korea, Taiwan and later China all grew by deliberately building export sectors, and each moved from low-income to middle or high-income status within a generation.',
+        'The scale of the gain depends on WHAT is exported. An economy exporting primary commodities faces volatile prices and a low income elasticity of demand, so export growth need not translate into rising income per head - which is precisely the terms-of-trade problem. The east Asian success came from exporting manufactures of rising sophistication, moving from textiles to electronics, not from exporting more of whatever the country already had.',
+      ],
+      [
+        'Export-led growth also brings effects beyond the demand-side increase shown by the AD shift. Competing in world markets imposes a discipline domestic markets often do not: firms must meet international quality standards and match foreign costs, which raises productivity. Foreign direct investment that follows an export strategy brings technology, management practice and access to distribution networks that a domestic firm would take decades to build. These are supply-side effects, shifting LRAS outward, which is what converts a one-off rise in demand into sustained growth in capacity.',
+        'None of this is automatic. FDI can enclave itself in an export processing zone with few links to the wider economy, so the technology transfer never happens, and a country competing purely on low labour costs has no obvious path upward as wages rise. The strategy delivers sustained growth only where the government also invests in the education and infrastructure that let domestic firms absorb what the export sector brings in.',
+      ],
+      [
+        'The strategy also carries a distinctive risk: it makes growth dependent on demand the country does not control. An economy that has built its capacity around exporting is exposed to recession in its trading partners, to protectionism, and to exchange rate movements, all of which originate abroad. The 2008 financial crisis hit export-dependent economies hard for exactly this reason, and a country pursuing export-led growth while its main markets turn towards tariffs can find the route closed after the investment has been made. Domestic-demand-led growth, or growth built on regional trade with neighbours, is less exposed even if it is slower.',
+        'This argues for export-led growth as a phase rather than a permanent settlement. China illustrates the sequence: exports drove the initial expansion, and policy has since shifted deliberately towards domestic consumption as the economy has grown large enough to sustain it. The most effective route is therefore not one strategy pursued indefinitely but a sequence, with export markets used to build capacity that domestic demand can later employ.',
+      ],
+    ],
+    'Export-led growth is the most effective route for a developing economy whose domestic market is too small to support efficient scale and which lacks the foreign exchange to import the capital it needs, and the east Asian record is strong evidence that it can work. But its effectiveness is conditional rather than general: it depends on exporting goods whose demand and prices rise with world income rather than primary commodities, on the government building the education and infrastructure that let domestic firms absorb foreign technology, and on external conditions remaining open. Because it also creates dependence on demand generated abroad, it is best understood as the most effective STARTING route, to be broadened into domestic demand as the economy develops, rather than as a permanent strategy.',
+    [
+      'Definition of export-led growth and the alternatives (import substitution, domestic demand, resource extraction)',
+      'Small domestic markets: exporting allows efficient scale and relieves the foreign exchange constraint',
+      'Diagram: export demand raising AD and real output',
+      'Supply-side effects: competitive discipline, FDI, technology and management transfer shifting LRAS',
+      'Evidence: South Korea, Taiwan and China moving up the income scale through manufactured exports',
+    ],
+    [
+      'Depends on what is exported - commodities face volatile prices and low income elasticity',
+      'FDI benefits are not automatic; enclave investment transfers little, and low-wage competition has no upward path',
+      'Creates dependence on foreign demand, protectionism and exchange rates the country does not control',
+      'Judgement: the most effective starting route, conditional on sector choice and complementary domestic policy',
+    ],
+  ),
+
+  /* ------------------------------ The Trade (Business) Cycle (2.5.3) */
+  Q147: A(
+    [['output-gap', 'Actual output oscillating around the long-term trend rate of growth. A boom is the phase where actual output runs ABOVE trend - a positive output gap - which is the single diagram that defines what a boom is and separates it from ordinary growth.']],
+    'The trade (business) cycle is the tendency of actual output to fluctuate around the long-term trend rate of growth. A boom is the phase in which actual output is above that trend, producing a positive output gap, and it has a recognisable set of characteristics.',
+    [
+      [
+        'The first characteristic is that output is above the trend rate and spare capacity has been used up. Unemployment falls to low levels, approaching the natural rate, since firms expanding output have drawn in the workers who were previously unemployed; vacancies become hard to fill and firms report shortages of skilled labour. Capital is worked close to its limit too, with factories running at high rates of capacity utilisation. Because the economy is operating beyond its sustainable level, the positive output gap is by definition temporary.',
+        'How far unemployment falls depends on how flexible the labour market is: an economy with significant occupational and geographical immobility hits skill shortages, and therefore wage pressure, at a higher rate of unemployment than a more mobile one, so the same size of boom produces different labour market outcomes in different economies.',
+      ],
+      [
+        'The second characteristic is inflationary pressure. With demand running ahead of the economy’s capacity to supply, firms facing full order books raise prices rather than output, producing demand-pull inflation; at the same time competition for scarce labour bids up wages, which raises firms’ costs and adds a cost-push element. Confidence is high, so consumption and investment both rise and borrowing expands, which reinforces the pressure. The current account typically deteriorates as well, since strong domestic demand pulls in imports while domestic producers, already at capacity, cannot easily expand exports.',
+        'The strength of the inflationary effect depends on how the central bank responds and on how close to capacity the economy actually is, which is difficult to judge at the time. Output gaps are measured against an estimated trend that is itself uncertain, so a boom is often only confidently identified after it has ended.',
+      ],
+    ],
+    null,
+    [
+      'Definition of the trade (business) cycle as fluctuation of actual output around the trend rate',
+      'Definition of a boom as a positive output gap: actual output above trend',
+      'Diagram showing actual output above the long-term trend line',
+      'Characteristic 1: spare capacity used up, low unemployment, skill shortages, high capacity utilisation',
+      'Characteristic 2: demand-pull and cost-push inflationary pressure; high confidence; current account deterioration',
+    ],
+    [
+      'The fall in unemployment depends on labour market flexibility and the degree of immobility',
+      'Output gaps are measured against an uncertain estimated trend, so a boom is hard to identify in real time',
+    ],
+  ),
+
+  Q148: A(
+    [['output-gap', 'Actual output fluctuating around trend, with the negative gap of a recession and the positive gap of a boom marked. Policy that smooths the cycle is policy that reduces the AMPLITUDE of these swings - bringing actual output closer to the trend line in both directions, rather than raising the trend itself.']],
+    'The trade cycle is the fluctuation of actual output around its long-term trend. Smoothing it means reducing the amplitude of those swings - a shallower recession and a less overheated boom - rather than raising the trend rate of growth itself. Governments attempt this through fiscal and monetary policy, both of which work on aggregate demand, but each faces limits that stop the smoothing being complete.',
+    [
+      [
+        'Some smoothing happens without any decision being taken at all, through automatic stabilisers. As output falls in a recession, incomes fall, so receipts from income tax and VAT fall automatically while spending on unemployment-related benefits automatically rises - the budget moves towards deficit and supports demand without any new legislation. In a boom the same mechanism works in reverse: a progressive tax system takes a rising share of rising incomes and benefit spending falls, withdrawing demand as the economy overheats. Because these operate immediately and without political decision, they avoid the delays that discretionary policy suffers from, and they are the most reliable smoothing mechanism a government has.',
+        'Their strength depends on the size of the state and the progressivity of the tax system: an economy with low taxes and limited welfare provision has weak automatic stabilisers, so a larger share of the smoothing must come from discretionary policy, with all of the timing problems that brings. They also dampen rather than remove fluctuations, since they respond to changes in income rather than anticipating them.',
+      ],
+      [
+        'Discretionary demand management can add to this. Monetary policy is the main instrument in normal conditions: a central bank cutting interest rates in a downturn lowers the cost of borrowing, raises consumption and investment and depreciates the currency, all of which raise aggregate demand, and raises rates in a boom to restrain it. Interest rates can be changed quickly and reversed easily, which suits the task. Fiscal policy can be used directly too, with the furlough scheme during the 2020 pandemic a clear case of government spending deliberately holding up incomes through a collapse in output that no interest rate cut could have addressed.',
+        'Discretionary policy faces the recognition, implementation and impact lags that make smoothing genuinely difficult: data identifying a turning point arrives months late, infrastructure spending takes years to deliver, and a monetary policy change is usually said to take up to two years to have its full effect. Policy aimed at a recession can therefore arrive during the recovery and amplify the next boom instead - destabilising the cycle rather than smoothing it. Monetary policy also loses traction near the zero lower bound, which is why quantitative easing was needed after 2008, and fiscal policy is constrained when debt is already high.',
+      ],
+      [
+        'How much smoothing is possible also depends on what is causing the fluctuation. A cycle driven by swings in domestic demand and confidence is exactly what demand management is designed for. A supply shock is not: the energy price rises after 2022 pushed inflation up and output down simultaneously, so a central bank raising rates to control inflation was deepening the downturn, and one cutting rates to support output was worsening inflation. There is no setting of a demand-side instrument that smooths both at once, which is a genuine limit rather than a failure of execution.',
+        'This points to supply-side and structural measures as the complement rather than the alternative: financial regulation that limits the credit booms behind the most severe cycles, and diversification that reduces exposure to a shock in any one sector, both reduce the amplitude of the cycle before demand management has to respond to it. The 2008 crisis is the case in point, since it originated in financial conditions that regulation could have restrained more cheaply than the fiscal response that followed.',
+      ],
+    ],
+    'Government policy can smooth the trade cycle to a significant but incomplete extent. Automatic stabilisers do so reliably and without delay, and discretionary monetary and fiscal policy can add to them, as the furlough scheme showed in a downturn severe enough that nothing else would have worked. The limits are real, though: lags mean discretionary policy can arrive late enough to amplify the next phase rather than damp the current one, monetary policy weakens at the zero lower bound, and no demand-side instrument can smooth a supply shock that moves output and inflation in opposite directions. The extent of smoothing therefore depends on the source of the fluctuation and on the strength of the automatic stabilisers already in place, and the most effective approach combines them with structural measures that reduce the amplitude of the cycle in the first place.',
+    [
+      'Definition of the trade cycle and of smoothing as reducing amplitude, not raising the trend',
+      'Diagram: actual output fluctuating around trend, with negative and positive output gaps',
+      'Automatic stabilisers: tax receipts and benefit spending moving counter-cyclically without decision',
+      'Discretionary monetary policy: interest rates raising or restraining AD; quantitative easing at the lower bound',
+      'Discretionary fiscal policy: the furlough scheme in 2020 as direct income support through a collapse in output',
+    ],
+    [
+      'Automatic stabilisers depend on the size of the state and tax progressivity; they dampen rather than remove',
+      'Recognition, implementation and impact lags can make discretionary policy pro-cyclical',
+      'Demand-side policy cannot smooth a supply shock that raises inflation and lowers output together',
+      'Judgement: significant but incomplete smoothing, depending on the source of the shock and on structural measures',
+    ],
+  ),
 }

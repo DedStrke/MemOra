@@ -930,4 +930,35 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'Naming which channel is operating is what earns the analysis marks, not just asserting that demand has changed',
     ],
   },
+  Q145: {
+    'ppf-shift': [
+      'The point INSIDE PPF₁ is an economy with spare capacity - unemployed workers, idle machinery',
+      'Actual growth is the arrow from that point TO the frontier: the same resources, used more fully',
+      'Potential growth is PPF₁ shifting out to PPF₂: the capacity itself has risen',
+      'Only the shift can continue indefinitely - the interior gap can be closed once',
+    ],
+  },
+  Q146: {
+    'ad-shift': [
+      'Rising export demand shifts AD right: real output rises from Y₁ to Y₂',
+      'This is the demand-side half only - it raises output towards capacity, not capacity itself',
+      'Sustained growth needs LRAS to move too, which is what the FDI and productivity effects deliver',
+    ],
+  },
+  Q147: {
+    'output-gap': [
+      'The trend line is the economy’s sustainable capacity growing over time',
+      'A boom is the stretch where actual output runs ABOVE trend - a positive output gap',
+      'Spare capacity is gone: unemployment near the natural rate, capacity utilisation high',
+      'Demand beyond capacity shows up as inflation rather than output - which is why the gap must close',
+    ],
+  },
+  Q148: {
+    'output-gap': [
+      'Recession is the negative gap below trend; boom is the positive gap above it',
+      'Smoothing means shrinking the AMPLITUDE of both - pulling actual output towards the trend line',
+      'It does NOT mean raising the trend line: that is potential growth, a supply-side question',
+      'Lags mean a policy aimed at the negative gap can arrive in time to deepen the positive one',
+    ],
+  },
 }

@@ -230,4 +230,19 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain, using a diagram, how a buffer stock scheme is intended to stabilise the price of an agricultural commodity.'),
   q('Q144', 'A-Level', ...P2, '4.3', 'Buffer Stock Schemes', 'C', 25,
     'Evaluate the likely effectiveness of a buffer stock scheme in supporting the incomes of primary commodity producers in a developing economy.'),
+  /*
+    2.5.1 and 2.5.3 are numbered sub-points of the specification that no
+    question examined directly. 2.5 had three questions between them, all
+    on output gaps (2.5.2) or the impact of growth (2.5.4), so the causes
+    of growth and the trade cycle were only ever mentioned in passing
+    inside answers to other questions.
+  */
+  q('Q145', 'A-Level', ...P2, '2.5', 'Causes of Economic Growth', 'B', 10,
+    'Explain the difference between actual and potential economic growth, using a diagram.'),
+  q('Q146', 'A-Level', ...P2, '2.5', 'Causes of Economic Growth', 'C', 25,
+    'Evaluate the view that export-led growth is the most effective route to sustained economic growth for a developing economy.'),
+  q('Q147', 'A-Level', ...P2, '2.5', 'The Trade (Business) Cycle', 'B', 10,
+    'Explain two characteristics of an economy experiencing a boom.'),
+  q('Q148', 'A-Level', ...P2, '2.5', 'The Trade (Business) Cycle', 'C', 25,
+    'Discuss the extent to which government policy can smooth the fluctuations of the trade cycle.'),
 ]
