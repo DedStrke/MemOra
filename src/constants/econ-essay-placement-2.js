@@ -40,4 +40,9 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q122: [{ a: 'cost-curves' }, {}, {}],
   Q125: [{ a: 'cost-push' }, {}],
   Q126: [{ a: 'cost-push' }, {}, {}],
+  Q131: [{ a: 'demand-shift' }, {}],
+  Q132: [{ a: 'supply-demand' }, {}, {}],
+  Q135: [{ a: 'labour-market' }, {}],
+  Q136: [{ a: 'labour-market' }, {}, {}],
+  Q140: [{ a: 'comparative-advantage' }, {}, {}],
 }

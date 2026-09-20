@@ -1062,4 +1062,248 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Judgement: vertical where a specific supply-chain dependency needs fixing; conglomerate only with a genuine management case',
     ],
   ),
+
+  /* ------------------------------------------------ Economic Methodology */
+  Q129: A(
+    [],
+    'Economics is a social science: it studies human behaviour, and it does so by building models and testing claims against evidence. A central distinction in that method is between statements that can be tested against the facts and statements that rest on a value judgement.',
+    [
+      [
+        'A POSITIVE statement is objective and testable: it makes a claim about what is, was or will be, and evidence can in principle show it to be true or false. "A rise in the minimum wage increases unemployment among young workers" is positive, because data on employment before and after a rise can support or contradict it. Whether the evidence is easy to gather does not matter - what makes the statement positive is that it is the kind of claim evidence could settle.',
+        'Positive statements are still contested in practice, because economists cannot run controlled experiments: so many things change at once that the same data on the minimum wage has been read as supporting both sides. Being testable in principle is not the same as being settled in practice, which is why disagreement between economists is often disagreement about evidence rather than about values.',
+      ],
+      [
+        'A NORMATIVE statement is subjective: it makes a claim about what OUGHT to be, resting on a value judgement that evidence alone cannot settle. "The government should raise the minimum wage" is normative, because deciding whether it should depends on how much weight is given to the incomes of those who keep their jobs against the prospects of those who might lose them - a judgement about fairness, not a fact. Words such as "should", "ought", "unfair" or "too high" usually signal a normative claim.',
+        'The two are harder to separate than the definitions suggest, because value judgements shape which positive questions get asked and which evidence is treated as relevant. An economist who believes inequality matters will investigate distributional effects that another would not measure at all, so normative commitments influence positive analysis even when each individual statement is correctly classified.',
+      ],
+    ],
+    null,
+    [
+      'Definition of a positive statement: objective, testable against evidence, with an example',
+      'Definition of a normative statement: subjective, resting on a value judgement, with an example',
+      'Signal words for normative claims (should, ought, unfair, too high)',
+      'The role of value judgements in economic decision making and policy',
+    ],
+    [
+      'Positive statements are testable in principle but hard to settle in practice, since economics cannot run controlled experiments',
+      'Value judgements shape which positive questions are asked, so the separation is cleaner in definition than in practice',
+    ],
+  ),
+
+  Q130: A(
+    [],
+    'Economics is a social science, studying human behaviour rather than the physical world. Because it cannot generally run controlled experiments, it proceeds by building simplified models that hold most influences constant - the ceteris paribus assumption - and reasoning about what a change in one variable does. Whether this limits its usefulness depends on what one expects a social science to deliver.',
+    [
+      [
+        'Simplification is what makes analysis possible at all, not merely a concession. A demand curve assumes income, tastes and the prices of other goods are held constant, which is never literally true, but without that assumption the effect of a price change could not be isolated from everything else moving at the same time. Models of this kind generate predictions that have proved robust: demand curves slope downwards, higher interest rates reduce borrowing, price ceilings create shortages. The test of a model is not whether its assumptions are realistic but whether its predictions hold, and by that test the core of economics performs well.',
+        'This defence works better for the DIRECTION of an effect than for its size. Economics predicts reliably that a tax on a good reduces the quantity traded; it predicts far less reliably by how much, because that depends on elasticities that vary between markets and over time. A model that gets direction right and magnitude wrong is useful for understanding and much weaker as a basis for calibrating policy.',
+      ],
+      [
+        'The deeper limitation is that the assumptions are about PEOPLE, and people do not behave as consistently as physical systems. The rational agent assumption - full information, consistent preferences, utility maximisation - is contradicted by well-documented, systematic behaviour: bounded rationality, present bias, herding, the influence of how a choice is framed. Where a model assumes away exactly the behaviour that drives the outcome, its predictions fail, which is why pension under-saving persisted despite clear financial incentives to save until auto-enrolment worked with the bias rather than against it.',
+        'Behavioural economics has absorbed much of this criticism rather than being refuted by it: the departures from rationality turn out to be systematic and predictable, so they can be modelled too. The limitation is therefore less that economics assumes rationality and more that any model is only as good as the behavioural assumptions built into it, which is an argument for better assumptions rather than against modelling.',
+      ],
+      [
+        'The inability to run controlled experiments is the constraint that separates economics most sharply from the natural sciences. A physicist can hold everything constant and vary one thing; an economist watching a minimum wage rise cannot separate its effect from the state of the cycle, the sector mix or a hundred other simultaneous changes. This is why economists can examine the same episode and reach opposing conclusions, and why forecasting records are poor - the 2008 crisis being the most visible failure.',
+        'The constraint has been eased rather than removed. Natural experiments, where a policy changes in one area but not a comparable one, and randomised controlled trials in development economics come far closer to genuine controlled comparison than was possible a generation ago, and have settled some questions that pure theory could not. The gap between economics and the natural sciences is one of degree and is narrowing, not one of kind.',
+      ],
+    ],
+    'Models and assumptions limit economics as a social science to a real but often overstated degree. They are what makes rigorous analysis possible, and the core predictions built on them are robust, particularly about the direction of effects. The genuine limitations are that magnitudes are far less reliable than directions, that assumptions about human behaviour fail where that behaviour is systematically non-rational, and that the absence of controlled experiments leaves many questions genuinely unsettled. None of these is an argument against using models, since there is no alternative method available - the honest conclusion is that economics is a science whose subject matter permits less precision than the natural sciences, and that treating its predictions as more exact than they are is a greater danger than the modelling itself.',
+    [
+      'Economics as a social science: models, assumptions and the ceteris paribus assumption',
+      'Simplification is what allows one variable to be isolated; models are judged by their predictions',
+      'The rational agent assumption and the systematic behavioural departures from it',
+      'The inability to conduct controlled experiments, and its consequences for forecasting and disagreement',
+      'Natural experiments and randomised controlled trials as partial solutions',
+    ],
+    [
+      'Models predict direction far more reliably than magnitude, which limits their use in calibrating policy',
+      'Behavioural economics absorbs the rationality criticism by modelling the biases rather than assuming them away',
+      'Natural experiments and RCTs narrow the gap with the natural sciences without closing it',
+      'Judgement: a real limitation, but there is no alternative method - the danger is overstating the precision, not the modelling',
+    ],
+  ),
+
+  /* --------------------------- Demand, Supply and Price Determination */
+  Q131: A(
+    [['demand-shift', 'The whole demand curve shifting right from D₁ to D₂ because a CONDITION of demand has changed, raising equilibrium price from P₁ to P₂ and quantity from Q₁ to Q₂. Contrast this with a movement ALONG the curve, which only the good’s own price causes.']],
+    'The conditions of demand are the factors other than the good’s own price that determine how much consumers want to buy. When one of them changes, the whole demand curve shifts; only a change in the good’s own price causes a movement along it. That distinction is what the diagram is really testing.',
+    [
+      [
+        'The first is a change in real income. For a NORMAL good, higher real income means consumers can afford more at every price, so demand shifts right from D₁ to D₂ and, with supply unchanged, equilibrium price rises to P₂ and quantity to Q₂. Rising real wages increase demand for restaurant meals, new cars and foreign holidays in exactly this way, and the effect is strongest for luxuries, whose income elasticity exceeds 1.',
+        'The direction reverses for an INFERIOR good, whose income elasticity is negative: as real incomes rise, consumers switch away from own-brand basics or bus travel towards better alternatives, so demand for the inferior good shifts LEFT on the same income increase. Whether a rise in income shifts a particular demand curve right or left therefore depends on which type of good it is.',
+      ],
+      [
+        'The second is a change in the price of a related good. A rise in the price of a SUBSTITUTE - one good replacing another in consumption - makes the good in question relatively cheaper, so consumers switch towards it and its demand curve shifts right: a rise in the price of beef increases demand for chicken. A fall in the price of a COMPLEMENT, consumed alongside the good, has the same effect: cheaper games consoles raise demand for the games played on them.',
+        'The size of the shift depends on how close the relationship actually is, which cross elasticity of demand measures: a high positive XED means the two are close substitutes and the shift is large, while a weak relationship produces a shift barely distinguishable from noise. Other conditions - tastes, population, advertising and expectations of future prices - shift the curve through the same mechanism.',
+      ],
+    ],
+    null,
+    [
+      'Distinction between a shift of the demand curve and a movement along it',
+      'Diagram showing D₁ shifting to D₂ and the resulting rise in equilibrium price and quantity',
+      'Change in real income: normal goods shift right, inferior goods shift left',
+      'Change in the price of a substitute or a complement, and the role of cross elasticity',
+      'Other conditions of demand: tastes, population, advertising, expectations',
+    ],
+    [
+      'The direction of the income effect depends on whether the good is normal or inferior',
+      'The size of the shift from a related good depends on how close the substitute or complement relationship is, measured by XED',
+    ],
+  ),
+
+  Q132: A(
+    [['supply-demand', 'Demand meeting supply at equilibrium Pe, Qe. Below Pe there is excess demand and above it excess supply; the price mechanism is the process by which those imbalances push price back to Pe. Use it to show the shortage as the horizontal gap between quantity demanded and quantity supplied at the too-low price.']],
+    'A shortage exists where quantity demanded exceeds quantity supplied at the prevailing price. In a free market the price mechanism is supposed to eliminate it automatically: excess demand bids the price up, rationing demand and drawing out supply until the market clears at Pe, Qe. How reliably this happens depends on how freely the price can move and how quickly supply can respond.',
+    [
+      [
+        'The mechanism works through three functions operating together. Excess demand at the too-low price means some consumers cannot obtain the good and bid against each other, so the price RATIONS the available quantity to those who value it most. The rising price SIGNALS to producers that the good has become more profitable, and gives them an INCENTIVE to supply more - both by raising output from existing capacity and by attracting new firms into the market. Quantity supplied extends up the supply curve and quantity demanded contracts along the demand curve until the two meet at Pe. No central authority needs to know the size of the shortage; each participant responds only to the price in front of them.',
+        'This process is genuinely fast and effective where supply can respond and prices are free to move. Commodity and financial markets clear in this way almost continuously, and shortages in competitive retail markets are typically resolved within weeks as suppliers restock at slightly higher prices.',
+      ],
+      [
+        'The mechanism is much weaker where supply is price-inelastic in the time available. If the good takes a long time to produce - housing, agricultural output within a growing season, trained doctors - then a higher price calls forth almost no extra quantity in the short run, so the entire adjustment falls on demand: price rises sharply, rationing the unchanged quantity to those with the highest willingness to pay, and the shortage of the good at an affordable price persists even though the market technically clears. The UK housing market has behaved this way for decades, with rising prices rationing a stock that barely responds.',
+        'This is a distributional objection rather than a technical failure: the market does clear, but it clears by pricing out lower-income buyers entirely. Whether that counts as the mechanism "working" depends on whether the test is efficiency, which it passes, or fair access, which it does not, and this is precisely why governments intervene in markets like housing despite the mechanism functioning as theory predicts.',
+      ],
+      [
+        'Intervention can also prevent the mechanism from operating at all. Where a maximum price is set below equilibrium - rent controls, or a cap on energy prices - the price is legally prevented from rising, so excess demand cannot be eliminated through price and the shortage becomes permanent rather than temporary. The good must then be rationed by queueing, waiting lists, seller discretion or a black market, none of which allocates to those who value it most, and the suppressed price signal means supply is never drawn out either.',
+        'The same objection applies to markets where the price signal is distorted by market failure rather than by policy: where a good has significant external costs or benefits, the price that clears the market is not the price that reflects social value, so the mechanism restores equilibrium at the wrong quantity. The mechanism is reliable at clearing a market; it is reliable at clearing it at the SOCIALLY optimal point only where prices reflect full social costs and benefits.',
+      ],
+    ],
+    'The price mechanism is highly reliable at eliminating a shortage in the narrow sense: excess demand raises price, which rations demand and draws out supply, and in competitive markets with responsive supply this happens quickly and without anyone needing to coordinate it. Its reliability weakens substantially where supply cannot respond in the time available, in which case the adjustment falls entirely on price and the shortage of affordable access persists even as the market clears. It fails outright where price controls prevent the adjustment, and it clears at the wrong quantity where prices do not reflect social costs. The mechanism can be relied on to clear a market; whether the outcome it reaches is acceptable is a separate question, and the answer is what determines whether intervention is justified.',
+    [
+      'Definition of a shortage as excess demand at the prevailing price',
+      'Diagram showing excess demand below equilibrium and the adjustment to Pe, Qe',
+      'The rationing, signalling and incentive functions operating together',
+      'Speed and effectiveness where supply is elastic and prices are free to move',
+      'Inelastic supply: adjustment falls on price, and affordable access remains short',
+      'Price controls and market failure preventing the mechanism from working or from clearing at the social optimum',
+    ],
+    [
+      'Effectiveness depends heavily on the price elasticity of supply in the time available',
+      'Clearing by price is efficient but distributionally contested - it rations by ability to pay',
+      'A maximum price prevents the adjustment entirely, making the shortage permanent',
+      'Judgement: reliable at clearing a market, not necessarily at clearing it at a socially optimal or acceptable point',
+    ],
+  ),
+
+  /* --------------------------------------------------- Demand for Labour */
+  Q135: A(
+    [['labour-market', 'The labour market with D(L) = MRP and S(L) meeting at W₁, Q₁. An increase in the demand for labour shifts D(L) right, raising both the equilibrium wage and employment. Because D(L) IS the marginal revenue product curve, anything that raises MRP shifts it.']],
+    'Demand for labour is a DERIVED demand: firms hire workers not for their own sake but for the output those workers produce. The demand curve for labour is therefore its marginal revenue product - the extra revenue an additional worker generates - so anything that raises MRP raises the demand for labour and shifts D(L) to the right.',
+    [
+      [
+        'The first factor is a rise in demand for the FINAL PRODUCT the labour produces. Because MRP is marginal physical product multiplied by the price of the output, a higher output price raises the revenue each worker generates even if their physical productivity is unchanged. When demand for new housing rises and house prices with it, the marginal revenue product of a bricklayer rises, so construction firms demand more bricklayers at every wage and D(L) shifts right, raising both the equilibrium wage and employment. This is what "derived demand" means in practice: the labour market is driven by the product market above it.',
+        'The strength of this effect depends on how much of the output price increase actually reaches the marginal worker’s measured product, which is weaker in industries where labour is a small share of total cost, or where capacity constraints elsewhere - planning permission, materials shortages - prevent the firm expanding output whatever its wage bill.',
+      ],
+      [
+        'The second is a rise in labour PRODUCTIVITY, which raises the physical output each worker contributes and so raises MRP at any given output price. Better capital equipment, improved training, or more effective management all raise output per worker, so the firm is willing to employ more workers at each wage. This is why investment in capital and in skills usually raises employment as well as wages, rather than displacing workers as is sometimes assumed.',
+        'This holds only where the capital COMPLEMENTS labour rather than substituting for it. Where new technology performs the task the worker was doing - automated checkouts, robotic assembly - the same investment raises the productivity of the remaining workers while reducing the number required, so the demand curve for that particular type of labour shifts LEFT even as output per remaining worker rises. Whether a productivity improvement raises or lowers labour demand depends entirely on which of the two it is.',
+      ],
+    ],
+    null,
+    [
+      'Labour as a derived demand; D(L) is the marginal revenue product curve',
+      'Diagram showing D(L) shifting right and raising both the wage and employment',
+      'A rise in demand for the final product raises the output price and hence MRP',
+      'A rise in labour productivity raises marginal physical product and hence MRP',
+      'Other acceptable factors: a fall in the price of a complementary factor, changes in employment subsidies or taxes',
+    ],
+    [
+      'The product-demand effect is weaker where labour is a small share of cost or where other capacity constraints bind',
+      'A productivity improvement raises labour demand only where capital complements labour; where it substitutes, demand for that labour falls',
+    ],
+  ),
+
+  Q136: A(
+    [['labour-market', 'D(L) = MRP against S(L), with a wage above the market-clearing W₁ creating excess supply of labour. The SIZE of that employment loss depends on how elastic D(L) is: draw a steep and a shallow D(L) through the same point to show the same wage rise producing very different falls in employment.']],
+    'When wages rise above the market-clearing level - through a minimum wage, collective pressure or a statutory increase - the standard prediction is that quantity of labour demanded falls, creating unemployment. How large that employment effect actually is depends heavily on the elasticity of demand for labour, but elasticity is not the only thing that determines the outcome.',
+    [
+      [
+        'Elasticity of demand for labour genuinely is central to the size of the effect. Where D(L) is inelastic - steep - a given wage rise reduces employment only slightly, because firms cannot easily do without the workers; where it is elastic, the same rise produces a much larger fall. The determinants are well understood: demand for labour is more elastic the easier it is to substitute capital for labour, the more elastic demand for the final product (since firms cannot pass the cost on without losing sales), the higher labour costs are as a share of total costs, and the longer the time period, since substitution takes time to arrange.',
+        'This explains the observed pattern in UK minimum wage research: employment effects have been small in sectors such as care, hospitality and retail, where the work is hard to automate, the service must be delivered locally, and demand for the final product is relatively inelastic. The theory and the evidence line up, which is a genuine point in favour of elasticity being the key determinant.',
+      ],
+      [
+        'But elasticity assumes a competitive labour market, and where the employer has monopsony power the prediction reverses regardless of elasticity. A monopsonist already employs fewer workers at a lower wage than a competitive market would, because its marginal cost of labour exceeds the wage. A minimum wage set between the monopsony wage and the competitive wage flattens that marginal cost curve, and employment RISES rather than falls. Here the decisive variable is not how elastic demand for labour is but how much monopsony power the employer holds.',
+        'This is not a theoretical curiosity: the absence of large employment losses from the UK minimum wage is at least as consistent with employers in low-wage sectors having some monopsony power as with labour demand being inelastic. The two explanations are difficult to separate empirically, which means elasticity cannot be assumed to be the operative factor even where the outcome matches its prediction.',
+      ],
+      [
+        'Firms also have margins of adjustment other than employment, which the diagram does not show. Faced with a wage rise, a firm may cut hours rather than headcount, reduce training, bonuses or non-wage benefits, raise prices, accept lower profit, or invest in raising productivity so the higher wage is covered by more output per worker. Each of these absorbs the cost without the job losses the simple model predicts, so measured employment can be stable while the adjustment happens somewhere less visible.',
+        'Which margin a firm uses depends on its own circumstances rather than on labour demand elasticity: a firm with thin margins in a competitive product market has little choice but to cut employment, while one with pricing power or scope for productivity improvement has alternatives. This means the employment effect varies between firms facing identical elasticities, which limits how much of the outcome elasticity alone can explain.',
+      ],
+    ],
+    'The elasticity of demand for labour is a genuinely important determinant of the employment effect of a wage rise, and its determinants - substitutability of capital, elasticity of product demand, labour’s share of costs, and the time period - correctly predict where employment losses are largest. But calling it the MAIN factor overstates it. Where the employer has monopsony power the sign of the effect reverses entirely, which no degree of elasticity can override, and firms have several adjustment margins other than employment whose use depends on their competitive position rather than on elasticity at all. Elasticity determines the size of the employment effect within a competitive labour market; the market structure determines whether that framework applies, and the firm’s available margins determine whether the adjustment shows up as job losses or somewhere else entirely.',
+    [
+      'Elasticity of demand for labour and its determinants: capital substitutability, product demand elasticity, labour’s cost share, time',
+      'Diagram showing the same wage rise producing different employment falls on elastic and inelastic D(L)',
+      'Evidence from UK minimum wage research in care, hospitality and retail',
+      'Monopsony: a minimum wage between the monopsony and competitive wage raises employment regardless of elasticity',
+      'Alternative adjustment margins: hours, training, non-wage benefits, prices, profit, productivity investment',
+    ],
+    [
+      'The empirical pattern is consistent with inelastic labour demand AND with monopsony power, which are hard to separate',
+      'Monopsony reverses the sign of the effect, which elasticity cannot override',
+      'Which adjustment margin a firm uses depends on its competitive position, not on elasticity',
+      'Judgement: elasticity sets the size within a competitive market, but market structure and available margins determine the outcome',
+    ],
+  ),
+
+  /* --------------- The Impact and Limits of Government Intervention */
+  Q137: A(
+    [],
+    'Regulatory capture occurs when a regulator, over time, comes to act in the interests of the industry it is supposed to regulate rather than in the public interest. It is one of the main reasons government intervention can fail to deliver the outcome it was designed to achieve, and it is a form of government failure.',
+    [
+      [
+        'Capture happens because of an asymmetry in information and incentives. The regulator depends on the industry for the data it needs to regulate - costs, capacity, technical constraints - and the firms have every reason to present that information in the light most favourable to themselves. Meanwhile the benefit of a lenient decision is large and concentrated for a handful of firms, who will lobby hard for it, while the cost is small and spread across millions of consumers, none of whom has enough at stake individually to organise against it. The regulator hears sustained, well-resourced argument from one side and almost nothing from the other.',
+        'The effect is compounded where regulators recruit from and return to the industry, since the expertise needed to regulate a complex sector is largely found inside it. This "revolving door" gives officials a personal interest in not antagonising future employers, though it is genuinely difficult to avoid: a regulator staffed entirely by people with no industry experience would be easier to mislead on technical matters, which is its own route to the same outcome.',
+      ],
+      [
+        'The consequence is that intervention delivers less than it promised. A captured price regulator sets the cap too generously, so the monopoly retains supernormal profit that the cap was meant to remove and consumers pay more than they should; a captured safety or environmental regulator accepts industry assurances rather than testing them. The intervention still has its administrative cost, so society bears the expense of regulation without receiving the benefit - which is precisely why government failure can leave an outcome worse than the market failure it was addressing.',
+        'How severe this is depends on the regulator’s design rather than being inevitable. Independent appointments, fixed terms, published reasoning, an obligation to consult consumer bodies, and requirements to justify decisions against explicit statutory objectives all make capture harder, and regulators that periodically impose costly decisions on the industry demonstrate that it is not universal. Capture is a risk to be designed against, not a certainty.',
+      ],
+    ],
+    null,
+    [
+      'Definition of regulatory capture as a form of government failure',
+      'Information asymmetry: the regulator depends on the industry for the data it needs',
+      'Asymmetric incentives: concentrated benefits to firms, dispersed costs to consumers, so only one side lobbies',
+      'The revolving door between regulators and the industries they regulate',
+      'Consequence: intervention delivers less than intended while still incurring its administrative cost',
+    ],
+    [
+      'The revolving door is hard to avoid, since the expertise needed to regulate is concentrated inside the industry',
+      'Capture is a design risk rather than an inevitability - independence, transparency and statutory objectives all reduce it',
+    ],
+  ),
+
+  Q138: A(
+    [],
+    'Government intervenes in markets to correct market failure and to promote competition, using tools ranging from price and profit regulation to merger control, deregulation and privatisation. Its impact has to be judged across several dimensions at once - prices, efficiency and consumer choice - because a measure that improves one can worsen another.',
+    [
+      [
+        'The clearest impact is on prices. Where a firm has market power, a price cap of the RPI-X form directly limits what it can charge, transferring surplus from the firm to consumers, and because the cap does not rise with the firm’s own costs it also creates a standing incentive to cut those costs in order to retain profit - so the same instrument can improve productive efficiency as well as lowering price. Merger control works on price indirectly, by preventing the concentration that would have allowed prices to rise in the first place, as when the Competition and Markets Authority blocked the Sainsbury’s-Asda merger in 2019.',
+        'The price benefit depends on the regulator setting the cap correctly, which requires information it does not have. Set too loosely, the cap leaves the supernormal profit untouched and achieves nothing; set too tightly, it drives price towards average cost but leaves too little return to fund investment, which shows up years later as degraded service and underinvested infrastructure - the criticism made of water and rail regulation in the UK.',
+      ],
+      [
+        'The impact on efficiency is more mixed. Intervention that opens a market to entry - deregulation, competitive tendering, requiring a network owner to give rivals access - raises both productive and allocative efficiency by restoring competitive pressure, and this is where intervention has the strongest record. Intervention that adds compliance obligations, however, imposes real costs: firms divert resources to meeting the rules, and those fixed compliance costs fall disproportionately on small firms, which can entrench the large incumbents the regulation was meant to discipline.',
+        'Dynamic efficiency cuts both ways too. Environmental regulation and carbon pricing have driven genuine innovation in low-emission technology, since firms profit from beating the standard; but regulation that specifies a particular technology rather than an outcome freezes the industry on that technology and removes the incentive to find a better one. Whether intervention helps or harms efficiency depends far more on how it is designed than on how much of it there is.',
+      ],
+      [
+        'The impact on consumer choice is the most ambiguous of the three. Intervention can expand choice by breaking open a market: the separation of energy supply from the network, and the requirement to allow switching, gave consumers a choice of supplier where previously there was none. But it can also narrow choice deliberately, and sometimes that is the point - banning a dangerous product, restricting the sale of age-limited goods, or requiring minimum standards all remove options that consumers might otherwise have taken.',
+        'Judging this requires a value judgement rather than an efficiency calculation. Removing an option is a loss to the consumer who wanted it and a gain to the third parties harmed by it, and economics can measure neither against the other without taking a position on how much weight to give informed consumer sovereignty against protection from harm - which is why interventions of this kind remain politically contested long after their economic effects are understood.',
+      ],
+    ],
+    'Government intervention in markets has a generally favourable impact on prices where the target is genuine market power and the regulator is competent, and its strongest record is in opening markets to competition, which improves efficiency and expands choice simultaneously. The impact is far less reliable where the regulator lacks the information to set a cap correctly, where compliance costs entrench incumbents, or where regulation specifies technologies rather than outcomes. On consumer choice the effect is genuinely two-directional and partly a matter of values rather than economics. The overall judgement is that the design and the information available to the regulator matter far more than the extent of intervention: well-targeted intervention against a clear failure improves all three dimensions, while poorly designed intervention can worsen each of them while still incurring its full cost.',
+    [
+      'The range of intervention tools: price and profit regulation, merger control, deregulation, competitive tendering, privatisation',
+      'Impact on prices: RPI-X caps transferring surplus and incentivising cost reduction; merger control preventing price rises',
+      'Impact on efficiency: opening markets raises it; compliance costs and technology-specific rules can reduce it',
+      'Impact on choice: opening markets expands it, while bans and standards deliberately narrow it',
+      'Limits to intervention: regulatory capture and the regulator’s information problem',
+    ],
+    [
+      'Price caps depend on information the regulator does not have - too loose achieves nothing, too tight starves investment',
+      'Compliance costs fall disproportionately on small firms and can entrench incumbents',
+      'Restricting choice involves a value judgement about consumer sovereignty that economics cannot settle',
+      'Judgement: design and information matter more than the extent of intervention',
+    ],
+  ),
 }

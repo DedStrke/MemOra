@@ -760,6 +760,41 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'The gap between AC and AVC is AFC - exactly the cost that is unavoidable in the short run, and the whole reason the two shut-down points differ',
     ],
   },
+  Q131: {
+    'demand-shift': [
+      'A CONDITION of demand changed, so the whole curve moves from D₁ to D₂ - this is not a movement along the curve',
+      'Only the good’s own price causes a movement along D; everything else (income, related prices, tastes, population) shifts it',
+      'With S unchanged, equilibrium moves from P₁, Q₁ to P₂, Q₂ - both price AND quantity rise',
+    ],
+  },
+  Q132: {
+    'supply-demand': [
+      'At any price below Pe, quantity demanded exceeds quantity supplied - that horizontal gap IS the shortage',
+      'Excess demand bids the price up: demand contracts along D while supply extends along S, and the gap closes',
+      'The market clears at Pe, Qe with no one coordinating it - rationing, signalling and incentive all doing their work at once',
+    ],
+  },
+  Q135: {
+    'labour-market': [
+      'D(L) = MRP is the demand curve: labour is demanded for the revenue the worker produces, not for itself',
+      'Anything raising MRP - a higher output price, or higher productivity - shifts D(L) RIGHT',
+      'The new equilibrium has a higher wage than W₁ AND higher employment than Q₁: both rise together',
+    ],
+  },
+  Q136: {
+    'labour-market': [
+      'A wage set above the market-clearing W₁ leaves quantity supplied above quantity demanded - the excess supply is the unemployment',
+      'The SIZE of that employment fall depends on how steep D(L) is: a steep (inelastic) D(L) loses few jobs, a shallow (elastic) one loses many',
+      'This prediction assumes a competitive market - under monopsony the same wage rise can raise employment instead',
+    ],
+  },
+  Q140: {
+    'comparative-advantage': [
+      'The two PPFs have different slopes, and that difference in slope IS the difference in opportunity cost the theory turns on',
+      'Each country specialises where its opportunity cost is lower, then trades along the trade line',
+      'Both consume beyond their own PPF - the gain from trade the theory predicts, and the benchmark against which real trade patterns are tested',
+    ],
+  },
   Q125: {
     'cost-push': [
       'Higher input costs shift AS left, from AS₁ to AS₂ - the whole curve moves, this is not a movement along it',

@@ -918,4 +918,128 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: better than any alternative mechanism, considerably worse than the efficient ideal',
     ],
   ),
+
+  /* ------------------------------------------------------------ Net Trade */
+  Q133: A(
+    [],
+    'Net trade is exports minus imports, the (X - M) component of aggregate demand. A fall in the net trade balance means exports falling relative to imports, which reduces AD directly. The exchange rate is the influence most often cited, but several others matter at least as much.',
+    [
+      [
+        'The first is a change in relative incomes. Imports are bought out of domestic income, so when domestic growth runs faster than that of a country’s trading partners, spending on imports rises faster than partners’ spending on its exports, and net trade deteriorates even with no change in competitiveness or prices. This is why a strong domestic recovery routinely widens a trade deficit, and why the UK’s deficit tends to narrow in recessions and widen in booms.',
+        'The size of this effect depends on the marginal propensity to import: an economy that spends a large share of each extra pound on imported goods, as the UK does, sees a much larger deterioration from the same income growth than one that meets more of its demand domestically. It is also self-correcting in a way a competitiveness problem is not, since it reverses when relative growth rates converge.',
+      ],
+      [
+        'The second is a loss of non-price competitiveness. Price is only part of what determines whether a buyer chooses a country’s exports: quality, reliability, design, delivery times, after-sales service and brand reputation all matter, and in many markets they matter more. A country whose firms fall behind on innovation or quality loses export orders and sees domestic buyers switch to imports, worsening net trade at an unchanged exchange rate and unchanged relative prices.',
+        'This cause is far more persistent than an income-driven deterioration, because it reflects a structural position rather than a point in the cycle: it will not reverse on its own when growth slows, and correcting it requires investment in productivity, skills and innovation over years. Relative inflation and productivity growth work through the same channel more slowly, eroding price competitiveness even where the nominal exchange rate is stable.',
+      ],
+    ],
+    null,
+    [
+      'Definition of net trade as (X - M) and its role as a component of AD',
+      'Relative income growth: faster domestic growth than trading partners raises imports faster than exports',
+      'The marginal propensity to import determining the size of that effect',
+      'Loss of non-price competitiveness: quality, reliability, design, innovation, brand',
+      'Relative inflation and productivity eroding price competitiveness at an unchanged exchange rate',
+    ],
+    [
+      'The income-driven deterioration is cyclical and self-correcting as relative growth rates converge',
+      'A competitiveness-driven deterioration is structural and will not reverse without investment in productivity and innovation',
+    ],
+  ),
+
+  Q134: A(
+    [],
+    'Net trade, (X - M), is one of the four components of aggregate demand alongside consumption, investment and government spending. Judging its significance means asking both how large it is relative to the others and how much influence it actually exerts over an economy’s macroeconomic performance.',
+    [
+      [
+        'On size alone, net trade is the smallest component of UK aggregate demand by a wide margin. Consumption is around 60% of GDP; net trade is typically a small negative number, since the UK persistently imports more than it exports. A given percentage change in consumption therefore moves AD far more than the same percentage change in net trade, which is why demand management in the UK works primarily through interest rates and fiscal policy acting on consumption and investment rather than through the external sector.',
+        'Size understates significance in one important respect, though: net trade is the most VOLATILE component after investment, swinging with world growth, exchange rates and commodity prices, so it can contribute disproportionately to short-run changes in AD even though its level is small. A sharp fall in world demand reduces exports quickly, and that shock transmits directly to output regardless of how small the net balance is in normal times.',
+      ],
+      [
+        'Net trade matters more through what it reveals than through its direct contribution to AD. A persistent deficit is a symptom: it signals either that domestic demand is running ahead of domestic supply, or that the economy has a competitiveness problem in international markets. Either diagnosis has consequences for policy that the size of the number alone does not convey - the first suggests the economy is overheating, the second that supply-side reform is needed.',
+        'The deficit also has to be financed, which is where it can constrain policy. A country running a persistent current account deficit must attract corresponding inflows on the financial account, and if those inflows are short-term and volatile, the country may need to keep interest rates higher than domestic conditions alone would justify, subordinating monetary policy to an external constraint. For the UK, with deep financial markets and its own currency, this constraint has so far been mild; for economies with limited reserves or a currency peg, it binds hard.',
+      ],
+      [
+        'Its significance also depends heavily on the type of economy. For a small, very open economy where exports are a large share of GDP - Singapore, Ireland, the Netherlands - net trade is a dominant influence on growth and employment, and world demand matters more than domestic policy. For a large, relatively closed economy, the external sector is a secondary influence on the cycle, and domestic demand dominates.',
+        'The UK sits awkwardly between these: trade is a substantial share of GDP, so the economy is genuinely exposed to world conditions, but the persistent deficit means net trade subtracts from rather than drives growth, and the services surplus partly offsets the goods deficit. Its significance for the UK is therefore greater as a constraint and a diagnostic than as an engine of demand.',
+      ],
+    ],
+    'Net trade is the least significant component of UK aggregate demand in terms of its direct contribution: it is small in magnitude and, being persistently negative, subtracts from rather than drives growth. Its significance is greater than its size suggests for three reasons - it is volatile, so it contributes disproportionately to short-run swings; it is diagnostic, revealing whether the economy is overheating or uncompetitive; and it must be financed, which can constrain monetary policy. Its significance also varies enormously with the type of economy: decisive for a small open economy, secondary for a large one. For the UK specifically, net trade matters more as a constraint and a signal than as a lever of demand management, which is why policy acts on it indirectly through competitiveness rather than targeting it directly.',
+    [
+      'Net trade as (X - M), the smallest component of UK aggregate demand',
+      'Relative size compared with consumption, investment and government spending',
+      'Volatility making its contribution to short-run AD changes disproportionate to its level',
+      'Diagnostic value: a deficit signals excess domestic demand or a competitiveness problem',
+      'The financing constraint: persistent deficits require financial account inflows and can constrain interest rates',
+      'Dependence on the type of economy: small open economies versus large relatively closed ones',
+    ],
+    [
+      'Small in level but volatile, so it matters more for short-run changes than its size implies',
+      'The financing constraint is mild for an economy with its own currency and deep markets, binding for one without',
+      'Significance varies enormously between small open and large closed economies',
+      'Judgement: for the UK, more significant as a constraint and a diagnostic than as a driver of demand',
+    ],
+  ),
+
+  /* ----------------------------------------------- The Pattern of Trade */
+  Q139: A(
+    [],
+    'The pattern of trade describes which countries trade which goods and services with whom. It is not fixed: over the last thirty years the direction and composition of world trade have changed substantially, and several identifiable factors have driven that change.',
+    [
+      [
+        'The first is the emergence of new industrial economies, above all China and the wider East Asian region. As these countries industrialised, they acquired a comparative advantage in labour-intensive manufacturing that advanced economies had previously held, so production of textiles, consumer electronics and assembled goods shifted towards them, and the advanced economies’ exports shifted further towards services, high-technology manufacturing and intellectual property. China’s accession to the WTO in 2001 accelerated this by locking in its access to export markets.',
+        'This shift is not permanent either, and is already moving on: as Chinese wages have risen, lower-cost production has begun relocating again towards Vietnam, Bangladesh and parts of Africa, which shows that a comparative advantage based on relative labour costs erodes precisely because the growth it generates raises those costs.',
+      ],
+      [
+        'The second is the growth of trading blocs and bilateral agreements, which change the pattern by altering relative trade costs rather than relative production costs. Preferential access within a bloc diverts trade towards member states and away from more efficient outside producers, so a country’s trade becomes more concentrated on its bloc partners than comparative advantage alone would predict - the effect visible in the concentration of UK trade on the EU before 2021, and in its partial redirection afterwards.',
+        'Exchange rate movements work in the same direction over shorter horizons, making a country’s exports cheaper or dearer relative to competitors’ and shifting trade flows without any change in underlying costs - though these effects are usually reversed as currencies move back, whereas changes in bloc membership or industrial capability persist.',
+      ],
+    ],
+    null,
+    [
+      'Definition of the pattern of trade: which countries trade which goods with whom',
+      'The emergence of China and other industrialising economies acquiring comparative advantage in manufacturing',
+      'Advanced economies shifting towards services, high-technology goods and intellectual property',
+      'Trading blocs and bilateral agreements diverting trade towards member states',
+      'Relative exchange rate changes shifting trade flows over shorter horizons',
+    ],
+    [
+      'Labour-cost-based comparative advantage erodes as growth raises wages, so the shift continues to move on',
+      'Exchange rate effects are usually reversed, whereas industrial capability and bloc membership persist',
+    ],
+  ),
+
+  Q140: A(
+    [['comparative-advantage', 'Two countries with differently-sloped PPFs, specialising where opportunity cost is lower and consuming beyond their own frontier by trading along the trade line. Use it to state what the theory predicts - then test that prediction against the trade patterns actually observed.']],
+    'Comparative advantage holds that countries export goods they can produce at a lower opportunity cost than their trading partners, and that specialisation and trade let both consume beyond their own production possibility frontiers. It remains the foundation of trade theory, but how much of the observed pattern of trade it actually explains is a separate question.',
+    [
+      [
+        'The theory explains a great deal of the broad pattern, particularly trade between very different economies. Countries abundant in land export agricultural products; countries with large reserves export oil and minerals; economies with abundant low-cost labour export labour-intensive manufactures while capital- and skill-abundant economies export high-technology goods and services. The UK’s persistent surplus in financial and professional services alongside its deficit in manufactured goods is close to exactly what the theory predicts for an economy with a deep skills base and high labour costs.',
+        'The theory’s predictions hold best where the differences between countries are largest, since that is where opportunity costs diverge most sharply. It performs much less well in explaining trade between economies that are similar in income, technology and factor endowments, where the theory predicts relatively little trade at all.',
+      ],
+      [
+        'This is the central empirical problem: the largest trade flows in the world are between similar advanced economies, and a great deal of it is INTRA-INDUSTRY - Germany and France exchanging cars with each other, rather than one specialising in cars and the other in something else. Comparative advantage cannot easily explain why two countries with near-identical opportunity costs trade the same category of good in both directions. The explanations that do work are economies of scale, which reward concentrating production of a particular model or variety in one location, and product differentiation combined with consumer demand for variety.',
+        'These explanations complement rather than replace comparative advantage: scale economies determine WHERE within a broad industry a particular variety is produced, while comparative advantage still explains why the industry as a whole is located in advanced economies rather than elsewhere. The theory is incomplete rather than wrong, and modern trade theory incorporates it rather than discarding it.',
+      ],
+      [
+        'The theory’s assumptions also limit its explanatory power. It assumes constant opportunity costs, no transport costs, perfect factor mobility within countries and free trade - none of which holds. Transport and other trade costs mean geography matters enormously, which is why countries trade disproportionately with their neighbours regardless of comparative advantage. Protection, subsidies and bloc membership divert trade away from the pattern comparative advantage alone would produce, and global supply chains mean a good crosses borders repeatedly, so trade statistics attribute the full value of an export to the country of final assembly rather than to where the value was actually added.',
+        'Comparative advantage is also not static, which is both a limitation and a strength: it shifts as countries accumulate capital, skills and technology, so the pattern it predicts changes over time. This means it explains the DIRECTION of change - as China accumulated capital, it moved from textiles towards electronics exactly as the theory implies - even where it cannot predict a country’s trade pattern from its endowments at a single point in time.',
+      ],
+    ],
+    'Comparative advantage still explains the broad structure of world trade well, particularly between economies with genuinely different factor endowments, and it explains the direction in which trade patterns evolve as countries develop. It does not explain the largest and fastest-growing category of trade - intra-industry trade between similar advanced economies - for which economies of scale and product differentiation are the operative explanations, and its assumptions about transport costs, factor mobility and free trade diverge sharply enough from reality that geography and policy visibly distort the pattern it predicts. The honest judgement is that comparative advantage remains necessary but no longer sufficient: it is the foundation on which modern trade theory is built rather than a complete account of the pattern of trade on its own.',
+    [
+      'Comparative advantage: specialisation according to lower opportunity cost, with a diagram',
+      'Explains trade between economies with different factor endowments - land, resources, labour, capital, skills',
+      'The UK’s services surplus and manufacturing deficit as a predicted pattern',
+      'Intra-industry trade between similar economies as the central anomaly',
+      'Economies of scale and product differentiation as the complementary explanations',
+      'Limiting assumptions: constant costs, no transport costs, factor mobility, free trade',
+    ],
+    [
+      'The theory performs best where differences between countries are largest, worst where they are smallest',
+      'Scale economies complement rather than replace comparative advantage - the theory is incomplete, not wrong',
+      'Geography, protection and global supply chains distort the predicted pattern and the statistics measuring it',
+      'Judgement: still necessary and still explains the direction of change, but no longer sufficient on its own',
+    ],
+  ),
 }
