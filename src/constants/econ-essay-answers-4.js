@@ -31,7 +31,11 @@ export const ECON_ESSAY_ANSWERS_4 = {
     [
       [
         'A lack of international competitiveness is a common cause: if domestic inflation runs persistently higher than that of trading partners, or if productivity growth lags behind competitors, domestic goods become relatively more expensive abroad and imports become relatively cheaper at home, widening the trade deficit as exports fall and imports rise.',
+        'This cause is structural rather than temporary: it will not correct itself without an actual change in relative costs, prices or productivity, so a deficit driven by a persistent competitiveness gap can continue to widen for years if the underlying gap is not addressed by policy.',
+      ],
+      [
         'A second cause is a high marginal propensity to import relative to income: an economy growing strongly, with consumers spending a large share of rising incomes on imported goods, can see its import bill rise faster than exports even without any loss of competitiveness, simply because domestic demand is growing quickly relative to the rest of the world.',
+        'This cause is more cyclical than structural: it tends to ease on its own once domestic growth slows towards the pace of trading partners, since a smaller share of a slower-growing income is then spent on imports, so a deficit driven mainly by strong domestic demand is more likely to narrow without any policy change than one driven by lost competitiveness.',
       ],
     ],
     null,
@@ -41,7 +45,8 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'High marginal propensity to import relative to strong domestic income growth',
     ],
     [
-      'Depends on whether the cause is structural (competitiveness) or cyclical (strong growth pulling in imports)',
+      'The competitiveness cause is structural and will not self-correct without a change in relative costs or productivity',
+      'The high-MPM cause is more cyclical and tends to ease once domestic growth slows relative to trading partners',
     ],
   ),
 
@@ -86,16 +91,21 @@ export const ECON_ESSAY_ANSWERS_4 = {
         'Faster economic growth is usually driven by rising output, which typically requires using more resources - more energy, more raw materials, more industrial production - and this tends to increase carbon emissions and other environmental damage, at least in the absence of a simultaneous improvement in the efficiency or cleanliness of production. A government pursuing policies to boost growth (lower interest rates, tax cuts, deregulation to encourage investment) can therefore find that these same policies raise pollution and environmental degradation, conflicting directly with an objective of protecting the environment.',
         'This trade-off is not fixed, however: growth driven by genuinely resource-efficient, low-carbon investment (renewable energy, green technology) can raise output while reducing environmental harm, so the conflict depends heavily on the TYPE of growth being pursued, not on growth itself being inherently in conflict with the environment.',
       ],
+      [
+        'A government seeking growth may also relax the regulations that protect the environment directly, rather than only raising resource use: easing planning restrictions for housebuilding and infrastructure, weakening environmental impact assessments, or granting exemptions to attract large capital projects lowers the cost and delay facing investors, which supports growth, but at the direct cost of whatever protection the relaxed rule provided.',
+        'Unlike the resource-use channel, this conflict is a matter of policy choice rather than an unavoidable by-product of growth itself: a government can in principle pursue growth by speeding up approval processes without lowering the environmental standard being applied, so this second conflict is more avoidable, given sufficient political will, than the first.',
+      ],
     ],
     null,
     [
       'Identification of the two objectives in conflict: economic growth and environmental protection',
       'Explanation of the mechanism: growth typically uses more resources and raises emissions',
       'Recognition that the conflict depends on the type of growth (resource-intensive versus green investment)',
+      'A second mechanism: growth-oriented deregulation directly weakening environmental protections',
     ],
     [
       'Depends on whether growth is driven by resource-intensive or resource-efficient investment',
-      'Depends on how strongly environmental regulation constrains the growth-inducing policy',
+      'The deregulation channel is more avoidable through policy choice than the resource-use channel',
     ],
   ),
 
@@ -140,6 +150,10 @@ export const ECON_ESSAY_ANSWERS_4 = {
         'Government spending on education and training directly raises the quality of the labour force: workers become more productive, better able to use new technology, and more adaptable to changing employer needs, which raises the economy’s potential output at any given quantity of labour and capital. This is a supply-side effect, distinct from any short-term demand-side boost the spending might also create.',
         'Because this policy works through the underlying productive capacity of the economy rather than simply adding to demand, the resulting rightward shift in LRAS allows the economy to produce more output without the same upward pressure on the price level that a purely demand-driven expansion, hitting the limits of existing capacity, would create.',
       ],
+      [
+        'Beyond raising the productivity of those already in work, education and training can also raise LRAS through the QUANTITY of usably employed labour, by reducing structural unemployment: retraining programmes better match the skills unemployed workers have to the skills vacant jobs actually require, letting workers whose previous skills were made obsolete by technological change or industrial decline move into sectors with unfilled vacancies, which lowers the natural rate of unemployment (NAIRU).',
+        'This channel depends on retraining genuinely matching current vacancies rather than skills already in oversupply, and on unemployed workers being willing and able to retrain or relocate for a new role; where either condition fails to hold, spending on retraining raises LRAS by considerably less than the headline spending figure would suggest.',
+      ],
     ],
     null,
     [
@@ -147,10 +161,11 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Education and training raise labour productivity and quality directly',
       'Diagram showing LRAS shifting right as a result',
       'Distinction between this supply-side effect and a demand-side effect of the same spending',
+      'Education and training also reduce structural unemployment (NAIRU) by matching skills to vacancies',
     ],
     [
       'Works with a considerable time lag - education and training take years to raise productivity',
-      'Depends on the quality and relevance of the training actually delivered',
+      'Depends on retraining matching genuine vacancies and on workers being willing and able to retrain or relocate',
     ],
   ),
 
@@ -195,6 +210,10 @@ export const ECON_ESSAY_ANSWERS_4 = {
         'As aggregate demand rises - for example following an interest rate cut or a rise in government spending - firms respond by producing more output and hiring more workers, so unemployment falls as the economy moves closer to full employment. With more people in work and spending, and firms facing rising demand for their products relative to their capacity, firms are able to raise prices, and workers, in a tighter labour market, are able to bargain for higher wages, which together push up the rate of inflation.',
         'Moving along the curve in the other direction, a fall in aggregate demand raises unemployment as firms cut back output and lay off workers, but this weaker demand and slacker labour market reduces the pricing and wage-bargaining power behind inflation, so the rate of inflation falls at the same time as unemployment rises - the short-run Phillips curve captures this trade-off as a single downward-sloping relationship between the two.',
       ],
+      [
+        'The whole curve can also shift outward, rather than the economy simply moving along a fixed curve, when inflation is driven by a supply-side shock instead of demand. A rise in the price of oil or other imported raw materials raises costs and prices at every level of unemployment, so the unemployment-inflation trade-off itself worsens: an economy can then experience higher unemployment and higher inflation together, a combination - stagflation, as in the UK in the mid-1970s - that a demand-driven movement along a single curve cannot explain.',
+        'This distinction matters directly for policy. A government facing higher inflation from a movement along the curve, caused by excess demand, can bring it down by reducing demand. A government facing an outward-shifted curve caused by a supply shock cannot cure that inflation the same way without pushing unemployment up even further, since demand-side policy has no way to lower a cost that rose for reasons unrelated to the state of demand.',
+      ],
     ],
     null,
     [
@@ -202,10 +221,11 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Rising aggregate demand reduces unemployment and increases inflation (tighter labour market, pricing power)',
       'Falling aggregate demand raises unemployment and reduces inflation (slacker labour market)',
       'Diagram showing the downward-sloping curve and a movement along it',
+      'A supply-side shock shifts the whole curve outward, producing stagflation rather than a movement along it',
     ],
     [
       'This is a SHORT-RUN relationship; the trade-off need not hold in the long run',
-      'The relationship describes movements ALONG the curve, driven by changes in aggregate demand specifically',
+      'A movement along the curve (demand-driven) calls for a different policy response than an outward shift (supply-driven)',
     ],
   ),
 
@@ -249,7 +269,11 @@ export const ECON_ESSAY_ANSWERS_4 = {
     [
       [
         'Trade liberalisation - the reduction of tariffs and other barriers to trade through the World Trade Organization and its predecessor, and the growth of regional trading blocs - has directly lowered the cost of trading across borders, making it more profitable for firms to source inputs and sell output internationally rather than only domestically.',
+        'This driver depends on continued political willingness to keep barriers low, and it is not one-directional: rising protectionism in recent years - US-China tariffs, the UK’s departure from the EU single market - has raised trade barriers again in some relationships, showing that liberalisation-driven globalisation can partially reverse rather than only ever deepen.',
+      ],
+      [
         'Falling transport and communication costs, particularly containerisation in shipping and the growth of the internet, have made it dramatically cheaper and faster to move goods, coordinate production across countries, and communicate in real time, which has made genuinely global supply chains - where different stages of production happen in different countries - practical in a way they were not previously.',
+        'This driver is more technological and structural than the policy-driven one, and so is less easily reversed by a change of government - but it is not immune to disruption either: the supply-chain shocks of the COVID-19 pandemic prompted many firms to "reshore" or diversify production closer to home, showing that even a cost advantage built on cheap transport and coordination can be reassessed once the resilience risk of a long, complex supply chain becomes visible.',
       ],
     ],
     null,
@@ -260,7 +284,8 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Other acceptable factors: growth of transnational corporations, financial market liberalisation',
     ],
     [
-      'These factors have reinforced one another rather than acting independently',
+      'The trade-liberalisation driver can partially reverse under rising protectionism',
+      'The transport/communication-cost driver is more structural, but resilience concerns since COVID-19 have prompted some reshoring',
     ],
   ),
 
@@ -305,6 +330,10 @@ export const ECON_ESSAY_ANSWERS_4 = {
         'If demand for the country’s exports is price INELASTIC, a rise in export prices (an improvement in the terms of trade) increases total export revenue, since the percentage fall in quantity demanded is smaller than the percentage rise in price - each unit sold now earns more than the small loss in quantity costs. Combined with import prices staying relatively stable in the country’s own currency, this can improve the balance of trade even as the terms of trade improve.',
         'If demand for the country’s exports is price ELASTIC, the same rise in export prices causes a proportionately larger fall in quantity sold, reducing total export revenue despite the higher price per unit - so an improvement in the terms of trade here would actually worsen the balance of trade, since the country is now earning less overall from a smaller quantity of exports even though each unit fetches a higher price.',
       ],
+      [
+        'This is really only half of the full Marshall-Lerner condition, which states that the combined price elasticities of demand for exports and imports must exceed 1 for a favourable movement in relative prices to improve the balance of trade. Even where demand for exports alone is inelastic, if demand for imports is highly elastic, the improvement in the trade balance from the export side can still be undermined by a much larger swing in import volumes as domestic consumers substitute towards relatively cheaper foreign goods - both elasticities have to be assessed together, not exports in isolation.',
+        'In the short run, existing contracts, established buying habits and a lack of immediately available substitutes mean both the price elasticity of demand for exports and for imports tend to be lower than in the long run, once buyers on both sides have had time to find alternatives. This is why the balance of trade can initially move in the "wrong" direction after a relative price shift - the J-curve effect - even in cases where the long-run combined elasticities do eventually satisfy the Marshall-Lerner condition.',
+      ],
     ],
     null,
     [
@@ -312,10 +341,12 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Marshall-Lerner-style reasoning: the effect on the balance of trade depends on the price elasticity of demand for exports',
       'Inelastic export demand: rising export prices raise total export revenue',
       'Elastic export demand: rising export prices reduce total export revenue',
+      'Full Marshall-Lerner condition: combined PED for exports and imports must exceed 1',
+      'J-curve: elasticities are lower in the short run, so the trade balance can move the "wrong" way initially',
     ],
     [
       'The effect on the balance of trade also depends on the elasticity of demand for imports, not exports alone',
-      'Real-world elasticities vary considerably by product and by time horizon (more elastic in the long run)',
+      'Real-world elasticities vary considerably by product and by time horizon (more elastic in the long run, hence the J-curve)',
     ],
   ),
 
@@ -360,16 +391,21 @@ export const ECON_ESSAY_ANSWERS_4 = {
         'Joining a trading bloc gives a country’s firms preferential, often tariff-free, access to a much larger combined market than its domestic market alone, allowing firms to achieve economies of scale from selling to a wider customer base that they could not reach as easily, or as cheaply, if they faced tariffs or other barriers in each individual foreign market.',
         'Membership can also attract foreign direct investment from firms outside the bloc that want tariff-free access to the whole bloc’s market: rather than exporting into the bloc and facing its external tariff, a foreign firm may choose to build production facilities inside a member country instead, bringing capital, jobs and technology transfer to that member specifically because of its bloc membership.',
       ],
+      [
+        'Removing tariffs between members can also create trade that did not exist before: consumers and firms switch from a less efficient domestic producer to a more efficient producer in a partner country, now that the tariff no longer artificially protects the domestic firm from that competition. This "trade creation" raises overall economic welfare, since output shifts towards the genuinely lower-cost producer, which is exactly the efficiency gain that the theory of free trade predicts.',
+        'This gain is not automatic and can be partly offset by "trade diversion": the bloc’s shared external tariff against non-members can cause a country to switch its purchases away from a more efficient producer OUTSIDE the bloc towards a less efficient producer INSIDE it, purely because the external tariff makes the outside producer artificially expensive. Whether membership raises welfare overall depends on trade creation exceeding trade diversion, not simply on joining a bloc as such.',
+      ],
     ],
     null,
     [
       'Definition of a regional trading bloc',
       'Access to a larger market and the resulting economies of scale for domestic firms',
       'Attracting foreign direct investment seeking tariff-free access to the whole bloc',
-      'Other acceptable benefits: trade creation, increased competition, greater bargaining power',
+      'Trade creation: switching to a more efficient partner-country producer once the internal tariff is removed',
     ],
     [
       'Benefits depend on the size and openness of the bloc’s combined market',
+      'Trade diversion (switching to a less efficient producer inside the bloc because of the external tariff) can offset the gain from trade creation',
     ],
   ),
 
@@ -473,6 +509,10 @@ export const ECON_ESSAY_ANSWERS_4 = {
         'If the Bank of England raises UK interest rates relative to those in the rest of the world, holding funds in sterling-denominated assets (UK government bonds, bank deposits) becomes relatively more attractive to international investors seeking the highest available return, since they can now earn a higher yield in the UK than in other major economies.',
         'This attracts an inflow of short-term financial capital ("hot money") into the UK seeking to take advantage of the higher rate, which requires investors to buy sterling first in order to hold UK assets, increasing the demand for sterling on the foreign exchange market. With demand for sterling rising relative to its supply, the equilibrium exchange rate rises - the pound appreciates against other currencies.',
       ],
+      [
+        'A second, distinct channel is relative inflation. If UK inflation runs persistently lower than that of its trading partners, UK goods and services become relatively cheaper than foreign alternatives over time, raising foreign demand for UK exports; overseas buyers must purchase sterling to pay for those exports, increasing demand for the currency on the foreign exchange market and causing it to appreciate through the trade channel rather than through capital flows.',
+        'This channel works far more slowly than the interest-rate channel: a persistent inflation differential takes months or years to meaningfully shift trade volumes and relative competitiveness, whereas capital can flow into sterling-denominated assets in response to an interest rate change almost immediately. In the short run, financial flows tend to dominate exchange rate movements, while relative inflation matters more for the currency’s medium to long-run trend.',
+      ],
     ],
     null,
     [
@@ -480,10 +520,11 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Higher UK interest rates relative to the rest of the world attract capital inflows seeking higher returns',
       'Investors must buy sterling to hold UK assets, increasing demand for the currency',
       'Diagram showing demand for sterling shifting right and the exchange rate appreciating',
+      'Relative inflation (purchasing power parity) as a second, slower-acting channel via export competitiveness',
     ],
     [
       'The size of the effect depends on how large the interest rate differential is relative to other economies',
-      'Also depends on investor expectations about the future direction of UK interest rates',
+      'The interest-rate channel dominates in the short run; the inflation channel matters more for the long-run trend',
     ],
   ),
 
@@ -584,15 +625,21 @@ export const ECON_ESSAY_ANSWERS_4 = {
         'The budget deficit is a FLOW: the amount by which government spending exceeds government revenue (mainly tax receipts) within a single year. Each year the government runs a deficit, it must borrow to cover the shortfall between what it spends and what it raises in that year alone.',
         'The national debt is a STOCK: the total accumulated amount the government owes at a given point in time, built up from the sum of all past budget deficits (borrowing) minus any surpluses (when revenue exceeded spending and debt was repaid), together with accrued interest. Running a deficit in any given year ADDS to the national debt; only running a surplus can reduce it.',
       ],
+      [
+        'Because the national debt is normally reported and compared as a percentage of GDP rather than in absolute currency terms, its size is best understood relative to the economy’s capacity to service it, not as a stand-alone figure. A country with a large nominal debt but a larger, faster-growing GDP can have a manageable, or even falling, debt-to-GDP ratio, while a country with a much smaller nominal debt but a weak or shrinking GDP can find that same debt increasingly unmanageable.',
+        'This is why a government can genuinely reduce its debt-to-GDP ratio without ever running an actual budget surplus, provided nominal GDP (real growth plus inflation) grows faster than the nominal amount of new borrowing added each year - a different, and for many governments more realistic, route to a falling debt burden than eliminating the deficit outright.',
+      ],
     ],
     null,
     [
       'Definition of the budget deficit as a flow (annual shortfall between spending and revenue)',
       'Definition of the national debt as a stock (the accumulated total owed at a point in time)',
       'Explanation that a deficit in any year adds to the debt; only a surplus reduces it',
+      'The debt-to-GDP ratio, not the nominal debt, is the meaningful measure of how manageable the debt is',
     ],
     [
       'A government can still be running a (smaller) deficit while the debt-to-GDP ratio falls, if GDP grows faster than the debt',
+      'Comparing nominal debt alone, without normalising for GDP, is misleading across time or between countries',
     ],
   ),
 
@@ -635,7 +682,11 @@ export const ECON_ESSAY_ANSWERS_4 = {
     [
       [
         'The trade channel operates because a recession reduces a country’s national income, and lower income reduces its demand for all goods, including imports from other countries. For trading partners that rely heavily on exporting to the economy in recession, this shows up directly as a fall in their own export demand - a leftward shift in their aggregate demand - transmitting the downturn abroad even though the trading partner’s own domestic conditions may not have changed at all.',
+        'How much this matters depends on how open and how large the trading relationship actually is: a relatively closed economy with limited trade exposure to the country in recession experiences much less transmission through this channel than a small, very open economy for which that country is a dominant export market.',
+      ],
+      [
         'The financial channel operates through banking and investment links: a recession in a major economy typically depresses asset prices (shares, property) and can weaken banks exposed to loans or investments there, and if those same banks or investors also lend to or invest in other countries, they may tighten credit conditions internationally as they seek to shore up their own balance sheets, transmitting a credit squeeze - and with it, weaker investment and spending - to economies that had no direct trade exposure to the original recession at all.',
+        'This channel can transmit a downturn even to economies with little direct trade exposure to the country in recession, since global financial institutions are interconnected across borders in ways that do not track trade patterns closely - part of why the 2008 financial crisis, originating in the US mortgage market, spread so quickly to economies with only modest trade links to the US, and why a pure confidence effect (investors and firms turning cautious everywhere at once) can transmit a downturn even faster than either channel alone.',
       ],
     ],
     null,
@@ -644,10 +695,11 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Trade channel: falling income in the originating economy reduces demand for its trading partners’ exports',
       'Financial channel: falling asset prices and tighter credit conditions transmitted through banks/investors',
       'Diagram showing the fall in one economy’s AD transmitted as a fall in a trading partner’s export demand',
+      'Confidence channel: caution spreading across investors and firms internationally, faster than trade or financial links alone',
     ],
     [
-      'The size of transmission depends on how large and how open the trading and financial links are',
-      'A confidence channel can also transmit a downturn even without direct trade or financial exposure',
+      'The size of trade-channel transmission depends on how large and how open the trading relationship is',
+      'The financial channel can transmit a downturn even without direct trade exposure, as in the 2008 crisis',
     ],
   ),
 

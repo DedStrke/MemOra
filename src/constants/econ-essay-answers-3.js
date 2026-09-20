@@ -151,7 +151,11 @@ export const ECON_ESSAY_ANSWERS_3 = {
     [
       [
         'The first factor is spare capacity and stocks. In the short run a car manufacturer’s factories are running at a fixed capacity and cannot instantly produce more cars in response to a price rise; in the long run, the firm can build new factories, install more machinery and expand capacity, so the same price rise eventually calls forth a much larger increase in quantity supplied.',
+        'How long this takes depends heavily on the specific industry: a firm with under-used capacity or a warehouse of stock can raise output within weeks by running an extra shift or releasing stock, while a firm already at full capacity in a sector with long lead times, such as building a new semiconductor fabrication plant, may take several years to expand. “Long run” is therefore a different amount of calendar time in different industries, not a fixed period.',
+      ],
+      [
         'The second factor is the mobility of factors of production. In the short run, skilled labour, specialist machinery and raw material contracts are largely fixed, so output can only be adjusted a little (for example by overtime). In the long run, firms can hire and train new workers, switch suppliers and invest in new equipment, so factors of production can be reallocated far more freely towards the good whose price has risen, making supply more elastic.',
+        'This gain in elasticity is capped where the good itself is perishable or costly to store: a producer of fresh fruit or a live entertainment event cannot hold stock to smooth supply between periods no matter how mobile its labour and capital eventually become, so perishability limits how far the long-run PES can rise even once factor mobility has fully adjusted.',
       ],
     ],
     null,
@@ -163,8 +167,8 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'PES diagram showing a steeper short-run curve and a flatter long-run curve',
     ],
     [
-      'The size of the difference depends on the specific industry (some capital is much quicker to install than others)',
-      'Perishability or storage cost of the good also affects how quickly supply can respond',
+      'The size of the difference depends on the specific industry: some capital is much quicker to install than others, so “long run” varies in length',
+      'Perishability or storage cost of the good caps how far the long-run elasticity of supply can rise',
     ],
   ),
 
@@ -273,6 +277,10 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'The factory makes its output decision based on its marginal private cost (MPC) - what production actually costs the firm - setting output where MPC equals the marginal private benefit (demand). But the true marginal social cost (MSC) of each unit is higher than MPC, because it also includes the marginal external cost imposed on third parties through pollution.',
         'Because the firm never has to pay for the external cost it creates, it has no incentive to account for it, and it produces up to the point where its own MPC equals demand - a quantity that is higher than the socially optimal output where MSC would equal demand. The good is therefore overproduced relative to the level that would maximise society’s total welfare, and the units produced beyond the social optimum create a welfare loss because their true cost to society exceeds the benefit consumers gain from them.',
       ],
+      [
+        'The standard correction is a Pigouvian tax set equal to the marginal external cost at the socially optimal output. This shifts the firm’s MPC curve vertically upward until it coincides with MSC, so the firm’s own profit-maximising decision (now effectively MPC = MSC = demand) internalises the externality without the government needing to ban or physically ration production; output falls from the free-market level to the social optimum through the price mechanism rather than by command.',
+        'This only works if the tax is set at the right level, which requires the government to know the size of the marginal external cost precisely - and there is no market price for clean air to reveal it. A tax set too low leaves output above the social optimum; one set too high pushes output below it and creates a new welfare loss in the opposite direction, so the correction is only as good as the estimate of the externality behind it.',
+      ],
     ],
     null,
     [
@@ -281,10 +289,11 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Diagram showing MPC, MSC, MPB, the free market output and the socially optimal output',
       'Explanation of why the free market overproduces relative to the social optimum',
       'Welfare loss triangle over the units produced beyond the social optimum',
+      'Correction: a Pigouvian tax equal to the MEC shifts MPC to meet MSC, restoring the social optimum',
     ],
     [
-      'Depends on the size of the marginal external cost relative to the marginal private cost',
       'Depends on whether the pollution is local (affecting few) or diffuse (affecting many, e.g. carbon emissions)',
+      'A tax only corrects the externality if the MEC is measured accurately; over- or under-estimating it creates a new welfare loss',
     ],
   ),
 
@@ -445,6 +454,10 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'Productive efficiency occurs where a good is produced at the lowest possible average cost, using the fewest resources for a given output - on a firm’s cost curves, this is the output at the very bottom of the average cost curve. Allocative efficiency occurs where the price paid for a good equals its marginal cost of production, so that resources are allocated exactly according to consumers’ willingness to pay relative to the true cost of supplying one more unit.',
         'In perfectly competitive long-run equilibrium, free entry and exit drive economic profit to zero, forcing firms to produce at the lowest point of their average cost curve to survive (productive efficiency), while the intense competition between many identical firms drives price down to equal marginal cost (allocative efficiency) - both conditions hold at exactly the same output, which is why perfect competition is the theoretical benchmark against which other market structures are judged.',
       ],
+      [
+        'A monopolist, by contrast, can fail both standards at once. Protected from competitive pressure by barriers to entry, it restricts output to where marginal revenue equals marginal cost, charging a price above marginal cost (allocatively inefficient), and because no rival can force it to minimise costs to survive, it may also tolerate slack management and higher-than-necessary average costs, a form of productive inefficiency known as X-inefficiency.',
+        'This is precisely why the dual efficiency of perfect competition matters as more than a description of an unusual market: it is the normative benchmark competition policy uses to judge how far a real, imperfectly competitive market falls short, and how much consumer welfare is potentially recoverable by making that market more contestable.',
+      ],
     ],
     null,
     [
@@ -452,6 +465,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Definition of allocative efficiency (price equals marginal cost)',
       'Diagram of a perfectly competitive firm’s long-run equilibrium showing both conditions at once',
       'Explanation of why free entry and exit force both conditions to hold simultaneously',
+      'Contrast with monopoly: allocative inefficiency (P > MC) and X-inefficiency (slack cost control) together',
     ],
     [
       'These are theoretical benchmarks - real markets rarely meet the full conditions of perfect competition',
@@ -500,6 +514,10 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'If firms in a perfectly competitive market are earning supernormal (economic) profit in the short run, this signals to firms outside the industry that resources deployed here earn more than their opportunity cost elsewhere. Because there are no significant barriers to entry, new firms are free to enter, attracted by that profit.',
         'As new firms enter, total market supply increases, shifting the market supply curve to the right and driving the market price down, while each individual firm’s market share falls. This process continues, with more firms entering and price falling further, until price has fallen to the point where it exactly equals each firm’s average cost at its profit-maximising output - the point of zero economic profit - at which point there is no longer any incentive for further entry, and the market settles into long-run equilibrium.',
       ],
+      [
+        'The same process runs in reverse when firms make a loss. If price falls below average cost in the short run, the least efficient firms are no longer covering their costs, so some exit the industry; this reduces total market supply, shifting the supply curve left and pushing price back up. Exit continues until the remaining firms are once again earning exactly zero economic profit, so the long-run equilibrium is self-correcting from either direction - firms can enter to eliminate supernormal profit or exit to eliminate losses.',
+        'Exit is rarely as fast or as costless as entry, because leaving an industry can mean writing off sunk costs, paying redundancy costs, or being locked into contracts, whereas entry usually just requires spotting the opportunity. This asymmetry means real markets can spend longer below long-run equilibrium after a downturn than they spend above it after a boom, even where entry itself is genuinely free.',
+      ],
     ],
     null,
     [
@@ -507,10 +525,11 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Short-run supernormal profit attracts new entrants due to the absence of barriers to entry',
       'Entry increases market supply, driving down price and each firm’s market share',
       'Process continues until price equals average cost, giving zero economic profit in long-run equilibrium',
+      'Symmetric adjustment from a loss-making position: exit reduces supply until losses are eliminated',
     ],
     [
       'Assumes genuinely free entry and exit with no barriers, which is a strong theoretical assumption',
-      'Zero ECONOMIC profit still includes normal profit, so firms remain willing to stay in the market',
+      'Exit is typically slower than entry because of sunk costs and redundancy costs, so adjustment is asymmetric in practice',
     ],
   ),
 
@@ -617,6 +636,10 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'In a competitive labour market, a firm is a wage-taker: it can hire as many workers as it wants at the going market wage, so its marginal cost of labour equals the wage rate, and it hires up to the point where the marginal revenue product of labour equals that wage. A monopsony employer, by contrast, faces the entire upward-sloping labour supply curve for the market: to attract each additional worker, it must raise the wage it offers, and because that higher wage must be paid to ALL its existing workers as well as the new one (assuming a single wage rate), its marginal cost of labour rises faster than, and lies above, the average cost (the labour supply curve).',
         'A profit-maximising monopsonist hires workers up to the point where marginal cost of labour equals the marginal revenue product of labour, but then only has to pay the WAGE read off the labour supply curve at that quantity of workers, which is lower than the marginal cost of labour used to determine how many workers to hire, and lower than the wage a competitive labour market would have set at that same employment level - the gap between the two is the monopsony employer’s wage-setting power.',
       ],
+      [
+        'This wedge between MCL and the labour supply curve does not only lower the wage; it also lowers the level of EMPLOYMENT. Because the monopsonist hires only up to where MCL = MRP rather than where the supply curve (average cost) meets MRP, fewer workers are hired than a competitive labour market operating on the same demand for labour would employ. A monopsonist therefore restricts both the price of labour and the quantity of jobs below the competitive level, in exactly the way a product-market monopoly restricts both price and output.',
+        'How much this matters depends on how much genuine monopsony power actually exists. A single large employer in an isolated local labour market - a hospital trust for a specific specialism in a town with no comparable alternative employer - has real wage-setting power of this kind. In a national, highly mobile occupation with many competing employers, however, workers can simply move to whichever firm offers the best wage, which erodes any one employer’s monopsony power almost entirely.',
+      ],
     ],
     null,
     [
@@ -624,10 +647,11 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'MCL lies above the labour supply curve (AC of labour) because a higher wage must be paid to all workers',
       'Diagram: monopsony hires where MCL = MRP of labour, but pays the wage read off supply at that quantity',
       'Explanation of why the resulting wage is below both the competitive wage and the workers’ marginal revenue product',
+      'Employment, as well as the wage, is restricted below the competitive level - both price and quantity effects',
     ],
     [
       'Depends on how few alternative employers actually exist for these workers (genuine labour immobility)',
-      'A monopsonist may also restrict the QUANTITY of workers hired below the competitive level, not just the wage',
+      'A national, mobile occupation with many competing employers erodes monopsony power almost entirely',
     ],
   ),
 
