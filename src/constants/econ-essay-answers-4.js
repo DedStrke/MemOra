@@ -110,7 +110,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
   ),
 
   Q080: A(
-    [],
+    [['phillips', 'The short-run Phillips curve, the clearest single picture of the conflict this question is about: moving left along it to cut unemployment means moving up it to higher inflation. The vertical LRPC at the natural rate shows why demand management cannot escape the trade-off permanently.']],
     'A government typically holds several macroeconomic objectives simultaneously - economic growth, low unemployment, low and stable inflation, a sustainable balance of payments, a balanced budget, environmental protection and greater income equality among them - and achieving all of them at once is often difficult because the policy tools used to pursue one objective can work against another.',
     [
       [
@@ -411,7 +411,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
   ),
 
   Q102: A(
-    [],
+    [['tariff', 'The bloc’s common external tariff lifting the world price from Pw to Pw + T for non-member goods. This is the mechanism behind trade DIVERSION: the tariff makes an efficient outside producer artificially expensive, so buying switches to a less efficient producer inside the bloc.']],
     'The World Trade Organization exists to promote and police multilateral free trade between all its members on a non-discriminatory basis. Regional trading blocs, by contrast, deliberately offer preferential treatment to their own members while maintaining barriers against non-members, which raises a genuine tension between the two.',
     [
       [
@@ -948,7 +948,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
   ),
 
   Q134: A(
-    [],
+    [['ad-shift', 'AD = C + I + G + (X - M) shifting from AD₁ to AD₂. Net trade is one of the four components doing the shifting - use the diagram to size it against the others rather than to show a mechanism, since the argument here is about how much weight (X - M) carries.']],
     'Net trade, (X - M), is one of the four components of aggregate demand alongside consumption, investment and government spending. Judging its significance means asking both how large it is relative to the others and how much influence it actually exerts over an economy’s macroeconomic performance.',
     [
       [

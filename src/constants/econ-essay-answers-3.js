@@ -115,7 +115,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
   ),
 
   Q120: A(
-    [],
+    [['comparative-advantage', 'Two countries with differently-sloped PPFs specialising where opportunity cost is lower and consuming beyond their own frontier by trading. This is the economy-wide half of the argument: the same logic that makes dividing labour within a factory productive makes specialising between countries productive.']],
     'Specialisation means concentrating on producing a narrow range of goods or services; the division of labour breaks a production process into smaller, repeated tasks performed by different workers. Both are central to how a modern economy achieves the output it does, but neither is beneficial without limit.',
     [
       [
@@ -1275,7 +1275,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
   ),
 
   Q138: A(
-    [],
+    [['monopoly', 'A firm with market power restricting output to Qm and pricing at Pm above MC, with the deadweight loss shaded out to the competitive Qc. This is what intervention is aimed at - a price cap pushes price down from Pm towards MC, which is the price effect the first chain describes.']],
     'Government intervenes in markets to correct market failure and to promote competition, using tools ranging from price and profit regulation to merger control, deregulation and privatisation. Its impact has to be judged across several dimensions at once - prices, efficiency and consumer choice - because a measure that improves one can worsen another.',
     [
       [

@@ -49,4 +49,10 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q142: [{ a: 'subsidy' }, {}, {}],
   Q143: [{ a: 'buffer-stock' }, {}],
   Q144: [{ a: 'buffer-stock' }, {}, {}],
+  // Diagrams added to questions that already argued exactly what these show.
+  Q080: [{ a: 'phillips' }, {}, {}],
+  Q102: [{}, { a: 'tariff' }, {}],
+  Q120: [{}, { a: 'comparative-advantage' }, {}],
+  Q134: [{ a: 'ad-shift' }, {}, {}],
+  Q138: [{ a: 'monopoly' }, {}, {}],
 }

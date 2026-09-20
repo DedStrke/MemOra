@@ -760,6 +760,41 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'The gap between AC and AVC is AFC - exactly the cost that is unavoidable in the short run, and the whole reason the two shut-down points differ',
     ],
   },
+  Q080: {
+    phillips: [
+      'Moving LEFT along SRPC cuts unemployment but moves UP it to higher inflation - the growth/employment objective against the inflation objective, on one curve',
+      'LRPC is vertical at the natural rate: demand management can move along the short-run curve but cannot hold unemployment below it permanently',
+      'Only a supply-side shift of the natural rate itself relaxes the trade-off rather than choosing a point on it',
+    ],
+  },
+  Q102: {
+    tariff: [
+      'The bloc’s common external tariff lifts the price of non-member goods from Pw to Pw + T',
+      'Buyers switch from the efficient outside producer to a less efficient one INSIDE the bloc - that is trade diversion, and it is a welfare loss',
+      'The same tariff is what makes internal trade creation possible, which is why the two effects have to be weighed against each other rather than judged separately',
+    ],
+  },
+  Q120: {
+    'comparative-advantage': [
+      'The two PPFs slope differently, and that difference in slope IS the difference in opportunity cost',
+      'Each country specialises where its opportunity cost is lower and trades along the trade line',
+      'Both consume beyond their own PPF - specialisation between countries delivering the same kind of gain as dividing labour within a firm',
+    ],
+  },
+  Q134: {
+    'ad-shift': [
+      'AD = C + I + G + (X - M): net trade is one of four components, and the smallest of them in the UK',
+      'A change in (X - M) shifts AD₁ to AD₂ exactly as a change in C or I would - the mechanism is identical, the magnitude is not',
+      'That is the point of the question: the same shift needs a much larger proportional change in net trade than in consumption to produce it',
+    ],
+  },
+  Q138: {
+    monopoly: [
+      'Without intervention the firm restricts output to Qm and prices at Pm, well above MC',
+      'A price cap pushes price down from Pm towards MC, raising output towards Qc and shrinking the shaded deadweight loss - the price and efficiency gains together',
+      'Set the cap too tight, below the level that funds investment, and the gain shows up now but the cost appears later as degraded service',
+    ],
+  },
   Q141: {
     subsidy: [
       'The subsidy shifts supply DOWN by the payment per unit, from S to S + subsidy - it lowers the cost of supplying each unit',
