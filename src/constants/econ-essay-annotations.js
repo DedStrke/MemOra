@@ -1166,4 +1166,20 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'That is why timing, not the aim, is the real argument',
     ],
   },
+  Q175: {
+    'fixed-exchange-rate': [
+      'The fixed peg is the member’s exchange rate against the rest of the union - and it cannot move',
+      'A fall in demand for its output, D₁ to D₂, would push the rate below the peg outside a union',
+      'Inside one there is no rate to fall and no central bank buying £ with reserves - the gap has to close through wages, prices or jobs',
+      'That is why wage flexibility, labour mobility and fiscal transfers are the conditions for success',
+    ],
+  },
+  Q176: {
+    'fixed-exchange-rate': [
+      'Membership makes the fixed peg irrevocable: no devaluation, ever - the certainty firms and investors value',
+      'D₁ to D₂ after a shock: outside the union the rate falls and competitiveness is restored at once',
+      'Inside, the bank buys £ with reserves is not available either - adjustment falls on wages and unemployment',
+      'The benefit and the cost are the same fact seen from two sides',
+    ],
+  },
 }

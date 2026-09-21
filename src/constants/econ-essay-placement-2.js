@@ -90,6 +90,8 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q172: [{ a: 'ad-shift', e: 'lras-shift' }, {}, {}],
   Q173: [{ a: 'output-gap' }, {}],
   Q174: [{ a: 'output-gap' }, { a: 'ad-shift' }, {}],
+  Q175: [{}, { a: 'fixed-exchange-rate' }],
+  Q176: [{}, { a: 'fixed-exchange-rate' }, {}],
   // Diagrams added to questions that already argued exactly what these show.
   Q080: [{ a: 'phillips' }, {}, {}],
   Q102: [{}, { a: 'tariff' }, {}],

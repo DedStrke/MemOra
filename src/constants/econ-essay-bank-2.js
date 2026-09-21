@@ -345,4 +345,14 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain two factors that could cause a government\u2019s fiscal deficit to increase.'),
   q('Q174', 'A-Level', ...P2, '4.5', 'Public Sector Finances', 'C', 25,
     'Evaluate the view that a government should aim to eliminate its structural fiscal deficit.'),
+  /*
+    4.1.5a names monetary unions "with particular reference to the
+    Eurozone" and the conditions for their success. Q101/Q102 cover
+    trading blocs and the WTO; the euro was mentioned in two answers in
+    passing and the conditions for a monetary union nowhere.
+  */
+  q('Q175', 'A-Level', ...P2, '4.1', 'Monetary Unions', 'B', 10,
+    'Explain two conditions necessary for a monetary union such as the eurozone to be successful.'),
+  q('Q176', 'A-Level', ...P2, '4.1', 'Monetary Unions', 'C', 25,
+    'Evaluate the costs and benefits to a country of joining a monetary union such as the eurozone.'),
 ]

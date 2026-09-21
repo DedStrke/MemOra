@@ -1488,4 +1488,65 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: eliminate the structural CURRENT deficit, gradually and at capacity; borrow for investment on its return',
     ],
   ),
+  /* -------------------------------------------- Monetary Unions (4.1.5) */
+  Q175: A(
+    [['fixed-exchange-rate', 'A monetary union is the limiting case of a fixed exchange rate: the peg cannot move at all, and there are no reserves to defend it with because there is no separate currency. When demand for a member\u2019s output falls, the adjustment that D\u2081 to D\u2082 would otherwise force onto the exchange rate has to happen somewhere else - in wages, prices or unemployment.']],
+    'A monetary union is a group of countries sharing a single currency and a single central bank, so that exchange rates between them are abolished and one interest rate applies to all. The eurozone is the leading example. Because members give up their own exchange rate and monetary policy, a union works well only where the economies inside it can do without those tools, and the conditions for that are the ones the theory of optimal currency areas identifies.',
+    [
+      [
+        'The first condition is that members experience similar economic shocks, so that a single interest rate suits all of them at once. If one member is in recession while another is booming, the central bank cannot set a rate that is right for both: a rate low enough to help the first fuels inflation in the second, and a rate high enough to restrain the second deepens the recession in the first. Economies with similar structures, trading heavily with one another and moving through the cycle together, avoid this problem; economies that differ in what they produce and export do not. The eurozone\u2019s difficulties after 2008 followed exactly this pattern, with Germany requiring one policy while Greece, Ireland and Spain needed another, and a single rate that was too tight for the periphery.',
+        'Shocks become more similar the longer a union lasts, because trade within it deepens and business cycles converge, so this condition is partly created by the union rather than required in advance. It is also partly a matter of the union\u2019s composition: a union of economies that were already integrated meets it at once, while one that admits members on political grounds does not.',
+      ],
+      [
+        'The second condition is that adjustment to a shock can happen without an exchange rate. Outside a union a country whose exports fall lets its currency depreciate, restoring competitiveness at once; inside one it cannot, so competitiveness has to be restored through lower wages and prices, which is slow and painful, or through labour moving from the depressed member to the buoyant one. A successful union therefore needs flexible wages and prices, mobile labour across its members, and a fiscal transfer mechanism through which the union as a whole supports a member in recession, as a national government supports a depressed region. The United States meets these conditions between its states; the eurozone met none of them well after 2008, with wages that fell only slowly, labour mobility limited by language, and a central budget too small to transfer anything meaningful, which is why adjustment in the periphery took the form of years of high unemployment.',
+        'Fiscal transfers require the members who pay to accept the obligation, which is a political condition as much as an economic one, and the eurozone\u2019s partial moves towards it since 2010 - the stability mechanism, the pandemic recovery fund - remain contested for that reason. Labour mobility can also drain a depressed member of its most productive workers, so it is a way for individuals to adjust that can leave the member economy weaker.',
+      ],
+    ],
+    null,
+    [
+      'Definition of a monetary union: single currency, single central bank, one interest rate; the eurozone',
+      'Condition 1: similar shocks, so a single interest rate suits all members; the eurozone after 2008',
+      'Condition 2: adjustment without an exchange rate - flexible wages and prices, labour mobility, fiscal transfers',
+      'Diagram: the union as the limiting fixed exchange rate, with no reserves and no peg to move',
+      'The United States as a union that meets the conditions, the eurozone as one that has not',
+    ],
+    [
+      'Business cycles converge inside a union, so the first condition is partly created by membership',
+      'Fiscal transfers are politically conditional; labour mobility can weaken the member it leaves',
+    ],
+  ),
+
+  Q176: A(
+    [['fixed-exchange-rate', 'Membership as an irrevocable peg: the exchange rate the diagram shows cannot move, and the central bank that would defend it has been replaced by a shared one. The benefits of the union follow from the peg being certain; the costs follow from there being no way to adjust it.']],
+    'Joining a monetary union such as the eurozone means adopting a shared currency and central bank, abolishing the exchange rate with the other members and surrendering an independent monetary policy. The benefits are those of certainty and integration; the costs are those of losing the two instruments a country uses to absorb shocks. Which dominates depends on how well the joining country fits the union - the conditions of an optimal currency area - and on how far its own monetary policy was worth keeping.',
+    [
+      [
+        'The benefits follow from removing the exchange rate. Firms trading within the union no longer face currency risk or the cost of converting and hedging, which lowers transaction costs and encourages trade and investment across the union; prices become directly comparable across borders, which sharpens competition and narrows price differences; and a country with a history of inflation and devaluation imports the credibility of the union\u2019s central bank, which lowers its interest rates and inflation expectations at once. For a small, open economy that trades mostly with the union these gains are large relative to its size, which is why Ireland, the Baltic states and Slovakia joined and why the argument was strongest for economies whose trade was already dominated by the euro area.',
+        'The trade gains from the euro have been smaller than expected: estimates of the effect of the single currency on trade among members are modest, and much of the integration attributed to it came from the single market that preceded it. The credibility gain is real but can be borrowed too cheaply - Greece and Spain borrowed at near-German rates for a decade because markets treated euro membership as removing default risk, and the resulting private and public debt was the origin of the crisis that followed.',
+      ],
+      [
+        'The costs are the loss of monetary policy and of the exchange rate. A member cannot set interest rates for its own conditions, so the shared rate may be too loose in its boom - which fed the Irish and Spanish property bubbles before 2008 - and too tight in its recession. It cannot depreciate to restore competitiveness after a shock, so a loss of competitiveness has to be corrected through lower wages and prices, which took the periphery years of unemployment above 20% after 2010, or through migration. And it cannot rely on its own central bank as a lender of last resort to its government, which is why Greece, Portugal and Ireland faced a debt crisis at levels of debt that Japan and the United Kingdom carry without one: they were borrowing in what was effectively a foreign currency.',
+        'These costs depend on how much use the country would have made of the instruments it gives up. A country whose cycle already tracks the union\u2019s, whose wages are flexible and whose trade is with the union, loses instruments it rarely needed; a country with a different economic structure loses exactly what it would need most. The costs are also lower than they were, because the union has since built a partial lender of last resort in the ECB\u2019s bond-buying and a partial fiscal capacity, though both remain conditional.',
+      ],
+      [
+        'Whether the balance favours joining depends on the optimal currency area criteria: similarity of shocks, labour mobility, wage flexibility and fiscal transfers. A country that meets them gains the benefits at little cost, because it would not have used its own monetary policy differently anyway; one that fails them takes on the risk of an asymmetric shock it has no tool to absorb. The United Kingdom\u2019s decision not to join was argued on these grounds - a housing market and business cycle that differed from the continent\u2019s, and a larger financial sector - and the experience of the periphery after 2008 has been taken as vindicating it, while the experience of the small open economies that joined and adjusted has been taken as vindicating them.',
+        'The criteria are partly endogenous: trade and cycle convergence deepen after joining, so a country that fails them at the point of entry may meet them a decade later. The political dimension also cuts both ways - membership binds a country to a set of fiscal rules and a shared institution it does not control, which is a cost to sovereignty and a benefit to countries whose own institutions were the problem.',
+      ],
+    ],
+    'Joining a monetary union brings lower transaction costs, price transparency, more trade and investment with the other members, and imported monetary credibility, at the cost of the two instruments a country uses to absorb shocks - its interest rate and its exchange rate - and of a central bank that stands behind its government\u2019s debt. The benefits are largest and the costs smallest for a small, open economy whose trade is with the union, whose business cycle moves with it and whose wages and labour are flexible enough to adjust without an exchange rate; they reverse for an economy that differs in structure or cycle, which is what the eurozone periphery discovered after 2008. The judgement therefore depends on how closely the joining country meets the optimal currency area conditions, and on whether the union has the fiscal transfers and lender of last resort that would substitute for the instruments it gives up - which the eurozone has built only partially since the crisis. For a country that fits, joining is a net benefit; for one that does not, the loss of the ability to adjust outweighs the gains from certainty.',
+    [
+      'Definition: single currency, shared central bank, no exchange rate, no independent monetary policy',
+      'Benefits: transaction costs, price transparency, trade and investment, imported credibility; small open economies',
+      'Costs: one interest rate for different cycles (Irish and Spanish bubbles); no depreciation (periphery unemployment); no national lender of last resort (Greece against Japan)',
+      'Diagram: membership as an irrevocable peg with no reserves and no adjustment',
+      'Optimal currency area criteria: similar shocks, labour mobility, wage flexibility, fiscal transfers; the UK decision',
+    ],
+    [
+      'Trade gains have been modest; cheap credibility fed the borrowing that caused the crisis',
+      'Costs depend on how much the country would have used the instruments it gives up',
+      'The ECB\u2019s bond-buying and the recovery fund have reduced the costs since 2010, conditionally',
+      'The criteria are partly endogenous to membership',
+      'Judgement: net benefit for a country that fits the criteria, net cost for one that does not',
+    ],
+  ),
 }
