@@ -337,7 +337,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
 
   /* --------------------------------------------------- Externalities */
   Q073: A(
-    [['negative-externality', 'Marginal private cost (MPC) below marginal social cost (MSC), with the vertical gap between them equal to the marginal external cost of the pollution. Mark the free market output where MPC = demand (MPB), the socially optimal output where MSC = MPB, and the welfare loss triangle between them.']],
+    [['negative-externality', 'Marginal private cost (MPC) below marginal social cost (MSC), with the vertical gap between them equal to the marginal external cost of the pollution. Mark the free market output where MPC = demand (MPB), the socially optimal output where MSC = MSB (which equals MPB here, since the externality is in production, not consumption), and the welfare loss triangle between them.']],
     'A negative production externality occurs when a firm’s output imposes a cost on a third party that is not reflected in the firm’s own costs. Air pollution from a factory is a classic example: the factory bears the cost of its inputs and labour, but not the cost its pollution imposes on people living nearby.',
     [
       [
