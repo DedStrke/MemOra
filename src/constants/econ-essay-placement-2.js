@@ -92,6 +92,10 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q174: [{ a: 'output-gap' }, { a: 'ad-shift' }, {}],
   Q175: [{}, { a: 'fixed-exchange-rate' }],
   Q176: [{}, { a: 'fixed-exchange-rate' }, {}],
+  // 4.1.6: the tariff diagram read as a quota on Q177, and as the welfare
+  // accounting on Q178.
+  Q177: [{ a: 'tariff' }, {}],
+  Q178: [{ a: 'tariff' }, {}, {}],
   // Diagrams added to questions that already argued exactly what these show.
   Q080: [{ a: 'phillips' }, {}, {}],
   Q102: [{}, { a: 'tariff' }, {}],

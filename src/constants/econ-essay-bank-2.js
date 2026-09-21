@@ -355,4 +355,15 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain two conditions necessary for a monetary union such as the eurozone to be successful.'),
   q('Q176', 'A-Level', ...P2, '4.1', 'Monetary Unions', 'C', 25,
     'Evaluate the costs and benefits to a country of joining a monetary union such as the eurozone.'),
+  /*
+    4.1.6 lists four types of restriction and an impact list. Tariffs had
+    Q044 and Q057; quotas were mentioned twice in passing, subsidies to
+    domestic producers never, non-tariff barriers once, and the impact on
+    consumers, producers, government, living standards and equality had
+    no question of its own.
+  */
+  q('Q177', 'A-Level', ...P2, '4.1', 'Restrictions on Free Trade', 'B', 10,
+    'Explain two methods, other than a tariff, that a government might use to restrict imports.'),
+  q('Q178', 'A-Level', ...P2, '4.1', 'Restrictions on Free Trade', 'C', 25,
+    'Evaluate the impact of protectionist policies on consumers, producers, the government and the distribution of income in the country that imposes them.'),
 ]

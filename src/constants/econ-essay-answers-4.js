@@ -1553,4 +1553,64 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: net benefit for a country that fits the criteria, net cost for one that does not',
     ],
   ),
+  /* --------------------------------------- Restrictions on Free Trade (4.1.6) */
+  Q177: A(
+    [['tariff', 'The tariff diagram read as a quota. Fix imports at the gap between Q\u2082 and Q\u2083 and the domestic price rises to the level marked Pw + tariff by the same mechanism; the rectangle marked tariff revenue is now quota rent, kept by whoever holds the import licences rather than by the government. Same welfare loss, different recipient.']],
+    'A tariff is a tax on imports. Governments that want to restrict imports without one have three other instruments the specification names: a quota, which limits the quantity that may enter; a subsidy to domestic producers, which lowers their costs so they displace imports; and non-tariff barriers, which raise the cost or difficulty of importing through rules rather than prices. Two are explained here.',
+    [
+      [
+        'A quota is a physical limit on the quantity of a good that may be imported in a period, enforced through import licences. By fixing imports below the free-trade level it creates a shortage at the world price, so the domestic price rises until domestic supply plus the permitted imports equals demand - the same price rise a tariff would produce for the same reduction in imports. Domestic producers expand output along their supply curve and consumers buy less at the higher price, exactly as with a tariff. The difference is where the money goes: the gap between the world price and the higher domestic price on each imported unit, which a tariff would collect as revenue, is captured instead by whoever holds the licences - often the foreign exporters themselves. The Multi-Fibre Arrangement, which limited textile and clothing imports into Europe and the United States by quota until 2005, is the standing example.',
+        'Because a quota fixes the quantity, its effect on price depends on what happens to demand: if demand rises, the domestic price rises further while a tariff would have let imports expand. It is also more open to abuse, since licences are valuable and their allocation invites lobbying and corruption, and it breaches WTO rules more directly than a tariff, which is why quotas have largely been converted into tariffs since the 1990s.',
+      ],
+      [
+        'A subsidy to domestic producers restricts imports indirectly. Paying domestic firms a sum per unit lowers their marginal cost, so their supply curve shifts down and they can sell at the world price in larger quantity, displacing imports without the domestic price rising at all. Consumers therefore pay the same price as before and lose nothing directly; the cost falls on the government, which pays the subsidy, and so on the taxpayer. The European Union\u2019s Common Agricultural Policy did this for decades, and the United States does it for cotton and corn, which is why both are regularly challenged at the WTO by exporting countries whose producers cannot compete against subsidised output.',
+        'The subsidy still carries a welfare cost, because resources are drawn into domestic production that is more expensive than the imports it replaces, and the loss is hidden in the budget rather than shown in the price. A subsidy also has to be paid every year to keep working, which makes it expensive relative to a tariff that raises revenue, and it can provoke retaliation just as a tariff does. Non-tariff barriers - product standards, licensing requirements, customs procedures - work by raising importers\u2019 costs instead, and are harder to challenge because each can be presented as serving another purpose, as the checks on food imports after the UK left the single market illustrate.',
+      ],
+    ],
+    null,
+    [
+      'Definition of a tariff and the three alternatives the specification names',
+      'Quota: a physical limit enforced by licence; the price rises as it would under a tariff; the difference is quota rent instead of revenue',
+      'Diagram: the tariff diagram read as a quota, with the revenue rectangle as licence-holders\u2019 rent',
+      'Subsidy to domestic producers: lower costs, larger domestic supply at the world price, imports displaced with no price rise for consumers; the cost falls on taxpayers',
+      'Non-tariff barriers: standards, licensing and customs procedures raising importers\u2019 costs',
+    ],
+    [
+      'A quota fixes quantity, so rising demand raises price further; licences invite lobbying; most quotas have been converted to tariffs',
+      'A subsidy hides the welfare cost in the budget and must be paid every year; non-tariff barriers are harder to challenge because they claim another purpose',
+    ],
+  ),
+
+  Q178: A(
+    [['tariff', 'The welfare accounting of a tariff: the domestic price rises from Pw to Pw + tariff, domestic output expands from Q\u2081 to Q\u2082, consumption falls from Q\u2084 to Q\u2083, imports shrink to the gap between, the government collects the revenue rectangle, and the two triangles are the deadweight loss. Every group in the question is on this one diagram.']],
+    'Protectionist policies - tariffs, quotas, subsidies to domestic producers and non-tariff barriers - restrict imports to shield domestic producers from foreign competition. Their impact differs sharply by group: producers gain, consumers lose, the government may gain revenue, and because the goods most often protected are staples, the burden falls unevenly across the income distribution. Whether the policy is worth it depends on whether the producers\u2019 gain is large enough and lasting enough to justify what everyone else pays, and on the reasons the protection was introduced.',
+    [
+      [
+        'Domestic producers are the intended beneficiaries and do gain. A tariff raises the domestic price from the world price to the world price plus the tariff, so existing producers earn more on every unit and higher-cost producers who could not compete at the world price now can: domestic output expands from Q\u2081 to Q\u2082 and producer surplus rises. Employment in the protected industry is preserved, which is the political case for protection, and where the industry is an infant one that could become competitive with time, or a strategic one whose loss would carry costs beyond the market, protection can be defended on efficiency grounds rather than only distributional ones. The 25% tariff the United States imposed on steel imports in 2018 raised domestic steel prices and output almost immediately.',
+        'The producers\u2019 gain comes at a cost per job that is usually far larger than the wage of the job saved, because the whole of consumption pays the higher price to protect a small number of producers: estimates of the cost to US consumers per steel job preserved run to hundreds of thousands of dollars a year. Protection also removes the pressure to become efficient, so an infant industry protected too long never grows up, and industries that use the protected good as an input - car makers and construction in the steel case - lose more than the protected industry gains, since they now pay more for their materials.',
+      ],
+      [
+        'Consumers lose on two counts. They pay a higher price on everything they still buy, which transfers surplus to producers and to the government, and they buy less than they would have - consumption falls from Q\u2084 to Q\u2083 - which is a loss that goes to nobody: one of the two deadweight triangles. The government gains the tariff revenue on the imports that remain, which is a genuine transfer rather than a loss, and for developing countries with weak tax systems tariffs can be a large share of public revenue. Under a quota the same rectangle goes to the licence-holders instead, and under a subsidy the government pays rather than receives, so the government\u2019s position depends on which instrument is chosen.',
+        'The consumer loss is easy to understate because it is spread thinly across millions of people while the producer gain is concentrated on a few, which is exactly why protection is politically durable despite the net loss. It is also larger over time than at first: the initial tariff invites retaliation against the country\u2019s own exporters, so the consumers who pay more for imports can also be the workers who lose export sales, as US farmers found when China responded to the 2018 tariffs by cutting purchases of soybeans.',
+      ],
+      [
+        'The distributional effect is regressive. The goods most commonly protected - food, clothing, footwear, basic manufactures - take a larger share of low-income households\u2019 spending than of high-income households\u2019, so a given price rise costs the poor a larger fraction of their income; studies of US tariffs consistently find the burden falling hardest on the lowest-income households. On the producer side, the gains go to the owners of the protected industry, who are typically better off than its consumers, so the transfer runs upward. Living standards in aggregate fall by the deadweight loss, and by the loss of variety and quality that competition from imports would have supplied.',
+        'The picture is more even where the protected workers are themselves low-paid and concentrated in a region with no alternative employment, since then the distributional gain to them is real and the loss is spread across households that can bear it - the case made for protecting steel towns. Whether this justifies protection rather than direct support to the affected workers is the underlying question: a transfer payment or retraining scheme achieves the same distributional aim without raising prices for everyone else, so protection is the more expensive route to the same end even when the end is defensible.',
+      ],
+    ],
+    'Protectionist policies benefit domestic producers, at a cost to consumers that exceeds the producers\u2019 gain by the deadweight loss, with the government gaining revenue under a tariff, nothing under a quota and paying under a subsidy. The impact on the distribution of income is regressive, because the protected goods weigh more heavily in low-income budgets and the producer gains go to owners, and living standards fall in aggregate. The judgement depends on the reason for the protection and on its duration: a temporary tariff on a genuine infant industry, or protection of a strategic industry whose loss would carry costs beyond the market, can be defended, and support for low-paid workers in a declining region is a real distributional aim. But in each case the same end can usually be reached by direct support at lower cost, so protectionism is better understood as an expensive and regressive way of achieving aims that are sometimes legitimate than as a policy that benefits the imposing country overall.',
+    [
+      'The four instruments and the groups the question names',
+      'Diagram: price up, domestic output Q\u2081 to Q\u2082, consumption Q\u2084 to Q\u2083, revenue rectangle, deadweight triangles',
+      'Producers gain surplus and employment; infant industry and strategic arguments; US steel 2018',
+      'Consumers pay more and consume less; the government gains revenue under a tariff, licence-holders under a quota',
+      'Regressive incidence: protected goods weigh more in low-income budgets; gains go to owners',
+    ],
+    [
+      'Cost per job saved far exceeds the wage; downstream industries lose more than the protected one gains',
+      'The loss is thinly spread and the gain concentrated, which is why protection persists; retaliation adds export losses',
+      'Protection of low-paid workers in a region is a real aim, but direct support reaches it more cheaply',
+      'Judgement: an expensive and regressive route to aims that are sometimes legitimate',
+    ],
+  ),
 }

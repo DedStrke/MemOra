@@ -1182,4 +1182,20 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'The benefit and the cost are the same fact seen from two sides',
     ],
   },
+  Q177: {
+    tariff: [
+      'Read it as a quota: imports are FIXED at the gap between Q₂ and Q₃',
+      'With imports limited, the domestic price rises to the level marked Pw + tariff - the same rise a tariff would cause',
+      'Domestic output expands Q₁ → Q₂, consumption falls Q₄ → Q₃, exactly as under the tariff',
+      'The rectangle marked tariff revenue is now quota RENT, kept by the licence-holders - not the government',
+    ],
+  },
+  Q178: {
+    tariff: [
+      'Price rises from Pw to Pw + tariff: producers gain on every unit and output expands Q₁ → Q₂',
+      'Consumers pay more and cut consumption Q₄ → Q₃; imports shrink to the gap between',
+      'The government collects tariff revenue on the imports that remain - a transfer, not a loss',
+      'The two triangles either side of the rectangle are the deadweight loss - the fall in living standards nobody receives',
+    ],
+  },
 }
