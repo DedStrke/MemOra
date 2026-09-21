@@ -1613,4 +1613,126 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: an expensive and regressive route to aims that are sometimes legitimate',
     ],
   ),
+  /* --------------------------------------- Development Strategies (4.3.3) */
+  Q179: A(
+    [],
+    'The Lewis model describes an economy with two sectors: a traditional agricultural sector with surplus labour, where an extra worker adds little or nothing to output, and a modern industrial sector where labour is productive and profits are reinvested. Development happens by moving labour from the first to the second, and industrialisation is the strategy that makes the move possible.',
+    [
+      [
+        'In the traditional sector there is more labour than the land can use productively, so the marginal product of an additional worker is close to zero and wages are held at subsistence by custom and family sharing rather than by productivity. The modern sector can therefore draw workers out of agriculture at a wage only slightly above subsistence without any fall in farm output, because the workers who leave were adding nothing to it. Each worker who moves to a factory produces far more than they did in the field, so total output rises by the whole of their industrial product, and because the industrial wage stays low while output per worker is high, the modern sector earns large profits. This is the mechanism by which industrialisation raises national income: surplus labour becomes productive labour.',
+        'The model assumes the surplus exists and can move. Where agriculture is already at the point that each worker matters - as it is in much of Africa, where land is plentiful relative to labour - drawing workers out lowers farm output and food prices rise, which pushes the industrial wage up and cuts the profit the model relies on. It also assumes workers move to jobs rather than to cities: where industry cannot absorb them, migration produces urban unemployment and informal work rather than industrial employment, which is the pattern of many fast-growing cities.',
+      ],
+      [
+        'The second half of the mechanism is reinvestment. The profits of the modern sector are saved and invested in more capital, which raises the demand for industrial labour and draws still more workers out of agriculture, so the process feeds itself: each round of investment enlarges the sector that generates the profit for the next. Growth continues until the surplus is exhausted and the industrial wage begins to rise, at which point the economy has moved from a dual structure to a modern one. China after 1980 is the largest example the model has ever had, with several hundred million workers moving from farms to factories and coastal industry over three decades while wages stayed low and investment ran above 40% of national income.',
+        'The process only works if the profits are reinvested in the domestic industrial sector, and nothing in the model guarantees it: profits can be consumed, sent abroad by foreign owners, or invested in labour-saving capital that raises output without raising employment, in which case the surplus labour stays where it was. Development in the wider sense - health, education, the distribution of income - is also not automatic, since the model delivers growth in output while deliberately holding wages down, so the gains reach workers only once the surplus is exhausted, which in China took a generation.',
+      ],
+    ],
+    null,
+    [
+      'The two-sector structure: surplus labour in agriculture, productive labour in industry',
+      'Marginal product close to zero in agriculture, so labour can move without loss of farm output',
+      'Industrial output per worker high while the wage stays near subsistence: large profits',
+      'Reinvestment of profits enlarging the modern sector and drawing in more labour; China after 1980',
+      'The process ends when the surplus is exhausted and wages rise',
+    ],
+    [
+      'Assumes a genuine surplus that can move to jobs rather than to urban unemployment; not the case where land is plentiful',
+      'Profits must be reinvested domestically in employment-creating capital; wages held down until the surplus ends, so wider development lags growth',
+    ],
+  ),
+
+  Q180: A(
+    [],
+    'Tourism is a strategy for growth and development that many low-income countries can pursue with the resources they already have - climate, coastline, wildlife, heritage - rather than the capital and technology industrialisation requires. It earns foreign exchange, creates employment and can fund infrastructure, but it is an export whose demand is set abroad, and whose gains can leak out of the country as fast as they arrive.',
+    [
+      [
+        'The case for tourism starts with what it requires. A country can sell its climate and its coast without first building the industrial base that manufacturing exports need, and the industry is labour-intensive at the skill levels the country has - hotels, transport, guiding, food - so it creates employment quickly and often in rural and coastal areas that other strategies bypass. Tourism is an export, so it earns the foreign currency that pays for imported capital goods and relieves the foreign exchange constraint, and its growth pulls investment into airports, roads, water and power that the rest of the economy then uses. The Maldives built an economy in which tourism accounts for around a third of output directly and far more indirectly; Kenya, Tanzania and Thailand each earn a large share of their foreign exchange from it.',
+        'The employment created is often seasonal, low-paid and informal, and the skilled and managerial positions tend to go to foreign staff, so the strategy delivers jobs without delivering the rise in productivity and wages that development requires. Where the industry grows on all-inclusive resorts owned abroad, the local economy supplies little beyond labour, and the infrastructure built for tourists - an airport, a resort road - is not always the infrastructure the rest of the economy needed.',
+      ],
+      [
+        'The largest weakness is leakage. Much of what a tourist pays never reaches the destination country: the airline, the tour operator and the hotel chain are often foreign-owned and take their share abroad, imported food and drink serve tourists who expect what they eat at home, and profits are repatriated. Estimates for all-inclusive packages in some Caribbean and African destinations put the share of tourist spending retained locally well below half. The strategy also exposes the economy to a demand it does not control: tourism collapses with a recession in the source countries, with political instability, with an outbreak of disease or with a change in fashion, and the countries most dependent on it saw output fall by more than any others in 2020, when international travel stopped almost entirely.',
+        'Leakage depends on how the industry is organised rather than on tourism as such. Countries that require local ownership, source food domestically and develop their own airlines and tour operators retain far more of the spending, and Costa Rica\u2019s eco-tourism, built around locally owned lodges and national parks, is the standard contrast with the resort model. Volatility can likewise be reduced by diversifying source markets, though not removed.',
+      ],
+      [
+        'Tourism also carries costs that fall outside the market. Coastal resorts consume water and land that local communities and agriculture were using, coral reefs and wildlife are degraded by the visitors who came to see them, and the environmental damage undermines the asset the strategy depends on. Cultural effects - the commodification of local life, the pricing of residents out of their own coast - are real even if they are hard to measure. Development measured by the HDI depends on health and education, and tourism revenue reaches those only if the government captures and spends it, which requires a tax base the informal parts of the industry escape.',
+        'Some of these costs are the costs of any growth strategy and can be regulated, and tourism can fund conservation that would not otherwise be paid for - the fees that finance Rwanda\u2019s gorilla parks are the clearest case. Whether the environmental asset is protected or consumed is a policy choice, but one that governments under pressure for foreign exchange do not always make well.',
+      ],
+    ],
+    'Tourism is an effective strategy for growth to a considerable extent, because it uses resources a low-income country already has, earns foreign exchange and creates employment quickly; it is a less reliable strategy for development, because the jobs are often low-skilled and seasonal, the leakage of spending abroad can leave the country with a small share of what tourists pay, and the demand is volatile and set elsewhere. Its effectiveness depends on organisation: locally owned, domestically supplied tourism that funds infrastructure and conservation and is taxed to pay for health and education can deliver development, while foreign-owned resort tourism delivers growth in the headline figures and little else. It works best as one strand of a diversified strategy rather than as the strategy, and worst for the countries that have come to depend on it alone, as 2020 showed.',
+    [
+      'Tourism as a strategy using existing resources: climate, coast, wildlife, heritage',
+      'Foreign exchange earnings relieving the currency constraint; labour-intensive employment; infrastructure',
+      'The Maldives, Kenya, Tanzania, Thailand as economies built around it',
+      'Leakage: foreign-owned airlines, operators and hotels; imported supplies; repatriated profits',
+      'Volatility: demand set abroad; the 2020 collapse',
+      'Environmental and social costs; HDI depends on the revenue being captured and spent',
+    ],
+    [
+      'Jobs are often seasonal, low-paid and informal; skilled positions go abroad',
+      'Leakage depends on organisation - Costa Rica against the resort model',
+      'Conservation can be funded by the industry that threatens it - Rwanda',
+      'Judgement: effective for growth, conditional for development, and dangerous as the sole strategy',
+    ],
+  ),
+
+  /* ------------------------------- International Institutions and NGOs (4.3.3) */
+  Q181: A(
+    [],
+    'The World Bank and the International Monetary Fund were created in 1944 with different roles that have since blurred. The World Bank lends for development - long-term finance for infrastructure, health, education and institutions. The IMF exists to keep the international financial system stable, lending to countries in balance of payments crisis on condition that they reform. Two of the ways they promote development are explained here.',
+    [
+      [
+        'The first is long-term finance for investment a low-income country cannot fund itself or borrow for on commercial terms. The World Bank raises money on capital markets on the strength of its members\u2019 guarantees and lends it on to developing countries at low rates over long periods, and through its International Development Association it provides grants and interest-free credits to the poorest. This relieves both the savings gap - domestic saving too low to fund the investment growth requires - and the foreign exchange gap, since the loans are in hard currency and pay for imported capital goods. The projects are the physical basis of development: roads, ports, power, irrigation, schools and clinics that raise the quantity and quality of the factors of production, and the Bank attaches technical expertise and project appraisal that a small government may not have.',
+        'The value of the finance depends on the projects being well chosen and completed. The Bank\u2019s own record includes large infrastructure schemes that displaced communities or served the interests of the governments that borrowed rather than the people they governed, and loans add to debt that has to be serviced whether or not the project pays. Since the 1990s the Bank has moved towards lending for institutions, governance and social spending for this reason, with more conditions attached to how the money is used.',
+      ],
+      [
+        'The second is stabilisation. A country whose exports collapse or whose currency is under attack faces a balance of payments crisis in which it cannot pay for imports or service its debts; the IMF lends the foreign currency to bridge the gap, and its involvement restores enough confidence for private lenders to return. The lending comes with conditions - a programme of fiscal consolidation, monetary tightening, devaluation or structural reform - designed to remove the cause of the crisis, and the IMF\u2019s surveillance of members\u2019 economies and technical assistance on tax, banking and statistics build the institutional capacity that development needs. Without this role a crisis in one developing country can spread to others through lenders\u2019 withdrawal, which is what the IMF was set up to prevent.',
+        'The conditions are where the criticism lies. Programmes have often required cuts in public spending on health and education and the removal of food and fuel subsidies in the middle of a downturn, deepening it and falling hardest on the poor, and the structural adjustment programmes of the 1980s and 1990s in sub-Saharan Africa are widely judged to have delivered stabilisation at the cost of development. The IMF has since softened its conditions and added poverty-reduction objectives, but the tension between restoring the balance of payments quickly and protecting the people the adjustment falls on has not gone away.',
+      ],
+    ],
+    null,
+    [
+      'The two institutions and their roles: development finance against stabilisation',
+      'World Bank lending and IDA grants relieving the savings gap and the foreign exchange gap',
+      'Infrastructure, health and education projects raising the quantity and quality of factors of production',
+      'IMF lending in a balance of payments crisis; conditionality; surveillance and technical assistance',
+      'Preventing contagion between developing economies',
+    ],
+    [
+      'Finance helps only if projects are well chosen; loans add to debt; the shift towards institutions and governance',
+      'Conditionality has cut social spending in downturns - structural adjustment in the 1980s and 1990s; the tension remains',
+    ],
+  ),
+
+  Q182: A(
+    [],
+    'Debt relief means cancelling or reducing the external debt a low-income country owes to governments, international institutions or private lenders. The case rests on the debt overhang: a country whose export earnings and tax revenue go to servicing debt cannot invest in the health, education and infrastructure that development requires, and cannot escape the position by growing because the growth is taxed away in interest. The Heavily Indebted Poor Countries initiative from 1996 and the Multilateral Debt Relief Initiative from 2005 wrote off much of the debt of around thirty-six countries, mostly in sub-Saharan Africa, which provides the evidence for whether relief is the most effective instrument the institutions have.',
+    [
+      [
+        'The case for debt relief is that nothing else works while the overhang persists. A country spending more on debt service than on health cannot use aid, loans or its own revenue for development, because each new dollar goes to old creditors; the debt also deters private investment, since investors expect future taxes to rise to service it, and it removes the government\u2019s incentive to reform, since the gains from reform accrue to lenders. Cancelling the debt breaks all three at once. The countries that received HIPC relief did raise social spending substantially - spending on health and education in those countries rose as a share of income in the years after relief, and debt service fell from over a fifth of revenue to a small fraction. Relief also costs the institutions little in cash terms, because most of the cancelled debt would never have been repaid.',
+        'Relief works only for a country whose debt is actually the binding constraint. Where the underlying problem is weak institutions, conflict or an economy built on one commodity, cancelling the debt removes a symptom and the country re-borrows to the same position - several HIPC countries had debt back at high levels within fifteen years, some of it owed to new lenders such as China on terms outside any relief framework. It also rewards the governments that borrowed and mismanaged most, which is the moral hazard that made creditors reluctant, and the conditions attached to relief were themselves a form of the conditionality the institutions are criticised for.',
+      ],
+      [
+        'The institutions\u2019 other instruments address the constraints relief does not. Long-term concessional finance from the World Bank funds the investment that relief only makes affordable; technical assistance and support for institutions - tax administration, courts, statistics - address the governance failures that caused the debt; and trade access, which the institutions can press for, matters more to a commodity exporter than the cancellation of debt it was not servicing anyway. For a country whose problem is a savings gap rather than a debt overhang, a grant or an interest-free credit does what relief cannot, and the IDA\u2019s shift towards grants for the poorest countries reflects that judgement.',
+        'These instruments have weaknesses of their own - loans add to the debt that relief removed, aid can be captured or displace domestic tax effort, and conditionality has a poor record - so the comparison is between imperfect tools rather than between relief and a better alternative. The question is which constraint binds in a given country, and for the most heavily indebted it was the debt, which is why relief came first and finance followed.',
+      ],
+      [
+        'Non-governmental organisations offer a route that bypasses the institutions and the governments they lend to. Organisations such as Oxfam, BRAC in Bangladesh and the microfinance networks reach households directly with health, education, credit and agricultural support, at small scale and with local knowledge that institutional lending lacks, and they are not tied to a government\u2019s creditworthiness or its reform programme. They also shaped the debt relief agenda itself: the Jubilee 2000 campaign is the reason HIPC was enlarged and accelerated.',
+        'NGOs work at a scale that cannot substitute for national infrastructure or a functioning state, their funding is volatile and directed by donors\u2019 priorities rather than recipients\u2019 needs, and a country whose services are delivered by foreign organisations does not build the institutions that development ultimately depends on. They complement the institutions rather than replace them, and the most successful cases pair national policy with NGO delivery.',
+      ],
+    ],
+    'Debt relief is the most effective instrument the international institutions have for the specific case it was designed for: a country whose debt service consumes the revenue that health, education and investment need, and whose position no other instrument can improve while the overhang persists. The HIPC record supports that, with social spending rising and debt service collapsing in the countries that received it. It is not the most effective instrument in general, because it addresses one constraint - debt - and many indebted countries are held back by others that relief does not touch: weak institutions, commodity dependence, conflict, a savings gap. For those, concessional finance, institutional support and trade access do more, and NGOs reach households the institutions cannot. The judgement therefore depends on which constraint binds: relief first where the debt is the problem, and then the slower instruments that build the capacity to avoid needing it again, which the re-borrowing of several relieved countries shows is the harder part.',
+    [
+      'Definition of debt relief; the debt overhang and why it blocks development',
+      'HIPC from 1996 and MDRI from 2005: around thirty-six countries; debt service and social spending after relief',
+      'How relief breaks the overhang: revenue freed, private investment encouraged, the incentive to reform restored',
+      'Other instruments: concessional finance, institutional support, trade access; grants for the poorest',
+      'NGOs reaching households directly; Jubilee 2000 shaping the relief agenda itself',
+    ],
+    [
+      'Relief helps only where debt is the binding constraint; re-borrowing, including from lenders outside the framework; moral hazard',
+      'The alternatives are imperfect too - the comparison is between constraints, not between relief and a better tool',
+      'NGOs cannot substitute for a state or national infrastructure; donor-driven and volatile',
+      'Judgement: most effective for the case it was built for, not in general; relief first, then the slower instruments',
+    ],
+  ),
 }

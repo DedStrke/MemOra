@@ -366,4 +366,21 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain two methods, other than a tariff, that a government might use to restrict imports.'),
   q('Q178', 'A-Level', ...P2, '4.1', 'Restrictions on Free Trade', 'C', 25,
     'Evaluate the impact of protectionist policies on consumers, producers, the government and the distribution of income in the country that imposes them.'),
+  /*
+    4.3.3 is the longest list in the specification - market-orientated,
+    interventionist and "other" strategies, then the IMF, the World Bank
+    and NGOs. Q048 (trade against aid), Q063/Q064 (microfinance and the
+    financial sector), Q144 (buffer stocks) and Q146 (export-led growth)
+    cover parts of it; the Lewis model, tourism, debt relief and the
+    international institutions had no question, and nearly every other
+    named strategy appeared only inside Q048.
+  */
+  q('Q179', 'A-Level', ...P2, '4.3', 'Development Strategies', 'B', 10,
+    'Explain how the Lewis model suggests that industrialisation can promote economic development.'),
+  q('Q180', 'A-Level', ...P2, '4.3', 'Development Strategies', 'C', 25,
+    'Evaluate the extent to which the development of tourism is an effective strategy for promoting growth and development in a low-income country.'),
+  q('Q181', 'A-Level', ...P2, '4.3', 'International Institutions and NGOs', 'B', 10,
+    'Explain two ways in which the World Bank or the International Monetary Fund might promote economic development.'),
+  q('Q182', 'A-Level', ...P2, '4.3', 'International Institutions and NGOs', 'C', 25,
+    'Evaluate the view that debt relief is the most effective way for international institutions to promote development in heavily indebted low-income countries.'),
 ]
