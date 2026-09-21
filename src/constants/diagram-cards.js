@@ -198,17 +198,25 @@ export const MATHS_DIAGRAM_CARDS = [
 ]
 
 export const CS_DIAGRAM_CARDS = [
+  // The three 1.1.1 cards are worded from Mudassir's own notes for the
+  // chapter (cs-notes-processor.js), like the rest of its flashcards.
   {
     front: 'Draw the Von Neumann architecture.',
-    back: 'A CPU (control unit, ALU, registers: PC, MAR, MDR, CIR, ACC) connected to ONE shared memory holding both instructions and data, over the address bus (unidirectional), data bus (bidirectional) and control bus. That shared path is the Von Neumann bottleneck; Harvard separates them.',
+    back: 'A CPU (Control Unit, ALU and the registers PC, MAR, MDR, CIR and ACC) connected to ONE memory that stores both instructions and data, over the address bus (usually CPU to memory), the data bus (bidirectional) and the control bus. Instructions and data use the same buses, and sharing those pathways is what causes the Von Neumann bottleneck. Harvard architecture stores them in separate memories with separate buses.',
     topic: 'Structure and Function of the Processor',
     diagram: 'von-neumann',
   },
   {
     front: 'Draw the fetch-decode-execute cycle and say what happens at each stage.',
-    back: 'FETCH: address in PC → MAR, instruction returned to MDR then copied to CIR, PC incremented. DECODE: control unit splits opcode from operand. EXECUTE: ALU performs it, result to the accumulator. Then repeat. Interrupts are checked at the END of the cycle.',
+    back: 'FETCH: the address in the PC is copied to the MAR, sent to memory along the address bus, the Control Unit sends a read signal, the instruction is transferred to the MDR, copied to the CIR, and the PC is incremented. DECODE: the Control Unit decodes the instruction in the CIR (the opcode says what operation to perform, the operand gives the data or address). EXECUTE: the instruction is carried out using the ALU, registers or memory; a branch may change the PC. Then repeat.',
     topic: 'Structure and Function of the Processor',
     diagram: 'fetch-decode-execute',
+  },
+  {
+    front: 'Draw how pipelining overlaps the fetch-decode-execute cycle for three instructions.',
+    back: 'Three instructions against time, each stepping through fetch, decode and execute one stage behind the last: while one instruction is being executed, another is being decoded and another fetched. It increases the number of instructions processed in a given amount of time, but does not necessarily make one individual instruction faster. A branch instruction can reduce its effectiveness because instructions already fetched may need to be discarded.',
+    topic: 'Structure and Function of the Processor',
+    diagram: 'pipelining',
   },
   {
     front: 'Draw the AND, OR and XOR gates with their Boolean symbols.',

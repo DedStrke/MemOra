@@ -1,27 +1,244 @@
 /*
-  Fifth batch of OCR H446 Computer Science flashcards.
+  PREVIOUS flashcards for 1.1.1 Structure and Function of the Processor and
+  1.1.2 Types of Processor, moved here on 2026-09-21 when both chapters were
+  replaced by Mudassir's own notes and flashcards
+  (src/constants/cs-notes-processor.js, src/constants/cs-flashcards-processor.js).
 
-  Every one of these is written directly against the merged notes for
-  Structure and Function of the Processor (1.1.1) and Types of Processor
-  (1.1.2) - see cs-notes-comp1.js (the base chapters), cs-notes-extra.js
-  (the RISC/CISC and cache/core judgement) and cs-notes-depth-2.js (the
-  bus table, the full FDE register trace, and the parallel-processing
-  forms table). Nothing here names a fact the notes do not teach.
+  Kept for the specification gap check only - not imported by the app.
+  91 cards from four sources, each block kept verbatim:
 
-  The five cards already in cs-extra-2.js for these two topics (word
-  length, Flynn's taxonomy, MISD, why pipelines can't grow forever,
-  co-processors) are deliberately not repeated.
-
-  Same conventions as the earlier batches: topic strings match the
-  chapter outline exactly. No em dashes.
+    1. base pack            (was src/constants/library-extra.js, 31 cards)
+    2. second content pass  (was src/constants/cs-extra-2.js, 5 cards)
+    3. diagram cards        (was src/constants/diagram-cards.js, 2 cards)
+    4. fifth batch          (was src/constants/cs-extra-5.js, all 53 cards)
 */
+
+/* ============================================================ */
+/* 1. BASE PACK (from library-extra.js)                          */
+/* ============================================================ */
+
+export const PREVIOUS_BASE_FLASHCARDS = [
+{
+  "front": "What does PC stand for and what does it hold?",
+  "back": "Program Counter: the address of the next instruction to be fetched",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What does MAR hold?",
+  "back": "The address of the memory location currently being accessed",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What does MDR hold?",
+  "back": "The data being transferred to/from memory",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What does CIR hold?",
+  "back": "The instruction currently being decoded/executed",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What does the accumulator (ACC) hold?",
+  "back": "The results of ALU operations",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "Name the three types of bus",
+  "back": "Address bus, data bus, control bus",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "Which bus is bidirectional?",
+  "back": "The data bus",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What are the three steps of the FDE cycle?",
+  "back": "Fetch, Decode, Execute",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What is the role of the Control Unit?",
+  "back": "Coordinates the FDE cycle, decodes instructions, sends control signals",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What is the role of the ALU?",
+  "back": "Performs arithmetic and logical operations",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "Why does cache improve performance?",
+  "back": "It stores frequently used data close to the CPU, reducing slow trips to RAM",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What does the status/flag register store?",
+  "back": "Flags indicating the outcome of the last operation (e.g. zero, carry, overflow)",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What generates the timing pulses that synchronise CPU operations?",
+  "back": "The system clock",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What is clock speed measured in?",
+  "back": "Hertz (typically GHz for modern CPUs)",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "During the fetch stage, what happens to the PC after the instruction is copied to the CIR?",
+  "back": "It is incremented, so it points to the next instruction",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "What is the purpose of the control bus?",
+  "back": "Carries control signals, e.g. read/write signals and timing information",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "Name the two main components inside the CPU that carry out the decode/execute work (besides registers)",
+  "back": "The Control Unit and the Arithmetic Logic Unit (ALU)",
+  "topic": "Structure and Function of the Processor"
+},
+{
+  "front": "CISC stands for?",
+  "back": "Complex Instruction Set Computer",
+  "topic": "Types of Processor"
+},
+{
+  "front": "RISC stands for?",
+  "back": "Reduced Instruction Set Computer",
+  "topic": "Types of Processor"
+},
+{
+  "front": "Key feature of RISC instructions?",
+  "back": "Simple, fixed-length, typically one clock cycle each",
+  "topic": "Types of Processor"
+},
+{
+  "front": "Key feature of CISC instructions?",
+  "back": "Complex, variable-length, can take multiple clock cycles",
+  "topic": "Types of Processor"
+},
+{
+  "front": "What is pipelining?",
+  "back": "Overlapping the fetch/decode/execute of multiple instructions to increase throughput",
+  "topic": "Types of Processor"
+},
+{
+  "front": "Difference between multicore and multiprocessor?",
+  "back": "Multicore = multiple cores on one chip; multiprocessor = multiple separate CPU chips",
+  "topic": "Types of Processor"
+},
+{
+  "front": "What does SIMD stand for?",
+  "back": "Single Instruction, Multiple Data",
+  "topic": "Types of Processor"
+},
+{
+  "front": "What does MIMD stand for?",
+  "back": "Multiple Instruction, Multiple Data",
+  "topic": "Types of Processor"
+},
+{
+  "front": "What is a GPU optimised for?",
+  "back": "Performing many simple parallel operations simultaneously (SIMD-style workloads)",
+  "topic": "Types of Processor"
+},
+{
+  "front": "What is a pipeline hazard?",
+  "back": "A situation that prevents the next instruction from executing in its designated clock cycle, stalling the pipeline",
+  "topic": "Types of Processor"
+},
+{
+  "front": "What is an embedded processor?",
+  "back": "A specialised processor designed for one specific purpose within a larger device",
+  "topic": "Types of Processor"
+},
+{
+  "front": "Which processor type (CISC/RISC) typically has more registers?",
+  "back": "RISC",
+  "topic": "Types of Processor"
+},
+{
+  "front": "Give an example of a control hazard in pipelining",
+  "back": "A branch instruction, where the CPU doesn't yet know which instruction to fetch next until the branch is resolved",
+  "topic": "Types of Processor"
+},
+{
+  "front": "What real-world example uses SISD classification?",
+  "back": "A traditional single-core CPU processing one instruction on one piece of data at a time",
+  "topic": "Types of Processor"
+},
+]
+
+/* ============================================================ */
+/* 2. SECOND CONTENT PASS (from cs-extra-2.js)                   */
+/* ============================================================ */
+
+export const PREVIOUS_EXTRA_2_FLASHCARDS = [
+  // Structure and Function of the Processor
+  {
+    front: "What is meant by a CPU's 'word length'?",
+    back: "The number of bits the CPU can process or transfer in a single operation.",
+    topic: "Structure and Function of the Processor",
+  },
+
+  // Types of Processor
+  {
+    front: "What is Flynn's taxonomy used to classify?",
+    back: "Computer architectures by their number of instruction streams and data streams (SISD, SIMD, MISD, MIMD).",
+    topic: "Types of Processor",
+  },
+  {
+    front: "What does MISD stand for, and is it common?",
+    back: "Multiple Instruction, Single Data: a rare classification, mainly used in specialist fault-tolerant systems.",
+    topic: "Types of Processor",
+  },
+  {
+    front: "Why can't pipelining simply be extended indefinitely for more speed?",
+    back: "A longer pipeline increases the penalty (number of wasted cycles) whenever a hazard, such as a branch misprediction, forces it to be flushed.",
+    topic: "Types of Processor",
+  },
+  {
+    front: "What is a co-processor?",
+    back: "A secondary, specialised processor (e.g. a GPU or FPU) that handles specific tasks to offload work from the main CPU.",
+    topic: "Types of Processor",
+  },
+]
+
+/* ============================================================ */
+/* 3. DIAGRAM CARDS (from diagram-cards.js)                      */
+/* ============================================================ */
+
+export const PREVIOUS_DIAGRAM_CARDS = [
+  {
+    front: 'Draw the Von Neumann architecture.',
+    back: 'A CPU (control unit, ALU, registers: PC, MAR, MDR, CIR, ACC) connected to ONE shared memory holding both instructions and data, over the address bus (unidirectional), data bus (bidirectional) and control bus. That shared path is the Von Neumann bottleneck; Harvard separates them.',
+    topic: 'Structure and Function of the Processor',
+    diagram: 'von-neumann',
+  },
+  {
+    front: 'Draw the fetch-decode-execute cycle and say what happens at each stage.',
+    back: 'FETCH: address in PC → MAR, instruction returned to MDR then copied to CIR, PC incremented. DECODE: control unit splits opcode from operand. EXECUTE: ALU performs it, result to the accumulator. Then repeat. Interrupts are checked at the END of the cycle.',
+    topic: 'Structure and Function of the Processor',
+    diagram: 'fetch-decode-execute',
+  },
+]
+
+/* ============================================================ */
+/* 4. FIFTH BATCH (from cs-extra-5.js, whole file)               */
+/* ============================================================ */
 
 const c = (topic, front, back) => ({ topic, front, back })
 
 const CPU = 'Structure and Function of the Processor'
 const TYPES = 'Types of Processor'
 
-export const CS_EXTRA_FLASHCARDS_5 = [
+export const PREVIOUS_EXTRA_5_FLASHCARDS = [
   // ---- Structure and Function of the Processor: architecture
   c(
     CPU,
@@ -298,4 +515,11 @@ export const CS_EXTRA_FLASHCARDS_5 = [
     'Why can’t every problem be split across multiple cores?',
     'Some calculations depend on the result of a previous calculation, so those steps must run sequentially regardless of how many cores are available.',
   ),
+]
+
+export const PREVIOUS_PROCESSOR_FLASHCARDS = [
+  ...PREVIOUS_BASE_FLASHCARDS,
+  ...PREVIOUS_EXTRA_2_FLASHCARDS,
+  ...PREVIOUS_DIAGRAM_CARDS,
+  ...PREVIOUS_EXTRA_5_FLASHCARDS,
 ]

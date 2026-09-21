@@ -15,42 +15,6 @@ import { h, p, ul, tip, table, chapter } from './maths-notes-build'
 
 /* ------------------------------------------------- COMPONENT 01 */
 
-const processor = chapter(
-  h('Extended response: what actually makes a processor faster?'),
-  p(
-    'Clock speed is the obvious answer and the weakest one. Doubling the clock doubles the number of cycles per second, but only if the processor has work available every cycle. In practice it stalls waiting for memory, so a faster clock spends more cycles idle and the real gain is far below the headline figure. This is why the honest answer names the bottleneck rather than the number.',
-  ),
-  p(
-    'CACHE addresses that bottleneck directly. Level 1 cache runs at processor speed, so a hit costs a cycle or two where a main-memory access costs hundreds. Adding cache therefore raises performance far more than an equivalent increase in clock speed - but only up to a point: larger caches are slower to search, and once the working set fits, more cache adds cost without benefit.',
-  ),
-  p(
-    'More CORES multiply throughput only where the work can be divided. A task that is inherently sequential - each step needing the previous result - gains nothing from a second core, and Amdahl’s law puts a hard ceiling on the speed-up from the fraction that cannot be parallelised. So the judgement is that cores help servers and rendering, and help a single-threaded application very little.',
-  ),
-  p(
-    'WORD LENGTH and BUS WIDTH set how much moves per transfer: a wider data bus fetches more per cycle, and a wider address bus allows more addressable memory. These are usually fixed by the architecture rather than chosen.',
-  ),
-  tip(
-    'Judgement to close on: the limiting factor depends on the WORKLOAD. For a single-threaded application, cache and clock speed dominate. For a server handling many independent requests, core count dominates. Naming the workload is what lifts the answer to Level 3.',
-  ),
-)
-
-const processorTypes = chapter(
-  h('Extended response: RISC or CISC?'),
-  p(
-    'CISC provides complex instructions that each do a lot, so a program needs fewer instructions and less memory - which mattered enormously when memory was expensive and scarce. The cost is that instructions take differing numbers of cycles, which makes them hard to pipeline, and the decode hardware is complicated and power-hungry.',
-  ),
-  p(
-    'RISC uses a small set of simple, fixed-length instructions that each take roughly one cycle. That regularity is what makes deep PIPELINING practical, and it keeps the chip simple, so it uses less power and generates less heat. The cost is that a program needs more instructions, so it is larger, and more work is pushed onto the compiler.',
-  ),
-  p(
-    'The judgement follows from the constraint that binds. In a phone or embedded device, POWER is the binding constraint - battery life and heat dissipation - so RISC wins, which is why ARM dominates mobile. Where power is not constrained and a vast body of existing software must keep running, backwards compatibility binds instead, which is why x86 persists in desktops. Modern x86 chips in fact decode CISC instructions into RISC-like micro-operations internally, so the distinction is now about the instruction SET presented, not the hardware beneath.',
-  ),
-  h('GPUs and parallel processing'),
-  p(
-    'A GPU has thousands of simple cores rather than a few complex ones. It is enormously faster than a CPU at work that applies the SAME operation to many data items - graphics, matrix multiplication, machine learning. It is slower than a CPU at branching, sequential logic, because a divergent branch forces cores to idle. So the answer to "should this run on the GPU" is decided by whether the problem is data-parallel, not by raw core count.',
-  ),
-)
-
 const inputOutputStorage = chapter(
   h('Extended response: which storage, and why?'),
   table(
@@ -346,8 +310,6 @@ const ethics = chapter(
 )
 
 export const CS_EXTRA_DEPTH = {
-  'Structure and Function of the Processor': processor,
-  'Types of Processor': processorTypes,
   'Input, Output and Storage': inputOutputStorage,
   'Systems Software': systemsSoftware,
   'Applications Generation (Translators)': translators,

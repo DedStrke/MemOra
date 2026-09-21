@@ -10,120 +10,14 @@
   response in this component is "discuss the advantages and disadvantages
   of X in the context of Y", and the marks are in the trade-off, not the
   definition.
+
+  1.1.1 Structure and Function of the Processor and 1.1.2 Types of
+  Processor are no longer here: they are Mudassir's own notes in
+  cs-notes-processor.js. The chapters this file used to hold for them are
+  parked in temp/cs-processor-previous/.
 */
 
-import { h, p, ul, rule, method, worked, pitfalls, diagram, tip, table, chapter } from './maths-notes-build'
-
-/* ================================================ THE PROCESSOR */
-
-const processor = chapter(
-  rule('Von Neumann architecture', 'Instructions AND data are stored in the SAME memory, and are fetched over the same bus.'),
-  rule('Harvard architecture', 'Instructions and data are stored in SEPARATE memories with separate buses, so both can be fetched simultaneously. Used in embedded systems and DSPs.'),
-  diagram('von-neumann'),
-  h('Components of the CPU'),
-  table(
-    ['Component', 'Function'],
-    [
-      ['ALU', 'Performs arithmetic and logical operations; holds the accumulator'],
-      ['Control Unit', 'Decodes instructions and sends control signals to coordinate the other components'],
-      ['Registers', 'Very fast, very small storage inside the CPU'],
-      ['Cache', 'Small fast memory holding recently and frequently used data, to reduce trips to RAM'],
-      ['Buses', 'Address (one-way, carries the location), Data (two-way, carries the value), Control (carries signals)'],
-    ],
-  ),
-  h('The special purpose registers'),
-  table(
-    ['Register', 'Holds'],
-    [
-      ['PC - Program Counter', 'The ADDRESS of the next instruction'],
-      ['MAR - Memory Address Register', 'The address currently being read from or written to'],
-      ['MDR - Memory Data Register', 'The data just fetched, or about to be written'],
-      ['CIR - Current Instruction Register', 'The instruction currently being decoded and executed'],
-      ['ACC - Accumulator', 'The result of ALU calculations'],
-    ],
-  ),
-  h('The fetch–decode–execute cycle'),
-  method('One full cycle', [
-    'The address in the PC is copied to the MAR.',
-    'The PC is INCREMENTED, ready for the next instruction.',
-    'The instruction at the MAR address is fetched along the data bus into the MDR.',
-    'The instruction is copied from the MDR into the CIR.',
-    'The control unit DECODES the instruction in the CIR.',
-    'The instruction is EXECUTED, with any result placed in the accumulator.',
-    'The cycle repeats. Interrupts are checked at the END of the cycle.',
-  ]),
-  diagram('fetch-decode-execute'),
-  h('What affects CPU performance'),
-  table(
-    ['Factor', 'Effect'],
-    [
-      ['Clock speed', 'More cycles per second, so more instructions per second - but only for sequential work'],
-      ['Number of cores', 'Genuine parallel execution, but only if the task can be divided (Amdahl’s law)'],
-      ['Cache size and level', 'A cache miss costs far more cycles than the instruction itself, so cache often matters more than clock speed'],
-      ['Word length and bus width', 'Wider buses move more data per cycle'],
-      ['Pipelining', 'Overlaps fetch, decode and execute so throughput rises without raising clock speed'],
-    ],
-  ),
-  tip(
-    'For "which processor is better" questions, never answer on clock speed alone. Bring in whether the workload is parallelisable, the cache, and the fact that a branch flushes the pipeline. That is the difference between Level 2 and Level 3.',
-  ),
-  pitfalls([
-    'The PC holds an ADDRESS, the CIR holds an INSTRUCTION, the MDR holds DATA. Mixing them up is the standard error.',
-    'The PC is incremented DURING the fetch, not after the execute - otherwise a jump instruction would not work.',
-    'Interrupts are checked at the END of the cycle, not during it.',
-    'The address bus is one-way; the data bus is two-way. Questions test this directly.',
-  ]),
-)
-
-/* =============================================== TYPES OF PROCESSOR */
-
-const processorTypes = chapter(
-  table(
-    ['Type', 'Characteristics'],
-    [
-      ['CISC', 'Complex Instruction Set - many specialised instructions, each may take several cycles. Simpler compiler, more complex hardware. Used in desktop x86.'],
-      ['RISC', 'Reduced Instruction Set - few simple instructions, each one cycle. More complex compiler, simpler hardware, makes greater use of registers, easier to pipeline. Used in ARM and mobile.'],
-    ],
-  ),
-  h('GPUs'),
-  p(
-    'A GPU (Graphics Processing Unit) contains a large number of simple processing units that carry out many similar calculations at the same time, rather than the small number of powerful cores a CPU has. A CPU suits a wide range of general-purpose tasks; a GPU is particularly effective when a task can be split into many similar calculations run in parallel. A GPU is not automatically faster than a CPU - its performance advantage depends entirely on whether the task is suitable for parallel processing.',
-  ),
-  ul([
-    'Graphics uses: rendering 2D and 3D graphics, computer games, animation, image processing, video processing.',
-    'Non-graphics uses: artificial intelligence and machine learning, scientific modelling and simulations, processing large amounts of data, general mathematical calculations.',
-  ]),
-  h('Multicore processors'),
-  p(
-    'A multicore processor contains two or more processing cores within the same CPU (e.g. dual-core, quad-core, eight-core), each capable of processing instructions, so more than one task or part of a task can potentially run at the same time. Having twice as many cores does not necessarily mean a program runs twice as fast - the software itself must be designed to make use of the additional cores.',
-  ),
-  h('Pipelining'),
-  diagram('pipelining'),
-  p(
-    'While one instruction is executing, the next can be decoded and a third fetched. Once the pipeline is full, one instruction completes per cycle - three instructions take five cycles rather than nine.',
-  ),
-  p('A BRANCH breaks this: the partly-filled pipeline must be flushed because the wrong instructions were loaded. Branch prediction exists to reduce that cost.'),
-  h('Parallel and multicore'),
-  table(
-    ['Term', 'Meaning'],
-    [
-      ['Multicore', 'Several complete processors on one chip, each running its own instruction stream'],
-      ['Parallel processing', 'Several processors working on the same problem simultaneously'],
-      ['SISD / SIMD / MISD / MIMD', 'Flynn’s taxonomy - SIMD applies one instruction to many data items at once, which is how GPUs work'],
-      ['Co-processor', 'A specialist chip alongside the CPU - a GPU for graphics, an FPU for floating point'],
-    ],
-  ),
-  tip(
-    'Amdahl’s law is the evaluation point for every parallel processing question: the speed-up is capped by the fraction of the program that must run sequentially. If 20% is sequential, sixteen cores can never give more than a fivefold speed-up.',
-  ),
-  pitfalls([
-    'More cores does not mean proportionally faster. Say why: sequential fraction, coordination overhead, and the difficulty of writing correct concurrent code.',
-    'Splitting a task and combining the results afterwards is not free - that overhead itself takes time, so a problem too small or too fine-grained to divide efficiently can run slower in parallel than it would running on one core alone.',
-    'Not every problem can be split into independent parts: some calculations depend on the result of a previous calculation, and those must stay sequential regardless of how many cores are available.',
-    'RISC has FEWER instructions but programs need MORE of them. Both statements are true and both are marked.',
-    'Pipelining raises throughput, not the speed of any single instruction.',
-  ]),
-)
+import { h, p, ul, rule, worked, pitfalls, diagram, tip, table, chapter } from './maths-notes-build'
 
 /* ========================================= INPUT, OUTPUT AND STORAGE */
 
@@ -478,8 +372,6 @@ const webTech = chapter(
 )
 
 export const CS_COMP1_NOTES = {
-  'Structure and Function of the Processor': processor,
-  'Types of Processor': processorTypes,
   'Input, Output and Storage': storage,
   'Systems Software': systemsSoftware,
   'Applications Generation (Translators)': translators,

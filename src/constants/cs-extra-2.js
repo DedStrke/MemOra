@@ -25,36 +25,6 @@
 */
 
 export const CS_EXTRA_FLASHCARDS_2 = [
-
-  // Structure and Function of the Processor
-  {
-    front: "What is meant by a CPU's 'word length'?",
-    back: "The number of bits the CPU can process or transfer in a single operation.",
-    topic: "Structure and Function of the Processor",
-  },
-
-  // Types of Processor
-  {
-    front: "What is Flynn's taxonomy used to classify?",
-    back: "Computer architectures by their number of instruction streams and data streams (SISD, SIMD, MISD, MIMD).",
-    topic: "Types of Processor",
-  },
-  {
-    front: "What does MISD stand for, and is it common?",
-    back: "Multiple Instruction, Single Data: a rare classification, mainly used in specialist fault-tolerant systems.",
-    topic: "Types of Processor",
-  },
-  {
-    front: "Why can't pipelining simply be extended indefinitely for more speed?",
-    back: "A longer pipeline increases the penalty (number of wasted cycles) whenever a hazard, such as a branch misprediction, forces it to be flushed.",
-    topic: "Types of Processor",
-  },
-  {
-    front: "What is a co-processor?",
-    back: "A secondary, specialised processor (e.g. a GPU or FPU) that handles specific tasks to offload work from the main CPU.",
-    topic: "Types of Processor",
-  },
-
   // Databases
   {
     front: "What is referential integrity in a database?",

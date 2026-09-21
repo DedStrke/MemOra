@@ -18,57 +18,6 @@ import { h, p, ul, rule, method, worked, pitfalls, tip, table, code, chapter } f
 
 /* ================================================ COMPONENT 1 */
 
-const processor = chapter(
-  h('The buses in detail'),
-  table(
-    ['Bus', 'Direction', 'Carries', 'Width matters because...'],
-    [
-      ['Address bus', 'CPU → memory (one way)', 'The address the CPU wants to read or write', 'n lines can address 2ⁿ locations: a 32-bit address bus addresses 4 GiB'],
-      ['Data bus', 'Both ways', 'The data being transferred', 'Width sets how many bits move per transfer; matches word length'],
-      ['Control bus', 'Both ways', 'Signals: read, write, clock, interrupt, bus request', 'Coordinates timing so the other two buses are not used at once'],
-    ],
-  ),
-  h('The registers during one instruction'),
-  worked('Trace the registers while the instruction at address 12, ADD 30, is fetched and executed. Address 30 holds 7 and the accumulator holds 5.', [
-    'PC = 12. The PC is copied to the MAR: MAR = 12.',
-    'PC is incremented: PC = 13.',
-    'The contents of address 12 travel along the data bus into the MDR: MDR = ADD 30.',
-    'MDR is copied to the CIR: CIR = ADD 30. The control unit decodes it.',
-    'The operand address is placed in the MAR: MAR = 30. The value 7 arrives in the MDR.',
-    'The ALU adds: ACC = 5 + 7 = 12. The cycle ends and the next fetch starts from PC = 13.',
-  ]),
-  tip(
-    'A "describe the FDE cycle using the registers" question is marked on the REGISTER NAMES at each step. PC → MAR, PC + 1, memory → MDR, MDR → CIR, decode, execute. Six steps, six marks, in that order.',
-  ),
-  h('How this relates to assembly language programs'),
-  p(
-    'Every line of an assembly program (and every LMC instruction) is exactly one of these fetch-decode-execute cycles. "ADD 30" above is an assembly mnemonic: the operand 30 is the address placed in the MAR, and the opcode ADD is what the control unit decodes from the CIR to choose the ALU operation. Tracing registers for an assembly program IS tracing the FDE cycle instruction by instruction - see the Assembly Language and the Little Man Computer chapter for the full instruction set.',
-  ),
-  h('Contemporary processing'),
-  p(
-    'Modern processors combine the classic architecture with features the specification names separately. A multi-core chip has several complete processors sharing a package and usually a shared cache. Pipelining overlaps fetch, decode and execute of consecutive instructions. Multiple levels of cache (L1 per core, L2 per core or pair, L3 shared) sit between registers and RAM. Harvard-style separate instruction and data caches are common inside otherwise von Neumann chips. When asked about "contemporary" architecture, name these and explain that the aim of every one is to keep the processor from waiting on memory.',
-  ),
-)
-
-const processorTypes = chapter(
-  h('Parallel processing - the forms it takes'),
-  table(
-    ['Form', 'What it is', 'Where it applies'],
-    [
-      ['Multi-core', 'Several processors on one chip, each running its own instruction stream', 'Desktop and phone CPUs; needs software written to use multiple threads'],
-      ['SIMD', 'One instruction applied to many data items at once', 'GPUs, vector units for graphics, matrix and signal processing'],
-      ['Distributed / cluster', 'Many separate computers cooperating over a network', 'Supercomputers, cloud services, large simulations'],
-    ],
-  ),
-  p(
-    'The limit on all of them is the same: the fraction of the work that must be done in sequence. If a tenth of a task cannot be parallelised, no number of cores can make it more than ten times faster. That is why "add more cores" is not automatically the answer to a slow program, and why the exam wants you to say whether the workload divides.',
-  ),
-  h('Co-processors'),
-  p(
-    'A co-processor is an additional processor dedicated to one kind of work - graphics (GPU), floating-point arithmetic, encryption, or machine learning (a neural processing unit). It relieves the main CPU of that work and does it faster because its hardware is built for it. The trade-off is that it is only useful for that class of task and adds cost and power draw.',
-  ),
-)
-
 const inputOutputStorage = chapter(
   h('Input and output devices - choosing one'),
   p(
@@ -901,8 +850,6 @@ const algorithms = chapter(
 )
 
 export const CS_EXTRA_DEPTH_2 = {
-  'Structure and Function of the Processor': processor,
-  'Types of Processor': processorTypes,
   'Input, Output and Storage': inputOutputStorage,
   'Systems Software': systemsSoftware,
   'Applications Generation (Translators)': translators,
