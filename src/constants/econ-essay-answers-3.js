@@ -799,7 +799,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'This is not guaranteed to work in every market: where genuine barriers to entry remain high regardless of policy (a natural monopoly with enormous fixed infrastructure costs, or a market protected by patents), increasing contestability in the abstract achieves little, because the underlying barrier that deters entry is not actually being addressed by making entry theoretically easier elsewhere.',
       ],
       [
-        'The extent to which increasing contestability lowers prices, even without more firms, therefore depends on whether the specific barriers being removed are the ones that were genuinely deterring entry in that market. Where sunk costs and regulatory barriers were the binding constraint, increasing contestability has visibly lowered prices without necessarily producing large increases in the number of active firms at any one time: the deregulation of European air routes from the 1990s let low-cost entrants such as Ryanair and easyJet threaten incumbent national carriers on individual routes, and average fares on those routes fell even where an incumbent retained the largest share.',
+        'The extent to which increasing contestability lowers prices, even without more firms, therefore depends on whether the specific barriers being removed are the ones that were genuinely deterring entry in that market. Where sunk costs and regulatory barriers were the binding constraint, increasing contestability has visibly lowered prices without necessarily producing large increases in the number of active firms at any one time: the deregulation of European air routes from the 1990s let low-cost entrants such as Ryanair and easyJet threaten incumbent national carriers on individual routes, and average fares on those routes fell even where an incumbent retained the largest share. The other tools the specification lists for raising contestability work on the same principle: promotion of small business through grants, simplified regulation and public procurement rules that reserve a share of contracts for smaller firms lowers the cost of entry, and competitive tendering for public contracts makes an incumbent supplier defend its position at every renewal rather than hold it by default.',
         'Where the binding constraint is a natural cost advantage of incumbency - economies of scale so large that only one or two firms could ever operate efficiently - increasing contestability in name only, without addressing that underlying cost structure, is unlikely to produce a genuine and lasting fall in prices, since a would-be entrant still faces the same fundamental cost disadvantage regardless of how "contestable" the market is formally made to look.',
       ],
     ],
@@ -1553,6 +1553,137 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'A maximum wage is avoidable through relocation and non-salary reward; tax achieves the aim more reliably',
       'Public sector restraint is defensible as a temporary stabiliser, damaging when sustained',
       'Judgement: improves outcomes where it corrects a failure such as monopsony, worsens them where it overrides a working market',
+    ],
+  ),
+  /* --------------------------------------- Regulation of Monopolies (3.6.1) */
+  Q165: A(
+    [['natural-monopoly', 'A natural monopoly with AC still falling where it meets D. Mark the unregulated profit-maximising price and, below it, the regulated price at P(AC) where the firm just covers average cost. Show why the regulator does not go all the way to P = MC: that price would make a loss on every unit.']],
+    'A natural monopoly is an industry in which economies of scale are so large relative to the market that one firm can supply it at lower average cost than two or more could - water, electricity transmission, the rail network. Once such an industry is privatised, competition cannot discipline it, so the regulator stands in for competition, and a price cap is the main tool it uses.',
+    [
+      [
+        'Left alone, a privatised natural monopoly profit-maximises like any monopolist: it restricts output to where marginal cost equals marginal revenue and charges a price off the demand curve well above average cost, earning supernormal profit at the expense of consumers who have no alternative supplier. A price cap sets a maximum price the firm may charge. Set at P(AC), where the demand curve meets the falling average cost curve, it forces the firm to expand output to the point where it just covers its costs and earns normal profit, which removes the supernormal profit and delivers a larger quantity at a lower price. The UK form is RPI - X: the cap rises each year with inflation less a factor X representing the efficiency gain the regulator expects, so the firm keeps any saving beyond X and has an incentive to cut costs.',
+        'The regulator cannot set the cap at P = MC, the allocatively efficient price, because with average cost still falling marginal cost lies below it and the firm would make a loss on every unit and exit. P(AC) is therefore a second-best compromise, and even reaching it depends on the regulator knowing the firm\u2019s costs, which the firm has every incentive to overstate so that the cap is set loose.',
+      ],
+      [
+        'The choice of X is where the mechanism succeeds or fails. Set too high, the cap falls below the firm\u2019s achievable cost and it cuts investment and maintenance to stay solvent; set too low, the cap leaves supernormal profit in place and the regulator has simply licensed it. Because the cap fixes price rather than profit, a firm that cuts costs by more than X keeps the difference, which is the incentive to efficiency that distinguishes a price cap from profit regulation. Ofwat\u2019s five-yearly price reviews for the water companies and Ofgem\u2019s controls on network operators both work this way.',
+        'A price cap on its own gives the firm an incentive to cut costs by cutting quality, since a cheaper, worse service earns the same capped revenue. Regulators therefore attach quality standards and performance targets to the cap - leakage limits for water companies, reliability targets for networks - with penalties for missing them, so that price regulation in practice is a package rather than a single number.',
+      ],
+    ],
+    null,
+    [
+      'Definition of a natural monopoly; why competition cannot discipline it once privatised',
+      'Unregulated outcome: output restricted, price above average cost, supernormal profit',
+      'Diagram: cap at P(AC) where D meets AC; larger output, normal profit; P = MC would make a loss',
+      'RPI - X: the cap rises with inflation less an efficiency factor; the firm keeps savings beyond X',
+      'Ofwat and Ofgem price controls as the UK application',
+    ],
+    [
+      'The regulator depends on cost information the firm has an incentive to distort',
+      'X set too high starves investment, too low licenses profit; the cap needs quality standards alongside it',
+    ],
+  ),
+
+  Q166: A(
+    [
+      ['natural-monopoly', 'The regulated outcome: price capped at P(AC), output larger than the monopolist would choose, normal profit only. The diagram shows what price regulation achieves; the essay has to show what it cannot - investment, quality and the information the cap depends on.'],
+      ['monopoly', 'The unregulated benchmark: Qm and Pm with the supernormal profit rectangle and the deadweight loss. Every method of control is trying to move the firm away from this point; they differ in what they fix and what they leave the firm to choose.'],
+    ],
+    'A privatised monopoly - a water company, an energy network, an airport - cannot be disciplined by competition, so a government must control it directly. The specification lists four methods: price regulation, profit regulation, quality standards and performance targets. Price regulation, usually an RPI - X cap, is the method the UK has relied on most, and the view that it is the most effective rests on the incentive it gives the firm to cut costs. Whether it deserves that status depends on what it leaves uncontrolled.',
+    [
+      [
+        'The case for price regulation is its incentive structure. A cap of the RPI - X form fixes the price path for several years in advance, so a firm that reduces its costs faster than the regulator assumed keeps the difference as profit. This gives a monopoly the incentive to pursue productive efficiency that competition would otherwise supply, and it is cheap to administer once set, since the regulator polices a number rather than a business. The alternative of profit regulation - capping the rate of return on capital, the traditional American approach - removes the incentive entirely, because a firm whose profit is capped has no reason to cut costs and every reason to over-invest in capital to enlarge the base the permitted return is calculated on. On this comparison price regulation is clearly superior, and it is why the UK adopted it at privatisation.',
+        'The incentive works only if the regulator sets X well, and it sets X from cost information supplied by the firm it regulates. A firm that persuades the regulator its costs are higher than they are gets a loose cap and keeps the supernormal profit the cap was meant to remove. The English water companies are the standing example: high dividends and rising debt through the 2010s while leakage targets were missed and sewage was discharged, which suggests the caps were set loose for a long period, and Ofwat has since tightened them sharply.',
+      ],
+      [
+        'Price regulation controls price and, through the incentive, cost. It does not control what the firm does to cut cost. A capped monopolist can cut maintenance, defer investment and reduce service quality, all of which lower costs without lowering the price it is allowed to charge, so a pure price cap can deliver a cheaper, worse service and a decaying asset base. This is why quality standards and performance targets exist: leakage limits and pollution standards for water, reliability and outage targets for networks, punctuality targets for rail, with financial penalties for missing them. Ofgem\u2019s framework for network operators now ties allowed revenue explicitly to delivered outputs rather than to price alone, which is an admission that price regulation on its own was not enough.',
+        'Targets have their own failure mode. A firm meets the metric rather than the objective - trains cancelled in advance do not count as late; leakage measured one way looks better than measured another - and the regulator ends up specifying the service in ever more detail, which is the planning problem in miniature. Targets also need monitoring that is itself costly and dependent on the firm\u2019s own reporting.',
+      ],
+      [
+        'Which method is most effective therefore depends on what is being controlled and on the regulator\u2019s information. Where the main concern is price and costs are observable, a price cap does most of the work cheaply. Where the main concern is investment in a long-lived network - the case for water and energy transmission, where under-investment shows up decades later - a price cap alone pushes the wrong way, and profit regulation with an investment allowance, or performance targets on asset condition, may serve consumers better despite their weaker efficiency incentive. All four methods share the underlying weakness that the regulator knows less than the firm, and regulatory capture - a regulator that comes to see the industry\u2019s interest as its own - undermines each of them equally.',
+        'The alternatives to regulation altogether are also part of the judgement. Where an industry can be made contestable - by separating the network from the service that runs over it, as with rail track and train operators - competition may replace regulation for the competitive part; where it cannot, and regulation has repeatedly failed, public ownership is the remaining option, which is the route the rail franchises took. Price regulation is most effective where the industry is a genuine natural monopoly with observable costs and a short investment horizon, and progressively less so as those conditions weaken.',
+      ],
+    ],
+    'Price regulation is the most effective single method of controlling a privatised monopoly where the concern is price, because the RPI - X cap gives the firm the incentive to cut costs that profit regulation removes and that competition cannot supply. But it controls only price and cost, not what the firm does to achieve them, so used alone it can produce a cheaper, worse service and a neglected network, and it depends on cost information the firm has every reason to distort - the English water companies show both weaknesses at once. Quality standards and performance targets are not alternatives to price regulation but the corrections it needs, and where investment in a long-lived network is the main concern the balance shifts towards them. The view is therefore right about the mechanism and wrong about the word "most": effective control of a privatised monopoly is a package in which the price cap is the centre, and its effectiveness depends on the quality of the regulator\u2019s information and on whether the industry could have been made contestable instead.',
+    [
+      'Why a privatised monopoly needs direct control; the four methods in the specification',
+      'Price regulation as RPI - X: the incentive to productive efficiency; comparison with profit regulation',
+      'Diagram: capped price at P(AC) against the unregulated monopoly outcome',
+      'What a price cap leaves uncontrolled: quality, maintenance, investment',
+      'Quality standards and performance targets as the necessary complements; Ofgem\u2019s output-based framework',
+      'Regulatory capture and the information problem common to all four methods',
+    ],
+    [
+      'X is set from the firm\u2019s own cost information; the water companies as caps set loose',
+      'Targets are gamed and require costly monitoring',
+      'Depends on the concern - price against long-lived investment - and on the regulator\u2019s information',
+      'Contestability and public ownership as the alternatives to regulating at all',
+      'Judgement: the centre of an effective package, not the most effective method on its own',
+    ],
+  ),
+
+  /* ------------------------------------------------ Nationalisation (3.6.1) */
+  Q167: A(
+    [['natural-monopoly', 'AC still falling where it meets D, and the note that P = MC would make a loss. This is the case for public ownership in one picture: the allocatively efficient price cannot be charged by a private firm that has to cover its costs, so either the state subsidises a private monopoly or it owns the industry and prices at marginal cost itself.']],
+    'Nationalisation is the transfer of a privately owned industry into public ownership, the reverse of privatisation. The specification lists it among the ways a government can protect suppliers and employees, but the reasons a government gives for it in practice are broader: the structure of the industry, and the failure of private ownership and regulation to deliver what the industry exists to provide.',
+    [
+      [
+        'The first reason is that the industry is a natural monopoly whose allocatively efficient price cannot be charged privately. Where average cost is still falling at the output that meets demand, marginal cost lies below it, so the price equal to marginal cost that maximises welfare would leave a private firm making a loss on every unit. A private monopolist therefore either charges the profit-maximising price, restricting output and extracting supernormal profit from consumers who have no alternative, or has to be regulated down to a break-even price that is still above marginal cost. A publicly owned industry can price at marginal cost and cover the resulting loss from general taxation, and it can be run for the objective the industry exists to serve - universal water supply, a rail network that connects places a private operator would abandon - rather than for profit. Water in Scotland has stayed in public ownership on this reasoning.',
+        'Pricing at marginal cost and covering the loss from taxation is only a welfare gain if the taxes that fund it distort less than the monopoly price did, and a state-owned industry with no profit constraint can drift into X-inefficiency and over-manning, which was the standard criticism of the nationalised industries before 1979. The case rests on the industry being a natural monopoly; where it is not, public ownership removes competition that would have done the job better.',
+      ],
+      [
+        'The second reason is the failure of private ownership under regulation. Where a privatised industry has under-invested, extracted dividends and missed its quality standards despite a regulator, the government may conclude that regulation cannot be made to work and that ownership is the only lever left. The English water companies\u2019 rising debt, dividend payments and sewage discharges, and Thames Water\u2019s financial distress, are the case now argued; the rail franchises are the case already acted on, with the East Coast line taken back into public operation in 2018 and Northern in 2020 after their private operators failed to deliver, followed by the decision to bring passenger services under public ownership as contracts expire. Nationalisation here is less an economic theory than a response to a regulated private model that has repeatedly broken down, and it protects the employees and suppliers whose contracts a failing private operator would not honour.',
+        'Taking an industry into public ownership does not by itself supply the investment it lacked, since the same capital has now to come from the Treasury and compete with every other call on public spending, and the government inherits the debts of the firm it acquires. Whether outcomes improve depends on whether the state manages the industry better than the regulator managed the private firm, and the failure was often the regulator\u2019s rather than the ownership\u2019s.',
+      ],
+    ],
+    null,
+    [
+      'Definition of nationalisation as the reverse of privatisation',
+      'Reason 1: natural monopoly - marginal cost pricing makes a loss, so public ownership can price at MC and fund the loss from taxation, with a diagram',
+      'Running the industry for its purpose rather than for profit; universal provision',
+      'Reason 2: failure of the regulated private model - under-investment, dividends, missed standards; rail franchises and water',
+      'Protection of employees and suppliers when a private operator fails',
+    ],
+    [
+      'Marginal cost pricing is a gain only if the funding taxes distort less; X-inefficiency without a profit constraint',
+      'Public ownership does not itself supply the missing investment, and the failure may have been the regulator\u2019s',
+    ],
+  ),
+
+  Q168: A(
+    [
+      ['natural-monopoly', 'The structure of rail track and water: AC still falling where it meets D. A private firm must price at or above P(AC); a publicly owned one can price at P = MC and fund the loss - the allocative gain nationalisation makes available, and the cost that comes with it.'],
+      ['monopoly', 'The X-inefficiency case against: with no profit constraint and no competition, costs can drift above the minimum, so the price consumers face may sit above what a regulated private firm at P(AC) would charge even without any profit being taken.'],
+    ],
+    'Nationalisation brings a privately owned industry into public ownership. For rail and water the argument is live in the UK: passenger rail is returning to public operation as franchises expire, and water is the subject of the same debate after a decade of dividends, debt and pollution under private ownership. Whether consumers gain depends on what caused the problems under private ownership, and on whether public ownership fixes that cause or merely changes who owns it.',
+    [
+      [
+        'The case that consumers gain starts from the structure of both industries. Rail infrastructure and water supply are natural monopolies: average cost falls across the whole market, so competition is impossible and a private owner is a monopolist held in check only by a regulator. A publicly owned industry can price at marginal cost, which a private firm cannot do without making a loss, and can be run for universal, reliable provision rather than for a return to shareholders. Money that left the industry as dividends stays in it: the English water companies paid out substantial dividends over the 2010s while their debt rose, and a publicly owned operator has no shareholders to pay. The rail franchises taken back into public operation - the East Coast line in 2018, Northern in 2020 - continued to run, which is the minimum a failing private operator could not manage, and Scottish Water, publicly owned throughout, has not produced the pollution record of its English counterparts.',
+        'Dividends are a symptom of the regulator setting loose price caps, not of ownership as such, and the counterfactual to nationalisation is not the status quo but a properly regulated private firm. Public ownership also brings its own owner: a Treasury that competes the industry\u2019s investment against hospitals and schools and has historically starved nationalised industries of capital when public finances were tight, which is a large part of why they were privatised.',
+      ],
+      [
+        'The case that consumers do not gain is the loss of the profit motive and of the discipline it supplies. A privately owned firm under a price cap keeps any cost saving it makes and so has a reason to find them; a publicly owned firm has neither shareholders demanding efficiency nor a cap to beat, so costs can drift above the minimum - X-inefficiency - and the consumer pays for the slack in either prices or taxes. The nationalised industries before privatisation were the standing example, with over-manning, restrictive practices and prices set for political rather than economic reasons, and there is no guarantee a nationalised water company would manage its leakage better than a privately owned one under a strict target. Public ownership also removes a source of finance: private companies can borrow against future revenue without the borrowing counting as public debt, and the investment programmes water needs run to tens of billions.',
+        'The efficiency comparison assumes the private alternative is actually disciplined, and the water companies\u2019 record suggests it was not: X-inefficiency is a risk under any ownership when the constraint on the firm is weak, and a regulator that failed to constrain a private monopoly is no reason to expect one to succeed. Public borrowing is also cheaper than private, so financing investment through the state rather than through a private company\u2019s bonds lowers the cost of capital, which for a capital-intensive industry can outweigh a modest loss of operating efficiency.',
+      ],
+      [
+        'The judgement therefore turns on what was actually wrong. Where the problem was extraction - a monopoly using regulatory slack to pay out dividends rather than invest - nationalisation removes the extractor and can plausibly improve outcomes, provided the state then invests. Where the problem was operating performance - late trains, burst mains - ownership changes little unless management changes with it, and the same staff and assets under a public sign perform as they did before. Rail illustrates the distinction: taking franchises into public operation stopped the failures of the operators but did not itself repair the track, which Network Rail, already public, owns. Nationalisation is also not the only alternative to the failing private model; a stricter regulator, a not-for-profit company owned by its customers as Welsh Water is, or a concession model with tighter contracts each address the same failure without the state taking on the debt.',
+        'The cost of the transfer itself falls on the consumer as taxpayer. Compensating shareholders at market value transfers to them the full value of the future profits nationalisation is meant to stop, while compensating below it damages the government\u2019s credibility with every other investor it needs for infrastructure. Either way the industry\u2019s debt becomes public debt, so nationalisation of water at its current level of borrowing would add to the national debt at once, before any operating gain arrived.',
+      ],
+    ],
+    'Nationalisation is likely to improve outcomes for consumers in rail and water to the extent that the problem under private ownership was extraction rather than operation: a natural monopoly using a loose regulatory regime to pay dividends and defer investment is an industry in which removing the shareholders can help, and the cheaper cost of public borrowing strengthens the case for a capital-intensive network. It is unlikely to improve outcomes where the problem was operating performance, since ownership does not change management, and it carries real costs of its own - the loss of the efficiency incentive a price cap supplies, the Treasury as a reluctant investor, and the transfer of the industry\u2019s debt onto the public balance sheet. The counterfactual matters more than the ownership: a properly regulated private firm, a customer-owned company or a stricter concession can address the same failures. Nationalisation is a reasonable response where regulation has demonstrably failed and the industry is a genuine natural monopoly, which describes rail track and arguably water, and a poor one where competition or regulation could have done the work.',
+    [
+      'Rail and water as natural monopolies; the regulated private monopoly against public ownership',
+      'Case for: marginal cost pricing, universal provision, dividends retained, with a diagram',
+      'Rail franchises returned to public operation; Scottish Water',
+      'Case against: X-inefficiency without a profit motive, with a diagram; the Treasury as investor; loss of private finance',
+      'The nationalised industries before privatisation',
+      'Alternatives: stricter regulation, customer-owned companies, concession contracts',
+    ],
+    [
+      'Dividends reflect loose regulation, not ownership; the counterfactual is a properly regulated private firm',
+      'X-inefficiency arises under any ownership when the constraint is weak; public borrowing is cheaper',
+      'Extraction against operating failure - ownership fixes the first, management fixes the second',
+      'Compensation and the transfer of debt onto the public balance sheet',
+      'Judgement: improves outcomes where regulation has failed and the industry is a natural monopoly; poor substitute for regulation elsewhere',
     ],
   ),
 }

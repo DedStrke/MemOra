@@ -80,6 +80,11 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q162: [{ a: 'cost-shock-elasticity' }, { a: 'game-theory' }, {}],
   Q163: [{}, { a: 'cost-push' }],
   Q164: [{}, { a: 'comparative-advantage', e: 'tariff' }, {}],
+  // 3.6.1: regulation of monopolies and nationalisation.
+  Q165: [{ a: 'natural-monopoly' }, {}],
+  Q166: [{ a: 'natural-monopoly', e: 'monopoly' }, {}, {}],
+  Q167: [{ a: 'natural-monopoly' }, {}],
+  Q168: [{ a: 'natural-monopoly' }, { a: 'monopoly' }, {}],
   // Diagrams added to questions that already argued exactly what these show.
   Q080: [{ a: 'phillips' }, {}, {}],
   Q102: [{}, { a: 'tariff' }, {}],

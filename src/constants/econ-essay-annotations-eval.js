@@ -452,4 +452,11 @@ export const ECON_ESSAY_ANNOTATIONS_EVAL = {
       'The two triangles either side are deadweight loss - the price of buying resilience this way',
     ],
   },
+  Q166: {
+    monopoly: [
+      'The unregulated benchmark: Qm where MC = MR, Pm off AR, supernormal profit and the deadweight loss',
+      'Every method of control is an attempt to move the firm from here towards Qc',
+      'A cap set from the firm’s own cost figures can leave it much closer to Pm than the regulator believes',
+    ],
+  },
 }

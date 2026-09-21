@@ -1095,4 +1095,40 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'Reducing reliance pulls consumption back towards the PPF: resilience is bought with part of the gain',
     ],
   },
+  Q165: {
+    'natural-monopoly': [
+      'AC is still falling where it meets D = AR: one firm supplies the market more cheaply than two could',
+      'Unregulated, the firm restricts output and prices off D well above AC - supernormal profit',
+      'The cap at P(AC): price where D meets AC, output out to Q, normal profit only',
+      'Not P = MC - that would make a loss on every unit, because MC lies below a falling AC',
+    ],
+  },
+  Q166: {
+    'natural-monopoly': [
+      'The regulated point: price P(AC), output Q, the firm just covering cost',
+      'RPI - X moves the cap down over time; a firm beating X keeps the difference - the efficiency incentive',
+      'What the diagram cannot show: the firm can reach P(AC) by cutting quality as easily as by cutting waste',
+    ],
+  },
+  Q167: {
+    'natural-monopoly': [
+      'AC still falling where it meets D: a natural monopoly',
+      'P = MC would make a loss - so a private firm cannot charge the allocatively efficient price',
+      'A publicly owned firm can price at MC and fund the loss from taxation - the case for ownership in one line',
+      'Or it can be held at P(AC) by a regulator: the question is which the government trusts more',
+    ],
+  },
+  Q168: {
+    'natural-monopoly': [
+      'Rail track and water: AC still falling where it meets D',
+      'Private ownership under regulation: P(AC) at best, and above it if the cap is loose',
+      'Public ownership: P = MC is available, with the loss funded from taxation - the allocative gain',
+      'Whether consumers see that gain depends on the Treasury funding the loss AND the investment',
+    ],
+    monopoly: [
+      'With no profit motive and no rival, costs drift above the minimum - X-inefficiency',
+      'The consumer can end up paying more than P(AC) in prices or taxes, with no supernormal profit being taken at all',
+      'This is the pre-1979 nationalised industry record - and the risk under any ownership with a weak constraint',
+    ],
+  },
 }

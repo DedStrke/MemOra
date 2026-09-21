@@ -302,4 +302,20 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain how disruption to global supply chains is likely to affect the costs of a UK manufacturing firm and the UK\u2019s rate of inflation.'),
   q('Q164', 'A-Level', ...P3, 'Synoptic 10', 'Global supply chains, firms and trade (Themes 3 + 4)', 'essay', 25,
     'Discuss the extent to which firms and governments should seek to reduce their reliance on global supply chains.'),
+  /*
+    3.6.1 lists the tools of intervention by name. Privatisation (Q030),
+    competition policy (Q029) and monopsony restrictions (Q027, Q093/094)
+    were examined; the regulation of monopolies - price and profit
+    regulation, quality standards, performance targets - had no question,
+    with performance targets never mentioned at all, and nationalisation
+    appeared once, in passing, inside the privatisation answer.
+  */
+  q('Q165', 'A-Level', ...P1, '3.6', 'Regulation of Monopolies', 'B', 10,
+    'Explain, using a diagram, how a regulator might use a price cap to control a privatised natural monopoly.'),
+  q('Q166', 'A-Level', ...P1, '3.6', 'Regulation of Monopolies', 'C', 25,
+    'Evaluate the view that price regulation is the most effective way for a government to control a privatised monopoly.'),
+  q('Q167', 'A-Level', ...P1, '3.6', 'Nationalisation', 'B', 8,
+    'Explain two reasons why a government might choose to nationalise a privately owned industry.'),
+  q('Q168', 'A-Level', ...P1, '3.6', 'Nationalisation', 'C', 25,
+    'Discuss the extent to which nationalisation is likely to improve outcomes for consumers in an industry such as rail or water.'),
 ]
