@@ -52,7 +52,7 @@ const paperShort = (q) => `${q.level === 'AS' ? 'AS ' : ''}${q.paperName.split('
 const OMISSION_REASON = {
   diagram: 'no diagram step - under 10 marks and the question does not ask for one',
   eval1: 'no evaluation step - this mark value carries no evaluation marks',
-  conclusion: 'no conclusion - only 20- and 25-mark questions need one',
+  conclusion: 'no conclusion - a supported judgement is only expected from 15 marks up',
 }
 
 const relative = (ts) => {

@@ -72,7 +72,8 @@ export function timingFor(question) {
     diagram     10+ marks, or any question that asks for one by name
     kaa         2 chains when there are 8+ KAA marks, otherwise 1
     evaluation  0 points for 0 eval marks; 1 for a handful; 2 for 6+
-    conclusion  20- and 25-mark questions only
+    conclusion  15 marks and up - the developed answers carry one from 15,
+                and the 15-mark evaluation band wants a supported judgement
 
   Returned as an ordered list of step descriptors so the UI simply maps
   over it - no mark-value logic lives in the component.
@@ -126,7 +127,7 @@ export function templateFor(question) {
     })
   }
 
-  if (question.marks >= 20) {
+  if (question.marks >= 15) {
     steps.push({
       key: 'conclusion',
       title: 'Conclusion',
