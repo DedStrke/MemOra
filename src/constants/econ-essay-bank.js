@@ -70,7 +70,9 @@ export function timingFor(question) {
 
     unpack      every question
     diagram     10+ marks, or any question that asks for one by name
-    kaa         2 chains when there are 8+ KAA marks, otherwise 1
+    kaa         2 chains when there are 8+ KAA marks, or when the question
+                itself asks for two things ("two reasons", "the difference
+                between"); otherwise 1
     evaluation  0 points for 0 eval marks; 1 for a handful; 2 for 6+
     conclusion  15 marks and up - the developed answers carry one from 15,
                 and the 15-mark evaluation band wants a supported judgement
@@ -81,6 +83,7 @@ export function timingFor(question) {
 export function templateFor(question) {
   const split = MARK_SPLIT[question.marks] || { kaa: question.marks, evaluation: 0 }
   const asksForDiagram = /\bdiagram\b/i.test(question.question)
+  const asksForTwo = /\b(two|both|difference between|distinction between)\b/i.test(question.question)
   const steps = []
 
   steps.push({
@@ -99,7 +102,7 @@ export function templateFor(question) {
     })
   }
 
-  const chains = split.kaa >= 8 ? 2 : 1
+  const chains = split.kaa >= 8 || asksForTwo ? 2 : 1
   for (let i = 1; i <= chains; i++) {
     steps.push({
       key: `kaa${i}`,
