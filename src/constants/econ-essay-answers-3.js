@@ -137,6 +137,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Division of labour raises productivity through repetition, skill-building and avoiding time lost switching tasks',
       'Diminishing returns to further division as coordination costs rise',
       'Specialisation and comparative advantage raise output and living standards through trade',
+      'Diagram: two PPFs with different slopes, specialisation where opportunity cost is lower, consumption beyond the frontier through trade',
       'Over-specialisation risk: exposure to demand shocks, and occupational immobility when a narrow skill becomes obsolete',
       'Human/social cost of extreme division of labour: monotony, disengagement, and the role of automation in offsetting it',
     ],
@@ -365,7 +366,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
 
   Q074: A(
     [['positive-externality', 'Marginal social benefit (MSB) above marginal private benefit (MPB), with the vertical gap equal to the marginal external benefit of the education. Mark the free market output where MPB = supply, the socially optimal output where MSB = supply, and show a per-unit subsidy closing the gap between them.']],
-    'A positive consumption externality occurs when consuming a good creates a benefit for third parties beyond the private benefit to the consumer. Education is a widely used example: an educated individual benefits personally, but employers and society also benefit from a more productive, more informed workforce and citizenry.',
+    'A positive consumption externality occurs when consuming a good creates a benefit for third parties beyond the private benefit to the consumer, and a subsidy is a payment from the government to producers or consumers that lowers the price paid and raises consumption towards the social optimum. Education is a widely used example: an educated individual benefits personally, but employers and society also benefit from a more productive, more informed workforce and citizenry.',
     [
       [
         'Because individuals base their consumption decisions on their own marginal private benefit (MPB), which is lower than the true marginal social benefit (MSB) once the external benefit to others is included, the free market under-consumes education relative to the socially optimal quantity where MSB would equal supply. A per-unit subsidy that lowers the effective price to the consumer can close this gap by raising private benefit relative to cost, moving consumption towards the social optimum.',
@@ -446,6 +447,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     [
       'Definition of government failure and its causes (information, unintended consequences, cost, political motivation)',
       'Examples: mis-set Pigouvian tax or subsidy, regulatory compliance cost, lobbying/capture',
+      'Diagram: a guaranteed minimum price above equilibrium creating a surplus the state must buy - government failure drawn',
       'Market failure examples where intervention has plausibly worked (competition policy, vaccination)',
       'The comparison is not perfect market versus perfect government, but the size of each specific failure',
     ],
@@ -504,6 +506,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     'A demerger tends to improve efficiency where the original conglomerate genuinely suffered from management diseconomies of scale and had few real operational synergies between its divisions to lose, letting each smaller company focus its management and letting capital markets price it more accurately. Where the conglomerate had genuine synergies - shared distribution, research, or internal capital allocation - a demerger trades that coordination benefit for sharper focus, and the one-off restructuring cost has to be recovered before any net efficiency gain shows up at all. The overall impact on efficiency is therefore conditional on the specific conglomerate’s starting point, not a guaranteed outcome of splitting up.',
     [
       'Improved managerial focus and accountability in each smaller company',
+      'Diagram: LRAC with minimum efficient scale - a conglomerate past MES on the rising section, the demerger moving each business back towards it',
       'Loss of synergies: shared distribution, shared research, internal capital allocation',
       'One-off restructuring costs and duplicated overhead functions',
       'Capital markets can price and direct funds to each business more accurately once separated',
@@ -564,6 +567,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     'A market with only a small number of large firms is generally less efficient than perfect competition in the strict, static sense - price typically exceeds marginal cost, and weaker competitive pressure can allow X-inefficiency to persist. But it is not automatically LESS efficient overall than a market of many small firms, because it can capture economies of scale and fund innovation that a fragmented market cannot. The extent to which it can be as efficient depends on how large the minimum efficient scale is relative to the size of the market: where scale economies and innovation are significant, a small number of large firms can be more efficient overall despite failing the static test; where they are not, the case for many small, competing firms remains stronger.',
     [
       'Static efficiency: productive (lowest average cost) and allocative (price = marginal cost)',
+      'Diagram: the perfectly competitive long-run equilibrium, P = MC = minimum AC, as the efficiency benchmark',
       'Small number of large firms: price above marginal cost, weaker pressure against X-inefficiency',
       'Economies of scale possible with large firms where minimum efficient scale is large relative to the market',
       'Dynamic efficiency: research and development funded by profits, innovation over time',
@@ -596,6 +600,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
       'Short-run supernormal profit attracts new entrants due to the absence of barriers to entry',
       'Entry increases market supply, driving down price and each firm’s market share',
       'Process continues until price equals average cost, giving zero economic profit in long-run equilibrium',
+      'Diagram: the firm in long-run equilibrium with AR tangent to AC, supernormal profit competed away',
       'Symmetric adjustment from a loss-making position: exit reduces supply until losses are eliminated',
     ],
     [
@@ -625,6 +630,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     [
       'Static comparison: perfect competition = P = MC, zero economic profit; monopoly = P > MC, restricted output',
       'Deadweight welfare loss created by monopoly restricting output below the competitive level',
+      'Diagram: Qm and Pm against the competitive Qc, with the deadweight loss triangle',
       'Economies of scale possible under monopoly where minimum efficient scale is large',
       'Dynamic efficiency: monopoly profit can fund research and development that competitive firms cannot',
       'Contestability: an uncontested monopoly behaves very differently from a contestable one',
@@ -685,6 +691,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     'Firms in an oligopoly are more likely to avoid open price competition than to rely on it, precisely because the game-theoretic incentive to undercut a rival makes sustained price competition mutually destructive and any collusive alternative to it fragile without active reinforcement. Whether the result is a fragile cartel, stable tacit price leadership, or a shift to non-price competition depends on how easily the product can be differentiated and how easily rivals can observe and punish deviation: near-homogeneous goods (fuel, some raw materials) see the sharpest price wars and the strongest pressure towards tacit collusion or price leadership, while differentiable goods (mobile phones, breakfast cereals) see firms shift the competition towards branding and product development instead, which matches the pattern observed across most real oligopolistic markets.',
     [
       'Interdependence and the prisoner’s dilemma: price competition risks being matched, eroding margins for all firms',
+      'Payoff matrix as the diagram: collusion at (5, 5) against the dominant-strategy outcome where both cut',
       'Overt collusion (cartels) and tacit collusion (price leadership) as coordination routes to avoid a price war',
       'Collusion is inherently unstable - each member retains an individual incentive to cheat - unless deviation is detected and punished quickly',
       'Non-price competition (advertising, branding, loyalty, product development) as a third route avoiding both risks',
@@ -807,6 +814,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     [
       'Definition of contestability, hit-and-run entry, and low sunk costs',
       'Limit pricing as the mechanism by which an incumbent responds to increased contestability',
+      'Diagram: the limit price set below profit maximisation and just under the entrant’s average cost',
       'Contestability can lower prices without increasing the number of firms',
       'Policy focus on removing barriers to entry (licensing, access to infrastructure) rather than only firm numbers',
     ],
@@ -1294,6 +1302,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     'Government intervention in markets has a generally favourable impact on prices where the target is genuine market power and the regulator is competent, and its strongest record is in opening markets to competition, which improves efficiency and expands choice simultaneously. The impact is far less reliable where the regulator lacks the information to set a cap correctly, where compliance costs entrench incumbents, or where regulation specifies technologies rather than outcomes. On consumer choice the effect is genuinely two-directional and partly a matter of values rather than economics. The overall judgement is that the design and the information available to the regulator matter far more than the extent of intervention: well-targeted intervention against a clear failure improves all three dimensions, while poorly designed intervention can worsen each of them while still incurring its full cost.',
     [
       'The range of intervention tools: price and profit regulation, merger control, deregulation, competitive tendering, privatisation',
+      'Diagram: the monopoly outcome intervention aims to move away from - price above MC, restricted output, supernormal profit',
       'Impact on prices: RPI-X caps transferring surplus and incentivising cost reduction; merger control preventing price rises',
       'Impact on efficiency: opening markets raises it; compliance costs and technology-specific rules can reduce it',
       'Impact on choice: opening markets expands it, while bans and standards deliberately narrow it',

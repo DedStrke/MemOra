@@ -195,6 +195,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
       'Application of non-excludability to the lighthouse or flood defence and the free-rider problem',
       'Application of non-rivalry: zero marginal cost of an extra user',
       'Missing market and the case for state provision through taxation',
+      'Diagram: a market with no effective demand - the missing market that state provision creates',
     ],
     [
       'Excludability can depend on technology and institutions; light dues, satellite navigation',
@@ -706,6 +707,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
       'Occupational immobility: skills built in a declining industry not matching what growing industries require',
       'Both cause structural unemployment: unemployment and unfilled vacancies coexisting, a mismatch rather than a shortage',
       'Contrast with demand-deficient (cyclical), frictional and real-wage unemployment as causes unrelated to immobility',
+      'Diagram: a wage floor above the market-clearing wage, with the excess supply of labour as real-wage unemployment - a cause separate from immobility',
     ],
     [
       'Remote/hybrid working can reduce geographical immobility for roles that do not require a physical presence',
@@ -740,6 +742,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
       'Investigation and fines up to 10% of global turnover; deterrent effect',
       'Behavioural and structural remedies',
       'Price regulation of natural monopolies (RPI-X caps) as an alternative route',
+      'Diagram: the monopoly outcome (Qm, Pm) that competition policy targets, and P(AC) regulation of a natural monopoly',
     ],
     [
       'Length of investigations; fines may be small relative to profits',

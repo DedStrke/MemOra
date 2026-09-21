@@ -339,6 +339,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
     null,
     [
       'Definition of the terms of trade (ratio of export prices to import prices) and what an improvement means',
+      'Diagram: the terms of trade as export prices over import prices, shown improving',
       'Marshall-Lerner-style reasoning: the effect on the balance of trade depends on the price elasticity of demand for exports',
       'Inelastic export demand: rising export prices raise total export revenue',
       'Elastic export demand: rising export prices reduce total export revenue',
@@ -353,7 +354,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
 
   Q100: A(
     [['terms-of-trade', 'A long-run decline in a commodity-exporting economy’s terms of trade: the price of its primary commodity exports falling or stagnating relative to the price of manufactured imports, so more of the commodity must be exported over time to purchase the same quantity of imports.']],
-    'Many developing economies rely heavily on exporting a narrow range of primary commodities (agricultural produce, minerals, oil) while importing manufactured goods and capital equipment. A deterioration in their terms of trade means these commodity exports buy progressively fewer imports over time.',
+    'Economic development means rising living standards, health and education as well as output. Many developing economies rely heavily on exporting a narrow range of primary commodities (agricultural produce, minerals, oil) while importing manufactured goods and capital equipment. A deterioration in their terms of trade - the ratio of export prices to import prices - means these commodity exports buy progressively fewer imports over time, and the question is how far that slows development rather than just output.',
     [
       [
         'Commodity prices tend to be volatile and, over long periods, have often grown more slowly than the prices of manufactured goods, partly because demand for many primary commodities grows more slowly than income (a low income elasticity of demand) while manufactured goods often see rising demand and scope for branding and differentiation that primary commodities largely lack. A developing economy heavily dependent on one or two such commodities can see its terms of trade deteriorate steadily over time even while the volume of its exports is growing.',
@@ -432,6 +433,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Role of the WTO: multilateral, non-discriminatory free trade',
       'Trading blocs: preferential treatment for members, barriers against non-members',
       'Trade creation (efficiency gain) versus trade diversion (efficiency loss) within a bloc',
+      'Diagram: a tariff raising the domestic price above Pw, cutting imports, with the deadweight losses - the cost of a bloc’s external barrier',
       'Fragmentation of global trade rules across competing, overlapping blocs',
     ],
     [
@@ -976,6 +978,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Net trade as (X - M), the smallest component of UK aggregate demand',
       'Relative size compared with consumption, investment and government spending',
       'Volatility making its contribution to short-run AD changes disproportionate to its level',
+      'Diagram: a change in (X - M) shifting AD - why a small component can move output',
       'Diagnostic value: a deficit signals excess domestic demand or a competitiveness problem',
       'The financing constraint: persistent deficits require financial account inflows and can constrain interest rates',
       'Dependence on the type of economy: small open economies versus large relatively closed ones',
@@ -1146,7 +1149,7 @@ export const ECON_ESSAY_ANSWERS_4 = {
 
   Q146: A(
     [['ad-shift', 'Aggregate demand shifting right as export demand rises, raising real output from Y₁ to Y₂. Use it to show that the initial effect of export-led growth is a demand-side one, and pair it with the point that sustained growth needs the LRAS curve to move as well.']],
-    'Export-led growth is a strategy of expanding output by selling into world markets rather than relying on domestic demand, usually by building a competitive advantage in particular sectors. It is set against alternatives such as import substitution, resource extraction, or growth driven by domestic consumption and investment. Whether it is the MOST effective route depends on the size of the domestic market, the sectors available and the external conditions the economy faces.',
+    'Economic growth is a sustained rise in real output, and for a developing economy the question is which route to it can be sustained. Export-led growth is a strategy of expanding output by selling into world markets rather than relying on domestic demand, usually by building a competitive advantage in particular sectors. It is set against alternatives such as import substitution, resource extraction, or growth driven by domestic consumption and investment. Whether it is the MOST effective route depends on the size of the domestic market, the sectors available and the external conditions the economy faces.',
     [
       [
         'The case for export-led growth is that it escapes the limits of a small domestic market. A developing economy whose population is poor cannot generate enough domestic demand to support production at an efficient scale, so producing for world markets lets firms reach a scale their own country never could, moving them down their long-run average cost curve and making them more competitive still. Export earnings also relieve the foreign exchange constraint that holds many developing economies back, funding the imported capital equipment and technology that raise productive capacity. The east Asian economies are the standard evidence: South Korea, Taiwan and later China all grew by deliberately building export sectors, and each moved from low-income to middle or high-income status within a generation.',
