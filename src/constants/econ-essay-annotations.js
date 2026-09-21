@@ -1131,4 +1131,39 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'This is the pre-1979 nationalised industry record - and the risk under any ownership with a weak constraint',
     ],
   },
+  Q171: {
+    laffer: [
+      'Revenue is zero at a 0% rate and again at 100 - nobody works for taxable income',
+      'Between them revenue rises to the revenue-maximising rate T* and falls beyond it',
+      'A cut from ABOVE T* raises revenue: the base grows by more than the rate falls',
+      'A cut from BELOW T* lowers revenue - and the basic rate sits well below any estimate of T*',
+    ],
+  },
+  Q172: {
+    'ad-shift': [
+      'A higher after-tax return on investment is the ↑I in the label: AD₁ shifts to AD₂',
+      'Output rises Y₁ → Y₂; near Yf the price level rises P₁ → P₂ instead - the short-run inflation risk',
+      'This is the demand effect, and it arrives before any capacity is built',
+    ],
+  },
+  Q173: {
+    'output-gap': [
+      'Actual output drops below trend into the recession (− gap)',
+      'Receipts fall and benefit spending rises with it - no decision taken: the automatic stabilisers',
+      'That is the CYCLICAL deficit, and it closes as actual climbs back to trend',
+      'What would still be there with actual ON trend is the structural deficit - ageing, debt interest',
+    ],
+  },
+  Q174: {
+    'output-gap': [
+      'The structural deficit is the borrowing that would remain with actual output ON the trend line',
+      'The cyclical deficit is the mirror of the gap and closes by itself as the gap does',
+      'Eliminating the structural part is a decision; eliminating the cyclical part is just waiting',
+    ],
+    'ad-shift': [
+      'Consolidation read in reverse: AD₂ back to AD₁, output Y₂ → Y₁',
+      'Far from Yf the fall lands on output - the post-2010 cost; near Yf it lands on the price level and is cheap',
+      'That is why timing, not the aim, is the real argument',
+    ],
+  },
 }

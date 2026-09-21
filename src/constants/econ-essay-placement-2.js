@@ -85,6 +85,11 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q166: [{ a: 'natural-monopoly', e: 'monopoly' }, {}, {}],
   Q167: [{ a: 'natural-monopoly' }, {}],
   Q168: [{ a: 'natural-monopoly' }, { a: 'monopoly' }, {}],
+  // 4.4.3 has no exam diagram; 4.5.2 uses the Laffer curve and the AD/LRAS pair.
+  Q171: [{}, { a: 'laffer' }],
+  Q172: [{ a: 'ad-shift', e: 'lras-shift' }, {}, {}],
+  Q173: [{ a: 'output-gap' }, {}],
+  Q174: [{ a: 'output-gap' }, { a: 'ad-shift' }, {}],
   // Diagrams added to questions that already argued exactly what these show.
   Q080: [{ a: 'phillips' }, {}, {}],
   Q102: [{}, { a: 'tariff' }, {}],

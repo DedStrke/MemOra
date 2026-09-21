@@ -459,4 +459,11 @@ export const ECON_ESSAY_ANNOTATIONS_EVAL = {
       'A cap set from the firm’s own cost figures can leave it much closer to Pm than the regulator believes',
     ],
   },
+  Q172: {
+    'lras-shift': [
+      'Only if the investment adds to the capital stock does LRAS₁ shift to LRAS₂',
+      'Then capacity rises Y₁ → Y₂ with the price level easing P₁ → P₂ - the effect the policy is for',
+      'UK business investment did not respond to the cut to 19%, so this shift is the uncertain half',
+    ],
+  },
 }

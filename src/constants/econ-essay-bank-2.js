@@ -318,4 +318,31 @@ export const ECON_ESSAY_BANK_2 = [
     'Explain two reasons why a government might choose to nationalise a privately owned industry.'),
   q('Q168', 'A-Level', ...P1, '3.6', 'Nationalisation', 'C', 25,
     'Discuss the extent to which nationalisation is likely to improve outcomes for consumers in an industry such as rail or water.'),
+  /*
+    Two more from the term-level probe. 4.4.3 (role of central banks) had
+    no question: QE (Q041) and regulation (Q050) touched two of its four
+    functions, "banker to the government" appeared nowhere and lender of
+    last resort once. 4.5.2b, the macroeconomic effects of a change in tax
+    rates - incentives, the Laffer curve, output, the price level, the
+    trade balance, FDI - had none either; Q052 is the distribution angle.
+  */
+  q('Q169', 'A-Level', ...P2, '4.4', 'The Role of Central Banks', 'B', 8,
+    'Explain two functions of a central bank other than the operation of monetary policy.'),
+  q('Q170', 'A-Level', ...P2, '4.4', 'The Role of Central Banks', 'C', 25,
+    'Evaluate the extent to which a central bank acting as lender of last resort is beneficial to an economy.'),
+  q('Q171', 'A-Level', ...P2, '4.5', 'Taxation', 'B', 10,
+    'Explain, using the Laffer curve, how a cut in the rate of income tax might affect both incentives to work and government tax revenue.'),
+  q('Q172', 'A-Level', ...P2, '4.5', 'Taxation', 'C', 25,
+    'Evaluate the likely effects of a significant cut in the rate of corporation tax on an economy such as the UK.'),
+  /*
+    4.5.3 d) and e), the factors influencing the size of fiscal deficits
+    and national debts. Q051 is the EFFECTS of a deficit and Q109/Q110
+    are definition and significance; nothing asked what makes a deficit
+    grow. The essay takes the structural/cyclical distinction (4.5.3c)
+    into the fiscal-rules debate, which Q051 does not reach.
+  */
+  q('Q173', 'A-Level', ...P2, '4.5', 'Public Sector Finances', 'B', 10,
+    'Explain two factors that could cause a government\u2019s fiscal deficit to increase.'),
+  q('Q174', 'A-Level', ...P2, '4.5', 'Public Sector Finances', 'C', 25,
+    'Evaluate the view that a government should aim to eliminate its structural fiscal deficit.'),
 ]

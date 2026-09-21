@@ -1299,4 +1299,193 @@ export const ECON_ESSAY_ANSWERS_4 = {
       'Judgement: the headline ratio is close to uninformative; composition and financing determine the effect',
     ],
   ),
+  /* ------------------------------------- The Role of Central Banks (4.4.3) */
+  Q169: A(
+    [],
+    'A central bank is the institution at the centre of a country\u2019s financial system. Its best-known role is the operation of monetary policy - setting interest rates and, since 2009, conducting quantitative easing - but the specification lists three other functions: banker to the government, banker to the banks including acting as lender of last resort, and regulation of the banking industry. Two of these are explained here.',
+    [
+      [
+        'The first is acting as banker to the banks and, when necessary, lender of last resort. Commercial banks hold accounts at the central bank through which payments between them are settled, and they can borrow from it against collateral when they cannot borrow elsewhere. A bank is solvent but illiquid when its assets exceed its liabilities but are tied up in long-term loans while its depositors want cash now; without a lender of last resort, a rumour alone can cause a run, because each depositor knows the bank cannot pay everyone at once and rushes to be paid first. By standing ready to lend to a solvent bank at a penalty rate against good collateral, the central bank removes the reason for the run. The Bank of England performed this role for Northern Rock in 2007 and, on a system-wide scale, through its emergency liquidity schemes in 2008.',
+        'The function is only stabilising if the central bank can tell an illiquid bank from an insolvent one, which in a crisis it often cannot. Lending to a bank that is actually insolvent delays its failure and enlarges the eventual loss, and the knowledge that support exists can encourage banks to hold less liquidity and take more risk in the first place - the moral hazard that regulation then has to counter.',
+      ],
+      [
+        'The second is acting as banker to the government. The central bank holds the government\u2019s main accounts, through which tax receipts arrive and public spending is paid out, and it manages the issue of government debt, arranging the sale of gilts to finance the budget deficit and handling their redemption. It also holds and manages the country\u2019s foreign exchange reserves on the government\u2019s behalf, which is what it draws on if it intervenes in the currency market. Keeping these functions in an institution that is operationally independent of the Treasury matters, because a central bank that simply printed money to cover the government\u2019s deficits would be unable to control inflation.',
+        'The line between banker to the government and financing the government is thinner than the arrangement suggests. Quantitative easing has involved the Bank of England buying a large share of the gilts the government issued to fund its deficits, and although the purchases are made in the secondary market for monetary policy reasons, the effect on the government\u2019s borrowing costs is the same as if it had lent directly, which is why the independence of the two roles is contested.',
+      ],
+    ],
+    null,
+    [
+      'The four functions in the specification, with monetary policy set aside',
+      'Banker to the banks: settlement accounts; lender of last resort to a solvent but illiquid bank at a penalty rate',
+      'Why the function prevents runs; Northern Rock and the 2008 liquidity schemes',
+      'Banker to the government: holding its accounts, managing gilt issuance, holding the foreign exchange reserves',
+      'Why operational independence from the Treasury matters for inflation control',
+    ],
+    [
+      'Distinguishing illiquidity from insolvency in a crisis; moral hazard',
+      'Quantitative easing blurs the line between banking for the government and financing it',
+    ],
+  ),
+
+  Q170: A(
+    [],
+    'A lender of last resort is a central bank that will lend to a bank which is solvent but cannot borrow elsewhere, against good collateral and usually at a penalty rate. The function exists because banking is inherently fragile: banks lend long and borrow short, so even a sound bank cannot pay all its depositors at once, and a loss of confidence can become self-fulfilling. Whether the function benefits the economy depends on whether the stability it provides outweighs the risk-taking it invites.',
+    [
+      [
+        'The benefit is the prevention of contagion. A run on one bank, even an unjustified one, forces it to sell assets quickly and at a loss, which weakens other banks holding the same assets and gives their depositors reason to run too; a single failure can become a collapse of the payments system on which every transaction in the economy depends. By lending to a solvent bank against its assets, the central bank removes the reason to run - depositors who know they can be paid do not need to be first in the queue - and stops the failure spreading. The absence of a lender of last resort was a large part of why bank failures in the United States in the early 1930s turned a recession into the Great Depression, and the presence of one is why the queues outside Northern Rock in 2007 ended within days once the Bank of England\u2019s support was announced.',
+        'The function protects the system, not the bank: a properly run lender of last resort lends only to institutions that are solvent, against collateral, at a rate that makes the borrowing costly. Where it lends to an insolvent bank it is not preventing contagion but delaying and enlarging a failure, and the difficulty is that in a crisis the two cases are hard to tell apart quickly, and the pressure is always to lend first and ask afterwards.',
+      ],
+      [
+        'The cost is moral hazard. A bank that knows it will be lent to if it runs short of liquidity has less reason to hold liquid assets itself, and one that expects to be rescued if it fails has more reason to take risks whose upside it keeps and whose downside the central bank absorbs. The larger and more interconnected the bank, the stronger the expectation, because the central bank cannot let it fail without the contagion the function exists to prevent - "too big to fail" is the lender of last resort taken to its conclusion. The behaviour of banks before 2008, funding long-term lending with very short-term borrowing on the assumption that liquidity would always be available, is the standard evidence, and the support that followed confirmed the assumption.',
+        'Moral hazard is an argument for the terms on which the function is exercised, not against the function. Penalty rates, collateral requirements, the possibility that shareholders and management are wiped out even when depositors are protected, and the regulatory requirements on capital and liquidity introduced since 2008 are all designed to keep the insurance while removing the incentive to rely on it. Whether they succeed is an empirical question, and the rescues of 2023 - Silicon Valley Bank in the United States, Credit Suisse in Switzerland - suggest the expectation of support survived the reforms.',
+      ],
+      [
+        'The wider effects run through the public finances and monetary policy. Emergency lending puts public money at risk, and where support extends beyond liquidity into capital - as with the UK government\u2019s stakes in RBS and Lloyds in 2008 - the taxpayer becomes a shareholder in a failed bank, with losses that ran to tens of billions of pounds in the RBS case. Large-scale liquidity provision also expands the money supply and can conflict with the central bank\u2019s inflation objective, and a central bank that is seen as the guarantor of the banking system may find it harder to raise interest rates when that would expose weak banks.',
+        'Against this, the cost of not acting is a financial collapse whose fiscal and output costs dwarf those of the rescue: the fall in UK output after 2008 was of the order of 6% and the deficit that followed was driven far more by the recession than by the bank support, much of which was later recovered as the stakes were sold. The function is expensive only in comparison with a world in which the crisis did not happen, which is not the relevant comparison.',
+      ],
+    ],
+    'A central bank acting as lender of last resort is beneficial to an economy to a large extent, because the alternative - allowing a loss of confidence in one bank to become a collapse of the payments system - carries costs of a different order, as the 1930s showed in the absence of the function and 2008 in its presence. The benefit is conditional on how it is exercised: lending only to solvent banks, against collateral and at a cost, so that the function protects the system rather than the bank. Its cost, moral hazard, is real and the behaviour of banks before 2008 and the rescues of 2023 both show it, but it is a reason to attach conditions and regulation to the function rather than to withdraw it. The extent of the benefit therefore depends on the credibility of the terms: a lender of last resort that banks expect to rescue them on any terms invites the crises it exists to end, while one that lends on strict terms is close to a pure gain.',
+    [
+      'Definition: lending to a solvent but illiquid bank against collateral at a penalty rate',
+      'Why banking is fragile: lending long, borrowing short; self-fulfilling runs',
+      'Prevention of contagion and protection of the payments system; the 1930s and Northern Rock',
+      'Moral hazard: less liquidity held, more risk taken; too big to fail',
+      'Fiscal and monetary consequences: RBS and Lloyds stakes; money supply; constraints on rate rises',
+    ],
+    [
+      'Illiquid against insolvent is hard to judge under pressure; lending to an insolvent bank enlarges the loss',
+      'Moral hazard is an argument about terms, not against the function; the 2023 rescues as evidence it persists',
+      'The cost of acting is small against the cost of a collapse; much support was later recovered',
+      'Judgement: largely beneficial, conditional on credible terms',
+    ],
+  ),
+
+  /* --------------------------------------------------- Taxation (4.5.2) */
+  Q171: A(
+    [['laffer', 'Tax revenue against the tax rate, rising to a maximum at T* and falling beyond it. The question is which side of T* the economy starts on: a cut from above T* raises revenue, a cut from below it lowers revenue. The diagram makes the answer depend on the starting point, which is the whole point of the curve.']],
+    'Income tax is a direct tax on earnings. A cut in its rate raises the after-tax reward for an extra hour of work, which is the incentive effect, and changes the revenue the tax raises, which the Laffer curve is designed to show. The two are connected: what happens to revenue depends partly on how far the incentive effect changes the amount of income that is taxed.',
+    [
+      [
+        'A cut in the income tax rate raises the take-home pay from an additional hour of work, so the opportunity cost of leisure rises and the substitution effect encourages people to work more - to take a job, work longer hours, seek promotion or stay in the labour force rather than retire. The effect is strongest where the previous rate was high enough to make additional work barely worthwhile, which is the argument made for cutting the UK\u2019s top rate from 60% to 40% in 1988 and, more recently, for reducing the high effective marginal rates that arise where benefit withdrawal and tax combine. A stronger incentive to work raises the supply of labour, which is a supply-side effect on the economy\u2019s capacity.',
+        'The substitution effect is not the only one. A tax cut also raises income at every hour already worked, and the income effect of being better off can lead people to work less, buying more leisure with the extra income. Which dominates is an empirical question that differs by group: for second earners and the low paid the substitution effect tends to be strong, while for high earners already working full time the response is small, and much of the observed response to tax changes at the top is people changing when and how income is declared rather than how much work is done.',
+      ],
+      [
+        'The effect on revenue is what the Laffer curve shows. Tax revenue is the rate multiplied by the base, and the base - taxable income - responds to the rate. At a zero rate revenue is zero; at a 100% rate nobody works for taxable income and revenue is zero again; between them revenue rises to a maximum at some rate T* and then falls. A cut from a rate above T* raises revenue, because the increase in the taxed base - more work, less avoidance, less emigration of high earners - outweighs the lower rate on each pound; a cut from below T* lowers revenue, because the base rises by less than the rate falls. The argument for the 1988 cut was that the top rate stood above T*, and the top 1% did go on to pay a larger share of total income tax, though how much of that reflected the cut rather than rising top incomes is disputed.',
+        'The position of T* is not known and is almost certainly different for different taxes and groups, so the curve settles the logic but not the answer. Most estimates put the revenue-maximising top rate for the UK somewhere between 40% and 60%, which means a cut from the current 45% rate could plausibly lower or raise revenue depending on the estimate used. For the basic rate, which the great majority of taxpayers face and which is well below any estimate of T*, a cut unambiguously lowers revenue, and any claim that it pays for itself is not supported.',
+      ],
+    ],
+    null,
+    [
+      'Income tax as a direct tax; a cut raises after-tax pay from an extra hour',
+      'Substitution effect: higher opportunity cost of leisure, more labour supplied; the 1988 top-rate cut',
+      'Laffer curve: revenue = rate x base, base responds to rate, maximum at T*, with a diagram',
+      'A cut above T* raises revenue through a larger base; a cut below T* lowers it',
+    ],
+    [
+      'The income effect works the other way; responses differ by group and are partly about declaration, not work',
+      'T* is unknown and differs by tax; the basic rate is well below it, so a cut there lowers revenue',
+    ],
+  ),
+
+  Q172: A(
+    [
+      ['ad-shift', 'A cut in corporation tax raising the after-tax return on investment: the \u2191I in the label shifts AD\u2081 to AD\u2082, output Y\u2081 to Y\u2082. The demand-side half of the effect, arriving first.'],
+      ['lras-shift', 'The supply-side half: if the extra investment adds to the capital stock, LRAS\u2081 shifts to LRAS\u2082 and capacity rises Y\u2081 to Y\u2082. This is the effect the policy is meant to have, and the one that takes longest and is least certain.'],
+    ],
+    'Corporation tax is a direct tax on company profits. A significant cut raises the after-tax return on investment and the retained profit available to fund it, and it changes the attractiveness of the country to foreign direct investment. The UK cut its main rate from 28% in 2010 to 19% by 2017, then raised it back to 25% in 2023, which provides a recent test of both directions. The effects run through investment and capacity, through the public finances, and through the distribution of income, and they depend heavily on what else determines investment.',
+    [
+      [
+        'The intended effect is on investment. A lower rate raises the after-tax return on any project, so projects that previously fell just short of a firm\u2019s required return now clear it, and investment rises; the rise in I shifts aggregate demand right, raising output and employment in the short run, and if the investment adds to the capital stock it shifts long-run aggregate supply right as well, raising productive capacity and the sustainable rate of growth. A lower rate also attracts foreign direct investment, since a multinational choosing where to locate a plant or declare profit compares after-tax returns across countries; Ireland\u2019s 12.5% rate and the investment it drew from American technology and pharmaceutical firms is the standard case, and part of the argument for the UK cuts was to compete for the same capital.',
+        'Investment depends on expected demand, confidence and the cost of finance at least as much as on the tax rate, and the UK evidence is unhelpful to the policy: business investment as a share of GDP stayed among the lowest in the G7 through the years the rate was falling to 19%, and the OBR found little evidence that the cuts raised it. FDI is also sensitive to the tax base and to the availability of skilled labour, infrastructure and market access, so a low headline rate attracts declared profit more reliably than it attracts plants, which raises the revenue of the host country without raising its capacity.',
+      ],
+      [
+        'The effect on the public finances is direct and immediate. Corporation tax raises around a tenth of UK receipts, so a significant cut costs several billion pounds a year at once, and the Laffer argument that a larger base recovers the loss holds only if the rate started above the revenue-maximising level, which the international evidence puts well above the rates the UK has used. The shortfall has to be met by higher borrowing, higher other taxes or lower spending, each with costs of its own, and the choice is distributional: a corporation tax cut benefits shareholders, who are disproportionately better off, so if it is funded by cutting spending or raising indirect taxes the net effect is regressive.',
+        'Who finally bears corporation tax is contested. Part of its burden falls on workers through lower wages and part on consumers through higher prices, because capital is mobile and labour is not, so a cut does not accrue only to shareholders and some of it reaches wages over time. The revenue cost is also partly offset if the cut does raise investment and profits, and the base broadened alongside the UK cuts - fewer allowances, stricter rules on interest deduction - which is why receipts held up better than the fall in the rate alone would have predicted.',
+      ],
+      [
+        'The wider macroeconomic effects follow from investment. Higher investment raises productivity and wages over time, and where it improves the competitiveness of exporters it strengthens the trade balance; a country that attracts FDI also gains the technology and management practice that comes with it. But the effects on the price level and the trade balance in the short run can go the other way: a cut that raises demand faster than capacity adds to inflationary pressure, and higher investment draws in imported capital goods before any export gain appears, so the trade balance worsens first.',
+        'The scale of every effect depends on the size of the cut relative to what competitors do. A tax cut that other countries match, as they did through the 2010s in a general downward competition, changes relative attractiveness not at all and simply lowers everyone\u2019s revenue - the reason for the international agreement on a 15% minimum rate from 2021. The counterfactual of the same money spent on infrastructure or skills, which raise capacity directly rather than through a hoped-for private response, is the comparison the policy has to survive, and the reversal to 25% in 2023 suggests the UK government judged that it had not.',
+      ],
+    ],
+    'A significant cut in corporation tax has a clear theoretical effect - a higher after-tax return raising investment and attracting FDI, shifting both aggregate demand and, if capacity is built, long-run aggregate supply - and a much less clear actual one. The UK\u2019s cut from 28% to 19% is the relevant evidence, and it did not produce the rise in business investment that justified it, because investment depends on demand, confidence and finance more than on the tax rate and because a low headline rate attracts declared profit more readily than plants. The revenue cost is immediate and certain, the incidence is partly regressive, and a cut that competitors match changes nothing but the revenue. The likely effects are therefore a small and uncertain gain to investment and competitiveness against a large and certain cost to the public finances, and the balance depends on whether the rate was high enough relative to competitors for the cut to change decisions - which the reversal to 25% in 2023 suggests it was not.',
+    [
+      'Corporation tax as a direct tax on profits; the UK rate from 28% to 19% and back to 25%',
+      'Higher after-tax return raising investment: AD and, if capacity is built, LRAS, with diagrams',
+      'FDI: comparing after-tax returns across countries; Ireland',
+      'Revenue cost: a tenth of receipts; the Laffer condition; how the shortfall is funded',
+      'Incidence and distribution: shareholders, workers, consumers',
+      'Trade balance, price level and competitiveness effects',
+    ],
+    [
+      'Investment depends on demand, confidence and finance; UK business investment did not respond',
+      'A low rate attracts declared profit more reliably than plants',
+      'Base broadening and incidence on workers offset part of the cost and the regressive effect',
+      'A cut matched by competitors changes nothing; the 15% global minimum',
+      'Judgement: small, uncertain gain against large, certain cost; depends on the rate relative to competitors',
+    ],
+  ),
+  /* ------------------------------------- Public Sector Finances (4.5.3) */
+  Q173: A(
+    [['output-gap', 'Actual output falling below trend into the recession phase. The cyclical part of the deficit is the mirror image of that gap: receipts fall and benefit spending rises as output drops below trend, with no change in policy at all. The diagram separates this from the structural part, which would remain even at trend.']],
+    'A fiscal deficit is the amount by which government spending exceeds revenue in a year. Its size is not simply a policy choice: it moves with the economic cycle through the automatic stabilisers, and with slower-moving pressures on spending and revenue that a government does not control year to year. Two factors are explained here, one cyclical and one structural.',
+    [
+      [
+        'The first factor is a downturn in the economic cycle. As actual output falls below trend into a negative output gap, tax receipts fall automatically - less income is earned so income tax and National Insurance fall, less is spent so VAT falls, and profits fall so corporation tax falls - while spending on unemployment-related benefits rises as people lose work. Neither requires a decision; these are the automatic stabilisers, and they widen the deficit in a recession by design, since the extra borrowing supports demand when it is weakest. The effect is large: the UK deficit rose from around 3% of GDP before 2008 to over 10% by 2009-10, most of it from the collapse in receipts, and again in 2020 when the pandemic cut output and the furlough scheme added discretionary spending on top.',
+        'This part of the deficit is cyclical and should reverse as output returns to trend, so it is a weaker cause for concern than a deficit of the same size in a boom. The difficulty is that the size of the output gap, and therefore the split between cyclical and structural, cannot be observed directly and is often revised years later - after 2008 much of what had been treated as cyclical turned out to be structural, because the pre-crisis level of receipts from the financial sector never returned.',
+      ],
+      [
+        'The second factor is a structural rise in spending commitments relative to the tax base, of which an ageing population is the clearest case. As the share of the population above retirement age rises, spending on the state pension, health care and social care rises with it, while the share of the population of working age - which pays most of the tax - shrinks. This raises the deficit at any given level of output and any given tax rates, so it does not reverse with the cycle; the OBR projects that health and pension spending alone will add several percentage points of GDP to public spending over the coming decades on unchanged policy. Rising debt interest works the same way: once the debt is large, a rise in interest rates raises the deficit directly, which is what happened to the UK after 2022, when debt interest rose above £100 billion a year.',
+        'A structural deficit of this kind can only be closed by a decision - higher taxes, lower spending or a later retirement age - and each carries a political cost that governments defer, which is why structural deficits persist. Whether it should be closed at all depends on what the borrowing funds: a deficit that finances investment in capacity is different in kind from one that finances current consumption, even if the two look identical in the accounts.',
+      ],
+    ],
+    null,
+    [
+      'Definition of a fiscal deficit; the distinction between cyclical and structural causes',
+      'Factor 1: the cycle - receipts fall and benefit spending rises automatically in a negative output gap, with a diagram',
+      'The automatic stabilisers; the UK deficit after 2008 and in 2020',
+      'Factor 2: structural pressure - an ageing population raising pension and health spending while the tax base shrinks',
+      'Debt interest as a structural driver once the debt is large; the UK after 2022',
+    ],
+    [
+      'The cyclical part should reverse, but the split between cyclical and structural is unobservable and revised',
+      'A structural deficit closes only by decision; whether it should depends on what the borrowing funds',
+    ],
+  ),
+
+  Q174: A(
+    [
+      ['output-gap', 'Actual output around trend. The structural deficit is the part that would remain with output AT trend; the cyclical part is the mirror of the gap. Eliminating the structural deficit means removing the first without waiting for the second to close on its own.'],
+      ['ad-shift', 'Fiscal consolidation read in reverse: AD\u2082 back to AD\u2081, output Y\u2082 to Y\u2081. The cost of closing the deficit through demand, and why it depends on where the economy sits relative to Yf when the consolidation happens.'],
+    ],
+    'A structural fiscal deficit is the part of the deficit that would remain if output were at its trend level - the part not explained by the economic cycle. Because it does not close on its own, a government that wants to stop the national debt rising as a share of GDP has, in the end, to remove it. The question is whether eliminating it should be the aim, or whether a government should tolerate a structural deficit for what it funds and for the cost of removing it.',
+    [
+      [
+        'The case for eliminating it is arithmetic. A structural deficit means the debt rises as a share of GDP every year even when the economy is at capacity, and a rising debt ratio raises the interest bill, which is itself part of the deficit, so the position compounds. Debt interest in the UK has exceeded £100 billion a year since 2022, more than the budget of most departments, and every pound of it is a pound not available for services or tax cuts. A persistent structural deficit also leaves no room for the cyclical borrowing a recession requires, so the automatic stabilisers cannot work when they are needed, and it exposes the government to the loss of confidence that raises borrowing costs suddenly - September 2022 showed how quickly gilt yields respond to unfunded commitments. On this view the structural deficit should be eliminated and the cyclical deficit allowed to move around zero, which is the principle behind most fiscal rules.',
+        'The arithmetic depends on the relationship between the interest rate and the growth rate. If the economy grows faster than the interest rate on its debt, a modest structural deficit is consistent with a stable or falling debt ratio, because the denominator grows faster than the numerator; through the 2010s that condition held and the debt ratio would have fallen with a deficit of around 2% of GDP. The case for elimination is strongest when interest rates exceed growth, as they have since 2022, and weaker when they do not.',
+      ],
+      [
+        'The cost of eliminating it is the demand withdrawn to do so. Closing a structural deficit means raising taxes or cutting spending, which shifts aggregate demand left, and the multiplier on that withdrawal is largest exactly when the economy has spare capacity. The UK consolidation after 2010 is the evidence: the structural deficit was reduced substantially, but with the economy far below capacity and monetary policy already at the lower bound, the withdrawal of demand held back the recovery, and the IMF later concluded that consolidation in that position had cost more output than its models had assumed. Eliminating a structural deficit when output is below trend can therefore lower output enough to raise the cyclical deficit, so the total deficit falls by less than intended and the debt ratio by less still.',
+        'That is an argument about timing rather than about the aim. A structural deficit can be eliminated gradually and when the economy is at capacity, when the multiplier is small and monetary policy can offset the demand effect, as the fiscal rules that target the position several years ahead are designed to allow. The objection to the post-2010 consolidation was its pace and timing, not the principle that a structural deficit should eventually close.',
+      ],
+      [
+        'The stronger objection is to treating all borrowing alike. A deficit that funds investment in infrastructure, education or research adds to the economy\u2019s capacity and to future tax revenue, so borrowing to finance it can leave the public finances stronger, not weaker; a government that eliminates its structural deficit by cutting investment - which is politically the easiest spending to cut, because its costs are invisible for years - lowers future growth and with it the future tax base. This is why fiscal rules increasingly distinguish current from capital spending, aiming to balance the current budget while borrowing for investment. On this view the aim should be to eliminate the structural CURRENT deficit, not the structural deficit as a whole.',
+        'The distinction is easier to state than to police, since governments have an incentive to reclassify current spending as investment to escape the rule, and not all investment earns a return that covers its borrowing cost. The credibility of a rule depends on an independent body such as the OBR judging the classification, and on the government accepting the judgement, which is the point at which most fiscal rules have historically been amended rather than obeyed.',
+      ],
+    ],
+    'A government should aim to eliminate its structural deficit in the sense that matters: the part of its borrowing that funds current spending, that would persist at full capacity, and that leaves the debt ratio rising and the interest bill compounding. The view is wrong as a blanket rule in three respects. Whether a structural deficit is sustainable depends on the gap between growth and interest rates, so elimination is a necessity when rates exceed growth and a choice when they do not; the cost of eliminating it depends on timing, and doing so with spare capacity and monetary policy at the lower bound, as after 2010, forgoes output for little gain in the debt ratio; and borrowing that funds investment in capacity is not the same as borrowing that funds consumption, so a rule that eliminates both cuts the investment first and weakens the finances it was meant to protect. The defensible aim is a balanced structural current budget, reached gradually and at capacity, with borrowing for investment judged on its return - which is close to where UK fiscal rules have settled, and the question is whether governments keep to them.',
+    [
+      'Definition of a structural deficit as the deficit at trend output, distinguished from the cyclical deficit, with a diagram',
+      'Case for: a rising debt ratio and compounding interest; no room for stabilisers; confidence and gilt yields',
+      'The interest-growth differential as the condition for sustainability',
+      'Cost of eliminating it: demand withdrawn, the multiplier with spare capacity, with a diagram; the post-2010 consolidation',
+      'Current against capital borrowing; balancing the current budget while borrowing for investment',
+    ],
+    [
+      'A structural deficit is consistent with a stable debt ratio when growth exceeds the interest rate',
+      'The post-2010 objection is to pace and timing, not to the aim',
+      'Cutting investment to close the deficit weakens the future tax base',
+      'Reclassification and the credibility of fiscal rules',
+      'Judgement: eliminate the structural CURRENT deficit, gradually and at capacity; borrow for investment on its return',
+    ],
+  ),
 }
