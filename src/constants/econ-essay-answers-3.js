@@ -431,7 +431,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
     'Government failure is the risk that intervention meant to correct a market failure ends up creating a net welfare loss of its own, through poor information, unintended consequences, excessive administrative cost, or political rather than economic motivation.',
     [
       [
-        'The case for caution rests on the fact that a government does not automatically have better information than the market it is correcting. Setting a Pigouvian tax at the wrong rate because the true marginal external cost is hard to measure, or subsidising a merit good beyond the point that maximises welfare, can turn a market failure into a differently shaped, government-caused inefficiency rather than removing it.',
+        'The case for caution rests on the fact that a government does not automatically have better information than the market it is correcting. Setting a Pigouvian tax at the wrong rate because the true marginal external cost is hard to measure, or subsidising a good with external benefits beyond the point that maximises welfare, can turn a market failure into a differently shaped, government-caused inefficiency rather than removing it.',
         'Regulation also carries an administrative and compliance cost that is itself a resource cost to the economy, and where a policy creates identifiable winners (an industry receiving a subsidy, workers protected by regulation) those groups have a strong incentive to lobby to keep the policy in place even once its original justification has weakened, which is a political rather than an economic reason for intervention to persist. The European Union’s Common Agricultural Policy is a well-documented case: guaranteed minimum prices set above the market equilibrium generated the notorious "butter mountains" and "wine lakes" of the 1980s, as farmers kept producing surpluses the state then had to buy up and store, a textbook instance of a subsidy mis-sized because it was set for political rather than economic reasons.',
       ],
       [
@@ -777,7 +777,7 @@ export const ECON_ESSAY_ANSWERS_3 = {
         'A market can still have few sunk costs yet remain uncontestable if some other barrier - a licence, control of an essential input - blocks entry regardless, so low sunk costs alone do not guarantee contestability.',
       ],
       [
-        'The second characteristic is the potential for "hit and run" entry: a new firm can enter quickly, undercut the incumbent’s price while it is set above the competitive level, take a share of the abnormal profit, and leave again just as quickly if the incumbent responds by cutting its own price back down. It is the mere THREAT of this happening, not entry actually needing to occur, that disciplines the incumbent’s pricing.',
+        'The second characteristic is the potential for "hit and run" entry: a new firm can enter quickly, undercut the incumbent’s price while it is set above the competitive level, take a share of the supernormal profit, and leave again just as quickly if the incumbent responds by cutting its own price back down. It is the mere THREAT of this happening, not entry actually needing to occur, that disciplines the incumbent’s pricing.',
         'This only works if the incumbent cannot respond faster than the entrant can exit; a market where price cuts take effect immediately gives a hit-and-run entrant far less time to profit before being undercut in turn.',
       ],
     ],
