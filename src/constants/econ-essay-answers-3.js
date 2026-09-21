@@ -1,7 +1,9 @@
 /*
   Developed answers for the Theme 1 and Theme 3 half of econ-essay-bank-2.js
-  (Q065-Q076, Q085-Q096 - Economic Systems through Contestability). Same
-  shape and house style as econ-essay-answers-p1.js: Section B questions
+  (Q065-Q076 and Q085-Q096 from the first batch, then the Theme 1 and 3
+  questions of every later batch up to Q168 - see the bank file for what
+  each batch answers to). Same shape and house style as
+  econ-essay-answers-p1.js: Section B questions
   (8, 10 or 12 marks) get one or two developed chains and no conclusion;
   Section C essays (25 marks) get three chains and a justified judgement.
 

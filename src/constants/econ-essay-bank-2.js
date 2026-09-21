@@ -25,6 +25,27 @@
   the original bank already uses. No AS-level equivalents: AS was
   deliberately scoped as one broad question per whole subgroup, and that
   is unchanged - the gap this file closes only exists at A-Level depth.
+
+  Later batches, in order, each closing a gap a later audit found:
+    Q113-Q144  topics the specification names that the audit above had
+               matched only by subgroup (monopoly, monopolistic
+               competition, measures of development, subsidies, buffer
+               stocks and so on)
+    Q145-Q156  numbered sub-points with no dedicated question once the
+               sub-points were extracted from the spec text itself rather
+               than matched by topic name (2.5.1, 2.5.3, 1.2.3 YED/XED,
+               3.1.1, 4.5.1, three bullets of 3.5.3)
+    Q157-Q164  Paper 3 synoptic contexts 7-10 (energy, migration, the
+               grocery market, global supply chains)
+    Q165-Q182  named items below the sub-point level: 3.6.1 regulation of
+               monopolies and nationalisation, 4.4.3 central banks, 4.5.2b
+               tax effects, 4.5.3 deficit causes, 4.1.5 monetary unions,
+               4.1.6 non-tariff restrictions, 4.3.3 development strategies
+               and the international institutions
+  The comment above each batch says which spec item it answers to.
+  Answers live in econ-essay-answers-3.js (Themes 1 and 3),
+  econ-essay-answers-4.js (Themes 2 and 4) and econ-essay-answers-p3.js
+  (Paper 3); placement in econ-essay-placement-2.js.
 */
 
 const q = (id, level, paperCode, paperName, topicCode, topicName, section, marks, question) => ({

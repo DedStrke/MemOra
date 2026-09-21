@@ -1,7 +1,9 @@
 /*
   Developed answers for the Theme 2 and Theme 4 half of econ-essay-bank-2.js
-  (Q077-Q084, Q097-Q112 - Balance of Payments through Macroeconomic Policies
-  in a Global Context). Same shape and house style as econ-essay-answers-p2.js:
+  (Q077-Q084 and Q097-Q112 from the first batch, then the Theme 2 and 4
+  questions of every later batch up to Q182 - see the bank file for what
+  each batch answers to). Same shape and house style as
+  econ-essay-answers-p2.js:
   Section B questions (8, 10 or 12 marks) get one or two developed chains and
   no conclusion; Section C essays (25 marks) get three chains and a justified
   judgement.

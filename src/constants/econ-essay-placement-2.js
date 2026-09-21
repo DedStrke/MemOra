@@ -1,10 +1,14 @@
 /*
-  Diagram placement for the 25 answers in econ-essay-answers-3.js and
-  econ-essay-answers-4.js that use a diagram (out of 48 total - the rest
-  are topics the real papers do not typically expect one for, same
-  reasoning as econ-essay-placement.js). Each diagram is attached to the
-  first row's analysis side, one row entry per row in that answer's
-  `rows` array - see econ-essay-answers.js for how this is merged in.
+  Diagram placement for every answer from Q065 onwards that uses a diagram
+  (econ-essay-answers-3.js, -4.js and the Paper 3 additions in -p3.js).
+  Answers with no entry here are topics the real papers do not expect a
+  diagram for, same reasoning as econ-essay-placement.js. One row entry
+  per row in that answer's `rows` array; `a` puts the diagram beside the
+  analysis, `e` beside the evaluation - see econ-essay-answers.js for how
+  this is merged in. A diagram placed here should also be declared in the
+  answer's own diagrams array with a "what to show" note, and have
+  annotation steps in econ-essay-annotations(-eval).js written to the
+  diagram's drawn labels.
 */
 export const ECON_ESSAY_PLACEMENT_2 = {
   Q069: [{ a: 'pes-elasticity' }],
