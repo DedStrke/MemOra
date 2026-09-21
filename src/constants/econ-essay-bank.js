@@ -94,7 +94,7 @@ export function templateFor(question) {
     steps.push({
       key: 'diagram',
       title: 'Diagram',
-      hint: 'Which diagram applies, and what it must show: labelled axes, the curves, the equilibrium points, and the shift being illustrated.',
+      hint: 'Which diagram applies, if any, and what it must show: labelled axes, the curves, the equilibrium points, and the shift being illustrated. Some topics have no diagram the exam expects - saying so is a decision, not a gap.',
       rows: 3,
     })
   }
