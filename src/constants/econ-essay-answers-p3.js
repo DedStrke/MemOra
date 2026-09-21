@@ -461,6 +461,7 @@ export const ECON_ESSAY_ANSWERS_P3 = {
       'High interest rates and over-indebtedness',
       'Depends on complementary skills, markets and infrastructure',
       'Savings and payments more effective than credit',
+      'Judgement: a useful contribution to development through inclusion, not a route out of poverty on its own',
     ],
   ),
 

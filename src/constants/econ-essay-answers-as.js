@@ -65,6 +65,7 @@ export const ECON_ESSAY_ANSWERS_AS = {
       'Inside the PPF the opportunity cost of using unemployed resources is close to zero',
       'Opportunity cost is difficult to measure when the alternative is non-monetary, and involves value judgements',
       'The concept explains that a choice must be made more than which choice is made',
+      'Judgement: central to explaining that consumers and governments must choose and the direction of their response; weaker on which choice is made',
     ],
   ),
 
@@ -105,6 +106,7 @@ export const ECON_ESSAY_ANSWERS_AS = {
       'Retailers may absorb the cost rise in margins; loss-leader pricing',
       'Time lags from hedging and forward contracts; the rise may be temporary',
       'Exchange rate movements can offset or amplify a dollar-priced input',
+      'Judgement: a modest, regressive price rise with little fall in quantity, borne more by consumers than bakers; significance depends on size and persistence',
     ],
   ),
 
@@ -273,6 +275,7 @@ export const ECON_ESSAY_ANSWERS_AS = {
       'Investment depends more on confidence and expected demand than on interest rates',
       'Relative interest rates and the Marshall-Lerner condition limit the exchange-rate channel',
       'Magnitude depends on the size of the rise and the starting position of the economy',
+      'Judgement: AD falls, mainly through consumption and investment, but by an amount and with a lag that depend on variable-rate exposure, confidence and other central banks',
     ],
   ),
 

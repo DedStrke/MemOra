@@ -123,7 +123,7 @@ export const ECON_ESSAY_ANSWERS_P1 = {
       'Magnitude depends on the strength of complementarity (XED) and on the size of the price fall',
       'Elastic versus inelastic supply; short run versus long run',
       'Ceteris paribus - other determinants of demand may change at the same time',
-      'Judgement: direction is certain, magnitude is not',
+      'Overall: the direction is certain, the magnitude is not',
     ],
   ),
 
