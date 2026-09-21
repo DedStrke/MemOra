@@ -424,4 +424,32 @@ export const ECON_ESSAY_ANNOTATIONS_EVAL = {
       'This is government failure on a diagram: a welfare loss created by the intervention, not removed by it',
     ],
   },
+  Q158: {
+    'ad-shift': [
+      'A rate rise read in reverse: AD₂ back to AD₁',
+      'The price level falls P₂ → P₁ - but output falls Y₂ → Y₁ as well, from a level the supply shock had already cut',
+      'A demand-side tool against a supply-side shock: it works by making the downturn deeper',
+    ],
+  },
+  Q161: {
+    'game-theory': [
+      'Holding price is colluding: both chains at (5, 5)',
+      'Each fears the other will cut and take share, so cutting is the dominant strategy',
+      'Both cheat - the outcome is worse for both than the restraint they abandoned, and neither can raise price first',
+    ],
+  },
+  Q162: {
+    'game-theory': [
+      'Concentration lets the chains sit at (5, 5): each knows a rise will be matched, not undercut',
+      'General inflation is cover - the question is whether they used it, which is what margins tell you',
+      'The discounters growing through the surge is the sign that the market stayed contestable',
+    ],
+  },
+  Q164: {
+    tariff: [
+      'Pw rises to Pw + tariff: domestic output up Q₁ → Q₂, consumption down Q₄ → Q₃',
+      'Imports shrink to the gap between Q₂ and Q₃; tariff revenue is the rectangle over it',
+      'The two triangles either side are deadweight loss - the price of buying resilience this way',
+    ],
+  },
 }

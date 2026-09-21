@@ -1020,4 +1020,79 @@ export const ECON_ESSAY_ANNOTATIONS = {
       'Under monopsony the floor result reverses: between the monopsony wage and the competitive wage, employment RISES',
     ],
   },
+  Q157: {
+    'maximum-price': [
+      'The cap is the Max price line, held below where the dearer supply curve now meets D',
+      'At that price quantity supplied Qs is short of quantity demanded Qd - a shortage',
+      'Here the shortage was of SUPPLIERS: retailers who could not sell at a loss left the market',
+      'When the cap is reset the price jumps to the new cost - pass-through delayed, not prevented',
+    ],
+    'cost-push': [
+      'Dearer energy is a cost to every firm: AS₁ shifts LEFT to AS₂',
+      'The price level rises P₁ → P₂ AND output falls Y₁ → Y₂ - stagflation, not a demand boom',
+      'That is a one-off rise in the price LEVEL; it becomes lasting inflation only if wages follow',
+    ],
+  },
+  Q158: {
+    'cost-push': [
+      'The shock: AS₁ to AS₂ - price level P₁ → P₂, output Y₁ → Y₂',
+      'AD has not moved. The inflation is on the supply side, which is what monetary policy cannot reach',
+      'What rates CAN reach is the second round - whether wages and prices keep chasing each other after the shock',
+    ],
+  },
+  Q159: {
+    'labour-market': [
+      'Migration shifts S(L) RIGHT: more workers at every wage',
+      'Competitive case: the new equilibrium is below W₁ and beyond Q₁ - lower wage, more employment',
+      'With the minimum wage line above the new equilibrium the wage cannot fall: the adjustment lands on jobs at the floor',
+      'D(L) = MRP shifts right too, because migrants spend - which offsets part of the wage effect',
+    ],
+    'lras-shift': [
+      'A larger workforce is more capacity: LRAS₁ shifts RIGHT to LRAS₂',
+      'Potential output rises Y₁ → Y₂ and the price level eases P₁ → P₂',
+      'This is TOTAL output. Output per head rises only if the new workers are as productive as the old',
+    ],
+  },
+  Q160: {
+    'lras-shift': [
+      'More labour, more capacity: LRAS₁ to LRAS₂, potential output Y₁ → Y₂',
+      'The gain is largest where a vacancy could not otherwise be filled - capacity that was unusable',
+      'Y is total output; living standards track Y per head, which the diagram does not show',
+    ],
+    'labour-market': [
+      'In the markets migrants enter, S(L) shifts RIGHT',
+      'Competitive case: wage below W₁, employment beyond Q₁ - the effect the low paid feel',
+      'The minimum wage line stops the wage falling, so the pressure shows as competition for jobs at the floor',
+      'D(L) = MRP shifts right too as migrants spend - which is why the measured wage effect is small',
+    ],
+  },
+  Q161: {
+    'monopsony': [
+      'The chain faces its suppliers’ whole supply curve S = ACL, so MCL lies above it',
+      'It buys where MCL = MRP, at Q₁, and pays only W₁ off the supply curve - below MRP',
+      'A price war pushes the chain to use that gap harder: the cut is passed upstream',
+      'The Groceries Code Adjudicator polices HOW the gap is used, not whether it exists',
+    ],
+  },
+  Q162: {
+    'cost-shock-elasticity': [
+      'The same upward supply shift in both panels - energy, fertiliser, grain, sterling',
+      'Food is the inelastic panel: the shift lands almost entirely on price, quantity barely falls',
+      'Full pass-through raises PRICE but not MARGIN - the test for market power is what margins did',
+    ],
+  },
+  Q163: {
+    'cost-push': [
+      'Dearer inputs and freight for firms across the economy: AS₁ shifts LEFT to AS₂',
+      'Price level P₁ → P₂, output Y₁ → Y₂ - the shortage cuts production as well as raising prices',
+      'When chains normalise, AS moves back: a level effect that drops out of the annual rate',
+    ],
+  },
+  Q164: {
+    'comparative-advantage': [
+      'Specialise here: the stage of production where opportunity cost is lowest',
+      'The trade line lets consumption sit BEYOND the PPF - that gap is the gain from global chains',
+      'Reducing reliance pulls consumption back towards the PPF: resilience is bought with part of the gain',
+    ],
+  },
 }

@@ -70,6 +70,16 @@ export const ECON_ESSAY_PLACEMENT_2 = {
   Q154: [{ a: 'lras-shift' }, {}, {}],
   Q155: [{ a: 'labour-market' }, {}],
   Q156: [{ a: 'labour-market' }, {}, {}],
+  // Paper 3, Synoptic 7-10. The structured questions carry the micro
+  // diagram on the market row and the macro one on the inflation row.
+  Q157: [{ a: 'maximum-price' }, { a: 'cost-push' }, {}],
+  Q158: [{ a: 'cost-push', e: 'ad-shift' }, {}, {}],
+  Q159: [{ a: 'labour-market' }, { a: 'lras-shift' }],
+  Q160: [{ a: 'lras-shift' }, { a: 'labour-market' }, {}],
+  Q161: [{}, { a: 'game-theory' }, { a: 'monopsony' }],
+  Q162: [{ a: 'cost-shock-elasticity' }, { a: 'game-theory' }, {}],
+  Q163: [{}, { a: 'cost-push' }],
+  Q164: [{}, { a: 'comparative-advantage', e: 'tariff' }, {}],
   // Diagrams added to questions that already argued exactly what these show.
   Q080: [{ a: 'phillips' }, {}, {}],
   Q102: [{}, { a: 'tariff' }, {}],
