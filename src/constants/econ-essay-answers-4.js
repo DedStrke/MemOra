@@ -114,8 +114,8 @@ export const ECON_ESSAY_ANSWERS_4 = {
     'A government typically holds several macroeconomic objectives simultaneously - economic growth, low unemployment, low and stable inflation, a sustainable balance of payments, a balanced budget, environmental protection and greater income equality among them - and achieving all of them at once is often difficult because the policy tools used to pursue one objective can work against another.',
     [
       [
-        'Policies to boost growth and reduce unemployment - lower interest rates, higher government spending, tax cuts - increase aggregate demand, but if the economy is already close to full capacity, this extra demand is more likely to raise the general price level than to raise real output further, conflicting with the objective of low and stable inflation. This is the classic short-run trade-off the Phillips curve describes between unemployment and inflation.',
-        'Similarly, a demand-driven boost to growth tends to pull in more imports as rising incomes are partly spent on foreign goods, worsening the current account of the balance of payments, so a policy successfully hitting the growth and employment objectives can simultaneously push the country further from its external balance objective.',
+        'Policies to boost growth and reduce unemployment - lower interest rates, higher government spending, tax cuts - increase aggregate demand, but if the economy is already close to full capacity, this extra demand is more likely to raise the general price level than to raise real output further, conflicting with the objective of low and stable inflation. This is the classic short-run trade-off the Phillips curve describes between unemployment and inflation, and the same demand pulls in imports as rising incomes are partly spent on foreign goods, so the growth and employment objectives are met at the expense of the external balance too.',
+        'Both conflicts bind only near capacity. With a negative output gap, extra demand raises output with little pressure on prices, and the import leakage is the price of a recovery that would otherwise not happen, so whether the trade-off exists at all depends on where the economy sits in the cycle. The Phillips relationship has also weakened: through the 2010s UK unemployment fell to its lowest for decades while inflation stayed at or below target, which suggests the conflict is far less binding than the textbook curve implies until the economy is genuinely at capacity.',
       ],
       [
         'Against this, not every policy trades off objectives against one another: supply-side policies that raise productive capacity - investment in education and training, infrastructure, or measures that improve labour market flexibility - can raise output and reduce unemployment WITHOUT the same inflationary pressure, because they increase what the economy can produce at any given level of demand rather than simply adding more demand onto an unchanged productive capacity.',
@@ -445,27 +445,28 @@ export const ECON_ESSAY_ANSWERS_4 = {
   /* -------------------------------------------- The Balance of Payments (4.1) */
   Q103: A(
     [],
-    'A current account deficit means a country is spending more on imports, income and transfers abroad than it earns from them. A government concerned about a large, persistent deficit has both expenditure-switching and expenditure-reducing policies available to reduce it.',
+    'A current account deficit means a country is spending more on imports, income and transfers abroad than it earns from them. A government concerned about a large, persistent deficit has two broad kinds of policy available: expenditure-switching, which shifts spending from imports towards domestic output, and expenditure-reducing, which lowers spending overall. Protectionism is a third, cruder form of switching, and supply-side policy that raises competitiveness is the slow route beneath all of them.',
     [
       [
-        'An expenditure-switching policy aims to make domestic goods relatively cheaper than imports, encouraging both domestic and foreign consumers to switch their spending towards them - allowing the exchange rate to depreciate (or actively devaluing it under a managed system) makes exports cheaper in foreign currency and imports more expensive in domestic currency, which should, subject to the Marshall-Lerner condition being met, improve the trade balance over time. Sterling’s forced exit from the Exchange Rate Mechanism in 1992 is the clearest UK case, with the depreciation that followed contributing to several years of strong export growth.',
-        'A second option is protectionism - tariffs or quotas on imports - which directly reduces import volumes by raising their price or physically restricting the quantity that can enter the country, though this expenditure-switching approach risks retaliation from trading partners and conflicts with a government’s wider free trade commitments.',
+        'An expenditure-switching policy aims to make domestic goods relatively cheaper than imports so that both domestic and foreign consumers switch their spending towards them. The main instrument is the exchange rate: allowing the currency to depreciate, or devaluing it under a managed system, makes exports cheaper in foreign currency and imports dearer in domestic currency, so export volumes rise and import volumes fall. Provided the Marshall-Lerner condition holds - the price elasticities of demand for exports and imports sum to more than one - the trade balance improves. Sterling\u2019s forced exit from the Exchange Rate Mechanism in 1992 is the clearest UK case, with the depreciation that followed contributing to several years of strong export growth and a narrowing deficit. Tariffs and quotas switch expenditure more directly by raising the price or limiting the quantity of imports, though at the cost of retaliation and of a government\u2019s trade commitments.',
+        'Depreciation works with a lag and is not costless. In the short run demand for exports and imports is price inelastic - contracts are fixed, buyers take time to switch - so the same volumes are traded at worse prices and the deficit widens before it narrows, which is the J-curve. Dearer imports also raise the domestic price level, both directly and through imported components, so the competitiveness gain erodes as inflation feeds into costs unless wages are restrained; and under a floating rate the depreciation is not a policy the government can simply choose.',
       ],
       [
-        'An expenditure-reducing policy instead aims to lower overall aggregate demand in the economy - tighter fiscal policy (higher taxes, lower government spending) or tighter monetary policy (higher interest rates) - which reduces spending on all goods, including imports, improving the current account as a side effect of the wider demand contraction.',
-        'This approach directly conflicts with the objectives of economic growth and low unemployment, since it deliberately reduces demand throughout the economy rather than specifically targeting import spending, so a government must weigh the improvement in the current account against the cost to growth and jobs elsewhere in the economy.',
+        'An expenditure-reducing policy instead lowers aggregate demand as a whole - tighter fiscal policy through higher taxes or lower government spending, or tighter monetary policy through higher interest rates - so that spending on everything, including imports, falls. Because a high marginal propensity to import means a large share of any fall in income comes off imports, the current account improves as a by-product of the demand contraction. Higher interest rates have a second effect in the same direction through the exchange rate, though here it works against the first: the capital inflow they attract appreciates the currency, which partly offsets the improvement from lower demand.',
+        'The policy conflicts directly with the objectives of growth and low unemployment, since it reduces demand throughout the economy rather than targeting import spending, so the government is buying a smaller deficit with lower output and higher unemployment. It is also only a cure for a deficit caused by excess domestic demand: where the deficit reflects a structural loss of competitiveness, as the UK\u2019s persistent deficit largely does, cutting demand narrows it temporarily and it re-opens as soon as demand recovers, which is why supply-side policy to raise productivity and non-price competitiveness is the lasting alternative, slow as it is.',
       ],
     ],
     null,
     [
-      'Definition of expenditure-switching versus expenditure-reducing policy',
-      'Depreciation/devaluation to switch expenditure towards domestic goods (Marshall-Lerner condition)',
-      'Protectionism (tariffs, quotas) as a second expenditure-switching option',
-      'Expenditure-reducing policy (tighter fiscal or monetary policy) lowering demand for imports as a side effect',
+      'Definition of a current account deficit; expenditure-switching against expenditure-reducing policy',
+      'Depreciation or devaluation: exports cheaper abroad, imports dearer at home; the Marshall-Lerner condition; the ERM exit in 1992',
+      'Tariffs and quotas as direct switching, with retaliation and trade commitments as the cost',
+      'Expenditure-reducing: tighter fiscal or monetary policy lowering demand for imports through the marginal propensity to import',
+      'The interest rate route partly offsets itself through currency appreciation',
     ],
     [
-      'Expenditure-switching depends on the Marshall-Lerner condition being satisfied',
-      'Expenditure-reducing policy conflicts with growth and employment objectives',
+      'Depreciation works with a lag (the J-curve) and raises the price level; under a floating rate it is not a policy choice',
+      'Expenditure-reducing conflicts with growth and employment, and only cures a demand-driven deficit - a structural one needs supply-side policy',
     ],
   ),
 
