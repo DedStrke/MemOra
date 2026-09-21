@@ -152,7 +152,7 @@ export const ECON_ESSAY_ANNOTATIONS_EVAL = {
     ],
     'natural-monopoly': [
       'If AC is still falling where it meets D, the merged firm is the low-cost supplier',
-      'A regulator sets P = AC to stop it charging Pm - consumers can gain even from a dominant firm',
+      'A regulator sets price at P(AC) to stop it charging the unregulated profit-maximising price - consumers can gain even from a dominant firm',
     ],
   },
   Q021: {
@@ -224,7 +224,7 @@ export const ECON_ESSAY_ANNOTATIONS_EVAL = {
   Q029: {
     'natural-monopoly': [
       'Where AC still falls where it meets D, dominance cannot be broken up',
-      'The regulator caps price at P(AC) instead of P = MC (a loss) or Pm (abuse)',
+      'The regulator caps price at P(AC): P = MC would make a loss, and the unregulated profit-maximising price is the abuse',
     ],
   },
   Q030: {

@@ -1114,7 +1114,10 @@ export const ECON_ESSAY_ANSWERS_4 = {
 
   /* ------------------------------ Causes of Economic Growth (2.5.1) */
   Q145: A(
-    [['ppf-shift', 'A production possibility frontier with a point inside it and the frontier itself shifting outward. Actual growth is the movement from the interior point towards the frontier - using existing capacity more fully. Potential growth is the outward shift of the frontier itself - an increase in the capacity available to be used. Both are needed to show the distinction clearly.']],
+    [
+      ['ppf', 'A production possibility frontier with a point B inside it. Actual growth is the movement from B towards the frontier - using existing capacity more fully, with no change in what the economy could produce.'],
+      ['ppf-shift', 'The frontier itself shifting outward from PPF\u2081 to PPF\u2082. Potential growth is this shift - an increase in the capacity available to be used. The two diagrams together are the distinction: a movement towards the curve against a movement of the curve.'],
+    ],
     'Economic growth is an increase in the real output of an economy. The specification distinguishes actual growth, a rise in real GDP actually produced, from potential growth, a rise in the maximum output the economy is capable of producing. The distinction matters because the two have different causes and call for different policies.',
     [
       [

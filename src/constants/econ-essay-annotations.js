@@ -267,8 +267,8 @@ export const ECON_ESSAY_ANNOTATIONS = {
   },
   Q028: {
     'labour-market': [
-      'Competitive equilibrium at W₁, Q₁: everyone willing to work at that wage has a job',
-      'Hold the wage above W₁ and quantity supplied exceeds quantity demanded',
+      'Competitive equilibrium where S(L) meets D(L) = MRP, at W₁, Q₁: everyone willing to work at that wage has a job',
+      'The minimum wage line sits above W₁: along it, quantity supplied on S(L) exceeds quantity demanded on D(L)',
       'The horizontal gap is real wage unemployment - the workers and the jobs match, the wage is what does not',
       'Immobility is a different failure: it shifts nothing here, it stops workers reaching the market at all',
     ],
@@ -657,7 +657,7 @@ export const ECON_ESSAY_ANNOTATIONS = {
   },
   Q081: {
     'lras-shift': [
-      'LRAS₁ shifts right to LRAS₂ as capacity rises - full capacity moves from Yf₁ to Yf₂',
+      'LRAS₁ shifts right to LRAS₂ as capacity rises - full-capacity output moves from Y₁ to Y₂',
       'With AD unchanged, output rises from Y₁ to Y₂ while the price level falls from P₁ to P₂ - capacity-led growth is non-inflationary',
     ],
   },
@@ -931,18 +931,21 @@ export const ECON_ESSAY_ANNOTATIONS = {
     ],
   },
   Q145: {
+    ppf: [
+      'B is inside the frontier: spare capacity - unemployed workers, idle machinery',
+      'Actual growth is the move from B towards A on the frontier: the same resources, used more fully',
+      'Once at A there is nowhere further to go on THIS frontier - the interior gap can be closed only once',
+    ],
     'ppf-shift': [
-      'The point INSIDE PPF₁ is an economy with spare capacity - unemployed workers, idle machinery',
-      'Actual growth is the arrow from that point TO the frontier: the same resources, used more fully',
       'Potential growth is PPF₁ shifting out to PPF₂: the capacity itself has risen',
-      'Only the shift can continue indefinitely - the interior gap can be closed once',
+      'More of BOTH goods is now possible - the shift, not the movement, is what can continue indefinitely',
     ],
   },
   Q146: {
     'ad-shift': [
-      'Rising export demand shifts AD right: real output rises from Y₁ to Y₂',
-      'This is the demand-side half only - it raises output towards capacity, not capacity itself',
-      'Sustained growth needs LRAS to move too, which is what the FDI and productivity effects deliver',
+      'Rising export demand (↑(X−M)) shifts AD₁ to AD₂: real output rises from Y₁ to Y₂',
+      'This is the demand-side half only - it raises output towards Yf, it does not move Yf',
+      'Sustained growth needs Yf itself to shift right, which is what the FDI and productivity effects deliver',
     ],
   },
   Q147: {
@@ -963,18 +966,18 @@ export const ECON_ESSAY_ANNOTATIONS = {
   },
   Q149: {
     'demand-shift': [
-      'The price of good B has NOT changed - so this is a shift of D, never a movement along it',
-      'A rise in the price of a SUBSTITUTE shifts D right: positive XED',
-      'A rise in the price of a COMPLEMENT shifts D left: negative XED',
-      'The size of the shift is what the magnitude of XED measures; a zero shift means unrelated goods',
+      'The price of THIS good has not changed - so demand moves from D₁ to D₂, a shift, never a movement along it',
+      'A rise in the price of a SUBSTITUTE is the shift as drawn, D₁ to D₂: price P₁ to P₂, quantity Q₁ to Q₂ - positive XED',
+      'A rise in the price of a COMPLEMENT reads the same shift in reverse, D₂ back to D₁ - negative XED',
+      'The distance between D₁ and D₂ is what the magnitude of XED measures; no shift means unrelated goods',
     ],
   },
   Q150: {
     'demand-shift': [
-      'Both YED and XED describe a SHIFT caused by something other than the good’s own price',
-      'A fall in real income shifts D left for a luxury (YED > 1) and RIGHT for an inferior good (YED < 0)',
-      'A rival cutting its price shifts D left for a close substitute - the exposure a stocking decision has to price in',
-      'This is why the two are forecasting tools, not pricing tools: PED is what governs your own price',
+      'Both YED and XED describe the D₁ to D₂ shift - caused by something other than the good’s own price',
+      'A rise in real income is D₁ to D₂ for a normal good; read it in reverse for an inferior one (YED < 0)',
+      'A rival cutting its price is D₂ back to D₁ for a close substitute - the exposure a stocking decision has to price in',
+      'This is why the two are forecasting tools, not pricing tools: PED governs movement ALONG D, which is your own price',
     ],
   },
   Q151: {
@@ -987,33 +990,33 @@ export const ECON_ESSAY_ANNOTATIONS = {
   },
   Q152: {
     'business-objectives': [
-      'The profit maximiser produces at MC = MR - output restricted, price above cost',
-      'Break-even (AR = AC) is further right: more output, no surplus - the not-for-profit’s constraint',
-      'That extra output is why a not-for-profit serves users a commercial firm would turn away',
-      'It is a CONSTRAINT, not the absence of a financial objective: below it the organisation closes',
+      'The profit maximiser produces at Qπ, where MC = MR - output restricted, price off AR above cost',
+      'Qs, where AR = AC, is further right: more output, no surplus - that is the not-for-profit’s constraint',
+      'The gap from Qπ to Qs is why a not-for-profit serves users a commercial firm would turn away',
+      'Qs is a CONSTRAINT, not the absence of a financial objective: to the right of it the organisation makes a loss and closes',
     ],
   },
   Q154: {
     'lras-shift': [
-      'Public investment in infrastructure, education and health shifts LRAS right: capacity has risen',
-      'Only CAPITAL spending plausibly does this - transfers and debt interest do not shift the curve',
+      'Public investment in infrastructure, education and health shifts LRAS₁ to LRAS₂: output Y₁ to Y₂, price level P₁ to P₂',
+      'Only CAPITAL spending plausibly does this - transfers and debt interest leave LRAS₁ where it is',
       'The diagram shows the benefit; the financing cost (tax distortion, crowding out) is not on it',
       'Near full capacity the borrowing that funds the shift can displace private investment that would have shifted it anyway',
     ],
   },
   Q155: {
     'labour-market': [
-      'D(L) = MRP shifts RIGHT - the same increase in demand in both cases',
-      'Against a STEEP (inelastic) supply curve the wage jumps and employment barely moves',
-      'Against a SHALLOW (elastic) one employment jumps and the wage barely moves',
+      'D(L) = MRP shifts RIGHT; the new equilibrium is where it meets S(L), above W₁ and beyond Q₁',
+      'The split between the rise in W and the rise in Q depends on the SLOPE of S(L)',
+      'Redraw S(L) steeper (inelastic): the wage jumps and employment barely moves. Flatter (elastic): the reverse',
       'Which you get is a property of the SUPPLY side, not of the size of the demand shift',
     ],
   },
   Q156: {
     'labour-market': [
-      'Start from the competitive equilibrium W₁, Q₁',
-      'A minimum wage ABOVE it: quantity supplied exceeds quantity demanded - the gap is unemployment',
-      'A maximum wage BELOW it: quantity demanded exceeds quantity supplied - shortages and unfilled vacancies',
+      'Start from the competitive equilibrium where S(L) meets D(L) = MRP, at W₁, Q₁',
+      'The minimum wage line ABOVE W₁: quantity supplied on S(L) exceeds quantity demanded on D(L) - the gap is unemployment',
+      'Draw a maximum wage BELOW W₁: now quantity demanded exceeds quantity supplied - shortages and unfilled vacancies',
       'Under monopsony the floor result reverses: between the monopsony wage and the competitive wage, employment RISES',
     ],
   },
